@@ -1,0 +1,271 @@
+---
+title: "Biolizard R style"
+author: "Robbe Neirynck"
+date: "2023-08-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE}
+# Define a list of required packages
+required_packages <- c("tidyverse", "palmerpenguins", "remotes","systemfonts", "ragg","ggthemes")
+
+# Check and install each required package
+for (pkg in required_packages) {
+  if (!require(pkg, character.only = TRUE)) {
+    install.packages(pkg)
+    library(pkg, character.only = TRUE)
+  }
+}
+
+# Install the "bbc/bbplot" package from GitHub if it's not already installed
+if(!"bbplot" %in% rownames(installed.packages())) {
+  remotes::install_github("bbc/bbplot")
+}
+
+# Load the bbplot package
+library(bbplot)
+
+#Economist package is part of ggthemes
+```
+
+# Creating a Custom 'Biolizard' Style with ggplot
+
+This R MarkDown is meant to guide you through the creation of a new 'Biolizard' style for ggplot2, drawing inspiration from the Economist and BBC styles. We'll use the penguins dataset from the palmerpenguins package for our examples. Let's compare the standard R style with the BBC and Economist styles to see how custom styles can change the look of our data visualizations.
+
+```{r}
+# Load the penguins dataset and display the first few rows
+head(penguins)
+
+#A small summary
+penguins_summary <- penguins %>%
+  count(island)
+
+penguins_summary
+
+```
+First, let's visualize the data using the default ggplot style.
+
+```{r, warning=FALSE, fig.align='center'}
+# Create a bar plot illustrating the count of penguins on each island
+penguins_plot <- ggplot(data=penguins, mapping=aes(x=island, fill=island)) +
+  geom_bar() +
+  labs(
+    title='Penguin Population per Island',
+    subtitle = 'Across different islands in Antarctica'
+  )
+# Display the plot
+penguins_plot
+```
+Now, let's apply the BBC style to the same plot.
+
+```{r, warning=FALSE,fig.align='center'}
+penguins_plot + bbc_style()
+```
+Next, let's see how the plot looks when we apply the Economist style.
+```{r, warning=FALSE,fig.align='center'}
+penguins_plot + theme_economist()
+
+```
+## 0. Install and Import Avenir Font
+
+Ensure you have downloaded or converted the Avenir fonts to .ttf files. Importing the font is a one-time process, but loading the font will be part of the package. If you're not using Windows or have installed the fonts in a non-default path, adjust the **'fontPath'** variable accordingly.
+
+```{r}
+# Load or install the 'extrafont' package
+if (!require(extrafont)) install.packages("extrafont")
+library(extrafont)
+
+# Specify font path
+fontPath <- file.path(Sys.getenv("USERPROFILE"), "AppData", "Local", "Microsoft", "Windows", "Fonts")
+
+# Import the font
+extrafont::font_import(paths = fontPath) 
+```
+
+## 1. The basic Biolizard ggplot Theme
+Below is a function that customizes the ggplot theme to the 'Biolizard' style, inspired by the [BBC-style R function](https://github.com/bbc/bbplot/blob/master/R/bbc_style.R). Note that these are very initial settings that still need to be optimized.  
+
+```{r, warning=FALSE, error=FALSE}
+library(extrafont)
+#suppressWarnings(extrafont::loadfonts(device = "win"))  #ONLY WORKS ON WINDOWS
+
+lizard_style <- function() {
+  font <- "Avenir LT Std 55 Roman" 
+  ggplot2::theme(
+
+  #Text format:
+  #This sets the font, size, type and colour of text for the chart's title
+  plot.title = ggplot2::element_text(family=font,
+                            size=28,
+                            face="bold",
+                            color="#222222"),
+  #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
+  plot.subtitle = ggplot2::element_text(family=font,
+                               size=22,
+                               margin=ggplot2::margin(9,0,9,0)),
+  plot.caption = ggplot2::element_blank(),
+  #This leaves the caption text element empty, because it is set elsewhere in the finalise plot function
+
+  #Legend format
+  #This sets the position and alignment of the legend, removes a title and backround for it and sets the requirements for any text within the legend. The legend may often need some more manual tweaking when it comes to its exact position based on the plot coordinates.
+  legend.position = "top",
+  legend.text.align = 0,
+  legend.background = ggplot2::element_blank(),
+  legend.title = ggplot2::element_blank(),
+  legend.key = ggplot2::element_blank(),
+  legend.text = ggplot2::element_text(family=font,
+                             size=18,
+                             color="#222222"),
+
+  #Axis format
+  #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks. In some cases, axis lines and axis ticks are things we would want to have in the chart - the cookbook shows examples of how to do so.
+  axis.title = ggplot2::element_blank(),
+  axis.text = ggplot2::element_text(family=font,
+                           size=18,
+                           color="#222222"),
+  axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10)),
+  axis.ticks = ggplot2::element_blank(),
+  axis.line = ggplot2::element_blank(),
+
+  #Grid lines
+  #This removes all minor gridlines and adds major y gridlines. In many cases you will want to change this to remove y gridlines and add x gridlines. The cookbook shows you examples for doing so
+  panel.grid.minor = ggplot2::element_blank(),
+  panel.grid.major.y = ggplot2::element_line(color="#cbcbcb"),
+  panel.grid.major.x = ggplot2::element_blank(),
+
+  #Blank background
+  #This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
+  panel.background = ggplot2::element_blank(),
+
+  #Strip background (#This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour and sets the title size of the facet-wrap title to font size 22)
+  strip.background = ggplot2::element_rect(fill="white"),
+  strip.text = ggplot2::element_text(size  = 22,  hjust = 0)
+  )
+  }
+```
+
+Let's have a look at our Biolizard style. 
+```{r}
+penguins_plot + lizard_style()
+
+```
+
+## 2. Adding color
+
+In addition to a theme, we also aim to enhance our plots with the distinctive Biolizard color palette. The following code, inspired by the [Economist R theme](https://rdrr.io/cran/ggthemes/src/R/economist.R), presents two functions that allow us assign Biolizard qualitative colors for **color** and **fill**.
+
+Please note, this color palette is preliminary. Future iterations will expand the range of unique colors and ensure accessibility, including compatibility with color blindness.
+```{r}
+#biolizard discrete fill colors (initial)
+biolizard_discrete_fill_colors <- c("#01a086", "#1e2237", "#e9b940", "#3B8EA5","#E9724C", "#F0A4E2")
+
+biolizard_pal <- function() {
+  colors <- biolizard_discrete_fill_colors
+  max_n <- length(biolizard_discrete_fill_colors)
+  f <- function(n) {
+    if (n > max_n) {
+      stop("n is larger than the maximum number of colors available in the palette")
+    }
+    if (n == 1L) {
+      i <- 1
+    } else if (n == 2L) {
+      i <- 1:2
+    } else if (n == 3L) {
+      i <- 1:3
+    } else if (n == 4L) {
+      i <- 1:4
+    } else if (n == 5L) {
+      i <- 1:5
+    } else if (n == 6L) {
+      i <- 1:6
+    }
+    colors[i]  # return the selected colors
+  }
+  f
+}
+
+
+scale_colour_biolizard <- function(...) {
+  discrete_scale("colour", "biolizard", biolizard_pal(), ...)
+}
+
+scale_fill_biolizard <- function(...) {
+  discrete_scale("fill", "biolizard", biolizard_pal(), ...)
+}
+
+scale_color_biolizard <- scale_colour_biolizard
+```
+
+Check out our enhanced penguin plot:
+```{r}
+penguins_plot +
+  lizard_style() + 
+  scale_fill_biolizard()
+```
+
+## 3. Adding a Biolizard footer
+
+Based on the BBC's [finalise_plot](https://github.com/bbc/bbplot/blob/master/R/finalise_plot.R) function, I've tailored it to introduce a cool Biolizard footer.
+```{r}
+font <- "Avenir LT Std 55 Roman"
+
+
+save_plot <- function (plot_grid, width, height, save_filepath) {
+  grid::grid.draw(plot_grid)
+  #save it
+  ggplot2::ggsave(filename = save_filepath,
+                  plot=plot_grid, width=(width/72), height=(height/72),  bg="white")
+}
+
+#Left align text
+left_align <- function(plot_name, pieces){
+  grob <- ggplot2::ggplotGrob(plot_name)
+  n <- length(pieces)
+  grob$layout$l[grob$layout$name %in% pieces] <- 2
+  return(grob)
+}
+
+create_footer <- function (source_name, logo_image_path) {
+  #Make the footer
+  footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
+                           grid::textGrob(source_name,
+                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=16, fontfamily=font)),
+                           grid::rasterGrob(png::readPNG(logo_image_path), x = 0.935)) #changed the x value so logo is a bit more to the left
+  return(footer)
+
+}
+
+finalise_plot <- function(plot_name,
+                          source_name,
+                          save_filepath=paste0(gsub("\\\\", "/", getwd()),"/TempLizardPlot.png"), #changed this so safe in wd as default
+                          width_pixels=640,
+                          height_pixels=450,
+                          logo_image_path) { #maybe change this up later by storing the logo somewhere in the package? (to use as default)
+
+  footer <- create_footer(source_name, logo_image_path)
+
+  #Draw your left-aligned grid
+  plot_left_aligned <- left_align(plot_name, c("subtitle", "title", "caption"))
+  plot_grid <- ggpubr::ggarrange(plot_left_aligned, footer,
+                                 ncol = 1, nrow = 2,
+                                 heights = c(1, 0.1)) # Changed the ratio here for larger footer
+  ## print(paste("Saving to", save_filepath))
+  save_plot(plot_grid, width_pixels, height_pixels, save_filepath)
+  ## Return (invisibly) a copy of the graph. Can be assigned to a
+  ## variable or silently ignored.
+  invisible(plot_grid)
+}
+
+```
+
+Let's show what it does on the penguin plot:
+
+```{r}
+lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard()
+finalise_plot(lizard_plot,'Source: A penguin dataset',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png")
+
+```
