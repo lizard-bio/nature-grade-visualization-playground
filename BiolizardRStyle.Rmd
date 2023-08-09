@@ -100,30 +100,30 @@ lizard_style <- function() {
   #Text format:
   #This sets the font, size, type and colour of text for the chart's title
   plot.title = ggplot2::element_text(family=font,
-                            size=28,
+                            size=24,
                             face="bold",
                             color="#222222"),
   #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
   plot.subtitle = ggplot2::element_text(family=font,
-                               size=22,
+                               size=20,
                                margin=ggplot2::margin(9,0,9,0)),
   plot.caption = ggplot2::element_blank(),
   #This leaves the caption text element empty, because it is set elsewhere in the finalise plot function
 
   #Legend format
   #This sets the position and alignment of the legend, removes a title and backround for it and sets the requirements for any text within the legend. The legend may often need some more manual tweaking when it comes to its exact position based on the plot coordinates.
-  legend.position = "top",
+  legend.position = "right",
   legend.text.align = 0,
   legend.background = ggplot2::element_blank(),
   legend.title = ggplot2::element_blank(),
   legend.key = ggplot2::element_blank(),
   legend.text = ggplot2::element_text(family=font,
-                             size=18,
-                             color="#222222"),
-
+                             size=13),
   #Axis format
   #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks. In some cases, axis lines and axis ticks are things we would want to have in the chart - the cookbook shows examples of how to do so.
-  axis.title = ggplot2::element_blank(),
+  axis.title = ggplot2::element_text(family=font,
+                           size=18,
+                           color="#222222"),
   axis.text = ggplot2::element_text(family=font,
                            size=18,
                            color="#222222"),
@@ -134,8 +134,9 @@ lizard_style <- function() {
   #Grid lines
   #This removes all minor gridlines and adds major y gridlines. In many cases you will want to change this to remove y gridlines and add x gridlines. The cookbook shows you examples for doing so
   panel.grid.minor = ggplot2::element_blank(),
-  panel.grid.major.y = ggplot2::element_line(color="#cbcbcb"),
-  panel.grid.major.x = ggplot2::element_blank(),
+  panel.grid.major.y = ggplot2::element_blank(),
+  panel.grid.major.x = ggplot2::element_blank(), 
+  #Adjusted to exclude grid lines by default; reason is that one should always think about if grid lines really add something to the plot.
 
   #Blank background
   #This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
@@ -234,7 +235,7 @@ create_footer <- function (source_name, logo_image_path) {
   footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
                            grid::textGrob(source_name,
                                           x = 0.004, hjust = 0, gp = grid::gpar(fontsize=16, fontfamily=font)),
-                           grid::rasterGrob(png::readPNG(logo_image_path), x = 0.935)) #changed the x value so logo is a bit more to the left
+                           grid::rasterGrob(png::readPNG(logo_image_path), x=0.935)) #changed the x value so logo is a bit more to the left
   return(footer)
 
 }
@@ -265,7 +266,90 @@ finalise_plot <- function(plot_name,
 Let's show what it does on the penguin plot:
 
 ```{r}
-lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard()
+lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard() 
 finalise_plot(lizard_plot,'Source: A penguin dataset',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png")
+```
+
+```{r}
+penguins_plot
+```
+```{r}
+lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard()
+lizard_plot
+```
+
+```{r}
+final_lizard_plot <- lizard_plot + 
+                      theme(axis.title = element_blank(),
+                            panel.grid.major.y = element_line(color="gray"),
+                            legend.position = "none")
+finalise_plot(final_lizard_plot,'Source: A penguin dataset',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png")
+```
+
+
+--- More crude, playground code below;
+
+Now we have the basics down, let's think about which diverging color pallet to use.
+
+most of below is based on https://www.nature.com/articles/s41467-020-19160-7. 
+
+TO AVOID:
+"for most scientists, the choice of colour maps has become almost passive, with the unscientific rainbow-like colour palette being commonplace. Similarly, colour maps that pair red–green are also problematic, but remain widely used."
+
+"At one point, most of the common software programmes applied rainbow as their default palette (e.g., MatLab, Paraview, VisAd, IrisExplorer) "
+
+For sequential and continuous color maps:
+
+Cividis: The cividis colour map38 , developed by Jamie R. Nuñez and colleagues, aims to represent an almost identical appearance for red–green colour-vision deficiencies, the closest of all currently available colour maps, while also being _perceptually uniform_. The colour-vision deficiency friendly, sequential and continuous colour map is currently available as a standard colour array.
+
+-> The color map is also perceptually-uniform, both in regular form and also when converted to black-and-white for printing.
+```{r}
+if (!requireNamespace("viridisLite", quietly = TRUE)) {
+  install.packages("viridisLite")
+}
+library(viridisLite)
+```
+
+```{r}
+# Create dummy data
+data <- expand.grid(x = 1:100, y = 1:100)
+data$z <- data$x * data$y
+
+# Create heatmap with cividis palette
+ggplot(data, aes(x = x, y = y, fill = z)) + 
+  geom_tile() + 
+  scale_fill_gradientn(colors = viridisLite::cividis(256)) + 
+  lizard_style() +
+  theme(panel.grid.major.y = element_blank(),
+        legend.position = 'right',
+        legend.text = element_text(size=12))
+
+#made some changes to theme, shows how the lizard_style() can't be directly a perfect fit for each type of plot
+
+##Second plot
+# Create a grid of points
+x <- seq(-2, 2, length.out = 200)
+y <- seq(-2, 2, length.out = 200)
+data <- expand.grid(x = x, y = y)
+
+# Calculate z values for a 2D Gaussian function
+data$z <- exp(-data$x^2 - data$y^2)
+
+
+tester <- ggplot(data, aes(x = x, y = y, z = z)) +
+            geom_raster(aes(fill = z)) + 
+            scale_fill_gradientn(colors = viridisLite::cividis(256)) +
+            labs(title = "Contour plot using cividis palette",
+                 fill = "Density") + 
+            lizard_style() +
+            theme(legend.position = 'right',
+                  legend.text = element_text(size=12)) 
+
 
 ```
+```{r}
+finalise_plot(tester,'Source:just a little test',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png")
+
+```
+Here let's think about creating a good qualitative color pallet, if possible using the biolizard colors and still being perceptually equally distance + color blind friendly + black and white friendly
+
