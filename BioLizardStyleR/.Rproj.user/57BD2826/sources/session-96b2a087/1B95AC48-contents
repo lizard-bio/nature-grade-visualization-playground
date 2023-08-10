@@ -1,0 +1,474 @@
+---
+title: "Biolizard R style"
+author: "Robbe Neirynck"
+date: "2023-08-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, warning=FALSE}
+# Define a list of required packages
+required_packages <- c("tidyverse", "palmerpenguins", "remotes","systemfonts", "ragg","ggthemes") #ggthemes to show the economist_theme() function
+
+#Note; for the actual final package, most of the packages above won't be required
+
+# Check and install each required package
+for (pkg in required_packages) {
+  if (!require(pkg, character.only = TRUE)) {
+    install.packages(pkg)
+    library(pkg, character.only = TRUE)
+  }
+}
+
+# Install the "bbc/bbplot" package from GitHub if it's not already installed
+#This is just to show off the bbc_style() function
+if(!"bbplot" %in% rownames(installed.packages())) {
+  remotes::install_github("bbc/bbplot")
+}
+# Load the bbplot package
+library(bbplot)
+
+
+```
+
+# Creating a Custom 'Biolizard' Style with ggplot
+
+This R MarkDown is meant to guide you through the creation of a new 'Biolizard' style for ggplot2, drawing inspiration from the Economist and BBC styles. We'll use the penguins dataset from the palmerpenguins package for our examples. Let's compare the standard R style with the BBC and Economist styles to see how custom styles can change the look of our data visualizations.
+
+```{r}
+# Load the penguins dataset and display the first few rows
+head(penguins)
+
+#A small summary
+penguins_summary <- penguins %>%
+  count(island)
+
+penguins_summary
+
+```
+First, let's visualize the data using the default ggplot style.
+
+```{r, warning=FALSE, fig.align='center'}
+# Create a bar plot illustrating the count of penguins on each island
+penguins_plot <- ggplot(data=penguins, mapping=aes(x=island, fill=island)) +
+  geom_bar() +
+  labs(
+    title='Penguin Population per Island',
+    subtitle = 'Across different islands in Antarctica'
+  )
+# Display the plot
+penguins_plot
+```
+Now, let's apply the BBC style to the same plot.
+
+```{r, warning=FALSE,fig.align='center'}
+penguins_plot + bbc_style()
+```
+Next, let's see how the plot looks when we apply the Economist style.
+```{r, warning=FALSE,fig.align='center'}
+penguins_plot + theme_economist()
+
+```
+## 0. Install and Import Avenir Font
+
+Ensure you have downloaded or converted the Avenir fonts to .ttf files. Importing the font is a one-time process, but loading the fonts must be done each R session . If you're not using Windows or have installed the fonts in a non-default path, adjust the **'fontPath'** variable accordingly.
+
+```{r}
+#Will need to think about how to do this in the final package, should in be in there?
+# Load or install the 'extrafont' package
+if (!require(extrafont)) install.packages("extrafont")
+library(extrafont)
+
+# Specify font path
+fontPath <- file.path(Sys.getenv("USERPROFILE"), "AppData", "Local", "Microsoft", "Windows", "Fonts")
+
+# Import the font
+extrafont::font_import(paths = fontPath) 
+```
+
+## 1. The basic Biolizard ggplot Theme
+Below is a function that customizes the ggplot theme to the 'Biolizard' style, inspired by the [BBC-style R function](https://github.com/bbc/bbplot/blob/master/R/bbc_style.R). Note that these are very initial settings that still need to be optimized.  
+
+```{r, warning=FALSE, error=FALSE}
+library(extrafont)
+#suppressWarnings(extrafont::loadfonts(device = "all",quiet=TRUE))  #ONLY WORKS ON WINDOWS, needs to be run again in each new R session
+
+lizard_style <- function() {
+  font <- "Avenir LT Std 55 Roman" 
+  ggplot2::theme(
+
+  #Text format:
+  #This sets the font, size, type and colour of text for the chart's title
+  plot.title = ggplot2::element_text(family=font,
+                            size=24,
+                            face="bold",
+                            color="#222222"),
+  #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
+  plot.subtitle = ggplot2::element_text(family=font,
+                               size=20,
+                               margin=ggplot2::margin(9,0,9,0)),
+  plot.caption = ggplot2::element_blank(),
+  #This leaves the caption text element empty, because it is set elsewhere in the finalise plot function
+
+  #Legend format
+  #This sets the position and alignment of the legend, removes a title and backround for it and sets the requirements for any text within the legend. The legend may often need some more manual tweaking when it comes to its exact position based on the plot coordinates.
+  legend.position = "right",
+  legend.text.align = 0,
+  legend.background = ggplot2::element_blank(),
+  legend.title = ggplot2::element_text(family=font,
+                           size=18,
+                           color="#222222"),
+  legend.key = ggplot2::element_blank(),
+  legend.text = ggplot2::element_text(family=font,
+                             size=13),
+  #Axis format
+  #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks. 
+  axis.title = ggplot2::element_text(family=font,
+                           size=18,
+                           color="#222222"),
+  axis.text = ggplot2::element_text(family=font,
+                           size=18,
+                           color="#222222"),
+  axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10)),
+  axis.ticks = ggplot2::element_blank(),
+  axis.line = ggplot2::element_blank(),
+
+  #Grid lines
+  #This removes all minor and major gridlines -> this option is the best if we want to lizard_style() function to create a 'starting template'
+  panel.grid.minor = ggplot2::element_blank(),
+  panel.grid.major.y = ggplot2::element_blank(),
+  panel.grid.major.x = ggplot2::element_blank(), 
+  #Adjusted to exclude grid lines by default; reason is that one should always think about if grid lines really add something to the plot.
+
+  #Blank background
+  #This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
+  panel.background = ggplot2::element_blank(),
+
+  #Strip background (#This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
+  strip.background = ggplot2::element_rect(fill="white"),
+  strip.text = ggplot2::element_text(size  = 22,  hjust = 0)
+  )
+  }
+```
+
+Let's have a look at our Biolizard style. 
+```{r}
+penguins_plot + lizard_style()
+
+```
+
+## 2. Adding color
+
+In addition to a theme, we also aim to enhance our plots with the distinctive Biolizard color palette. The following code, inspired by the [Economist R theme](https://rdrr.io/cran/ggthemes/src/R/economist.R), presents two functions that allow us assign Biolizard qualitative colors for **color** and **fill**.
+
+Please note, this color palette is preliminary. Future iterations will expand the range of unique colors and ensure accessibility, including compatibility with color blindness.
+```{r}
+#Concerning the color palettes I believe we need to chose between a set of scientifically optimized biolizard-brand colors versus an scientifically optimal colorset
+biolizard_discrete_fill_colors <- c("#01a086", "#1e2237", "#e9b940", "#3B8EA5","#E9724C", "#F0A4E2")
+#This initial set is quite randomly chosen by eye
+
+biolizard_pal <- function() {
+  colors <- biolizard_discrete_fill_colors
+  max_n <- length(biolizard_discrete_fill_colors)
+  f <- function(n) {
+    if (n > max_n) {
+      stop("n is larger than the maximum number of colors available in the palette")
+    }
+    i <-  1:n
+    return(colors[i])  # return the selected colors
+  }
+  f 
+}
+
+
+scale_colour_biolizard <- function(...) {
+  discrete_scale("colour", "biolizard", biolizard_pal(), ...)
+}
+
+scale_fill_biolizard <- function(...) {
+  discrete_scale("fill", "biolizard", biolizard_pal(), ...)
+}
+
+scale_color_biolizard <- scale_colour_biolizard #so you can use both color and colour
+
+```
+
+Check out our enhanced penguin plot:
+```{r}
+penguins_plot +
+  lizard_style() + 
+  scale_fill_biolizard()
+```
+
+## 3. Adding a Biolizard footer
+
+Based on the BBC's [finalise_plot](https://github.com/bbc/bbplot/blob/master/R/finalise_plot.R) function, I've tailored it to introduce a cool Biolizard footer.
+```{r}
+font <- "Avenir LT Std 55 Roman"
+
+
+save_plot <- function (plot_grid, width, height, save_filepath) {
+  grid::grid.draw(plot_grid)
+  #save it
+  ggplot2::ggsave(filename = save_filepath,
+                  plot=plot_grid, width=(width/72), height=(height/72),  bg="white")
+}
+
+#Left align text
+left_align <- function(plot_name, pieces){
+  grob <- ggplot2::ggplotGrob(plot_name)
+  n <- length(pieces)
+  grob$layout$l[grob$layout$name %in% pieces] <- 2
+  return(grob)
+}
+
+create_footer <- function (source_name, logo_image_path) {
+  #Make the footer
+  footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
+                           grid::textGrob(source_name,
+                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=16, fontfamily=font)),
+                           grid::rasterGrob(png::readPNG(logo_image_path), x=0.935)) #changed the x value so logo is a bit more to the left
+  return(footer)
+
+}
+
+
+#save_filepath 'has priority' over output_name
+#only if no save_filepath is specified, the filename will be equal to the output_name and will be found in the working directory
+
+
+finalise_LizardPlot <- function(plot_name,
+                          source_name,
+                          save_filepath=paste0(gsub("\\\\", "/", getwd()),"/TempLizardPlot.png"), #changed this so it saves in wd as default,
+                          output_name=NULL,
+                          width_pixels=640,
+                          height_pixels=450,
+                          logo_image_path) { #maybe change this up later by storing the logo somewhere in the package? (to use as default)
+
+  footer <- create_footer(source_name, logo_image_path)
+
+  #Draw your left-aligned grid
+  plot_left_aligned <- left_align(plot_name, c("subtitle", "title", "caption"))
+  plot_grid <- ggpubr::ggarrange(plot_left_aligned, footer,
+                                 ncol = 1, nrow = 2,
+                                 heights = c(1, 0.1)) # Changed the ratio here for larger footer
+  
+  ##Added the little block of code below
+  # Check if output_name is not empty and save_filepath is at its default value
+  default_filepath <- paste0(gsub("\\\\", "/", getwd()), "/TempLizardPlot.png")
+  if (!is.null(output_name) && save_filepath == default_filepath) {
+    save_filepath <- paste0(getwd(), "/", output_name,".png")
+  }
+
+  save_plot(plot_grid, width_pixels, height_pixels, save_filepath)
+  ## Return (invisibly) a copy of the graph. Can be assigned to a
+  ## variable or silently ignored.
+  invisible(plot_grid)
+}
+
+```
+
+Let's show what it does on the penguin plot:
+
+```{r}
+lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard() 
+finalise_LizardPlot(lizard_plot,'Source: A penguin dataset',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png", output_name = "LizardPlot")
+```
+The following three code sections, accompanied by their respective plots, demonstrate the envisioned workflow for creating a 'biolizard' plot. The 'biolizard' functions aim to offer a starting template in the 'biolizard' style, which will need further refinement based on the specific plot needed.
+```{r}
+penguins_plot
+```
+```{r}
+lizard_plot <- penguins_plot + lizard_style() + scale_fill_biolizard()
+lizard_plot
+```
+
+```{r}
+final_lizard_plot <- lizard_plot + 
+                      theme(axis.title = element_blank(),
+                            panel.grid.major.y = element_line(color="gray"),
+                            legend.position = "none")
+finalise_plot(final_lizard_plot,'Source: A penguin dataset',logo_image_path= "C:\\Users\\robbe\\OneDrive\\Bureaublad\\Ugent\\Stage\\BioLizard Internship\\BiolizardLogo.png")
+```
+
+
+## Sequential + Continuous color palette
+
+Now that we have the basics down, let's think about which diverging color palette to use.
+
+Most of the information below is based on https://www.nature.com/articles/s41467-020-19160-7.
+
+TO AVOID:
+"For most scientists, the choice of color maps has become almost passive, with the unscientific rainbow-like color palette being commonplace. Similarly, color maps that pair red with green are also problematic, but remain widely used."
+
+"At one point, many of the common software programs used rainbow as their default palette (e.g., MatLab, Paraview, VisAd, IrisExplorer)."
+
+For sequential and continuous color maps:
+
+Cividis: The cividis color map, developed by Jamie R. Nuñez and colleagues, aims to represent an almost identical appearance for red–green color-vision deficiencies. It is the closest of all currently available color maps, while also being perceptually uniform. This color-vision deficiency-friendly, sequential, and continuous color map is currently available as a standard color array.
+
+-> The color map is also perceptually-uniform, both in its regular form and when converted to black-and-white for printing.'
+```{r}
+if (!requireNamespace("viridisLite", quietly = TRUE)) {
+  install.packages("viridisLite")
+}
+library(viridisLite)
+```
+
+```{r}
+# Create dummy data
+data <- expand.grid(x = 1:100, y = 1:100)
+data$z <- data$x * data$y
+
+# Create heatmap with cividis palette
+ggplot(data, aes(x = x, y = y, fill = z)) + 
+  geom_tile() + 
+  scale_fill_gradientn(colors = viridisLite::cividis(256)) + 
+  lizard_style() +
+  theme(panel.grid.major.y = element_blank(),
+        legend.position = 'right',
+        legend.text = element_text(size=12))
+
+#made some changes to theme, shows how the lizard_style() can't be directly a perfect fit for each type of plot
+
+##Second plot
+#to test sequential data
+df <- data.frame(
+  categories = factor(c("very bad", "bad", "okay", "good", "very good"),
+                      levels = c("very bad", "bad", "okay", "good", "very good")),
+  count = c(5, 10, 15, 20, 25)
+)
+
+# Get 5 colors from the cividis palette
+ordinal_cividis <- viridisLite::cividis(5)
+
+ggplot(df, aes(x = categories, y = count, fill = categories)) +
+  geom_bar(stat = "identity") +
+    scale_fill_manual(values = ordinal_cividis) + # Example colors
+  labs(title = "Test Plot for Sequential Palette",
+       x = "Categories",
+       y = "Count",
+       fill = "Ratings") +
+  lizard_style()
+
+```
+
+## Creating more coloring functions
+
+To standardize the coloring in biolizard plots, I've developed a set of functions. Each function follows the format **'scale_fill/color_qualitative/sequential/gradient_biolizard'**. For the sequential and gradient functions, the cividis color palette is employed.
+
+```{r}
+#Concerning the color palettes I believe we need to chose between a set of scientifically optimized biolizard-brand colors versus an scientifically optimal colorset
+biolizard_discrete_fill_colors <- c("#01a086", "#1e2237", "#e9b940", "#3B8EA5","#E9724C", "#F0A4E2")
+#This initial set is quite randomly chosen by eye
+
+biolizard_pal_qualitative <- function() {
+  colors <- biolizard_discrete_fill_colors
+  max_n <- length(biolizard_discrete_fill_colors)
+  f <- function(n) {
+    if (n > max_n) {
+      stop("n is larger than the maximum number of colors available in the palette")
+    }
+    i <-  1:n
+    return(colors[i])  # return the selected colors
+  }
+  f 
+}
+
+biolizard_pal_sequential <- function() {
+  f <- function(n) {
+    return(viridisLite::cividis(n))  # return the selected colors
+  }
+  f 
+}
+
+scale_colour_qualitative_biolizard <- function(...) {
+  discrete_scale("colour", "biolizard", biolizard_pal_qualitative(), ...)
+}
+
+scale_fill_qualitative_biolizard <- function(...) {
+  discrete_scale("fill", "biolizard", biolizard_pal_qualitative(), ...)
+}
+
+scale_color_qualitative_biolizard <- scale_colour_qualitative_biolizard #so you can use both color and colour
+
+scale_fill_sequential_biolizard <- function(...){
+  discrete_scale("fill","biolizard", biolizard_pal_sequential(),...)
+}
+
+scale_colour_sequential_biolizard <- function(...){
+  discrete_scale("colour","biolizard", biolizard_pal_sequential(),...)
+}
+
+scale_color_sequential_biolizard <- scale_colour_sequential_biolizard
+
+scale_fill_gradient_biolizard <- function(...) {
+  scale_fill_gradientn(colors = viridisLite::cividis(256), ...)
+}
+
+
+scale_color_gradient_biolizard <- function(...) {
+  scale_color_gradientn(colors = viridisLite::cividis(256), ...)
+}
+scale_colour_gradient_biolizard <- scale_color_gradient_biolizard
+```
+
+Some code in which I test the coloring functions:
+```{r}
+#testing sequential
+ggplot(df, aes(x = categories, y = count, color = categories)) +
+  geom_point(size=10) +
+  labs(title = "Test Plot for Sequential Palette",
+       x = "Categories",
+       y = "Count",
+       fill = "Ratings") +
+  lizard_style() +
+  scale_color_sequential_biolizard()
+
+#testing qualitative
+ggplot(df, aes(x = categories, y = count, color = categories)) +
+  geom_point(size=10) +
+  labs(title = "Test Plot for Qualitative Palette",
+       x = "Categories",
+       y = "Count",
+       fill = "Ratings") +
+  lizard_style() +
+  scale_color_qualitative_biolizard()
+
+#testing continuous
+
+#fill
+data <- expand.grid(x = 1:100, y = 1:100)
+data$z <- data$x * data$y
+
+ggplot(data, aes(x = x, y = y, fill = z)) + 
+  geom_tile() + 
+  lizard_style() +
+  theme(panel.grid.major.y = element_blank(),
+        legend.position = 'right',
+        legend.text = element_text(size=12)) +
+  scale_fill_gradient_biolizard()
+
+#color
+
+#generating some random data
+set.seed(123)
+df_continuous <- data.frame(
+  x = rnorm(100),  # 100 random x values
+  y = rnorm(100),  # 100 random y values
+  value = runif(100, 1, 100)  # 100 random values between 1 and 100
+)
+
+ggplot(df_continuous, aes(x = x, y = y, color = value)) +
+  geom_point(size = 3) +
+  labs(title = "Test Plot for Continuous Color Palette") +
+  lizard_style() +
+  theme(panel.grid.major.x = element_line(color='gray'),
+        panel.grid.major.y=element_line(color='gray')) +
+  scale_color_gradient_biolizard() 
+```
+
+

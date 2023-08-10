@@ -1,0 +1,32 @@
+---
+title: "PackageCreationJourney"
+author: "Robbe Neirynck"
+date: "2023-08-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Some packages to help me setup this package: 
+```{r}
+library(roxygen2) # In-Line Documentation for R 
+library(usethis)  # Automate Package and Project Setup
+library(devtools) # Tools to Make Developing R Packages Easier
+library(testthat) # Unit Testing for R
+```
+This is my first time writing an R package
+I followed the website for a https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/r-package/ walkthrough on how to create your first package.
+
+I also find this [cheatsheet](https://rawgit.com/rstudio/cheatsheets/master/package-development.pdf) a really helpfull overview of the functions of all the different parts of a package.
+
+In the R files I will try to adhere to the [tidyverse style guide](https://style.tidyverse.org/index.html).
+
+Tidyverses things to rememeber:
+! public functions and their documentation should appear first, with private functions appearing after all documented functions
+
+-> Let's not worry about github for now
+
+
+
