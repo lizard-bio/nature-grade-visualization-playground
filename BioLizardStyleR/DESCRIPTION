@@ -1,12 +1,12 @@
 Package: BioLizardStyleR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Robbe Neirynck 
+Description: The BioLizardStyleR package offers tools to craft ggplot2 visualizations in the distinct BioLizard style.
+It features an integrated font installer, a dedicated ggplot2 theme function, a collection of custom color functions,
+and a function for appending a Biolizard footer and exporting the resultant graph.
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
