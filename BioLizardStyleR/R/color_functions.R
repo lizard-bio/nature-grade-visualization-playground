@@ -1,114 +1,240 @@
-#' Biolizard qualitative colors
+# ---- QUALITATIVE ----
+
+#' Biolizard Qualitative Color Palette
 #'
-#' A set of colors primarily chosen for discrete data representation.
+#' This palette is inspired by Martin Krzywinski's "12-COLOR PALETTE FOR COLORBLINESS"
+#' and is infused with the signature house colors of Biolizard for the first three shades.
+#' Tailored to be inclusive, it is friendly for those with the prevalent form of color blindness: Deuteranopia (Red-Green Color Blindness).
 #'
 #' @export
-biolizard_qualitative_colors <- c("#01a086", "#1e2237", "#e9b940", "#3B8EA5","#E9724C", "#F0A4E2")
+biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#00C2F9", "#FF5AAF","#FF6E3A","#00FCCF",
+                                             "#8400CD" ,"#E20134","#008DF9", "#FFB2FD","#A40122")
 
-#' Biolizard qualitative color palette function
-#'
-#' Provides a function to retrieve a specified number of qualitative colors from the Biolizard palette.
-#'
-#' @return A function that takes an integer \code{n} and returns a vector of \code{n} colors.
-#'
+#' Internal qualitative Biolizard palette function
+#' @noRd
+#' @return A function to extract colors.
+
 biolizard_pal_qualitative <- function() {
-  max_n <- length(biolizard_qualitative_colors)
-  function(n) {
+  colors <- biolizard_qualitative_palette
+  max_n <- length(biolizard_qualitative_palette)
+  f <- function(n) {
     if (n > max_n) {
-      stop("n is larger than the maximum number of colors available in the palette")
+      stop("The requested number of colors exceeds the available colors in the palette. Maximum colors: 12.")
     }
-    biolizard_qualitative_colors[1:n]  # return the selected colors
+    return(colors[1:n])  # Return the selected colors
   }
+  return(f)
 }
 
-
-#' Biolizard qualitative color scale
+#' Qualitative Biolizard Color Scale
 #'
+#' Use this function to incorporate the [biolizard_qualitative_palette] as a color scale into a ggplot object.
+#'
+#' @seealso [biolizard_qualitative_palette] for the detailed palette description and colors.
 #' @importFrom ggplot2 discrete_scale
 #' @export
-#'
 scale_colour_qualitative_biolizard <- function(...) {
-  discrete_scale("colour", "biolizard", biolizard_pal_qualitative(), ...)
+  discrete_scale("colour", "BioLizard", biolizard_pal_qualitative(), ...)
 }
 
-#' Biolizard qualitative fill scale
+#' Qualitative Biolizard Fill Scale
 #'
+#' Use this function to incorporate the [biolizard_qualitative_palette] as a fill scale into a ggplot object.
+#'
+#' @seealso [biolizard_qualitative_palette] for the detailed palette description and colors.
 #' @importFrom ggplot2 discrete_scale
 #' @export
-#'
 scale_fill_qualitative_biolizard <- function(...) {
-  discrete_scale("fill", "biolizard", biolizard_pal_qualitative(), ...)
+  discrete_scale("fill", "BioLizard", biolizard_pal_qualitative(), ...)
 }
 
-#' Alternative spelling for color scale
-#'
 #' @rdname scale_colour_qualitative_biolizard
-#'
+#' @export
 scale_color_qualitative_biolizard <- scale_colour_qualitative_biolizard
 
-#----------------------------------------------
+# ---- SEQUENTIAL ----
 
-#' Biolizard sequential color palette function
-#'
-#' Provides a function that returns a specified number of sequential colors using the cividis scale.
-#'
-#' @return A function that takes an integer \code{n} and returns a vector of \code{n} colors.
-#'
+# ---- Discrete ----
+
+#' Sequential Biolizard Palette for discrete values
+#' @noRd
+#' @return A function to extract colors.
+
 biolizard_pal_sequential <- function() {
-  function(n) {
-    viridisLite::cividis(n)  # return the selected colors
+  f <- function(n) {
+    return(sequential_hcl(n, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1))  # Return the selected colors
   }
+  return(f)
 }
 
-#' Biolizard sequential fill scale
+#' Sequential Discrete Biolizard Fill Scale
+#'
+#' Use this function with ggplot where fill corresponds to discrete categories, applying the sequential Biolizard palette.
+#'
+#' @details The sequential palette represents the underlying values using a consistent sequence of increasing luminance.
+#' The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
+#' The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
 #'
 #' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace sequential_hcl
 #' @export
-#'
-scale_fill_sequential_biolizard <- function(...) {
-  discrete_scale("fill","biolizard", biolizard_pal_sequential(),...)
+scale_fill_sequential_discrete_biolizard <- function(...){
+  discrete_scale("fill", "BioLizard", biolizard_pal_sequential(), ...)
 }
 
-#' Biolizard sequential color scale
+#' Sequential Discrete Biolizard Color Scale
 #'
-#' Provides a function for the sequential color scale.
+#' Use this function with ggplot where color corresponds to discrete categories, applying the sequential Biolizard palette.
+#'
+#' @details The sequential palette represents the underlying values using a consistent sequence of increasing luminance.
+#' The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
+#' The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
 #'
 #' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace sequential_hcl
 #' @export
-scale_colour_sequential_biolizard <- function(...){
-  discrete_scale("colour","biolizard", biolizard_pal_sequential(),...)
+scale_colour_sequential_discrete_biolizard <- function(...){
+  discrete_scale("colour", "BioLizard", biolizard_pal_sequential(), ...)
 }
 
-#' Alternative spelling for sequential color scale
-#'
-#' @rdname scale_colour_sequential_biolizard
+
+#' @rdname scale_colour_sequential_discrete_biolizard
+#' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace sequential_hcl
 #' @export
-scale_color_sequential_biolizard <- scale_colour_sequential_biolizard
+scale_color_sequential_discrete_biolizard <- scale_colour_sequential_discrete_biolizard
 
-#-------------------------------------------
+# ---- Continuous ----
 
-#' Biolizard gradient fill scale
+#' Sequential Continuous Biolizard Fill Scale
+#'
+#' Use this function with ggplot when color corresponds to a continuous range, applying the sequential Biolizard palette.
+#'
+#' @details The sequential palette represents the underlying values using a consistent sequence of increasing luminance.
+#' The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
+#' The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
 #'
 #' @importFrom ggplot2 scale_fill_gradientn
-#' @importFrom viridisLite cividis
+#' @importFrom colorspace sequential_hcl
 #' @export
-#'
-scale_fill_gradient_biolizard <- function(...) {
-  scale_fill_gradientn(colors = viridisLite::cividis(256), ...)
+scale_fill_sequential_continuous_biolizard <- function(...) {
+  scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1), ...)
 }
 
-#' Biolizard gradient color scale
+#' Sequential Continuous Biolizard Color Scale
+#'
+#' Use this function with ggplot when fill corresponds to a continuous range, applying the sequential Biolizard palette.
 #'
 #' @importFrom ggplot2 scale_color_gradientn
-#' @importFrom viridisLite cividis
+#' @importFrom colorspace sequential_hcl
 #' @export
-#'
-scale_color_gradient_biolizard <- function(...) {
-  scale_color_gradientn(colors = viridisLite::cividis(256), ...)
+scale_color_sequential_continuous_biolizard <- function(...) {
+  scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1), ...)
 }
 
-#' Alternative spelling for gradient color scale
-#'
-#' @rdname scale_color_gradient_biolizard
+#' @rdname scale_color_sequential_continuous_biolizard
+#' @importFrom ggplot2 scale_color_gradientn
+#' @importFrom colorspace sequential_hcl
 #' @export
-scale_colour_gradient_biolizard <- scale_color_gradient_biolizard
+scale_colour_sequential_continuous_biolizard <- scale_color_sequential_continuous_biolizard
+
+# ---- DIVERGENT ----
+
+# ---- Discrete ----
+
+#' Divergent Biolizard Palette for discrete values
+#' @noRd
+#' @return A function to extract colors.
+
+biolizard_pal_divergent <- function() {
+  f <- function(n) {
+    return(diverging_hcl(n, h = c(291, 170), c = 80, l = c(35, 95), power = 1))  # Return the selected colors
+  }
+  return(f)
+}
+
+#' Divergent Discrete Biolizard Fill Scale
+#'
+#' Use this function with ggplot when fill corresponds to discrete categories with a natural midpoint, applying the divergent Biolizard palette.
+#'
+#' @details  This divergent palette codes underlying numeric values by a triangular luminance sequence with different hues in the left and in the right “arms” of the palette.
+#' (a) a single hue is used for each arm of the palette,
+#' (b) chroma and luminance trajectory are balanced between the two arms,
+#' (c) the neutral central value has zero chroma.
+#' The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green. .
+#' This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
+#'
+#' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_fill_divergent_discrete_biolizard <- function(...){
+  discrete_scale("fill", "BioLizard", biolizard_pal_divergent(), ...)
+}
+
+#' Divergent Discrete Biolizard Color Scale
+#'
+#' Use this function with ggplot when color corresponds to discrete categories with a natural midpoint, applying the divergent Biolizard palette.
+#'
+#' @details This divergent palette codes underlying numeric values by a triangular luminance sequence with different hues in the left and in the right “arms” of the palette.
+#' (a) a single hue is used for each arm of the palette,
+#' (b) chroma and luminance trajectory are balanced between the two arms,
+#' (c) the neutral central value has zero chroma.
+#' The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green. .
+#' This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
+#'
+#' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_colour_divergent_discrete_biolizard <- function(...){
+  discrete_scale("colour", "BioLizard", biolizard_pal_divergent(), ...)
+}
+
+#' @rdname scale_colour_divergent_discrete_biolizard
+#' @importFrom ggplot2 discrete_scale
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_color_divergent_discrete_biolizard <- scale_colour_divergent_discrete_biolizard
+
+# ---- Continuous ----
+
+#' Divergent Continuous Biolizard Fill Scale
+#'
+#' Use this function with ggplot when fill corresponds to a continuous range with a natural midpoint, applying the divergent Biolizard palette.
+#'
+#' @details This divergent palette codes underlying numeric values by a triangular luminance sequence with different hues in the left and in the right “arms” of the palette.
+#' (a) a single hue is used for each arm of the palette,
+#' (b) chroma and luminance trajectory are balanced between the two arms,
+#' (c) the neutral central value has zero chroma.
+#' The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green. .
+#' This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
+#'
+#' @importFrom ggplot2 scale_fill_gradientn
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_fill_divergent_continuous_biolizard <- function(...) {
+  scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...)
+}
+
+#' Divergent Continuous Biolizard Color Scale
+#'
+#' Use this function with ggplot when color corresponds to a continuous range with a natural midpoint, applying the divergent Biolizard palette.
+#'
+#' @details This divergent palette codes underlying numeric values by a triangular luminance sequence with different hues in the left and in the right “arms” of the palette.
+#' (a) a single hue is used for each arm of the palette,
+#' (b) chroma and luminance trajectory are balanced between the two arms,
+#' (c) the neutral central value has zero chroma.
+#' The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green. .
+#' This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
+#'
+#' @importFrom ggplot2 scale_color_gradientn
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_color_divergent_continuous_biolizard <- function(...) {
+  scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...)
+}
+
+#' @rdname scale_color_divergent_continuous_biolizard
+#' @importFrom ggplot2 scale_color_gradientn
+#' @importFrom colorspace diverging_hcl
+#' @export
+scale_colour_divergent_continuous_biolizard <- scale_color_divergent_continuous_biolizard

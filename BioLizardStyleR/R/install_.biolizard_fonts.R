@@ -20,6 +20,6 @@ get_path <- function() {
 #' install_biolizard_fonts()
 #' extrafont::fonts()  # to check the installed fonts
 install_biolizard_fonts <- function() {
-  font_path <- get_path()  # updated variable name to snake_case
+  font_path <- get_path()
   extrafont::font_import(paths = font_path)
 }

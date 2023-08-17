@@ -3,14 +3,15 @@
 \name{scale_colour_qualitative_biolizard}
 \alias{scale_colour_qualitative_biolizard}
 \alias{scale_color_qualitative_biolizard}
-\title{Biolizard qualitative color scale}
+\title{Qualitative Biolizard Color Scale}
 \usage{
 scale_colour_qualitative_biolizard(...)
 
 scale_color_qualitative_biolizard(...)
 }
 \description{
-Biolizard qualitative color scale
-
-Alternative spelling for color scale
+Use this function to incorporate the [biolizard_qualitative_palette] as a color scale into a ggplot object.
+}
+\seealso{
+[biolizard_qualitative_palette] for the detailed palette description and colors.
 }
