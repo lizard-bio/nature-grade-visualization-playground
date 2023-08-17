@@ -15,11 +15,11 @@ save_plot <- function (plot_grid, width, height, save_filepath) {
 #' Left Align Text in ggplot
 #'
 #' Aligns specified text elements of a ggplot to the left.
-#' @param plot_name A ggplot object.
+#' @param ggplot_name A ggplot object.
 #' @param pieces A character vector of ggplot text elements (e.g., "title", "subtitle", "caption").
 #' @return A grob object with left-aligned text.
-left_align <- function(plot_name, pieces){
-  grob <- ggplot2::ggplotGrob(plot_name)
+left_align <- function(ggplot_name, pieces){
+  grob <- ggplot2::ggplotGrob(ggplot_name)
   grob$layout$l[grob$layout$name %in% pieces] <- 2
   return(grob)
 }
@@ -38,9 +38,8 @@ get_image_path <- function() {
 #' and the option to specify a font.
 #'
 #' @param source Text to display as the source in the footer.
-#' @param logo_image_path Path to the logo image. Default is the "BioLizardLogo.png" from the package.
+#' @param logo_image_path Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.
 #' @param font Font family for the source text. Default is "Avenir LT Std 55 Roman".
-#'             Ensure this font is installed on the system for the expected appearance.
 #' @return A grob object representing the footer with the source text, logo, and the specified font.
 create_footer <- function (source, logo_image_path=get_image_path(), font="Avenir LT Std 55 Roman") {
   footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
@@ -52,13 +51,13 @@ create_footer <- function (source, logo_image_path=get_image_path(), font="Aveni
 
 #' Finalize and Save Plot in BioLizard Style
 #'
-#' Applies BioLizard styling and saves the plot to file.
+#' Appends a Biolizard footer and exports the resultant graph
 #'
 #' @details When specifying both `save_filepath` and `output_name`, note that the `save_filepath`
 #' takes precedence. If `save_filepath` is set to its default and `output_name` is specified,
 #' then the plot will be saved with the `output_name` in the current working directory.
 #'
-#' @param plot_name A ggplot object.
+#' @param ggplot_name A ggplot object.
 #' @param source Text to display as the source in the footer.
 #' @param save_filepath Path where the plot should be saved. Default is current working directory.
 #' @param output_name Optional name for the output plot file.
@@ -67,7 +66,7 @@ create_footer <- function (source, logo_image_path=get_image_path(), font="Aveni
 #' @param logo_image_path Path to the logo image. Defaults to the Biolizard logo within the package.
 #' @return Invisibly returns the styled plot.
 #' @export
-finalise_lizardplot <- function(plot_name,
+finalise_lizardplot <- function(ggplot_name,
                                 source,
                                 save_filepath=paste0(gsub("\\\\", "/", getwd()),"/TempLizardPlot.png"),
                                 output_name=NULL,
@@ -77,7 +76,7 @@ finalise_lizardplot <- function(plot_name,
 
   footer <- create_footer(source, logo_image_path)
 
-  plot_left_aligned <- left_align(plot_name, c("subtitle", "title", "caption"))
+  plot_left_aligned <- left_align(ggplot_name, c("subtitle", "title", "caption"))
   plot_grid <- ggpubr::ggarrange(plot_left_aligned, footer,
                                  ncol = 1, nrow = 2,
                                  heights = c(1, 0.1))

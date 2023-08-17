@@ -2,10 +2,13 @@
 % Please edit documentation in R/color_functions.R
 \name{scale_fill_qualitative_biolizard}
 \alias{scale_fill_qualitative_biolizard}
-\title{Biolizard qualitative fill scale}
+\title{Qualitative Biolizard Fill Scale}
 \usage{
 scale_fill_qualitative_biolizard(...)
 }
 \description{
-Biolizard qualitative fill scale
+Use this function to incorporate the [biolizard_qualitative_palette] as a fill scale into a ggplot object.
+}
+\seealso{
+[biolizard_qualitative_palette] for the detailed palette description and colors.
 }
