@@ -14,5 +14,12 @@ To install the `BioLizardStyleR` package directly from GitHub, follow the instru
 if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", auth_token = "YOUR_PAT_TOKEN")
 ```
+NOTE: Since package is private you will need a Personal Access Token.
+- Go to your GitHub settings (click on your profile picture in the top-right corner and select "Settings").
+- On the left sidebar, select "Developer settings".
+- Click on "Personal access tokens".
+- Click "Generate new token".
+- Give your token a name, and select the `repo` scope, which allows access to private repositories. Then generate the token.
+- Copy the token (make sure to save it somewhere, as you won't be able to see it again).
