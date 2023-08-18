@@ -45,24 +45,39 @@ install_biolizard_fonts()
 Transforming your ggplot to match the BioLizard style involves a three-step process. Let's illustrate this on a basic ggplots.
 
 ```{r}
-#work out an example
+mtcars$gear <- as.factor(mtcars$gear)
+
+testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
+              geom_point(aes(color = gear),size=3) +  
+              labs(title = "Miles per Gallon vs. Horsepower",  
+                   x = "Horsepower",  
+                   y = "Miles per Gallon",  
+                   color = "Gears")
+testplot
 ```
+
 #3.1 Applying the Biolizard theme
 In the initial step, we implement the biolizard theme through the **lizard_style()* function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you will need to make further theme adjustments.
 ```{r}
-#work out an example
+testplot <- testplot + lizard_style()
+testplot
 ```
 # 3.2 Adding a BioLizard color palette
 Once you've styled your plot, you can enhance it with a 'biolizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
 
 The coloring functions within the package adhere to a consistent naming convention: **scale_<color/fill>_<qualitative/sequential/divergent>_<discrete/continuous>_biolizard**. For the qualitative palette, only the discrete option is available, as it is the only logical choice in this context. 
 ```{r}
-#work out an example here
+testplot <- testplot + scale_color_qualitative_biolizard()
+testplot
+testplotsequential <- testplot + scale_color_sequential_discrete_biolizard()
+testplotsequential
+testplotdivergent <- testplot + scale_color_divergent_discrete_biolizard()
+testplotdivergent
 ```
 # 3.3 Adding a BioLizard footer and exporting the plot.
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`.
 
 ```{r}
-#work out an example here
+finalise_lizardplot(testplot,source='Source: The mtcars dataset')
 ```
 
