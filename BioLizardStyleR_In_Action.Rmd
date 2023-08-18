@@ -1,14 +1,14 @@
 ---
 title: "BioLizardStyleR In Action"
 author: "Robbe Neirynck"
-date: "17_08_2023"
+date: "17-08-2023"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-#Introduction
+# Introduction
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 
@@ -19,18 +19,32 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", auth_token= 'YourKey')
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", auth_token= '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
+')
 
 library(BioLizardStyleR)
 ```
 
-NOTE: As this package is private, you will require a Personal Access Token to access and install it. 
-To generate a token:
-1. Go to your GitHub settings (click on your profile picture in the top-right corner and select "Settings").
-2. On the left sidebar, select "Developer settings".
-3. Click on "Personal access tokens".
-4. Click "Generate new token".
-5. Give your token a name, and ensure you select the "repo" scope, which grants access to private repositories.
+**Note**: This package is private. You will require a Personal Access Token to access and install it. **Don't use mine :)**
+
+## Steps to Generate a Personal Access Token
+
+1. **Access GitHub Settings**:
+    - Click on your profile picture in the top-right corner.
+    - Select "Settings".
+
+2. **Navigate to Developer Settings**:
+    - On the left sidebar, select "Developer settings".
+
+3. **Access Personal Access Tokens**:
+    - Click on "Personal access tokens".
+
+4. **Generate a New Token**:
+    - Click "Generate new token".
+    - Provide a descriptive name for your token.
+
+5. **Set Appropriate Permissions**:
+    - Ensure you select the "repo" scope, which grants access to private repositories.
 
 # 2. Installing the BioLizard font
 
@@ -45,6 +59,8 @@ install_biolizard_fonts()
 Transforming your ggplot to match the BioLizard style involves a three-step process. Let's illustrate this on a basic ggplots.
 
 ```{r}
+library(ggplot2)
+data("mtcars")
 mtcars$gear <- as.factor(mtcars$gear)
 
 testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
@@ -56,14 +72,17 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 testplot
 ```
 
-#3.1 Applying the Biolizard theme
+## 3.1 Applying the Biolizard theme
+
 In the initial step, we implement the biolizard theme through the **lizard_style()* function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you will need to make further theme adjustments.
 ```{r}
 testplot <- testplot + lizard_style()
 testplot
 ```
-# 3.2 Adding a BioLizard color palette
-Once you've styled your plot, you can enhance it with a 'biolizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
+
+## 3.2 Adding a BioLizard color palette
+
+Once you've styled your plot, you can enhance it with a 'BioLizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
 
 The coloring functions within the package adhere to a consistent naming convention: **scale_<color/fill>_<qualitative/sequential/divergent>_<discrete/continuous>_biolizard**. For the qualitative palette, only the discrete option is available, as it is the only logical choice in this context. 
 ```{r}
@@ -74,7 +93,9 @@ testplotsequential
 testplotdivergent <- testplot + scale_color_divergent_discrete_biolizard()
 testplotdivergent
 ```
-# 3.3 Adding a BioLizard footer and exporting the plot.
+
+## 3.3 Adding a BioLizard footer and exporting the plot.
+
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`.
 
 ```{r}
