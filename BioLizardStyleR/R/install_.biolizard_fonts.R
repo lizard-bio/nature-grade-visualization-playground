@@ -22,4 +22,5 @@ get_path <- function() {
 install_biolizard_fonts <- function() {
   font_path <- get_path()
   extrafont::font_import(paths = font_path)
+  extrafont::loadfonts(device='all', quiet = TRUE)
 }
