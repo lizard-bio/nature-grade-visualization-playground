@@ -48,22 +48,59 @@ get_image_path <- function() {
   system.file("logo", "BioLizardLogo.png", package="BioLizardStyleR")
 }
 
-#' Create Footer with Source, Logo, and Custom Font
+#' Compute Font Size Based on Text Length
 #'
-#' Constructs a footer for a ggplot with specified source text, a logo image,
-#' and the option to specify a font.
+#' Dynamically determines the appropriate font size for text based on its length.
+#' The function uses a linear scaling method to determine the font size, where longer
+#' text lengths result in smaller font sizes and shorter text lengths yield larger font sizes.
+#'
+#' @param text_length Integer indicating the length of the text.
+#'
+#' @return Numeric font size value scaled according to the text length.
+
+
+compute_font_size <- function(text_length) {
+  max_length <- 250
+  min_length <- 1
+  max_fontsize <- 16
+  min_fontsize <- 1.5
+
+  # Linearly scale font size
+  if (text_length <= min_length) {
+    return(max_fontsize)
+  } else if (text_length >= max_length) {
+    return(min_fontsize)
+  } else {
+    ratio <- (text_length - min_length) / (max_length - min_length)
+    fontsize_diff <- max_fontsize - min_fontsize
+    scaled_fontsize <- max_fontsize - (ratio * fontsize_diff)
+    return(scaled_fontsize)
+  }
+}
+
+#' Create Footer with Dynamic Font Size, Logo, and Custom Font
+#'
+#' Constructs a footer for a ggplot using specified source text, a logo image,
+#' and an optional font. The font size of the source text is determined dynamically
+#' based on its length using the \code{\link{compute_font_size}} function.
 #'
 #' @param source Text to display as the source in the footer.
 #' @param logo_image_path Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.
 #' @param font Font family for the source text. Default is "Avenir LT Std 55 Roman".
+#'
 #' @return A grob object representing the footer with the source text, logo, and the specified font.
+
 create_footer <- function (source, logo_image_path=get_image_path(), font="Avenir LT Std 55 Roman") {
+  # Dynamically compute font size
+  fontsize <- compute_font_size(nchar(source))
+
   footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
                            grid::textGrob(source,
-                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=16, fontfamily=font)),
+                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=fontsize, fontfamily=font)),
                            grid::rasterGrob(png::readPNG(logo_image_path), x=0.935))
   return(footer)
 }
+
 
 #' Finalize and Save Plot in BioLizard Style
 #'
