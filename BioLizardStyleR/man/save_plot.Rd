@@ -4,7 +4,7 @@
 \alias{save_plot}
 \title{Save a ggplot2 Plot to File}
 \usage{
-save_plot(plot_grid, width, height, save_filepath)
+save_plot(plot_grid, width, height, save_filepath, device)
 }
 \arguments{
 \item{plot_grid}{The ggplot2 plot to be saved.}
@@ -14,7 +14,10 @@ save_plot(plot_grid, width, height, save_filepath)
 \item{height}{Height of the output image in pixels.}
 
 \item{save_filepath}{Path where the plot should be saved.}
+
+\item{device}{The output format (e.g., "png", "pdf", "svg", "ps").}
 }
 \description{
-This function saves a given ggplot2 plot to a specified filepath.
+This function saves a given ggplot2 plot to a specified filepath using
+the ggplot2 package for PNGs and the Cairo package for other formats.
 }

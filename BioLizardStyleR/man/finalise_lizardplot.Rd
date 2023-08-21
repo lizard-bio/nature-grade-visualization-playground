@@ -7,11 +7,12 @@
 finalise_lizardplot(
   ggplot_name,
   source,
-  save_filepath = paste0(gsub("\\\\\\\\", "/", getwd()), "/TempLizardPlot.png"),
-  output_name = NULL,
+  save_filepath = NULL,
+  output_name = "TempLizardPlot",
   width_pixels = 640,
   height_pixels = 450,
-  logo_image_path = get_image_path()
+  logo_image_path = get_image_path(),
+  device = "png"
 )
 }
 \arguments{
@@ -19,7 +20,7 @@ finalise_lizardplot(
 
 \item{source}{Text to display as the source in the footer.}
 
-\item{save_filepath}{Path where the plot should be saved. Default is current working directory.}
+\item{save_filepath}{Path where the plot should be saved. Default is the current working directory.}
 
 \item{output_name}{Optional name for the output plot file.}
 
@@ -28,12 +29,15 @@ finalise_lizardplot(
 \item{height_pixels}{Height of the output plot in pixels.}
 
 \item{logo_image_path}{Path to the logo image. Defaults to the Biolizard logo within the package.}
+
+\item{device}{The output format (e.g., "png", "pdf", "svg", "ps").}
 }
 \value{
 Invisibly returns the styled plot.
 }
 \description{
-Appends a Biolizard footer and exports the resultant graph
+Appends a Biolizard footer to a ggplot and exports the resultant graph.
+It utilizes the `save_plot` function for saving the plot.
 }
 \details{
 When specifying both `save_filepath` and `output_name`, note that the `save_filepath`

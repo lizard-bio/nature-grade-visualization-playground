@@ -2,7 +2,7 @@
 % Please edit documentation in R/finalise_lizardplot.R
 \name{create_footer}
 \alias{create_footer}
-\title{Create Footer with Source, Logo, and Custom Font}
+\title{Create Footer with Dynamic Font Size, Logo, and Custom Font}
 \usage{
 create_footer(
   source,
@@ -21,6 +21,7 @@ create_footer(
 A grob object representing the footer with the source text, logo, and the specified font.
 }
 \description{
-Constructs a footer for a ggplot with specified source text, a logo image,
-and the option to specify a font.
+Constructs a footer for a ggplot using specified source text, a logo image,
+and an optional font. The font size of the source text is determined dynamically
+based on its length using the \code{\link{compute_font_size}} function.
 }
