@@ -1,15 +1,31 @@
 
 #' Save a ggplot2 Plot to File
 #'
-#' This function saves a given ggplot2 plot to a specified filepath.
+#' This function saves a given ggplot2 plot to a specified filepath using
+#' the ggplot2 package for PNGs and the Cairo package for other formats.
+#'
 #' @param plot_grid The ggplot2 plot to be saved.
 #' @param width Width of the output image in pixels.
 #' @param height Height of the output image in pixels.
 #' @param save_filepath Path where the plot should be saved.
-save_plot <- function (plot_grid, width, height, save_filepath) {
-  grid::grid.draw(plot_grid)
-  ggplot2::ggsave(filename = save_filepath,
-                  plot=plot_grid, width=(width/72), height=(height/72), bg="white")
+#' @param device The output format (e.g., "png", "pdf", "svg", "ps").
+save_plot <- function (plot_grid, width, height, save_filepath, device) {
+
+  if (device == "png") {
+    ggplot2::ggsave(filename = save_filepath, plot = plot_grid,
+                    width = width/72, height = height/72, bg = "white", device = "png")
+  } else {
+    # Set the appropriate Cairo device based on the specified format
+    switch(device,
+           'pdf' = { Cairo::CairoPDF(file = save_filepath, width = width/72, height = height/72) },
+           'svg' = { Cairo::CairoSVG(file = save_filepath, width = width/72, height = height/72) },
+           'ps' = { Cairo::CairoPS(file = save_filepath, width = width/72, height = height/72) },
+           { stop(paste("Unsupported device:", device)) }
+    )
+
+    grid::grid.draw(plot_grid)
+    dev.off()
+  }
 }
 
 #' Left Align Text in ggplot
@@ -51,7 +67,8 @@ create_footer <- function (source, logo_image_path=get_image_path(), font="Aveni
 
 #' Finalize and Save Plot in BioLizard Style
 #'
-#' Appends a Biolizard footer and exports the resultant graph
+#' Appends a Biolizard footer to a ggplot and exports the resultant graph.
+#' It utilizes the `save_plot` function for saving the plot.
 #'
 #' @details When specifying both `save_filepath` and `output_name`, note that the `save_filepath`
 #' takes precedence. If `save_filepath` is set to its default and `output_name` is specified,
@@ -59,20 +76,22 @@ create_footer <- function (source, logo_image_path=get_image_path(), font="Aveni
 #'
 #' @param ggplot_name A ggplot object.
 #' @param source Text to display as the source in the footer.
-#' @param save_filepath Path where the plot should be saved. Default is current working directory.
+#' @param save_filepath Path where the plot should be saved. Default is the current working directory.
 #' @param output_name Optional name for the output plot file.
 #' @param width_pixels Width of the output plot in pixels.
 #' @param height_pixels Height of the output plot in pixels.
 #' @param logo_image_path Path to the logo image. Defaults to the Biolizard logo within the package.
+#' @param device The output format (e.g., "png", "pdf", "svg", "ps").
 #' @return Invisibly returns the styled plot.
 #' @export
 finalise_lizardplot <- function(ggplot_name,
                                 source,
-                                save_filepath=paste0(gsub("\\\\", "/", getwd()),"/TempLizardPlot.png"),
-                                output_name=NULL,
+                                save_filepath=NULL,
+                                output_name="TempLizardPlot",
                                 width_pixels=640,
                                 height_pixels=450,
-                                logo_image_path=get_image_path()) {
+                                logo_image_path=get_image_path(),
+                                device='png') {
 
   footer <- create_footer(source, logo_image_path)
 
@@ -81,11 +100,11 @@ finalise_lizardplot <- function(ggplot_name,
                                  ncol = 1, nrow = 2,
                                  heights = c(1, 0.1))
 
-  default_filepath <- paste0(gsub("\\\\", "/", getwd()), "/TempLizardPlot.png")
-  if (!is.null(output_name) && save_filepath == default_filepath) {
-    save_filepath <- paste0(getwd(), "/", output_name,".png")
+  # Determine save path
+  if (is.null(save_filepath)) {
+    save_filepath <- paste0(gsub("\\\\", "/", getwd()), "/", output_name, ".", device)
   }
 
-  save_plot(plot_grid, width_pixels, height_pixels, save_filepath)
+  save_plot(plot_grid, width_pixels, height_pixels, save_filepath, device=device)
   invisible(plot_grid)
 }
