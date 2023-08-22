@@ -4,18 +4,12 @@
 \alias{create_footer}
 \title{Create Footer with Dynamic Font Size, Logo, and Custom Font}
 \usage{
-create_footer(
-  source,
-  logo_image_path = get_image_path(),
-  font = "Avenir LT Std 55 Roman"
-)
+create_footer(source, logo_image_path = get_image_path())
 }
 \arguments{
 \item{source}{Text to display as the source in the footer.}
 
 \item{logo_image_path}{Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.}
-
-\item{font}{Font family for the source text. Default is "Avenir LT Std 55 Roman".}
 }
 \value{
 A grob object representing the footer with the source text, logo, and the specified font.

@@ -86,17 +86,16 @@ compute_font_size <- function(text_length) {
 #'
 #' @param source Text to display as the source in the footer.
 #' @param logo_image_path Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.
-#' @param font Font family for the source text. Default is "Avenir LT Std 55 Roman".
 #'
 #' @return A grob object representing the footer with the source text, logo, and the specified font.
 
-create_footer <- function (source, logo_image_path=get_image_path(), font="Avenir LT Std 55 Roman") {
+create_footer <- function (source, logo_image_path=get_image_path()) {
   # Dynamically compute font size
   fontsize <- compute_font_size(nchar(source))
 
   footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
                            grid::textGrob(source,
-                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=fontsize, fontfamily=font)),
+                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=fontsize, fontfamily=fonts()[1])),
                            grid::rasterGrob(png::readPNG(logo_image_path), x=0.935))
   return(footer)
 }

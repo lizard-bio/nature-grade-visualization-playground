@@ -16,7 +16,7 @@
 #' p + lizard_style()
 lizard_style <- function() {
   extrafont::loadfonts(device = "all",quiet=TRUE)
-  font <- "Avenir LT Std 55 Roman"
+  font <- fonts()[1]
   ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
