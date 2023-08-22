@@ -111,7 +111,7 @@ testplotdivergent
 
 ## 3.3 Adding a BioLizard footer and exporting the plot.
 
-For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`.
+For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`. The `device` argument allows to choose from the file types "png" (default), "pdf", "svg", or "ps".
 
 ```{r}
 finalise_lizardplot(testplot,source='Source: The mtcars dataset')

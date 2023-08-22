@@ -6,20 +6,7 @@ Data visualization is an important aspect the work we do at BioLizard. To ensure
 
 For a list of guidelines and best practices that everyone within BioLizard should adhere to, please refer to [this](https://www.notion.so/biolizard/Data-visualization-best-practices-a5a056f107584951af6e6dc8befe1d66?pvs=4) Notion document. Turn to the [this](https://www.notion.so/3c8b944dcc974b3791f9fee398a6d346?pvs=21) one for a more in depth discussion about some of these data visualization do’s and don’ts.
 
-## PACKAGE INSTALLATION
+## Package Installation
 
-To install the `BioLizardStyleR` package directly from GitHub, follow the instructions below:
+For details on installing this package, its usage, and example workflows, please refer to the "In Action" file.
 
-```R
-if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
-}
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", auth_token = "YOUR_PAT_TOKEN")
-```
-NOTE: Since package is private you will need a Personal Access Token.
-- Go to your GitHub settings (click on your profile picture in the top-right corner and select "Settings").
-- On the left sidebar, select "Developer settings".
-- Click on "Personal access tokens".
-- Click "Generate new token".
-- Give your token a name, and select the `repo` scope, which allows access to private repositories. Then generate the token.
-- Copy the token (make sure to save it somewhere, as you won't be able to see it again).
