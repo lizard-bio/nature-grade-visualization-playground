@@ -48,9 +48,24 @@ library(BioLizardStyleR)
 
 # 2. Installing the BioLizard font
 
-Avenir, the signature font of BioLizard, is incorporated within the package. You can install this font using the `install_biolizard_fonts()` function. Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions.
+1. **Check Local Installation:** First, verify if you have an Avenir font locally installed on your system.
+
+2. **Using a Local Font:** If you already have an Avenir font:
+   - Use the `pattern` argument in `install_biolizard_fonts()`.
+   - Ideally, the `pattern` should be the name of the exact `.tff` file. However, in most cases, simply using 'Avenir' should suffice. The function should guide you in the process.
+
+3. **Downloading and Installing from Github:**
+   - If you don't have the Avenir font locally:
+     1. Download the font from the Github page of the package: 
+        [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main)
+     2. Install the font on your system.
+   - After installation, you can run `install_biolizard_fonts()` with the default settings.
+
+
+
+Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions.
 ```{r}
-install_biolizard_fonts()
+#install_biolizard_fonts()
 ```
 
 
@@ -101,4 +116,6 @@ For a unique touch on your visualizations, integrate a BioLizard footer using th
 ```{r}
 finalise_lizardplot(testplot,source='Source: The mtcars dataset')
 ```
+![Lizard Image](TempLizardPlot.png)
+
 
