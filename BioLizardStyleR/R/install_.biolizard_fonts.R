@@ -17,7 +17,9 @@
 #' }
 install_biolizard_fonts <- function(pattern='AvenirLTStd-Roman.ttf') {
     #This clears the extrafont database
-    suppressWarnings(detach(package:extrafontdb, unload=TRUE))
+    if ("package:extrafontdb" %in% search()) {
+      suppressWarnings(detach(package:extrafontdb, unload=TRUE))
+    }
     install.packages("extrafontdb")
     library(extrafont)
     library(extrafontdb)
