@@ -48,12 +48,12 @@ lizard_style <- function() {
                                        size=14,
                                        color="#222222"),
     axis.text = ggplot2::element_text(family=font,
-                                      size=16,
-                                      color="#222222"),
+                                      size=12,
+                                      color="#808080"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=13),
     axis.text.y = ggplot2::element_text(size=13),
-    axis.ticks = ggplot2::element_line(color="gray"),
-    axis.line = ggplot2::element_line(color="gray"),
+    axis.ticks = ggplot2::element_line(color="#808080"),
+    axis.line = ggplot2::element_line(color="#808080"),
 
     #Grid lines
     #This removes all minor and major gridlines
