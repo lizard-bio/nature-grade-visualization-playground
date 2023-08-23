@@ -45,12 +45,13 @@ lizard_style <- function() {
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
     axis.title = ggplot2::element_text(family=font,
-                                       size=16,
+                                       size=14,
                                        color="#222222"),
     axis.text = ggplot2::element_text(family=font,
                                       size=16,
                                       color="#222222"),
-    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10)),
+    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=13),
+    axis.text.y = ggplot2::element_text(size=13),
     axis.ticks = ggplot2::element_line(color="gray"),
     axis.line = ggplot2::element_line(color="gray"),
 
