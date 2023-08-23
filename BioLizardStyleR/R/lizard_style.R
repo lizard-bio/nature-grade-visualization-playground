@@ -21,12 +21,12 @@ lizard_style <- function() {
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
     plot.title = ggplot2::element_text(family=font,
-                                       size=24,
+                                       size=20,
                                        face="bold",
                                        color="#222222"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family=font,
-                                          size=20,
+                                          size=16,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
     #This leaves the caption text element empty, because it should be set in the finalise plot function
@@ -37,22 +37,22 @@ lizard_style <- function() {
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
     legend.title = ggplot2::element_text(family=font,
-                                         size=18,
+                                         size=16,
                                          color="#222222"),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(family=font,
-                                        size=13),
+                                        size=12),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
     axis.title = ggplot2::element_text(family=font,
-                                       size=18,
+                                       size=16,
                                        color="#222222"),
     axis.text = ggplot2::element_text(family=font,
-                                      size=18,
+                                      size=16,
                                       color="#222222"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10)),
-    axis.ticks = ggplot2::element_blank(),
-    axis.line = ggplot2::element_blank(),
+    axis.ticks = ggplot2::element_line(color="gray"),
+    axis.line = ggplot2::element_line(color="gray"),
 
     #Grid lines
     #This removes all minor and major gridlines
@@ -67,6 +67,6 @@ lizard_style <- function() {
 
     #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
     strip.background = ggplot2::element_rect(fill="white"),
-    strip.text = ggplot2::element_text(size  = 22,  hjust = 0)
+    strip.text = ggplot2::element_text(size  = 18,  hjust = 0)
   )
 }
