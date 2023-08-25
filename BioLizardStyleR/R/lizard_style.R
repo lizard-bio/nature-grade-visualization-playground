@@ -49,10 +49,10 @@ lizard_style <- function() {
                                        color="#222222"),
     axis.text = ggplot2::element_text(family=font,
                                       size=12,
-                                      color="#808080"),
+                                      color="#555555"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=13),
     axis.text.y = ggplot2::element_text(size=13),
-    axis.ticks = ggplot2::element_line(color="#808080"),
+    axis.ticks = ggplot2::element_line(color="#555555"),
     axis.line = ggplot2::element_line(color="#808080"),
 
     #Grid lines

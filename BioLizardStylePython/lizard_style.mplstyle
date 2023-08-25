@@ -1,0 +1,69 @@
+# from https://everyhue.me/posts/sane-color-scheme-for-matplotlib/
+# More info about all stylesheet possibilities: https://matplotlib.org/stable/tutorials/introductory/customizing.html
+
+## ***************************************************************************
+## * PATCHES                                                                 *
+## ***************************************************************************
+## Patches are graphical objects that fill 2D space, like polygons or circles.
+
+patch.linewidth: 0 # edge width in points.
+patch.facecolor: 348ABD  # blue
+patch.edgecolor: EEEEEE
+patch.antialiased: True # render patches in antialiased (no jaggies)
+
+## ***************************************************************************
+## * FONT                                                                    *
+## ***************************************************************************
+font.family: sans-serif
+font.sans-serif: Avenir LT Std
+font.size: 14
+
+## ***************************************************************************
+## * AXES                                                                    *
+## ***************************************************************************
+
+axes.facecolor: white # axes background color
+axes.edgecolor: gray # axes edge color, color of axes themselves
+axes.linewidth: 0.8
+
+axes.grid: True
+grid.color: white
+grid.linestyle: -    # solid line
+
+axes.titlesize: large # font size of the axes title
+axes.titleweight:   bold
+axes.labelcolor: black
+axes.axisbelow: True       # grid/ticks are below elements (e.g., lines, text)
+axes.titlelocation: left   # alignment of the title: {left, right, center}
+axes.labelsize: 15 # font size of the x and y labels
+axes.spines.top:    False #Axis line at top of plot
+axes.spines.right:  False #Axis line at right of plot
+
+
+#Biolizard qualitative color palette (e.g. when plotting multiple lines)
+#Starts of with 'biolizard' dark gray -> green -> yellow, followed by other colors in palette
+#This palette is inspired by Martin Krzywinski's "12-COLOR PALETTE FOR COLORBLINESS"
+#and is infused with the signature house colors of Biolizard for the first three shades.
+#Tailored to be inclusive, it is friendly for those with the prevalent form of color blindness: Deuteranopia (Red-Green Color Blindness).
+
+axes.prop_cycle: cycler('color', ['1e2237', '01a086', 'e9b940','00C2F9', 'FF6E3A', '8400CD', 'FFB2FD', 'A40122','008DF9','00FCCF','E20134','FF5AAF','A40122'])
+
+#TICKS
+
+xtick.color: 555555
+xtick.direction: out # direction: {in, out, inout}
+ytick.color: 555555
+ytick.direction: out # direction: {in, out, inout}
+
+xtick.bottom:        True
+ytick.left:        True
+xtick.minor.visible: False
+ytick.minor.visible:  False
+
+figure.facecolor: white
+figure.edgecolor: 0.50
+
+
+
+
+
