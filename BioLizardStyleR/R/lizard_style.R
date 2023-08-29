@@ -15,13 +15,13 @@
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
 lizard_style <- function() {
-  font <- "Nunito Sans"
+  font <- "Nunito Sans Regular"
+  titlefont <- "Nunito Sans Bold"
   ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family=font,
+    plot.title = ggplot2::element_text(family=titlefont,
                                        size=20,
-                                       face="bold",
                                        color="#222222"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family=font,
