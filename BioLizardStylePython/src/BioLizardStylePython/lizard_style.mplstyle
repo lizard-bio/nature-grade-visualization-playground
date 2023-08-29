@@ -26,7 +26,7 @@ axes.facecolor: white # axes background color
 axes.edgecolor: gray # axes edge color, color of axes themselves
 axes.linewidth: 0.8
 
-axes.grid: True
+axes.grid: False
 grid.color: white
 grid.linestyle: -    # solid line
 

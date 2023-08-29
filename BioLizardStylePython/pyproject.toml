@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "BioLizardStylePython"
+version = "0.0.8"
+authors = [
+  { name="Robbe Neirynck"},
+]
+description = "Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "matplotlib>=3.7.1",
+    "numpy>=1.24.30",
+    "Pillow>=9.4.0"
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main"
