@@ -12,8 +12,10 @@
 save_plot <- function (plot_grid, width, height, save_filepath, device) {
 
   if (device == "png") {
+    showtext_opts(dpi = 300)
     ggplot2::ggsave(filename = save_filepath, plot = plot_grid,
                     width = width/72, height = height/72, bg = "white", device = "png")
+    showtext_opts(dpi = 96) #These 2 lines fix a weird issue between show_text and ggplot
   } else {
     # Set the appropriate Cairo device based on the specified format
     switch(device,
