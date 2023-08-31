@@ -36,11 +36,11 @@ lizard_style <- function() {
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
     legend.title = ggplot2::element_text(family=font,
-                                         size=16,
+                                         size=11,
                                          color="#222222"),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(family=font,
-                                        size=12),
+                                        size=10),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
     axis.title = ggplot2::element_text(family=font,
@@ -49,8 +49,8 @@ lizard_style <- function() {
     axis.text = ggplot2::element_text(family=font,
                                       size=12,
                                       color="#555555"),
-    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=13),
-    axis.text.y = ggplot2::element_text(size=13),
+    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12),
+    axis.text.y = ggplot2::element_text(size=12),
     axis.ticks = ggplot2::element_line(color="#555555"),
     axis.line = ggplot2::element_line(color="#808080"),
 

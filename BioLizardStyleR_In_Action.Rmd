@@ -74,7 +74,7 @@ If you find that the Nunito Sans font is already installed, there is no need for
 
 Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions.
 ```{r}
-#install_biolizard_fonts()
+install_biolizard_fonts()
 ```
 
 
@@ -124,6 +124,71 @@ For a unique touch on your visualizations, integrate a BioLizard footer using th
 
 ```{r}
 finalise_lizardplot(testplot,source='Source: The mtcars dataset')
+```
+
+# 4. Some examples for fun
+
+Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
+
+```{r}
+if (!requireNamespace("readr", quietly = TRUE)) {
+  # Install the package if it's not installed
+  install.packages("readr")
+}
+library(readr)
+library(ggplot2)
+chic <- readr::read_csv("https://raw.githubusercontent.com/z3tt/ggplot-courses/main/data/chicago-nmmaps-custom.csv") #An example dataset
+
+g <- ggplot(chic, aes(x = season, y = o3,
+                   color = season)) +
+    labs(x = "Season", y = "Ozone") + 
+    geom_violin(fill = "gray80", linewidth = 1, alpha = .5) +
+    geom_jitter(alpha = .25, width = .3) +
+    coord_flip()
+g
+
+g + lizard_style() +
+  scale_color_qualitative_biolizard()
+g
+```
+```{r}
+if (!requireNamespace(c("corrr","forcats"), quietly = TRUE)) {
+  # Install the package if it's not installed
+  install.packages(c("corrr","forcats"))
+}
+library(corrr)
+library(forcats)
+
+corm <-
+  chic |>
+  dplyr::select(temp, dewpoint, pm10, o3) |>
+  corrr::correlate(diagonal = 1) |>
+  corrr::shave(upper = FALSE)
+
+corm <- corm |>
+  tidyr::pivot_longer(
+    cols = -term,
+    names_to = "colname",
+    values_to = "corr"
+  ) |>
+  dplyr::mutate(
+    rowname = forcats::fct_inorder(term),
+    colname = forcats::fct_inorder(colname),
+    label = dplyr::if_else(is.na(corr), "", sprintf("%1.2f", corr))
+  )
+
+g <- ggplot(corm, aes(rowname, fct_rev(colname),
+                     fill = corr)) +
+      geom_tile() +
+      geom_text(aes(label = label)) +
+      coord_fixed(expand = FALSE) +
+      labs(x = NULL, y = NULL) 
+g
+
+g + scale_fill_divergent_continuous_biolizard(limits = c(-1, 1),na.value = "white", name="Pearson\nCorrelation") +
+        lizard_style() +
+        theme(legend.position = c(.95, .8))
+
 ```
 
 
