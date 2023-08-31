@@ -2,7 +2,9 @@
 title: "BioLizardStyleR In Action"
 author: "Robbe Neirynck"
 date: "17-08-2023"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -46,21 +48,28 @@ library(BioLizardStyleR)
 5. **Set Appropriate Permissions**:
     - Ensure you select the "repo" scope, which grants access to private repositories.
 
-# 2. Installing the BioLizard font
+# 2. Font Installation
+The BioLizardStyleR package makes use of the 'Nunito Sans' font. This font resembles the 'Avenir', signature BioLizard font but can be found on Google Fonts under an open source license.
 
-1. **Check Local Installation:** First, verify if you have an Avenir font locally installed on your system.
+## Check Local Installation
+First, check if you have the Nunito Sans font locally installed on your system.
 
-2. **Using a Local Font:** If you already have an Avenir font:
-   - Use the `pattern` argument in `install_biolizard_fonts()`.
-   - Ideally, the `pattern` should be the name of the exact `.tff` file. However, in most cases, simply using 'Avenir' should suffice. The function should guide you in the process.
+---
 
-3. **Downloading and Installing from Github:**
-   - If you don't have the Avenir font locally:
-     1. Download the font from the Github page of the package: 
-        [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main)
-     2. Install the font on your system.
-   - After installation, you can run `install_biolizard_fonts()` with the default settings.
+## Option 1: Download and Install from GitHub
+If you don't have the Nunito Sans font locally installed, you can download and install it from GitHub.
 
+1. **Download Fonts**: Download the two font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
+2. **Install Fonts**: Install the downloaded fonts on your system.
+3. **Complete**: Once the installation is done, you're all set to use the font.
+
+---
+
+## Option 2: Already Installed
+If you find that the Nunito Sans font is already installed, there is no need for reinstallation.
+
+- Use the `pattern` argument in `install_biolizard_fonts()`.
+- Ideally, the `pattern` should be the name of the exact `.tff` file. However, in most cases, simply using 'Nunito' should suffice. The function should guide you in the process.
 
 
 Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions.
@@ -116,6 +125,6 @@ For a unique touch on your visualizations, integrate a BioLizard footer using th
 ```{r}
 finalise_lizardplot(testplot,source='Source: The mtcars dataset')
 ```
-![Lizard Image](TempLizardPlot.png)
+
 
 
