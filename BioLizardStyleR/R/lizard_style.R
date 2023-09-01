@@ -20,12 +20,12 @@ lizard_style <- function() {
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
     plot.title = ggplot2::element_text(family=font,
-                                       size=20,
+                                       size=16,
                                        face="bold",
                                        color="#222222"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family=font,
-                                          size=16,
+                                          size=14,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
     #This leaves the caption text element empty, because it should be set in the finalise plot function
@@ -67,6 +67,6 @@ lizard_style <- function() {
 
     #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
     strip.background = ggplot2::element_rect(fill="white"),
-    strip.text = ggplot2::element_text(size  = 18,  hjust = 0)
+    strip.text = ggplot2::element_text(size  = 14,  hjust = 0)
   )
 }

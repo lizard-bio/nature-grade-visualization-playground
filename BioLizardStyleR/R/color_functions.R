@@ -62,7 +62,8 @@ scale_color_qualitative_biolizard <- scale_colour_qualitative_biolizard
 
 biolizard_pal_sequential <- function() {
   f <- function(n) {
-    return(sequential_hcl(n, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1))  # Return the selected colors
+    colors <- sequential_hcl(n, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)
+    return(rev(colors))  # Reverse and return the selected colors
   }
   return(f)
 }
@@ -118,7 +119,8 @@ scale_color_sequential_discrete_biolizard <- scale_colour_sequential_discrete_bi
 #' @importFrom colorspace sequential_hcl
 #' @export
 scale_fill_sequential_continuous_biolizard <- function(...) {
-  scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1), ...)
+  colors <- sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)
+  scale_fill_gradientn(colors = rev(colors), ...)
 }
 
 #' Sequential Continuous Biolizard Color Scale
@@ -129,7 +131,8 @@ scale_fill_sequential_continuous_biolizard <- function(...) {
 #' @importFrom colorspace sequential_hcl
 #' @export
 scale_color_sequential_continuous_biolizard <- function(...) {
-  scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1), ...)
+  colors <- sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)
+  scale_color_gradientn(colors = rev(colors), ...)
 }
 
 #' @rdname scale_color_sequential_continuous_biolizard

@@ -85,7 +85,7 @@ Transforming your ggplot to match the BioLizard style involves a three-step proc
 ```{r}
 library(ggplot2)
 data("mtcars")
-mtcars$gear <- as.factor(mtcars$gear)
+mtcars$gear <- factor(mtcars$gear, levels = c(3, 4, 5), ordered = TRUE)
 
 testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
               geom_point(aes(color = gear),size=3) +  
@@ -117,6 +117,7 @@ testplotsequential
 testplotdivergent <- testplot + scale_color_divergent_discrete_biolizard()
 testplotdivergent
 ```
+
 
 ## 3.3 Adding a BioLizard footer and exporting the plot.
 
@@ -191,5 +192,18 @@ g + scale_fill_divergent_continuous_biolizard(limits = c(-1, 1),na.value = "whit
 
 ```
 
+```{r}
+g <- ggplot(chic, aes(temp, o3)) +
+        geom_hex(color = "grey") +
+        labs(x = "Temperature (°F)", y = "Ozone Level", title= 'Distribution of Ozone Levels Across Temperatures')
+        
+g
+
+g <- g + lizard_style() +
+      scale_fill_sequential_continuous_biolizard() +
+      theme()
+
+finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
+```
 
 
