@@ -195,13 +195,14 @@ g + scale_fill_divergent_continuous_biolizard(limits = c(-1, 1),na.value = "whit
 ```{r}
 g <- ggplot(chic, aes(temp, o3)) +
         geom_hex(color = "grey") +
-        labs(x = "Temperature (°F)", y = "Ozone Level", title= 'Distribution of Ozone Levels Across Temperatures')
+        labs(x = "Temperature (°F)", y = "Ozone Level", title= 'How Temperature Affects Ozone Levels',
+             subtitle='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
         
 g
 
 g <- g + lizard_style() +
-      scale_fill_sequential_continuous_biolizard() +
-      theme()
+      scale_fill_sequential_continuous_biolizard() 
+g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
 ```

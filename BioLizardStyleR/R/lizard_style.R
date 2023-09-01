@@ -25,7 +25,7 @@ lizard_style <- function() {
                                        color="#222222"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family=font,
-                                          size=14,
+                                          size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
     #This leaves the caption text element empty, because it should be set in the finalise plot function
