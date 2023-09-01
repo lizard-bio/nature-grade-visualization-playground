@@ -1,5 +1,8 @@
 # ---- QUALITATIVE ----
 
+#The qualitative palette function is inspired from the Economist color scales theme available under GPL-2 License
+
+
 #' Biolizard Qualitative Color Palette
 #'
 #' This palette is inspired by Martin Krzywinski's "12-COLOR PALETTE FOR COLORBLINESS"

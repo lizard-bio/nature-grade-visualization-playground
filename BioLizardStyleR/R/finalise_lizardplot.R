@@ -1,3 +1,5 @@
+#Some of this code is adapted from the BBC ggplot2 theme available under GPL-2 License.
+
 
 #' Save a ggplot2 Plot to File
 #'

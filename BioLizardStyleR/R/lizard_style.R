@@ -1,3 +1,6 @@
+# Adapted from the BBC ggplot2 theme available under GPL-2 License
+
+
 #' Apply the lizard Style Theme to a ggplot2 Plot
 #'
 #' This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
