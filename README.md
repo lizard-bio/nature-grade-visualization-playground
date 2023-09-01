@@ -43,11 +43,19 @@ Before using these packages, install the **NunitoSans** fonts from the `fontstoi
 
 Contributions and feedback are very welcome and much appreciated. 
 
-For any kind of feedback or issues, please contact:
-- Intern Contact: [robbe.neirynck@lizard.bio](mailto:robbe.neirynck@lizard.bio) *(Note: This email will probably no longer be active after the internship period)*
-- Private Contact: [robbe.neirynck1@hotmail.com](mailto:robbe.neirynck1@hotmail.com)
-- Project Supervisor: [Alexander.koch@lizard.bio](mailto:Alexander.koch@lizard.bio)
+To report issues or provide feedback, you can:
 
+- Open an issue on GitHub
+- Contact us via the following channels:
+
+  - **Intern Contact**: [robbe.neirynck@lizard.bio](mailto:robbe.neirynck@lizard.bio)  
+    *(Note: This email may become inactive after the internship period)*
+  
+  - **Personal Contact**: [robbe.neirynck1@hotmail.com](mailto:robbe.neirynck1@hotmail.com)
+  
+  - **Project Supervisor**: [Alexander.koch@lizard.bio](mailto:Alexander.koch@lizard.bio)
+
+Please feel free to reach out to me on Slack as well.
 
 
 
