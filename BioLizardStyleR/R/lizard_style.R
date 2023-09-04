@@ -53,7 +53,10 @@ lizard_style <- function() {
                                       size=12,
                                       color="#555555"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12),
-    axis.text.y = ggplot2::element_text(size=12),
+    axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 5, r = 10), size=12),
+    axis.title.y = ggplot2::element_text(family=font,
+                                         size=14,
+                                         color="#222222"),
     axis.ticks = ggplot2::element_line(color="#555555"),
     axis.line = ggplot2::element_line(color="#808080"),
 
