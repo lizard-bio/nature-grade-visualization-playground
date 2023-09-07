@@ -14,7 +14,7 @@ def lizard_style(font_name='Nunito Sans 10pt'):
     -----------
     font_name : str, optional
         The name of the font to be used for the plots. By default, it uses 'Nunito Sans 10pt'.
-        If you want to use your own local installation of Nunitoor any other font,
+        If you want to use your own local installation of Nunito Sans or any other font,
         specify the font name using this parameter. For more details on how to use
         the font_name parameter, refer to the 'In_Action' file on GitHub.
 
@@ -121,7 +121,7 @@ def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="
    - fontsize (int, optional): Font size of the source text. Defaults to 12.
    - pdf (bool, optional): If True, saves the output as a PDF. Otherwise, saves as a PNG. Defaults to False.
    - output_name (str, optional): Name of the output file (without extension). Defaults to "TempLizardPlot".
-   - save_filepath (str, optional): Full path to save the output (without extension). If specified, it takes precedence over output_name.
+   - save_filepath (str, optional): Full path to save the output (with extension). If specified, it takes precedence over output_name.
 
    Returns:
    None. The combined image is saved to the specified location or the current working directory.
@@ -185,13 +185,13 @@ def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="
     # Save the concatenated image
     if pdf:
         if save_filepath:
-            filename = save_filepath + '.pdf'
+            filename = save_filepath
         else:
             filename = output_name + '.pdf'
         combined_img.save(filename, "PDF", resolution=100.0)
     else:
         if save_filepath:
-            filename = save_filepath + '.png'
+            filename = save_filepath
         else:
             filename = output_name + '.png'
         combined_img.save(filename)
