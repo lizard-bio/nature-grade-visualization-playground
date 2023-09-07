@@ -47,7 +47,7 @@ left_align <- function(ggplot_name, pieces){
 #' Returns the system file path to the Biolizard logo
 #' @return Full path to the image file.
 get_image_path <- function() {
-  system.file("logo", "BioLizardLogo.png", package="BioLizardStyleR")
+  system.file("logo", "BiolizardLogo.png", package="BioLizardStyleR")
 }
 
 #' Compute Font Size Based on Text Length
@@ -87,7 +87,7 @@ compute_font_size <- function(text_length) {
 #' based on its length using the \code{\link{compute_font_size}} function.
 #'
 #' @param source Text to display as the source in the footer.
-#' @param logo_image_path Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.
+#' @param logo_image_path Path to the logo image. Defaults to the "BiolizardLogo.png" within the package.
 #'
 #' @return A grob object representing the footer with the source text, logo, and the specified font.
 

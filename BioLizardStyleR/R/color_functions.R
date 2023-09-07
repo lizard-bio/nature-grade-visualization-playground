@@ -63,7 +63,7 @@ biolizard_pal_divergent <- function() {
 #'
 #' @param type Character, either 'discrete' or 'continuous'.
 #' @param scheme Character, either 'qualitative', 'sequential', or 'divergent'.
-#' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}.
+#' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_color_gradientn discrete_scale
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @seealso \code{\link{scale_fill_biolizard}}
@@ -115,7 +115,7 @@ scale_colour_biolizard <- scale_color_biolizard
 #'
 #' @param type Character, either 'discrete' or 'continuous'.
 #' @param scheme Character, either 'qualitative', 'sequential', or 'divergent'.
-#' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}.
+#' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_fill_gradientn discrete_scale
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @seealso \code{\link{scale_color_biolizard}}
