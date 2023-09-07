@@ -65,14 +65,14 @@ If you don't have the Nunito Sans font locally installed, you can download and i
 
 ---
 
-## Option 2: Already Installed
+## Option 2: Already Installed (Skip this if you followed option 1)
 If you find that the Nunito Sans font is already installed, there is no need for reinstallation.
 
 - Use the `pattern` argument in `install_biolizard_fonts()`.
 - Ideally, the `pattern` should be the name of the exact `.tff` file. However, in most cases, simply using 'Nunito' should suffice. The function should guide you in the process.
 
 
-Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions.
+Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions. Running the following function **without any arguments** should install the font. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument clearDatabase=TRUE. This will reinstall the extrafontdb package, a companion to extrafont, to reset its database.
 ```{r}
 install_biolizard_fonts()
 ```
@@ -98,7 +98,7 @@ testplot
 
 ## 3.1 Applying the Biolizard theme
 
-In the initial step, we implement the biolizard theme through the **lizard_style()* function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you will need to make further theme adjustments.
+In the initial step, we implement the biolizard theme through the **lizard_style()* function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you might need to make further theme adjustments.
 ```{r}
 testplot <- testplot + lizard_style()
 testplot
@@ -108,14 +108,32 @@ testplot
 
 Once you've styled your plot, you can enhance it with a 'BioLizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
 
-The coloring functions within the package adhere to a consistent naming convention: **scale_<color/fill>_<qualitative/sequential/divergent>_<discrete/continuous>_biolizard**. For the qualitative palette, only the discrete option is available, as it is the only logical choice in this context. 
+The coloring functions within the package adhere to a flexible structure: **scale_<color/fill>_biolizard**. The type (discrete/continuous) and the scheme (qualitative/sequential/divergent) must be determined as function parameters!
 ```{r}
-testplot <- testplot + scale_color_qualitative_biolizard()
-testplot
-testplotsequential <- testplot + scale_color_sequential_discrete_biolizard()
-testplotsequential
-testplotdivergent <- testplot + scale_color_divergent_discrete_biolizard()
-testplotdivergent
+data("mtcars")
+mtcars$gear <- as.factor(mtcars$gear)
+
+# Base plot
+testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
+  geom_point(aes(color = gear), size=3) +
+  labs(
+    title = "Miles per Gallon vs. Horsepower",
+    x = "Horsepower",
+    y = "Miles per Gallon",
+    color = "Gears"
+  )
+
+# Applying the qualitative color scale
+testplot_qualitative <- testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative")
+testplot_qualitative
+
+# Applying the sequential color scale (assuming you have a different dataset or aesthetic)
+testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "sequential")
+testplot_sequential
+
+# Applying the divergent color scale (assuming you have a different dataset or aesthetic)
+testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent")
+testplot_divergent
 ```
 
 
@@ -149,7 +167,7 @@ g <- ggplot(chic, aes(x = season, y = o3,
 g
 
 g + lizard_style() +
-  scale_color_qualitative_biolizard()
+  scale_color_biolizard()
 g
 ```
 ```{r}
@@ -186,7 +204,7 @@ g <- ggplot(corm, aes(rowname, fct_rev(colname),
       labs(x = NULL, y = NULL) 
 g
 
-g + scale_fill_divergent_continuous_biolizard(limits = c(-1, 1),na.value = "white", name="Pearson\nCorrelation") +
+g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1),na.value = "white", name="Pearson\nCorrelation") +
         lizard_style() +
         theme(legend.position = c(.95, .8))
 
@@ -201,7 +219,7 @@ g <- ggplot(chic, aes(temp, o3)) +
 g
 
 g <- g + lizard_style() +
-      scale_fill_sequential_continuous_biolizard() 
+      scale_fill_biolizard(type='continuous',scheme='sequential')
 g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
