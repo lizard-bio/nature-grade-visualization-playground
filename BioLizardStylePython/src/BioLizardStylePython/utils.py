@@ -75,10 +75,10 @@ def create_and_register_colormap(palette, name):
     #>>> create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal")
     """
     colors = palette(256)
-    if name == "biolizard_sequential_pal":
-        colors = colors[::-1]  # Reverse the order of the colors
     rgbcolors = [matplotlib.colors.to_rgb(color) for color in colors]
     cmap = matplotlib.colors.LinearSegmentedColormap.from_list(name, rgbcolors)
+    if name == "biolizard_sequential_pal":
+        cmap = cmap.reversed() # Reverse the order of the colors
     matplotlib.colormaps.register(name=name, cmap=cmap)
 
 # Sequential Biolizard Color Map
@@ -162,7 +162,7 @@ def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="
     # Get the directory of the current script
     current_directory = os.path.dirname(os.path.abspath(__file__))
     # Construct the path to the image
-    image_path = os.path.join(current_directory, 'logo', 'BioLizardLogo.png')
+    image_path = os.path.join(current_directory, 'logo', 'BiolizardLogo.png')
     # Read the image
     img = plt.imread(image_path)
 
