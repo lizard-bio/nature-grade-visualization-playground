@@ -49,11 +49,15 @@ lizard_style <- function() {
     axis.text = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                       size=12,
                                       color="#555555"),
-    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 7),size=12), #small margin fix
-    axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 5, r = 10), size=12),
+    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
+    axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
     axis.title.y = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                          size=14,
                                          color="#222222"),
+    axis.title.x = ggplot2::element_text(family="Nunito Sans 10pt Medium",
+                                         size=14,
+                                         color="#222222",
+                                         margin=ggplot2::margin(b = 5)),
     axis.ticks = ggplot2::element_line(color="#555555"),
     axis.line = ggplot2::element_line(color="#808080"),
 
