@@ -11,23 +11,20 @@
 #' @export
 #'
 #' @importFrom ggplot2 theme element_text element_blank element_rect
-#' @importFrom extrafont loadfonts
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
 lizard_style <- function() {
-  font <- extrafont::fonts()[1]
   ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family=font,
+    plot.title = ggplot2::element_text(family="Nunito Sans 10pt",
                                        size=16,
-                                       face="bold",
                                        color="#222222"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family=font,
+    plot.subtitle = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -38,23 +35,23 @@ lizard_style <- function() {
     legend.position = "right",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family=font,
+    legend.title = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                          size=11,
                                          color="#222222"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family=font,
+    legend.text = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                         size=10),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family=font,
+    axis.title = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                        size=14,
                                        color="#222222"),
-    axis.text = ggplot2::element_text(family=font,
+    axis.text = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                       size=12,
                                       color="#555555"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 7),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 5, r = 10), size=12),
-    axis.title.y = ggplot2::element_text(family=font,
+    axis.title.y = ggplot2::element_text(family="Nunito Sans 10pt Medium",
                                          size=14,
                                          color="#222222"),
     axis.ticks = ggplot2::element_line(color="#555555"),
