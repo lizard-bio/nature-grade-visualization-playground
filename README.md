@@ -47,15 +47,9 @@ To report issues or provide feedback, you can:
 
 - Open an issue on GitHub
 - Contact us via the following channels:
-
-  - **Intern Contact**: [robbe.neirynck@lizard.bio](mailto:robbe.neirynck@lizard.bio)  
-    *(Note: This email may become inactive after the internship period)*
   
-  - **Personal Contact**: [robbe.neirynck1@hotmail.com](mailto:robbe.neirynck1@hotmail.com)
-  
-  - **Project Supervisor**: [Alexander.koch@lizard.bio](mailto:Alexander.koch@lizard.bio)
-
-Please feel free to reach out to me on Slack as well.
+  - **Project Supervisor**: [alexander.koch@lizard.bio](mailto:Alexander.koch@lizard.bio)
+  - **Slack**: there is a (private) #nature-grade-visualisations channel. Let Alexander know if you'd like to be added!
 
 
 
