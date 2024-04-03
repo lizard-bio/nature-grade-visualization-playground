@@ -9,7 +9,9 @@ biolizard_pal_qualitative <- function() {
   colors <- biolizard_qualitative_palette
   max_n <- length(biolizard_qualitative_palette)
   f <- function(n) {
-    if (n > max_n) {
+    if (n < 1) {
+      stop("The requested number of colors must be at least 1.")
+    } else if (n > max_n) {
       stop("The requested number of colors exceeds the available colors in the palette. Maximum colors: 12.")
     }
     return(colors[1:n])
@@ -18,6 +20,9 @@ biolizard_pal_qualitative <- function() {
 }
 biolizard_pal_sequential <- function() {
   f <- function(n) {
+    if (n < 1) {
+      stop("The requested number of colors must be at least 1.")
+    }
     colors <- sequential_hcl(n, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)
     return(rev(colors))
   }
@@ -26,6 +31,9 @@ biolizard_pal_sequential <- function() {
 
 biolizard_pal_divergent <- function() {
   f <- function(n) {
+    if (n < 2) {
+      stop("The requested number of colors must be at least 2.")
+    }
     return(diverging_hcl(n, h = c(291, 170), c = 80, l = c(35, 95), power = 1))
   }
   return(f)
@@ -71,9 +79,9 @@ biolizard_pal_divergent <- function() {
 scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("colour", "BioLizard", biolizard_pal_qualitative(), ...),
-           sequential = discrete_scale("colour", "BioLizard", biolizard_pal_sequential(), ...),
-           divergent = discrete_scale("colour", "BioLizard", biolizard_pal_divergent(), ...)
+           qualitative = discrete_scale("colour", palette = biolizard_pal_qualitative(), ...),
+           sequential = discrete_scale("colour", palette = biolizard_pal_sequential(), ...),
+           divergent = discrete_scale("colour", palette = biolizard_pal_divergent(), ...)
     )
   } else if(type == "continuous") {
     switch(scheme,
@@ -123,9 +131,9 @@ scale_colour_biolizard <- scale_color_biolizard
 scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("fill", "BioLizard", biolizard_pal_qualitative, ...),
-           sequential = discrete_scale("fill", "BioLizard", biolizard_pal_sequential(), ...),
-           divergent = discrete_scale("fill", "BioLizard", biolizard_pal_divergent(), ...)
+           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative, ...),
+           sequential = discrete_scale("fill", palette = biolizard_pal_sequential(), ...),
+           divergent = discrete_scale("fill", palette = biolizard_pal_divergent(), ...)
     )
   } else if(type == "continuous") {
     switch(scheme,
