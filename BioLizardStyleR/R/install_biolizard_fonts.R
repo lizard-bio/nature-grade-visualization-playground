@@ -18,7 +18,7 @@
 #' install_biolizard_fonts()
 #' extrafont::fonts()  # to check the installed fonts
 #' }
-install_biolizard_fonts <- function(pattern = 'NunitoSans', clearDataBase = FALSE) {
+install_biolizard_fonts <- function(pattern = 'Lato', clearDataBase = FALSE) {
   # Clear database logic here
   if (clearDataBase == TRUE) {
     if ("package:extrafontdb" %in% search()) {
@@ -33,13 +33,13 @@ install_biolizard_fonts <- function(pattern = 'NunitoSans', clearDataBase = FALS
   font_import(pattern = pattern)
     # Check if any font matches the pattern
     matching_fonts <- fonts()
-    if (length(matching_fonts) > 2) {
+    if (length(matching_fonts) > 8) {
       matched_fonts <- basename(extrafont::fonttable()[,3])
       warning("Multiple fonts match the pattern, while their should only be two. Here they are: ", paste(matched_fonts, collapse=", "))
       warning("Please specify the exact font using the 'pattern' argumen and re-run the function with clearDataBase=TRUE.")
     }
     if (length(matching_fonts) == 0) {
-      warning("No matching fonts found. Ensure the 'NunitoSans' font is installed locally and verify your pattern input (looking for the .tff files")
+      warning("No matching fonts found. Ensure the 'Lato' font is installed locally and verify your pattern input (looking for the .tff files")
     }
     extrafont::loadfonts(device='all', quiet = TRUE)
     if (length(matching_fonts) == 2) {

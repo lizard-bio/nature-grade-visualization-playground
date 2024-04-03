@@ -92,15 +92,15 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
   )
 
 # Applying the qualitative color scale
-testplot_qualitative <- testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative")
+testplot_qualitative <- testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative") + lizard_style()
 testplot_qualitative
 
 # Applying the sequential color scale (assuming you have a different dataset or aesthetic)
-testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "sequential")
+testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "sequential") + lizard_style()
 testplot_sequential
 
 # Applying the divergent color scale (assuming you have a different dataset or aesthetic)
-testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent")
+testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent") + lizard_style()
 testplot_divergent
 ```
 
@@ -110,7 +110,7 @@ testplot_divergent
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`. The `device` argument allows to choose from the file types "png" (default), "pdf", "svg", or "ps".
 
 ```{r}
-finalise_lizardplot(testplot,source='Source: The mtcars dataset')
+finalise_lizardplot(testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative") + lizard_style(), source='Source: The mtcars dataset')
 ```
 
 # 4. Some examples for fun

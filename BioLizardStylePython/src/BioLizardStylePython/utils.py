@@ -6,15 +6,15 @@ import matplotlib.pyplot as plt
 import matplotlib.colors
 import colorspace
 
-def lizard_style(font_name='Nunito Sans 10pt'):
+def lizard_style(font_name='Lato'):
     """
     Load and apply the lizard_style for matplotlib plots.
 
     Parameters:
     -----------
     font_name : str, optional
-        The name of the font to be used for the plots. By default, it uses 'Nunito Sans 10pt'.
-        If you want to use your own local installation of Nunito Sans or any other font,
+        The name of the font to be used for the plots. By default, it uses 'Lato'.
+        If you want to use your own local installation of Lato or any other font,
         specify the font name using this parameter. For more details on how to use
         the font_name parameter, refer to the 'In_Action' file on GitHub.
 
