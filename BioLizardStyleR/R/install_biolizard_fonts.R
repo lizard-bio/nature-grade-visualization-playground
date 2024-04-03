@@ -1,10 +1,10 @@
 #' Import BioLizard Fonts into R
 #'
-#' This function imports BioLizard fonts into R using 'NunitoSans' as the default font.
-#' Users with a different NunitoSans font installed can adjust the pattern. The function leverages the 'extrafont'
+#' This function imports BioLizard fonts into R using 'Lato' as the default font.
+#' Users with a different Lato font installed can adjust the pattern. The function leverages the 'extrafont'
 #' package and provides feedback on fonts that match the specified pattern.
 #'
-#' @param pattern A character string specifying the font file pattern. Default is 'NunitoSans'.
+#' @param pattern A character string specifying the font file pattern. Default is 'Lato'.
 #' @param clearDataBase A logical flag to clear the existing database of fonts in 'extrafont'. Useful if pre-existing fonts are causing issues. Default is FALSE.
 #'
 #' @return Prints a success message if the desired font is loaded correctly. Additionally, warnings are issued if multiple fonts match the pattern or if no matching fonts are found.

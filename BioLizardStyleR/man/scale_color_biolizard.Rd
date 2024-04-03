@@ -14,7 +14,7 @@ scale_colour_biolizard(type = "discrete", scheme = "qualitative", ...)
 
 \item{scheme}{Character, either 'qualitative', 'sequential', or 'divergent'.}
 
-\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}.}
+\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
 }
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
