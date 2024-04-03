@@ -35,14 +35,14 @@ install_biolizard_fonts <- function(pattern = 'Lato', clearDataBase = FALSE) {
     matching_fonts <- fonts()
     if (length(matching_fonts) > 8) {
       matched_fonts <- basename(extrafont::fonttable()[,3])
-      warning("Multiple fonts match the pattern, while their should only be two. Here they are: ", paste(matched_fonts, collapse=", "))
+      warning("Multiple fonts match the pattern, while their should only be 8. Here they are: ", paste(matched_fonts, collapse=", "))
       warning("Please specify the exact font using the 'pattern' argumen and re-run the function with clearDataBase=TRUE.")
     }
     if (length(matching_fonts) == 0) {
       warning("No matching fonts found. Ensure the 'Lato' font is installed locally and verify your pattern input (looking for the .tff files")
     }
     extrafont::loadfonts(device='all', quiet = TRUE)
-    if (length(matching_fonts) == 2) {
+    if (length(matching_fonts) == 8) {
       print(paste('Success! The following font will be used:', fonts()))
             }
 }
