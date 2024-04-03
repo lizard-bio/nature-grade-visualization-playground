@@ -122,9 +122,8 @@ if (!requireNamespace("readr", quietly = TRUE)) {
   # Install the package if it's not installed
   install.packages("readr")
 }
-library(readr)
 library(ggplot2)
-chic <- readr::read_csv("https://raw.githubusercontent.com/z3tt/ggplot-courses/main/data/chicago-nmmaps-custom.csv") #An example dataset
+chic <- readr::read_csv("https://figshare.com/ndownloader/files/42307179") #An example dataset
 
 g <- ggplot(chic, aes(x = season, y = o3,
                    color = season)) +
@@ -136,7 +135,6 @@ g
 
 g + lizard_style() +
   scale_color_biolizard()
-g
 ```
 ```{r}
 if (!requireNamespace(c("corrr","forcats"), quietly = TRUE)) {
