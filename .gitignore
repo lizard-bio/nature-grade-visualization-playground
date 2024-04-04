@@ -10,3 +10,7 @@ BioLizardStyleR/.Rproj.user
 BioLizardStylePython/.idea/*
 .idea
 
+#pytest and unittest
+.pytest_cache
+__pycache__
+result_images
