@@ -21,28 +21,25 @@
 install_biolizard_fonts <- function(pattern = 'Lato', clearDataBase = FALSE) {
   # Clear database logic here
   if (clearDataBase == TRUE) {
-    if ("package:extrafontdb" %in% search()) {
-      suppressWarnings(detach(package:extrafontdb, unload = TRUE))
+    db_path <- paste0(system.file(package = "extrafontdb"),"/fontmap/fonttable.csv")
+    if(file.exists(db_path)) {
+      unlink(db_path)
     }
-    install.packages("extrafontdb")
-    library(extrafont)
-    library(extrafontdb)
   }
-
   # Font import and checking logic here
-  font_import(pattern = pattern)
-    # Check if any font matches the pattern
-    matching_fonts <- fonts()
-    if (length(matching_fonts) > 8) {
-      matched_fonts <- basename(extrafont::fonttable()[,3])
-      warning("Multiple fonts match the pattern, while their should only be 8. Here they are: ", paste(matched_fonts, collapse=", "))
-      warning("Please specify the exact font using the 'pattern' argumen and re-run the function with clearDataBase=TRUE.")
-    }
-    if (length(matching_fonts) == 0) {
-      warning("No matching fonts found. Ensure the 'Lato' font is installed locally and verify your pattern input (looking for the .tff files")
-    }
-    extrafont::loadfonts(device='all', quiet = TRUE)
-    if (length(matching_fonts) == 8) {
-      print(paste('Success! The following font will be used:', fonts()))
-            }
+  tryCatch({
+    font_import(pattern = pattern, prompt = FALSE)
+  }, error = function(err) {
+    stop("No matching fonts found. Ensure the font is installed locally and verify your pattern input (looking for the .tff files).")
+  }
+  )
+  # Check if any font matches the pattern
+  matching_fonts <- grep(pattern, fonts(), value = TRUE)
+  if (length(matching_fonts) == 0) {
+    stop("No matching fonts found. Ensure the font is installed locally and verify your pattern input (looking for the .tff files).")
+  }
+  if (length(matching_fonts) > 0) {
+    loadfonts(device='all', quiet = TRUE)
+    print(paste('Success! The following fonts were installed:', paste(matching_fonts, collapse = ", ")))
+  }
 }
