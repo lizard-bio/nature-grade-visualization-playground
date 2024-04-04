@@ -2,12 +2,14 @@ from BioLizardStylePython import *
 from matplotlib.testing.decorators import image_comparison
 import matplotlib.pyplot as plt
 import numpy as np
+import seaborn as sns
 
 # uses pytest framework
 
+#maplotlib plot
 @image_comparison(baseline_images=['lineplot'], remove_text=False,
                   extensions=['png'], style='mpl20')
-def test_lizardstyle():
+def test_lizardstyle_lineplot():
     # create random lineplot
     np.random.seed(42)
     x = np.linspace(0, 10, 10)
@@ -24,3 +26,31 @@ def test_lizardstyle():
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
     plt.legend()
+
+
+#seaborn plot
+@image_comparison(baseline_images=['irisplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_irisplot():
+    # Sample data
+    data = sns.load_dataset("iris")
+    # Using the colormap in Seaborn's swarmplot
+    sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal().colors[0:3])
+    plt.title('A Flower Plot')
+
+# colormap
+@image_comparison(baseline_images=['seq_cmapplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_cmapplot_seq():
+    np.random.seed(42)
+    data = np.random.rand(5, 5)  # Example data
+    plt.imshow(data, cmap='biolizard_sequential_pal')
+    plt.colorbar()
+
+@image_comparison(baseline_images=['div_cmapplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_cmapplot_div():
+    np.random.seed(42)
+    data = np.random.rand(5, 5)  # Example data
+    plt.imshow(data, cmap='biolizard_divergent_pal')
+    plt.colorbar()
