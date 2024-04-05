@@ -4,10 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BioLizardStylePython"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name = "BioLizard"},
   { name = "Robbe Neirynck", email = "robbe.neirynck1@hotmail.com" }
+]
+maintainers = [
+  { name = , email = }
 ]
 description = "Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn."
 readme = "README.md"
