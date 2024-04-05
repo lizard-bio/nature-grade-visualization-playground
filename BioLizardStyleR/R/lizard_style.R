@@ -5,18 +5,23 @@
 #'
 #' This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
 #' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' Before applying the style, it ensures that the required fonts are loaded using the `extrafont` package.
+#' If not yet installed, this function will install the 'Lato' font using the `gdtools` package.
 #'
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
 #' @importFrom ggplot2 theme element_text element_blank element_rect
+#' @importFrom gdtools install_gfont_script installed_gfonts
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
 lizard_style <- function() {
+  if(!"Lato" %in% installed_gfonts()){
+    message("The Lato font is not yet installed. Installing it now...")
+    install_gfont_script("Lato")
+  }
   ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
