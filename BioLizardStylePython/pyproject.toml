@@ -10,7 +10,7 @@ authors = [
   { name = "Robbe Neirynck", email = "robbe.neirynck1@hotmail.com" }
 ]
 maintainers = [
-  { name = , email = }
+  { name = "myname", email = "myname@example.com"}
 ]
 description = "Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn."
 readme = "README.md"
