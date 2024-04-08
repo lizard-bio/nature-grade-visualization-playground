@@ -1,5 +1,26 @@
 # Adapted from the BBC ggplot2 theme available under GPL-2 License
 
+#' set default colors of plot elements to BLZ green
+#'
+#' @importFrom ggplot2  update_geom_defaults
+set_default_BLZgreen <- function(){
+   ggplot2::update_geom_defaults("point", list(colour = "#01a086", fill = "#01a086"))
+
+   ggplot2::update_geom_defaults("line", list(colour = "#01a086"))
+   ggplot2::update_geom_defaults("hline", list(colour = "#01a086"))
+   ggplot2::update_geom_defaults("vline", list(colour = "#01a086"))
+   ggplot2::update_geom_defaults("abline", list(colour = "#01a086"))
+   ggplot2::update_geom_defaults("density", list(colour = "#01a086"))
+   ggplot2::update_geom_defaults("smooth", list(colour = "#1e2237"))
+
+   ggplot2::update_geom_defaults("boxplot", list(fill = "#01a086", colour = "#1e2237"))
+   ggplot2::update_geom_defaults("violin", list(fill = "#01a086", colour = "#1e2237"))
+
+   ggplot2::update_geom_defaults("rect", list(fill = "#01a086"))
+   ggplot2::update_geom_defaults("polygon", list(fill = "#01a086"))
+}
+
+
 
 #' Apply the lizard Style Theme to a ggplot2 Plot
 #'
@@ -31,6 +52,10 @@ lizard_style <- function() {
     stop(paste("gdtools error: ", err, "\n\nTry installing the Lato font manually from the ttf files in https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall and run `install_biolizard_fonts()`"))
   }
   )
+
+  #change default colors for geoms
+  set_default_BLZgreen()
+
   ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
@@ -90,5 +115,7 @@ lizard_style <- function() {
     #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
     strip.background = ggplot2::element_rect(fill="white"),
     strip.text = ggplot2::element_text(size  = 14,  hjust = 0)
+
   )
+
 }
