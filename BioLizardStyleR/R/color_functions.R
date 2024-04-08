@@ -131,7 +131,7 @@ scale_colour_biolizard <- scale_color_biolizard
 scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative, ...),
+           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative(), ...),
            sequential = discrete_scale("fill", palette = biolizard_pal_sequential(), ...),
            divergent = discrete_scale("fill", palette = biolizard_pal_divergent(), ...)
     )
