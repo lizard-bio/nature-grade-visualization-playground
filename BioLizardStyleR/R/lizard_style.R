@@ -13,8 +13,8 @@ set_default_BLZgreen <- function(){
    ggplot2::update_geom_defaults("density", list(colour = "#01a086"))
    ggplot2::update_geom_defaults("smooth", list(colour = "#1e2237"))
 
-   ggplot2::update_geom_defaults("boxplot", list(fill = "#01a086", colour = "#1e2237"))
-   ggplot2::update_geom_defaults("violin", list(fill = "#01a086", colour = "#1e2237"))
+   ggplot2::update_geom_defaults("boxplot", list(fill = "#01a086", colour = "black"))
+   ggplot2::update_geom_defaults("violin", list(fill = "#01a086", colour = "black"))
 
    ggplot2::update_geom_defaults("rect", list(fill = "#01a086"))
    ggplot2::update_geom_defaults("polygon", list(fill = "#01a086"))

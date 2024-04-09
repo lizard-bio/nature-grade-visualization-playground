@@ -23,7 +23,6 @@ classifiers = [
 
 dependencies = [
     "matplotlib>=3.7.1",
-    "numpy>=1.24.30",
     "Pillow>=9.4.0"
 ]
 

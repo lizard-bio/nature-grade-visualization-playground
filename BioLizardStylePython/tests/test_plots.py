@@ -28,14 +28,31 @@ def test_lizardstyle_lineplot():
     plt.legend()
 
 
-#seaborn plot
+#scatterplot
 @image_comparison(baseline_images=['irisplot'], remove_text=False,
                 extensions=['png'], style='mpl20')
 def test_lizardstyle_irisplot():
     # Sample data
     data = sns.load_dataset("iris")
-    # Using the colormap in Seaborn's swarmplot
     sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal().colors[0:3])
+    plt.title('A Flower Plot')
+
+#boxplot
+@image_comparison(baseline_images=['irisplot_box'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_boxplot():
+    # Sample data
+    data = sns.load_dataset("iris")
+    sns.boxplot(x="species", y="sepal_length", data=data)
+    plt.title('A Flower Plot')
+
+#density plot
+@image_comparison(baseline_images=['irisplot_dens'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_distplot():
+    # Sample data
+    data = sns.load_dataset("iris")
+    sns.displot(data, x="sepal_length", hue="species", kind="kde", fill=True)
     plt.title('A Flower Plot')
 
 # colormap

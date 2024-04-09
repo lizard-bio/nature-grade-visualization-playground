@@ -1,12 +1,12 @@
 import os
 import io
-import numpy as np
+# import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.colors
 import colorspace
 
-def lizard_style(font_name='Lato'):
+def lizard_style():
     """
     Load and apply the lizard_style for matplotlib plots.
 
@@ -29,7 +29,8 @@ def lizard_style(font_name='Lato'):
     """
     style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
     plt.style.use(style_path)
-    plt.rcParams['font.sans-serif'] = [font_name]
+    from BioLizardStylePython import lato_localname
+    plt.rcParams['font.sans-serif'] = [lato_localname]
 
 
 
