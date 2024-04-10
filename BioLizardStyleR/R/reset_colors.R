@@ -16,14 +16,14 @@
 #' reset_colors()
 #' p  # ggplot default colors
 reset_colors <- function(){
-  ggplot2::update_geom_defaults("point",   list(colour = "black", fill = NA))
+  update_geom_defaults("point",   list(colour = "black", fill = NA))
 
   ggplot2::update_geom_defaults("line",   list(colour = "black"))
   ggplot2::update_geom_defaults("hline",   list(colour = "black"))
   ggplot2::update_geom_defaults("vline",   list(colour = "black"))
   ggplot2::update_geom_defaults("abline",   list(colour = "black"))
-  ggplot2:update_geom_defaults("density", list(colour = "black"))
-  ggplot2:update_geom_defaults("smooth", list(colour = "#3366FF"))
+  ggplot2::update_geom_defaults("density", list(colour = "black"))
+  ggplot2::update_geom_defaults("smooth", list(colour = "#3366FF"))
 
   ggplot2::update_geom_defaults("boxplot", list(colour = "grey20", fill = "white"))
   ggplot2::update_geom_defaults("violin", list(colour = "grey20", fill = "white"))
