@@ -10,7 +10,7 @@
 #' @return Prints a success message if the desired font is loaded correctly. Additionally, warnings are issued if multiple fonts match the pattern or if no matching fonts are found.
 #'
 #' @export
-#' @importFrom extrafont font_import
+#' @importFrom extrafont font_import loadfonts
 #' @importFrom extrafont fonts
 #'
 #' @examples
