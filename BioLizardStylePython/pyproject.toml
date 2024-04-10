@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BioLizardStylePython"
-version = "0.1.1"
+version = "0.2.0"
 authors = [
   { name = "BioLizard"},
   { name = "Robbe Neirynck", email = "robbe.neirynck1@hotmail.com" }
@@ -14,6 +14,7 @@ maintainers = [
 ]
 description = "Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn."
 readme = "README.md"
+changelog_file = "CHANGELOG.md" 
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
