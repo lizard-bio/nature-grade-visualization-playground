@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Usage &amp; Examples &mdash; BioLizardStylePython  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="BioLizardStylePython" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            BioLizardStylePython
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage &amp; Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-functionalities">Basic functionalities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#applying-the-style-sheet-lizard-style">1. Applying the style sheet: lizard_style()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-qualitative-color-palette">2. Using the qualitative color palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-sequential-divergent-color-map">3. Using the sequential &amp; divergent color map</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#appending-a-biolizard-footer-finalise-lizardplot">4. Appending a BioLizard footer: finalise_lizardplot()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-boxplot">1. simple boxplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-density-plot">2. Simple density plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-scatterplot">3. Simple scatterplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fun-with-maps">4. Fun with maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">BioLizardStylePython</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Usage &amp; Examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/example.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage-examples">
+<h1>Usage &amp; Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h1>
+<section id="basic-functionalities">
+<h2>Basic functionalities<a class="headerlink" href="#basic-functionalities" title="Link to this heading"></a></h2>
+<section id="applying-the-style-sheet-lizard-style">
+<h3>1. Applying the style sheet: lizard_style()<a class="headerlink" href="#applying-the-style-sheet-lizard-style" title="Link to this heading"></a></h3>
+<p>The package includes <strong>a built-in style sheet</strong>, designed to standardize and enhance the visual appeal of your plots. This style sheet configures various elements, ranging from fonts and font sizes to axis and grid settings, and even the default colors for multiple lines in a plot. Applying this style, which is also possible in the R package with + lizard_style() provides a <strong>consistent look</strong>, whether you’re using ggplot in R or matplotlib/seaborn in Python.</p>
+<p>You can apply the Biolizard-look by placing <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> at the top of your scripts after importing BioLizardStylePython. Please note that <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> serves as a starting template and may not be the ideal style for every plot. You can easily customize individual style settings by placing your overrides after calling the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> function. Use plt.style.use(‘default’) to return back to the default style.</p>
+<p>Here’s a demonstration of how a simple line plot would look before and after applying the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">BioLizardStylePython</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Function to create random lineplot</span>
+<span class="k">def</span> <span class="nf">create_line_plot</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">y3</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 1&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 2&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 3&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Plot with 3 Lines&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X-axis&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y-axis&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">create_line_plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" src="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lizard_style</span><span class="p">()</span>
+<span class="n">create_line_plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e0eb9efbbb5d6c2edfa6e2e5eae32a1095e863a1e7ea7882ab17bc688ead946a.png" src="_images/e0eb9efbbb5d6c2edfa6e2e5eae32a1095e863a1e7ea7882ab17bc688ead946a.png" />
+</div>
+</div>
+</section>
+<section id="using-the-qualitative-color-palette">
+<h3>2. Using the qualitative color palette<a class="headerlink" href="#using-the-qualitative-color-palette" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()</span></code> function <strong>retrieves a predefined qualitative colormap</strong>. For instance, <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal().colors</span></code> returns a list of all 12 colors in hex code. Calling <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()(0)</span></code> fetches the first color in the palette, while <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()(range(5))</span></code> retrieves the first five colors.</p>
+<p>This palette is inspired by Martin Krzywinski’s “12-Color Palette for Color Blindness,” yet also incorporates the signature colors of BioLizard for its <strong><span style="color:#01a086">first</span> <span style="color:#1e2237">three</span> <span style="color:#e9b940">shades</span></strong>. Specifically designed to be <strong>inclusive</strong>, it is suitable for individuals with the most common form of color blindness: Deuteranopia (Red-Green Color Blindness).</p>
+<p>Here’s two examples illustrating how to use this function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="c1"># Sample data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="c1"># Using the colormap in Seaborn&#39;s swarmplot</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="p">()</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_761208/3626689180.py:6: UserWarning: The palette list has more values (12) than needed (3), which may not be intended.
+  sns.swarmplot(x=&quot;species&quot;, y=&quot;sepal_length&quot;, hue =&quot;species&quot;, data=data, palette=biolizard_qualitative_pal().colors)
+</pre></div>
+</div>
+<img alt="_images/6c4670c6cc47869a1b1bdd06a0dbb63d14cde8b230382bee7dbf249322dce7da.png" src="_images/6c4670c6cc47869a1b1bdd06a0dbb63d14cde8b230382bee7dbf249322dce7da.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 2</span>
+<span class="c1"># Data for the bar plot</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+
+<span class="c1"># Generate colors from the qualitative palette</span>
+<span class="n">palette</span><span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="p">()</span>
+<span class="n">bar_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">))]</span>
+
+<span class="c1"># Create the bar plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bar_colors</span><span class="p">)</span>
+
+<span class="c1"># Add title and labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e4d4d95c9b8c8eebb77f7f7bc9a2e9a3a7fbfdf094d7369e155a4ca19f5dc640.png" src="_images/e4d4d95c9b8c8eebb77f7f7bc9a2e9a3a7fbfdf094d7369e155a4ca19f5dc640.png" />
+</div>
+</div>
+</section>
+<section id="using-the-sequential-divergent-color-map">
+<h3>3. Using the sequential &amp; divergent color map<a class="headerlink" href="#using-the-sequential-divergent-color-map" title="Link to this heading"></a></h3>
+<p>When you load this package, it automatically <strong>registers two new colormaps in matplotlib</strong>: a Sequential colormap and a Divergent colormap: <strong>“biolizard_sequential_pal”</strong> and <strong>“biolizard_divergent_pal”</strong>. Both <strong>strings</strong> are now recognized my matplotlib.</p>
+<p><strong>Sequential</strong></p>
+<p>The Sequential Biolizard Color Map is tailored to depict underlying numerical values via a uniform progression in luminance. It employs the distinctive <strong><span style="color:#01a086">BioLizard green</span></strong> as its base hue. The palette uses HCL gradients for better perceptual uniformity compared to RGB, and uses a triangular chroma progression to distinguish middle-range values from extremes.</p>
+<p><strong>Divergent</strong></p>
+<p>This colormap is specifically designed for scenarios where the color corresponds to numerical values that have a natural midpoint. It utilizes a triangular luminance sequence with differing hues in each “arm” of the palette. Chroma and luminance are balanced between the two arms, and the neutral central value has zero chroma. The palette employs hues <strong><span style="color:#A329E2">291</span></strong> and <strong><span style="color:#01a086">170</span></strong>, the latter being Biolizard’s distinctive green. This hue combination ensures that the palette is accessible for all major forms of color blindness.</p>
+<p>Here an example illustrating how to use these palettes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Example data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_sequential_pal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Example data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5346d1f8a5ddaa1e3053a224d6d4f64671b2f8fa0b4279b4e51b3268214ada54.png" src="_images/5346d1f8a5ddaa1e3053a224d6d4f64671b2f8fa0b4279b4e51b3268214ada54.png" />
+<img alt="_images/33bf448d38c18d5aef32e418d40c5ceafce7090c5f21ee87ee4632790d64e991.png" src="_images/33bf448d38c18d5aef32e418d40c5ceafce7090c5f21ee87ee4632790d64e991.png" />
+</div>
+</div>
+<section id="appending-a-biolizard-footer-finalise-lizardplot">
+<h4>4. Appending a BioLizard footer: finalise_lizardplot()<a class="headerlink" href="#appending-a-biolizard-footer-finalise-lizardplot" title="Link to this heading"></a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">finalise_lizardplot</span></code> function finalizes a matplotlib plot by appending a footer at the bottom and saving the resulting image. The footer includes a BioLizard logo and a customizable source text.</p>
+<p><strong>Parameters</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot</span></code>: The input matplotlib figure to be finalized.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source_text</span></code>: The source text to display at the bottom.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fontsize</span></code>: (Optional) Font size of the source text. Defaults to 12.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pdf</span></code>: (Optional) If True, saves as PDF. Otherwise, saves as PNG. Defaults to False.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output_name</span></code>: (Optional) Name of the output file. Defaults to “TempLizardPlot”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">save_filepath</span></code>: (Optional) Full path to save the output. Takes precedence over <code class="docutils literal notranslate"><span class="pre">output_name</span></code>.</p></li>
+</ul>
+<p>Here’s an example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">finalise_lizardplot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span>
+                  <span class="s1">&#39;Source: https://en.wikipedia.org/wiki/Iris_flower_data_set &#39;</span><span class="p">,</span>
+                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_name</span><span class="o">=</span><span class="s1">&#39;An_Iris_Plot&#39;</span><span class="p">)</span>
+
+<span class="c1">#Please take a look in your current working directory to see the result!</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6667099494a9e2a8781deb2699c2d588b6b34cc6d562aadbcbd1a8998b87a2b4.png" src="_images/6667099494a9e2a8781deb2699c2d588b6b34cc6d562aadbcbd1a8998b87a2b4.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<section id="simple-boxplot">
+<h3>1. simple boxplot<a class="headerlink" href="#simple-boxplot" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ee4d9b21369f8f804d953b040ea44e26df1667d24a7e172d43dce6bcdba29a4c.png" src="_images/ee4d9b21369f8f804d953b040ea44e26df1667d24a7e172d43dce6bcdba29a4c.png" />
+</div>
+</div>
+<p>A violin plot is similar to a boxplot, but captures more information on the data distribution:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/19308f5bdbc9e63735bdbdb049919fec4293ede53e5dfc1f32afd55501923b38.png" src="_images/19308f5bdbc9e63735bdbdb049919fec4293ede53e5dfc1f32afd55501923b38.png" />
+</div>
+</div>
+</section>
+<section id="simple-density-plot">
+<h3>2. Simple density plot<a class="headerlink" href="#simple-density-plot" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/5196919949527e58e158422dd3aac6b970c50bb378a1e7498c0435a536339b6a.png" src="_images/5196919949527e58e158422dd3aac6b970c50bb378a1e7498c0435a536339b6a.png" />
+</div>
+</div>
+</section>
+<section id="simple-scatterplot">
+<h3>3. Simple scatterplot<a class="headerlink" href="#simple-scatterplot" title="Link to this heading"></a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/333c2671c9a22cd7206e31154806dce3965dd8db2564c3797698dea05494befb.png" src="_images/333c2671c9a22cd7206e31154806dce3965dd8db2564c3797698dea05494befb.png" />
+</div>
+</div>
+<p>We can use <code class="docutils literal notranslate"><span class="pre">lmplot</span></code> or <code class="docutils literal notranslate"><span class="pre">regplot</span></code> to add a regression line:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#1e2237&#39;</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">])</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="s1">&#39;$r^2$=</span><span class="si">{:.2f}</span><span class="s1">, p=</span><span class="si">{:.2g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+    
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">annotate</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/498a0750907b8420a4f68866aa2431ea84b991d0426e5c70c3cd2d459c98c6ac.png" src="_images/498a0750907b8420a4f68866aa2431ea84b991d0426e5c70c3cd2d459c98c6ac.png" />
+</div>
+</div>
+</section>
+<section id="fun-with-maps">
+<h3>4. Fun with maps<a class="headerlink" href="#fun-with-maps" title="Link to this heading"></a></h3>
+<p>This example was taken from: https://matplotlib.org/basemap/stable/users/examples.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="c1"># miller projection </span>
+<span class="nb">map</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;mill&#39;</span><span class="p">,</span><span class="n">lon_0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># plot coastlines, draw label meridians and parallels.</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">drawcoastlines</span><span class="p">()</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">map</span><span class="o">.</span><span class="n">lonmin</span><span class="p">,</span><span class="nb">map</span><span class="o">.</span><span class="n">lonmax</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">drawmapboundary</span><span class="p">(</span><span class="n">fill_color</span><span class="o">=</span><span class="s2">&quot;#1e2237&quot;</span><span class="p">)</span>
+<span class="nb">map</span><span class="o">.</span><span class="n">fillcontinents</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;#01a086&quot;</span><span class="p">,</span><span class="n">lake_color</span><span class="o">=</span><span class="s2">&quot;#1e2237&quot;</span><span class="p">)</span>
+<span class="c1"># shade the night areas, with alpha transparency so the </span>
+<span class="c1"># map shows through. Use current time in UTC.</span>
+<span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">CS</span><span class="o">=</span><span class="nb">map</span><span class="o">.</span><span class="n">nightshade</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Day/Night Map for </span><span class="si">%s</span><span class="s1"> (UTC)&#39;</span> <span class="o">%</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> %b %Y %H:%M:%S&quot;</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2147426cd8cb9356b1f20f52b821c3b9f9567b6c809d01005a168570ade96178.png" src="_images/2147426cd8cb9356b1f20f52b821c3b9f9567b6c809d01005a168570ade96178.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="BioLizardStylePython" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Biolizard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

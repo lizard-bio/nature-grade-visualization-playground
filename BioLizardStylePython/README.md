@@ -17,15 +17,16 @@ The BioLizardStylePython package is available on PyPI and can be easily installe
 ```
 pip install BioLizardStylePython
 ```
-<div style="background-color: #f7f7f7; padding: 15px; border-radius: 4px; border-left: 5px solid red; margin-top: 20px;">
-<details>
-  <summary><b>Common Issue</b></summary>
 
-  If matplotlib is previously installed, you might need to delete the existing local font cache of matplotlib for it to recognize the Nunito Sans font.
+### 3. Font Installation
 
-  You can find the dir of the cache by running `import matplotlib as mpl; print(mpl.get_cachedir())`.
-</details>
-</div>
+The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
+
+If you don't have the Lato font locally installed, you can download and install it from GitHub.
+
+1. **Download Fonts**: Download the two font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
+2. **Install Fonts**: Install the downloaded fonts on your system.
+3. **Complete**: Once the installation is done, you're all set to use the font.
 
 ## usage
 
