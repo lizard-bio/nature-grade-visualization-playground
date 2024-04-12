@@ -1,6 +1,8 @@
 ---
 title: "BioLizardStyleR"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{BioLizardStyleR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -74,6 +76,8 @@ In the initial step, we implement the biolizard theme through the `lizard_style(
 testplot <- testplot + lizard_style()
 testplot
 ```
+
+**Tip:** you can use `theme_set(lizard_style())` at the beginning of your script or report to set the theme to lizard_style() in all plots, without having to add `+ lizard_style()` to each plot individually. Te reset the theme to the ggplot2 default, you can call `reset_theme_settings()`.
 
 ## 3.2 Adding a BioLizard color palette
 
@@ -226,7 +230,79 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 
 ```
 
-## 4.7 Chicago plots
+## 4.7 Treemap plots
+
+Treemap plots are a powerful way of visualizing hierarchical data such as GO terms, for example. The size of the rectangles corresponds to the value you want to show (e.g. p value), and related rectangles are grouped together. This example makes use of the Pokémon dataset from the [highcharter](https://cran.r-project.org/web/packages/highcharter/index.html) package and is based on https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/.
+
+The treemapify package allows plotting treemaps with ggplot2.
+
+```{r , fig.width=6, fig.height=4}
+if(!require("treemapify", quietly = TRUE)){
+  BiocManager::install("treemapify")
+}
+
+if(!require("highcharter", quietly = TRUE)){
+  install.packages("highcharter")
+}
+
+library(treemapify)
+library(dplyr)
+
+data("pokemon", package = "highcharter")
+# Cleaning up data for a treemap
+data <- pokemon %>% 
+  select(pokemon, type_1, type_2) %>%
+  mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) %>% 
+  group_by(type_1, type_2) %>%
+  summarise(n = length(pokemon)) %>% 
+  ungroup()
+
+head(data)
+
+# expand the biolizard qualitative palette
+ncols <- length(unique(data$type_1))
+BLZ_qual <- colorRampPalette(BioLizardStyleR:::biolizard_pal_qualitative()(12))(ncols)
+
+ggplot(data, aes(area = n, label = type_2, fill = type_1,
+                subgroup = type_1)) +
+  ggtitle("Number of pokémon stratified by type") +
+  # 1. Draw type_2 borders and fill colors
+  geom_treemap() +
+  # 2. Draw type_1 borders
+  geom_treemap_subgroup_border() +
+  # 3. Print type_1 text
+  geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour = "black",
+                             fontface = "italic", min.size = 0,
+                             family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+  # 4. Print type_2 text
+  geom_treemap_text(colour = "white", place = "topleft", reflow = T,
+                    family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+  
+  # 5. BLZ style
+  scale_fill_manual(values = BLZ_qual) +
+  lizard_style() +
+  theme(legend.position = "none")
+
+```
+
+However, this is not ideal, since the font of the text still has to be defined manually, and thus the lizard_style() function does not work very well for these treemaps, even though they are ggplot2-based. Another option is to use the 'treemap' library, and move away from ggplot2 altogether, which generally leads to more aesthetically pleasing plots:
+
+```{r, fig.width=6, fig.height=4}
+if(!require("treemapify", quietly = TRUE)){
+  BiocManager::install("treemapify")
+}
+
+library(treemap)
+
+treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
+        title="Number of pokémon stratified by type", 
+        palette=BLZ_qual,  #set the BLZ color palette
+        fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
+        fontfamily.title = "Lato", fontfamily.labels = "Lato", fontfamily.legend = "Lato")  #set the lato font
+
+```
+
+## 4.8 Chicago plots
 
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
@@ -302,7 +378,93 @@ g
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
 ```
 
-## 4.8 Maps
+
+## 4.9 Interactive plots (DE analysis)
+
+ggplotly can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). 
+
+Note: to succesfully install Pasilla, you might have to manually install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
+
+```{r , fig.width=5, fig.height=4}
+
+if(!require("plotly", quietly = TRUE)){
+  BiocManager::install("plotly")
+}
+
+if(!require("pasilla", quietly = TRUE)){
+  BiocManager::install("pasilla")
+}
+
+library(pasilla)
+library(plotly)
+
+# get gene counts
+datafiles <-  system.file("extdata", package="pasilla", mustWork=TRUE)
+count.table <-  read.table(file.path(datafiles, "pasilla_gene_counts.tsv"), header=TRUE, row.names=1, quote="", comment.char="" )
+head(count.table)
+
+# get metadata
+SampleAnno = read.csv(file.path(datafiles, "pasilla_sample_annotation.csv"))
+head(SampleAnno)
+
+# DE analysis with edgeR
+if(!require("edgeR", quietly = TRUE)){
+  BiocManager::install("edgeR")
+}
+library(edgeR)
+
+Group <- as.factor(c(rep("untreated", 4), rep("treated", 3)))
+y <- DGEList(counts = count.table, group = Group)
+
+# filter genes
+keep <- filterByExpr(y)
+y <- y[keep, , keep.lib.sizes = FALSE]
+
+# normalize counts
+y <- calcNormFactors(y)
+norm.counts <- cpm(y, normalized.lib.sizes = TRUE, log = T)
+
+# plot interactive PCA
+mds <- plotMDS(y, gene.selection="common", plot = F)
+toplot <- data.frame(Dim1 = mds$x, Dim2 = mds$y, Group = Group, sample = colnames(mds$distance.matrix.squared))
+pcaPlot <- ggplot(toplot, aes(Dim1, Dim2, colour = Group)) +
+  geom_point(aes(label = sample), size=3) + coord_fixed() +
+  xlab(paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")) +
+  ylab(paste0("PC2: ", round(mds$var.explained[2]*100), "% variance")) +
+  scale_color_biolizard() +
+  lizard_style()
+ggplotly(pcaPlot)
+
+# fit general linear model
+design <- model.matrix(~ 0 + Group)
+colnames(design) <- levels(Group)
+y <- estimateDisp(y, design)
+fit <- glmQLFit(y, design)
+
+# fit contrasts of interest
+my.contrasts <- makeContrasts(treatedVsUntreated = treated-untreated,
+                              levels=design)
+
+lrt <- glmQLFTest(fit, contrast = my.contrasts)
+
+DE <- topTags(lrt, n="all")$table
+colnames(DE) <- c("log2FoldChange", "logCPM", "LR", "pvalue", "padj")
+DE <- DE[order(DE$padj), ]
+DE <- DE[!is.na(DE$padj), ]
+head(DE)
+
+# interactive volcano plot
+p <- DE %>% {
+  ggplot(., aes(x = log2FoldChange, y = -log10(pvalue))) +
+  geom_point(aes(color = padj < 0.05, label = rownames(.))) +
+  scale_color_biolizard() +
+  lizard_style()
+}
+ggplotly(p)
+
+```
+
+## 4.10 Maps
 
 note: to install 'sf' you might have to install libudunits2 and libgdal:
 
