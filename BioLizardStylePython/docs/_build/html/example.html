@@ -59,6 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#simple-boxplot">1. simple boxplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-density-plot">2. Simple density plot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#simple-scatterplot">3. Simple scatterplot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#treemap-plots">4. Treemap plots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#fun-with-maps">4. Fun with maps</a></li>
 </ul>
 </li>
@@ -97,7 +98,7 @@
 <section id="applying-the-style-sheet-lizard-style">
 <h3>1. Applying the style sheet: lizard_style()<a class="headerlink" href="#applying-the-style-sheet-lizard-style" title="Link to this heading"></a></h3>
 <p>The package includes <strong>a built-in style sheet</strong>, designed to standardize and enhance the visual appeal of your plots. This style sheet configures various elements, ranging from fonts and font sizes to axis and grid settings, and even the default colors for multiple lines in a plot. Applying this style, which is also possible in the R package with + lizard_style() provides a <strong>consistent look</strong>, whether you’re using ggplot in R or matplotlib/seaborn in Python.</p>
-<p>You can apply the Biolizard-look by placing <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> at the top of your scripts after importing BioLizardStylePython. Please note that <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> serves as a starting template and may not be the ideal style for every plot. You can easily customize individual style settings by placing your overrides after calling the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> function. Use plt.style.use(‘default’) to return back to the default style.</p>
+<p>You can apply the Biolizard-look by placing <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> at the top of your scripts after importing BioLizardStylePython. Please note that <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> serves as a starting template and may not be the ideal style for every plot. You can easily customize individual style settings by placing your overrides after calling the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code> function. Use <code class="docutils literal notranslate"><span class="pre">plt.style.use('default')</span></code> to return back to the default style.</p>
 <p>Here’s a demonstration of how a simple line plot would look before and after applying the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -127,6 +128,9 @@
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Lato font found! Ready to start visualizing in BLZ style!
+</pre></div>
+</div>
 <img alt="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" src="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" />
 </div>
 </div>
@@ -339,6 +343,57 @@
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/498a0750907b8420a4f68866aa2431ea84b991d0426e5c70c3cd2d459c98c6ac.png" src="_images/498a0750907b8420a4f68866aa2431ea84b991d0426e5c70c3cd2d459c98c6ac.png" />
+</div>
+</div>
+</section>
+<section id="treemap-plots">
+<h3>4. Treemap plots<a class="headerlink" href="#treemap-plots" title="Link to this heading"></a></h3>
+<p>Treemap plots can be used as an alternative to bar charts, for example when there are too many categories that a bar chart would look cluttered.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal</span><span class="p">()(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.00392157, 0.62745098, 0.5254902 , 1.        ],
+       [0.11764706, 0.13333333, 0.21568627, 1.        ],
+       [0.91372549, 0.7254902 , 0.25098039, 1.        ],
+       [0.        , 0.76078431, 0.97647059, 1.        ],
+       [1.        , 0.43137255, 0.22745098, 1.        ],
+       [0.        , 0.98823529, 0.81176471, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">squarify</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+
+<span class="c1"># Sample data</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">95</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Group 1</span><span class="se">\n</span><span class="s1"> 250&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 2</span><span class="se">\n</span><span class="s1"> 120&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 3</span><span class="se">\n</span><span class="s1"> 280&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;Group 4</span><span class="se">\n</span><span class="s1"> 320&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 5</span><span class="se">\n</span><span class="s1"> 140&#39;</span><span class="p">,</span> <span class="s1">&#39;Group 6</span><span class="se">\n</span><span class="s1"> 95&#39;</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="p">()(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+
+<span class="c1"># Treemap</span>
+<span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
+              <span class="n">text_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">})</span>
+
+<span class="c1"># Remove the axis:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+
+<span class="c1"># plt.show()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 100.0, 0.0, 100.0)
+</pre></div>
+</div>
+<img alt="_images/b8ca0027099c5da56fedc334a1f73357da86c9d46cf062dcc9ca95128c3235bd.png" src="_images/b8ca0027099c5da56fedc334a1f73357da86c9d46cf062dcc9ca95128c3235bd.png" />
 </div>
 </div>
 </section>
