@@ -112,6 +112,32 @@ testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme
 testplot_divergent
 ```
 
+It is possible to reverse the color scales by setting `reverse = TRUE`
+
+```{r , fig.width=6}
+testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent", reverse = TRUE) + lizard_style()
+testplot_divergent
+```
+
+The discrete color palettes can also be called directly, in case you would like to use them outside ggplot. The three base colors can also be used directly as `blz_green`, `blz_blue` and `blz_yellow`.
+
+```{r, fig.show='hold', fig.height=4, fig.width=3.3}
+#use color palette
+mycolors <- biolizard_pal_sequential(3, reverse = TRUE)
+gearcolors <- mycolors[as.factor(mtcars$gear)]
+
+plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
+
+#use BLZ base colors
+mycolors <- c(blz_green, blz_blue, blz_yellow)
+gearcolors <- mycolors[as.factor(mtcars$gear)]
+
+plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
+
+```
+
 
 ## 3.3 Adding a BioLizard footer and exporting the plot.
 
@@ -261,7 +287,7 @@ head(data)
 
 # expand the biolizard qualitative palette
 ncols <- length(unique(data$type_1))
-BLZ_qual <- colorRampPalette(BioLizardStyleR:::biolizard_pal_qualitative()(12))(ncols)
+BLZ_qual <- colorRampPalette(biolizard_pal_qualitative(8))(ncols)
 
 ggplot(data, aes(area = n, label = type_2, fill = type_1,
                 subgroup = type_1)) +
@@ -457,7 +483,7 @@ head(DE)
 p <- DE %>% {
   ggplot(., aes(x = log2FoldChange, y = -log10(pvalue))) +
   geom_point(aes(color = padj < 0.05, label = rownames(.))) +
-  scale_color_biolizard() +
+  scale_color_biolizard(reverse = TRUE) +
   lizard_style()
 }
 ggplotly(p)
@@ -512,7 +538,7 @@ ggplot(data = world, aes(fill = BLZ_office)) +
 # europe only
 ggplot(data = dplyr::filter(world, continent == "Europe"), aes(fill = BLZ_office)) +
   geom_sf() +
-  scale_fill_manual(values = c(blz_yellow, "blz_green")) +
+  scale_fill_manual(values = c(blz_yellow, blz_green)) +
   lizard_style() +
   theme(panel.background = element_rect(fill = blz_blue),
         panel.grid = element_blank()) +

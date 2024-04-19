@@ -144,9 +144,11 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
            divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
   } else if(type == "continuous") {
-    switch(scheme,
-           sequential = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)), ...),
-           divergent = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...)
+    switch(paste(scheme, reverse, sep="_"),
+           sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
+           sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
+           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
@@ -197,9 +199,11 @@ scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", reve
            divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
   } else if(type == "continuous") {
-    switch(scheme,
-           sequential = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)), ...),
-           divergent = scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...)
+    switch(paste(scheme, reverse, sep="_"),
+           sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
+           sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
+           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
