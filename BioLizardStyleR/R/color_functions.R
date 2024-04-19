@@ -6,52 +6,96 @@
 # biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#00C2F9", "#FF5AAF","#FF6E3A","#00FCCF",
 #                                    "#8400CD" ,"#E20134","#008DF9", "#FFB2FD","#A40122")
 
-blz_green <- "#01a086"
-blz_blue <- "#1e2237"
-blz_yellow <- "#e9b940"
-
 biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#105144", "#6CC7B7", "#233E60", "#666666", "#D6D6D6")
 
-#333333
-#404040
-#555555
-#808080
-#666666
-#737373
+# the three main colors
 
+#' Biolizard green
+#' @export
+blz_green <- "#01a086"
 
-biolizard_pal_qualitative <- function() {
+#' Biolizard dark blue
+#' @export
+blz_blue <- "#1e2237"
+
+#' Biolizard yellow
+#' @export
+blz_yellow <- "#e9b940"
+
+# color palette functions
+
+#' Biolizard qualitative 8-color palette
+#'
+#' @examples
+#' biolizard_pal_qualitative(8)
+#' biolizard_pal_qualitative(4, reverse = TRUE)
+#'
+#' @param n Integer, number of colors. Maximum 8.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors
+#' @seealso \code{\link{biolizard_pal_sequential}} \code{\link{biolizard_pal_divergent}}
+#' @export
+#'
+biolizard_pal_qualitative <- function(n, reverse = FALSE) {
   colors <- biolizard_qualitative_palette
   max_n <- length(biolizard_qualitative_palette)
-  f <- function(n) {
-    if (n < 1) {
-      stop("The requested number of colors must be at least 1.")
-    } else if (n > max_n) {
-      stop("The requested number of colors exceeds the available colors in the palette. Maximum colors:", max_n)
-    }
-    return(colors[1:n])
+  if (n < 1) {
+    stop("The requested number of colors must be at least 1.")
+  } else if (n > max_n) {
+    stop("The requested number of colors exceeds the available colors in the palette. Maximum colors:", max_n)
   }
-  return(f)
-}
-biolizard_pal_sequential <- function() {
-  f <- function(n) {
-    if (n < 1) {
-      stop("The requested number of colors must be at least 1.")
-    }
-    colors <- sequential_hcl(n, h = 170, c = c(40, 75, 0), l = c(35, 90), power = 1)
-    return(rev(colors))
+  if (reverse) {
+    return(rev(colors[1:n]))
+  } else {
+  return(colors[1:n])
   }
-  return(f)
 }
 
-biolizard_pal_divergent <- function() {
-  f <- function(n) {
-    if (n < 2) {
-      stop("The requested number of colors must be at least 2.")
-    }
-    return(diverging_hcl(n, h = c(291, 170), c = 80, l = c(35, 95), power = 1))
+#' Biolizard sequential palette
+#'
+#' @examples
+#' biolizard_pal_sequential(10)
+#' biolizard_pal_sequential(4, reverse = TRUE)
+#'
+#' @param n Integer, number of colors.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors
+#' @importFrom colorspace sequential_hcl
+#' @seealso \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_divergent}}
+#' @export
+#'
+biolizard_pal_sequential <- function(n, reverse = FALSE) {
+  if (n < 1) {
+    stop("The requested number of colors must be at least 1.")
   }
-  return(f)
+  colors <- sequential_hcl(n, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)
+  if (reverse) {
+    return(rev(colors))
+  } else {
+    return(colors)
+  }
+}
+
+#' Biolizard divergent palette
+#'
+#' @examples
+#' biolizard_pal_divergent(10)
+#' biolizard_pal_divergent(4, reverse = TRUE)
+#'
+#' @param n Integer, number of colors.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors
+#' @importFrom colorspace diverging_hcl
+#' @seealso \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_sequential}}
+#' @export
+#'
+biolizard_pal_divergent <- function(n, reverse = FALSE) {
+  if (n < 2) {
+    stop("The requested number of colors must be at least 2.")
+  }
+  colors <- diverging_hcl(n, h = c(291, 170), c = 80, l = c(35, 95), power = 1)
+  if (reverse) {
+    return(rev(colors))
+  } else {
+    return(colors)
+  }
 }
 
 #' Biolizard Color Scale
@@ -94,9 +138,9 @@ biolizard_pal_divergent <- function() {
 scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("colour", palette = biolizard_pal_qualitative(), ...),
-           sequential = discrete_scale("colour", palette = biolizard_pal_sequential(), ...),
-           divergent = discrete_scale("colour", palette = biolizard_pal_divergent(), ...)
+           qualitative = discrete_scale("colour", palette = biolizard_pal_qualitative, ...),
+           sequential = discrete_scale("colour", palette = biolizard_pal_sequential, ...),
+           divergent = discrete_scale("colour", palette = biolizard_pal_divergent, ...)
     )
   } else if(type == "continuous") {
     switch(scheme,
@@ -146,9 +190,9 @@ scale_colour_biolizard <- scale_color_biolizard
 scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative(), ...),
-           sequential = discrete_scale("fill", palette = biolizard_pal_sequential(), ...),
-           divergent = discrete_scale("fill", palette = biolizard_pal_divergent(), ...)
+           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative, ...),
+           sequential = discrete_scale("fill", palette = biolizard_pal_sequential, ...),
+           divergent = discrete_scale("fill", palette = biolizard_pal_divergent, ...)
     )
   } else if(type == "continuous") {
     switch(scheme,

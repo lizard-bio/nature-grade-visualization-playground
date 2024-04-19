@@ -504,17 +504,17 @@ ggplot(data = world, aes(fill = BLZ_office)) +
 # coloring the ocean, as in the map on our website
 ggplot(data = world, aes(fill = BLZ_office)) +
   geom_sf() +
-  scale_fill_manual(values = c("#e9b940", "#01a086")) +
+  scale_fill_manual(values = c(blz_yellow, blz_green)) +
   lizard_style() +
-  theme(panel.background = element_rect(fill = "#1e2237"),
+  theme(panel.background = element_rect(fill = blz_blue),
         panel.grid = element_blank())
 
 # europe only
 ggplot(data = dplyr::filter(world, continent == "Europe"), aes(fill = BLZ_office)) +
   geom_sf() +
-  scale_fill_manual(values = c("#e9b940", "#01a086")) +
+  scale_fill_manual(values = c(blz_yellow, "blz_green")) +
   lizard_style() +
-  theme(panel.background = element_rect(fill = "#1e2237"),
+  theme(panel.background = element_rect(fill = blz_blue),
         panel.grid = element_blank()) +
   coord_sf(xlim = c(-25,50), ylim = c(35,70), expand = FALSE)
 ```
