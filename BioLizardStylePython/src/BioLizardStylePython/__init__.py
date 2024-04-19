@@ -25,4 +25,4 @@ else:
     lato_localname = font_names.pop()  #pick first one, usually there should only be one.. (?)
 
 
-from .utils import biolizard_qualitative_pal, biolizard_sequential_pal, biolizard_divergent_pal, finalise_lizardplot, lizard_style
+from .utils import *
