@@ -106,7 +106,7 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 #' The function supports three schemes:
 #'
 #' \itemize{
-#'   \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia. Inspired by Martin Krzywinski's palette and infused with Biolizard's house colors.
+#'   \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia.
 #'   \item \strong{sequential}: Use this for ordered values. Represents underlying values using a sequence of increasing luminance. The hue is derived from the Biolizard green, using gradients in the HCL-spectrum for perceptual uniformity. Chroma follows a triangular progression for easier differentiation of the high-end values.
 #'   \item \strong{divergent}: Use this for values with a natural midpoint. Codes values by a triangular luminance sequence with different hues on each arm of the palette. Crafted using hues 291 and 170, making it accessible for all major forms of color blindness.
 #' }
@@ -165,7 +165,7 @@ scale_colour_biolizard <- scale_color_biolizard
 #' The function supports three schemes:
 #'
 #' \itemize{
-#'   \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia. Inspired by Martin Krzywinski's palette and infused with Biolizard's house colors.
+#'   \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia.
 #'   \item \strong{sequential}: Use this for ordered values. Represents underlying values using a sequence of increasing luminance. The hue is derived from the Biolizard green, using gradients in the HCL-spectrum for perceptual uniformity. Chroma follows a triangular progression for easier differentiation of the high-end values.
 #'   \item \strong{divergent}: Use this for values with a natural midpoint. Codes values by a triangular luminance sequence with different hues on each arm of the palette. Crafted using hues 291 and 170, making it accessible for all major forms of color blindness.
 #' }
