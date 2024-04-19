@@ -256,7 +256,54 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 
 ```
 
-## 4.7 Treemap plots
+## 4.7 Facets
+Facetting is a great way to lay out related plots side-by-side, with the axes either on the same scale or on different scales.
+
+```{r,  fig.show='hold', fig.width=3.3}
+# use facet_wrap to stratify plots by one variable
+ggplot(mtcars, aes(x=mpg, y=hp)) +
+  geom_point() +
+  facet_wrap(vars(gear)) +
+  lizard_style() +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+
+
+# use facet_grid for two variables
+ggplot(mtcars, aes(x=mpg, y=hp)) +
+  geom_point() +
+  facet_grid(rows = vars(gear), cols = vars(carb)) +
+  lizard_style() +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+
+```
+
+Note that the minimal style makes it difficult to distinguish the different blocks from each other. Readability of the figure is improved by plotting the axes for each plot, but they are removed by `facet_grid` and `facet_wrap` when the plots are on the same scale. The similar functions `facet_rep_grid` and `facet_rep_wrap` from the lemon package are more suitable with the lizard style, since they will show all axes.
+
+```{r,  fig.show='hold', fig.width=3.3}
+if(!require("lemon", quietly = TRUE)){
+  BiocManager::install("lemon")
+}
+
+library(lemon)
+
+# use facet_wrap to stratify plots by one variable
+ggplot(mtcars, aes(x=mpg, y=hp)) +
+  geom_point() +
+  facet_rep_wrap(vars(gear)) +
+  lizard_style() +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+
+
+# use facet_grid for two variables
+ggplot(mtcars, aes(x=mpg, y=hp)) +
+  geom_point() +
+  facet_rep_grid(rows = vars(gear), cols = vars(carb)) +
+  lizard_style() +
+  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+
+```
+
+## 4.8 Treemap plots
 
 Treemap plots are a powerful way of visualizing hierarchical data such as GO terms, for example. The size of the rectangles corresponds to the value you want to show (e.g. p value), and related rectangles are grouped together. This example makes use of the Pokémon dataset from the [highcharter](https://cran.r-project.org/web/packages/highcharter/index.html) package and is based on https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/.
 
@@ -314,8 +361,8 @@ ggplot(data, aes(area = n, label = type_2, fill = type_1,
 However, this is not ideal, since the font of the text still has to be defined manually, and thus the lizard_style() function does not work very well for these treemaps, even though they are ggplot2-based. Another option is to use the 'treemap' library, and move away from ggplot2 altogether, which generally leads to more aesthetically pleasing plots:
 
 ```{r, fig.width=6, fig.height=4}
-if(!require("treemapify", quietly = TRUE)){
-  BiocManager::install("treemapify")
+if(!require("treemap", quietly = TRUE)){
+  BiocManager::install("treemap")
 }
 
 library(treemap)
@@ -328,7 +375,7 @@ treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
 
 ```
 
-## 4.8 Chicago plots
+## 4.9 Chicago plots
 
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
@@ -405,7 +452,7 @@ finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricsch
 ```
 
 
-## 4.9 Interactive plots (DE analysis)
+## 4.10 Interactive plots (DE analysis)
 
 ggplotly can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). 
 
@@ -490,7 +537,7 @@ ggplotly(p)
 
 ```
 
-## 4.10 Maps
+## 4.11 Maps
 
 note: to install 'sf' you might have to install libudunits2 and libgdal:
 

@@ -113,8 +113,8 @@ lizard_style <- function() {
     panel.background = ggplot2::element_blank(),
 
     #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
-    strip.background = ggplot2::element_rect(fill="white"),
-    strip.text = ggplot2::element_text(size  = 14,  hjust = 0)
+    strip.background = ggplot2::element_rect(fill="white", linewidth = 0),
+    strip.text = ggplot2::element_text(size  = 14,  hjust = 0.5)
 
   )
 
