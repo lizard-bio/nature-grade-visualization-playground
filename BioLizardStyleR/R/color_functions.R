@@ -3,8 +3,23 @@
 # The qualitative palette function is inspired from the Economist color scales theme available under GPL-2 License.
 
 # Internal functions and definitions
-biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#00C2F9", "#FF5AAF","#FF6E3A","#00FCCF",
-                                   "#8400CD" ,"#E20134","#008DF9", "#FFB2FD","#A40122")
+# biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#00C2F9", "#FF5AAF","#FF6E3A","#00FCCF",
+#                                    "#8400CD" ,"#E20134","#008DF9", "#FFB2FD","#A40122")
+
+blz_green <- "#01a086"
+blz_blue <- "#1e2237"
+blz_yellow <- "#e9b940"
+
+biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#105144", "#6CC7B7", "#233E60", "#666666", "#D6D6D6")
+
+#333333
+#404040
+#555555
+#808080
+#666666
+#737373
+
+
 biolizard_pal_qualitative <- function() {
   colors <- biolizard_qualitative_palette
   max_n <- length(biolizard_qualitative_palette)
@@ -12,7 +27,7 @@ biolizard_pal_qualitative <- function() {
     if (n < 1) {
       stop("The requested number of colors must be at least 1.")
     } else if (n > max_n) {
-      stop("The requested number of colors exceeds the available colors in the palette. Maximum colors: 12.")
+      stop("The requested number of colors exceeds the available colors in the palette. Maximum colors:", max_n)
     }
     return(colors[1:n])
   }
