@@ -3,7 +3,8 @@ Type: Package
 Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
 Version: 0.1.0
 Authors@R:
-  c(person("BioLizard", "Lizard", role = c("aut", "cre"), email = "lizard@bio.be"),
+  c(person("Alexander", "Koch", role = "cre", email = "alexander.koch@lizard.bio"),
+    person("Aniko", "Meijer", role = "cre", email = "aniko.meijer@lizard.bio"),
     person("Robbe", "Neirynck", role = "aut", email = "robbe.neirynck1@hotmail.com"))
 Description: The BioLizardStyleR package offers tools to craft ggplot2 visualizations 
     in the distinct BioLizard style. It features an integrated font installer, a dedicated 
