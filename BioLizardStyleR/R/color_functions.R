@@ -130,17 +130,18 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 #'
 #' @param type Character, either 'discrete' or 'continuous'.
 #' @param scheme Character, either 'qualitative', 'sequential', or 'divergent'.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors in the palette.
 #' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_color_gradientn discrete_scale
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @seealso \code{\link{scale_fill_biolizard}}
 #' @export
-scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
+scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", reverse = FALSE, ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("colour", palette = biolizard_pal_qualitative, ...),
-           sequential = discrete_scale("colour", palette = biolizard_pal_sequential, ...),
-           divergent = discrete_scale("colour", palette = biolizard_pal_divergent, ...)
+           qualitative = discrete_scale("colour", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
+           sequential = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
   } else if(type == "continuous") {
     switch(scheme,
@@ -182,17 +183,18 @@ scale_colour_biolizard <- scale_color_biolizard
 #'
 #' @param type Character, either 'discrete' or 'continuous'.
 #' @param scheme Character, either 'qualitative', 'sequential', or 'divergent'.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors in the palette.
 #' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_fill_gradientn discrete_scale
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @seealso \code{\link{scale_color_biolizard}}
 #' @export
-scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", ...) {
+scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", reverse = FALSE, ...) {
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("fill", palette = biolizard_pal_qualitative, ...),
-           sequential = discrete_scale("fill", palette = biolizard_pal_sequential, ...),
-           divergent = discrete_scale("fill", palette = biolizard_pal_divergent, ...)
+           qualitative = discrete_scale("fill", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
+           sequential = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
   } else if(type == "continuous") {
     switch(scheme,

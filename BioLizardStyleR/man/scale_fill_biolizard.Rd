@@ -4,12 +4,19 @@
 \alias{scale_fill_biolizard}
 \title{Biolizard Fill Scale}
 \usage{
-scale_fill_biolizard(type = "discrete", scheme = "qualitative", ...)
+scale_fill_biolizard(
+  type = "discrete",
+  scheme = "qualitative",
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{type}{Character, either 'discrete' or 'continuous'.}
 
 \item{scheme}{Character, either 'qualitative', 'sequential', or 'divergent'.}
+
+\item{reverse}{Boolean, if TRUE, reverse the order of the colors in the palette.}
 
 \item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
 }
