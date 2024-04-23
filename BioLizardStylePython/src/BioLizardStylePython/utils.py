@@ -37,12 +37,8 @@ def lizard_style():
     """
     style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
     plt.style.use(style_path)
-    from fonts.ttf import Lato
-    prop = font_manager.FontProperties(fname=Lato)
-    prop.get_name()
-    font_manager.fontManager.addfont(Lato)
-
-    plt.rcParams['font.sans-serif'] = prop.get_name()
+    from BioLizardStylePython import lato_localname
+    plt.rcParams['font.sans-serif'] = [lato_localname]
 
 
 def biolizard_qualitative_pal():
