@@ -20,8 +20,9 @@ font_names = set(font_names)
 
 
 if len(font_names) == 0:
-    from fonts.ttf import Lato
+    from fonts.ttf import Lato, LatoBold
     font_manager.fontManager.addfont(Lato)  #  adds a custom font from a file without installing it into the operating system
+    font_manager.fontManager.addfont(LatoBold)
     prop = font_manager.FontProperties(fname=Lato)
     lato_localname = prop.get_name()
 else:

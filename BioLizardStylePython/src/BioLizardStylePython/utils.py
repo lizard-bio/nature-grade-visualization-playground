@@ -135,7 +135,7 @@ _create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pa
 # (c) the neutral central value has zero chroma.
 # The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green.
 # This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
-biolizard_divergent_pal = colorspace.diverging_hcl(h=[291, 170], c=80, l=[35, 95], power=1)
+biolizard_divergent_pal = colorspace.diverging_hcl(h=[60, 170], c=80, l=[50, 95], power=1)
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal")
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal_r", reverse=True)
 
