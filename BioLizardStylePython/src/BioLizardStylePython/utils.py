@@ -2,8 +2,10 @@ import os
 import io
 # import numpy as np
 from PIL import Image
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
+from matplotlib import font_manager
 import colorspace
 
 # the three basic colors
@@ -26,7 +28,7 @@ def lizard_style():
 
     Example:
     --------
-    #>>> lizard_style(font_name='Nunito')
+    #>>> lizard_style()
 
     Notes:
     ------
@@ -35,9 +37,12 @@ def lizard_style():
     """
     style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
     plt.style.use(style_path)
-    from BioLizardStylePython import lato_localname
-    plt.rcParams['font.sans-serif'] = [lato_localname]
+    from fonts.ttf import Lato
+    prop = font_manager.FontProperties(fname=Lato)
+    prop.get_name()
+    font_manager.fontManager.addfont(Lato)
 
+    plt.rcParams['font.sans-serif'] = prop.get_name()
 
 
 def biolizard_qualitative_pal():
