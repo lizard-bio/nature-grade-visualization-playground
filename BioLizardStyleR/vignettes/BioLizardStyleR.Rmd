@@ -38,7 +38,7 @@ library(BioLizardStyleR)
 
 The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
 
-If not yet installed, Lato is automatically installed when calling 'lizard_style()'. In case this automatic installation fails on your system, you can install it manually using the followig steps:
+If not yet installed, Lato is automatically installed when calling 'lizard_style()'. In case this automatic installation fails on your system, you can install it manually using the following steps:
 
 1. **Download Fonts**: Download the two font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
 2. **Install Fonts**: Install the downloaded fonts on your system.
