@@ -9,7 +9,7 @@ create_footer(source, logo_image_path = get_image_path())
 \arguments{
 \item{source}{Text to display as the source in the footer.}
 
-\item{logo_image_path}{Path to the logo image. Defaults to the "BioLizardLogo.png" within the package.}
+\item{logo_image_path}{Path to the logo image. Defaults to the "BiolizardLogo.png" within the package.}
 }
 \value{
 A grob object representing the footer with the source text, logo, and the specified font.

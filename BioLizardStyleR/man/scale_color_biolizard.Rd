@@ -5,16 +5,28 @@
 \alias{scale_colour_biolizard}
 \title{Biolizard Color Scale}
 \usage{
-scale_color_biolizard(type = "discrete", scheme = "qualitative", ...)
+scale_color_biolizard(
+  type = "discrete",
+  scheme = "qualitative",
+  reverse = FALSE,
+  ...
+)
 
-scale_colour_biolizard(type = "discrete", scheme = "qualitative", ...)
+scale_colour_biolizard(
+  type = "discrete",
+  scheme = "qualitative",
+  reverse = FALSE,
+  ...
+)
 }
 \arguments{
 \item{type}{Character, either 'discrete' or 'continuous'.}
 
 \item{scheme}{Character, either 'qualitative', 'sequential', or 'divergent'.}
 
-\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}.}
+\item{reverse}{Boolean, if TRUE, reverse the order of the colors in the palette.}
+
+\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
 }
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
@@ -22,7 +34,7 @@ Use this function to incorporate the Biolizard palettes as a color scale into a 
 The function supports three schemes:
 
 \itemize{
-  \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia. Inspired by Martin Krzywinski's palette and infused with Biolizard's house colors.
+  \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia.
   \item \strong{sequential}: Use this for ordered values. Represents underlying values using a sequence of increasing luminance. The hue is derived from the Biolizard green, using gradients in the HCL-spectrum for perceptual uniformity. Chroma follows a triangular progression for easier differentiation of the high-end values.
   \item \strong{divergent}: Use this for values with a natural midpoint. Codes values by a triangular luminance sequence with different hues on each arm of the palette. Crafted using hues 291 and 170, making it accessible for all major forms of color blindness.
 }

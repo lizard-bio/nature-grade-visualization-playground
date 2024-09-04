@@ -1,26 +1,34 @@
 import os
 import io
-import numpy as np
+# import numpy as np
 from PIL import Image
+from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
+from matplotlib import font_manager
 import colorspace
 
-def lizard_style(font_name='Nunito Sans 10pt'):
+# the three basic colors
+blz_green = "#01a086"
+blz_blue = "#1e2237"
+blz_yellow = "#e9b940"
+
+
+def lizard_style():
     """
     Load and apply the lizard_style for matplotlib plots.
 
     Parameters:
     -----------
     font_name : str, optional
-        The name of the font to be used for the plots. By default, it uses 'Nunito Sans 10pt'.
-        If you want to use your own local installation of Nunito Sans or any other font,
+        The name of the font to be used for the plots. By default, it uses 'Lato'.
+        If you want to use your own local installation of Lato or any other font,
         specify the font name using this parameter. For more details on how to use
         the font_name parameter, refer to the 'In_Action' file on GitHub.
 
     Example:
     --------
-    #>>> lizard_style(font_name='Nunito')
+    #>>> lizard_style()
 
     Notes:
     ------
@@ -29,16 +37,14 @@ def lizard_style(font_name='Nunito Sans 10pt'):
     """
     style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
     plt.style.use(style_path)
-    plt.rcParams['font.sans-serif'] = [font_name]
-
+    from BioLizardStylePython import lato_localname
+    plt.rcParams['font.sans-serif'] = [lato_localname]
 
 
 def biolizard_qualitative_pal():
     """
     Generate a qualitative colormap for matplotlib.
 
-    This colormap is inspired by Martin Krzywinski's "12-COLOR PALETTE FOR COLORBLINDNESS"
-    and incorporates the signature house colors of BioLizard for the first three shades.
     Specifically designed to be inclusive, it is suitable for individuals with the most
     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
 
@@ -51,15 +57,37 @@ def biolizard_qualitative_pal():
         #>>> plt.show()
     """
     return matplotlib.colors.ListedColormap([
-        "#01a086", "#1e2237", "#e9b940", "#00C2F9", "#FF6E3A", "#00FCCF",
-        "#8400CD", "#E20134", "#008DF9","#FFB2FD", "#FF5AAF", "#A40122"
+        "#01a086", "#1e2237", "#e9b940","#105144",
+        "#6CC7B7", "#233E60", "#666666", "#D6D6D6"
     ])
+
+def biolizard_qualitative_pal_r():
+    """
+    Generate a qualitative colormap for matplotlib. Colors are reversed compared to biolizard_qualitative_pal.
+
+    Specifically designed to be inclusive, it is suitable for individuals with the most
+    common form of color blindness: Deuteranopia (Red-Green Color Blindness).
+
+    Returns:
+        matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
+
+    Example:
+        #>>> bar_colors = [biolizard_qualitative_pal(i) for i in range(len(categories))]
+        #>>> bars = plt.bar(categories, values, color=bar_colors)
+        #>>> plt.show()
+    """
+    cmap = matplotlib.colors.ListedColormap([
+        "#01a086", "#1e2237", "#e9b940","#105144",
+        "#6CC7B7", "#233E60", "#666666", "#D6D6D6"
+    ])
+
+    return cmap.reversed()
 
 #Sequential and divergent color map
 #These two color maps will be registered as 'biolizard_<sequential/divergent>_pal' when installing the package.
 
 #Internal function
-def create_and_register_colormap(palette, name):
+def _create_and_register_colormap(palette, name, reverse=False):
     """
     Create and register a colormap with matplotlib.
 
@@ -77,9 +105,10 @@ def create_and_register_colormap(palette, name):
     colors = palette(256)
     rgbcolors = [matplotlib.colors.to_rgb(color) for color in colors]
     cmap = matplotlib.colors.LinearSegmentedColormap.from_list(name, rgbcolors)
-    if name == "biolizard_sequential_pal":
-        cmap = cmap.reversed() # Reverse the order of the colors
+    if reverse:
+        cmap = cmap.reversed()
     matplotlib.colormaps.register(name=name, cmap=cmap)
+
 
 # Sequential Biolizard Color Map
 #
@@ -89,8 +118,10 @@ def create_and_register_colormap(palette, name):
 # The sequential palette represents underlying values using a consistent sequence of increasing luminance.
 # The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
 # The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
-biolizard_sequential_pal = colorspace.sequential_hcl(h=170, c=[40,0,75], l=[35,90], power=1)
-create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal")
+biolizard_sequential_pal = colorspace.sequential_hcl(h=170, c=[0,75,40], l=[90,35], power=1)
+_create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal")
+_create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal_r", reverse=True)
+
 
 # Divergent Biolizard Color Map
 #
@@ -104,8 +135,10 @@ create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal
 # (c) the neutral central value has zero chroma.
 # The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green.
 # This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
-biolizard_divergent_pal = colorspace.diverging_hcl(h=[291, 170], c=80, l=[35, 95], power=1)
-create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal")
+biolizard_divergent_pal = colorspace.diverging_hcl(h=[60, 170], c=80, l=[50, 95], power=1)
+_create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal")
+_create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal_r", reverse=True)
+
 
 def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="TempLizardPlot", save_filepath=None):
     """

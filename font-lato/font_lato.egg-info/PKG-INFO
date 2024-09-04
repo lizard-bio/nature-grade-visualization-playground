@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: font-lato
+Version: 0.0.1
+Summary: Lato font repackaged for the Python Fonts module
+Home-page: https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main
+Author: Aniko Meijer
+Author-email: aniko.meijer@lizard.bio
+License: SIL OFL 1.1
+Keywords: Lato Font
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: SIL Open Font License 1.1 (OFL-1.1)
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: Text Processing :: Fonts
+
+Fonts: Lato
+================
+
+Lato is a google font by Lukasz Dziedzic released under the OFL.
+
+Preview: https://fonts.google.com/specimen/Lato
+
+This font has been repackaged for the Python Fonts module: https://pypi.org/project/fonts/
+
+Redistributed under the terms of the SIL Open Font License: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
+0.0.1
+=====
+
+first release of font-lato

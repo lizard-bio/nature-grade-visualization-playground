@@ -4,13 +4,10 @@
 \alias{install_biolizard_fonts}
 \title{Import BioLizard Fonts into R}
 \usage{
-install_biolizard_fonts(
-  pattern = "NunitoSans_10pt-Medium.ttf",
-  clearDataBase = FALSE
-)
+install_biolizard_fonts(pattern = "Lato", clearDataBase = FALSE)
 }
 \arguments{
-\item{pattern}{A character string specifying the font file pattern. Default is 'NunitoSans_10pt-Medium.ttf'.}
+\item{pattern}{A character string specifying the font file pattern. Default is 'Lato'.}
 
 \item{clearDataBase}{A logical flag to clear the existing database of fonts in 'extrafont'. Useful if pre-existing fonts are causing issues. Default is FALSE.}
 }
@@ -18,8 +15,8 @@ install_biolizard_fonts(
 Prints a success message if the desired font is loaded correctly. Additionally, warnings are issued if multiple fonts match the pattern or if no matching fonts are found.
 }
 \description{
-This function imports BioLizard fonts into R using 'NunitoSans' as the default font.
-Users with a different NunitoSans font installed can adjust the pattern. The function leverages the 'extrafont'
+This function imports BioLizard fonts into R using 'Lato' as the default font.
+Users with a different Lato font installed can adjust the pattern. The function leverages the 'extrafont'
 package and provides feedback on fonts that match the specified pattern.
 }
 \examples{
