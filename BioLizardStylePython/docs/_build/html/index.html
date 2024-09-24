@@ -75,8 +75,8 @@
   <section id="biolizardstylepython">
 <h1>BioLizardStylePython<a class="headerlink" href="#biolizardstylepython" title="Link to this heading"></a></h1>
 <p>Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn.</p>
-<section id="install">
-<h2>install<a class="headerlink" href="#install" title="Link to this heading"></a></h2>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
 <section id="extra-requirements">
 <h3>1. Extra requirements<a class="headerlink" href="#extra-requirements" title="Link to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">BioLizardStylePython</span></code> relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the <code class="docutils literal notranslate"><span class="pre">colorspace</span></code> package, please run the following command in your terminal:</p>
@@ -92,19 +92,14 @@
 </pre></div>
 </div>
 </section>
-<section id="font-installation">
-<h3>3. Font Installation<a class="headerlink" href="#font-installation" title="Link to this heading"></a></h3>
-<p>The BioLizardStyleR package makes use of the signature BioLizard font ‘Lato’. This font can be found on Google Fonts under an open font license.</p>
-<p>If you don’t have the Lato font locally installed, you can download and install it from GitHub.</p>
-<ol class="arabic simple">
-<li><p><strong>Download Fonts</strong>: Download the two font files from the GitHub repository <a class="reference external" href="https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main">Nature Grade Visualization Playground</a>.</p></li>
-<li><p><strong>Install Fonts</strong>: Install the downloaded fonts on your system.</p></li>
-<li><p><strong>Complete</strong>: Once the installation is done, you’re all set to use the font.</p></li>
-</ol>
+<section id="font-package">
+<h3>3. Font package<a class="headerlink" href="#font-package" title="Link to this heading"></a></h3>
+<p>The BioLizardStyleR package makes use of the signature BioLizard font ‘Lato’. This font can be found on Google Fonts under an open font license.
+The font has been packaged using the <a class="reference external" href="https://pypi.org/project/fonts/">Python Fonts module</a> and should be installed automatically when installing BioLizardStylePython. See <a class="reference external" href="https://pypi.org/project/font-lato/">font-lato</a> for more information.</p>
 </section>
 </section>
 <section id="usage">
-<h2>usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
 <section id="styling-function-lizard-style">
 <h3>1. Styling Function: <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code><a class="headerlink" href="#styling-function-lizard-style" title="Link to this heading"></a></h3>
 <p>This function applies a BioLizard aesthetic to your matplotlib or seaborn plots. The aim is to ensure that plots maintain a uniform look, irrespective of whether they were made in R or Python.</p>

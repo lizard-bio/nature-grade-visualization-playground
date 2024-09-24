@@ -2,7 +2,7 @@
 
 Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn.
 
-## install
+## Installation
 
 ### 1. Extra requirements
 `BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
@@ -18,17 +18,12 @@ The BioLizardStylePython package is available on PyPI and can be easily installe
 pip install BioLizardStylePython
 ```
 
-### 3. Font Installation
+### 3. Font package
 
 The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
+The font has been packaged using the [Python Fonts module](https://pypi.org/project/fonts/) and should be installed automatically when installing BioLizardStylePython. See [font-lato](https://pypi.org/project/font-lato/) for more information.
 
-If you don't have the Lato font locally installed, you can download and install it from GitHub.
-
-1. **Download Fonts**: Download the two font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
-2. **Install Fonts**: Install the downloaded fonts on your system.
-3. **Complete**: Once the installation is done, you're all set to use the font.
-
-## usage
+## Usage
 
 ### 1. Styling Function: `lizard_style()`
 
