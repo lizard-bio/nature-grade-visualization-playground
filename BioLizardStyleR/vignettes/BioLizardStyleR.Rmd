@@ -27,7 +27,7 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
 ```
 
 ```{r}
@@ -168,12 +168,13 @@ p
 ## 4.1 Simple bar chart
 
 ```{r}
-x = 1:10
-y = 1:10
+x = 1:8
+y = 1:8
 
 df <- data.frame(x=x, y=y)
-ggplot(df, aes(x=x, y=y)) +
+ggplot(df, aes(x=x, y=y, fill = factor(x))) +
   geom_col() +
+  scale_fill_biolizard() +
   lizard_style()
 ```
 
@@ -257,7 +258,7 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 ```
 
 ## 4.7 Facets
-Facetting is a great way to lay out related plots side-by-side, with the axes either on the same scale or on different scales.
+Faceting is a great way to lay out related plots side-by-side, with the axes either on the same scale or on different scales.
 
 ```{r,  fig.show='hold', fig.width=3.3}
 # use facet_wrap to stratify plots by one variable
@@ -306,6 +307,8 @@ ggplot(mtcars, aes(x=mpg, y=hp)) +
 ## 4.8 Treemap plots
 
 Treemap plots are a powerful way of visualizing hierarchical data such as GO terms, for example. The size of the rectangles corresponds to the value you want to show (e.g. p value), and related rectangles are grouped together. This example makes use of the Pokémon dataset from the [highcharter](https://cran.r-project.org/web/packages/highcharter/index.html) package and is based on https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/.
+
+The example below also illustrates how the `colorRampPalette` function can be used to expand a discrete color scale if the number of colors is not sufficient. Note that a discrete, qualitative color scale may not be very useful for a large number of colors, as it will be hard to distinguish the individual colors from one another.
 
 The treemapify package allows plotting treemaps with ggplot2.
 
@@ -574,6 +577,9 @@ ggplot(data = world, aes(fill = BLZ_office)) +
   scale_fill_biolizard(type = "discrete", scheme = "qualitative") +
   lizard_style()
 
+```
+
+```{r, fig.width=6}
 # coloring the ocean, as in the map on our website
 ggplot(data = world, aes(fill = BLZ_office)) +
   geom_sf() +
@@ -581,7 +587,9 @@ ggplot(data = world, aes(fill = BLZ_office)) +
   lizard_style() +
   theme(panel.background = element_rect(fill = blz_blue),
         panel.grid = element_blank())
+```
 
+```{r, fig.width=6}
 # europe only
 ggplot(data = dplyr::filter(world, continent == "Europe"), aes(fill = BLZ_office)) +
   geom_sf() +
