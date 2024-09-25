@@ -15,11 +15,42 @@ This repository contains two key packages:
 1. **BioLizardStyleR** - An R package designed for ggplot2.
 2. **BioLizardStylePython** - A Python package designed for matplotlib, also compatible with seaborn.
 
-Developed by Robbe Neirynck during an internship at BioLizard
+Developed by Robbe Neirynck during an internship at BioLizard, under the supervision of Alexander Koch.
+Development was continued by Anikó Meijer.
 
-## Installation and Usage
+## Installation
 
 For **installation details**, usage examples, and example workflows, please refer to the **"In Action" files** specific to each package. Most information below this point is general, but the "In Action" files contain specialized guidance. At the very bottom of this README you can also find the needed installation info.
+
+### Installing BioLizardStyleR
+
+```{r}
+if (!requireNamespace("devtools", quietly = TRUE)) {
+  install.packages("devtools")
+}
+
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+
+```
+
+### Installing BioLizardStylePython
+
+#### 1. Extra requirements
+
+`BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
+```
+pip install git+https://github.com/retostauffer/python-colorspace.git
+```
+Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython`.
+
+#### 2. Package Installation
+
+The BioLizardStylePython package is available on PyPI and can be easily installed using:
+```
+pip install BioLizardStylePython
+```
+
+## Usage
 
 Both packages have three main components:
 
@@ -35,9 +66,6 @@ These are qualitative, sequential, and divergent color maps that can be applied 
 
 This function adds a BioLizard footer beneath your graph and exports it to a specified format such as PNG or PDF. The footer includes the BioLizard logo at the bottom right corner and leaves room for source text.
 
-## Required Fonts!
-
-Before using these packages, install the **NunitoSans** fonts from the `fontstoinstall` folder. NunitoSans is an open-license google-font that closely resembles BioLizard's house font, Avenir.
 
 ## Contributing and Feedback
 
@@ -50,44 +78,3 @@ To report issues or provide feedback, you can:
   
   - **Project Supervisor**: [alexander.koch@lizard.bio](mailto:Alexander.koch@lizard.bio)
   - **Slack**: there is a (private) #nature-grade-visualisations channel. Let Alexander know if you'd like to be added!
-
-
-
-## Installation BioLizardStyleR
-*Note:* Only possible like this if the repo is public already
-```{r}
-if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
-}
-
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
-
-library(BioLizardStyleR)
-
-install_biolizard_fonts()
-```
-
-## Installation BioLizardStylePython
-
-### 1. Extra requirements
-`BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
-```
-pip install git+https://github.com/retostauffer/python-colorspace.git
-```
-Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython`.
-
-### 2. Package Installation
-
-The BioLizardStylePython package is available on PyPI and can be easily installed using:
-```
-pip install BioLizardStylePython
-```
-<div style="background-color: #f7f7f7; padding: 15px; border-radius: 4px; border-left: 5px solid red; margin-top: 20px;">
-<details>
-  <summary><b>Common Issue</b></summary>
-
-  If matplotlib is previously installed, you might need to delete the existing local font cache of matplotlib for it to recognize the Nunito Sans font.
-
-  You can find the dir of the cache by running `import matplotlib as mpl; print(mpl.get_cachedir())`.
-</details>
-</div>

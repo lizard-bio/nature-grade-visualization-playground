@@ -20,7 +20,7 @@ pip install BioLizardStylePython
 
 ### 3. Font package
 
-The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
+The BioLizardStylePython package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
 The font has been packaged using the [Python Fonts module](https://pypi.org/project/fonts/) and should be installed automatically when installing BioLizardStylePython. See [font-lato](https://pypi.org/project/font-lato/) for more information.
 
 ## Usage
