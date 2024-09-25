@@ -149,9 +149,9 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
            sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
            sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
            # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
-           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(61, 170), c = 80, l = c(50, 90), power = 1), ...),
+           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
            # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
-           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(61, 170), c = 80, l = c(50, 90), power = 1)), ...)
+           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1)), ...)
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
