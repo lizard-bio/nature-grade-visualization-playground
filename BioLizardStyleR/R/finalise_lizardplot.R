@@ -123,7 +123,7 @@ create_footer <- function (source, logo_image_path=get_image_path()) {
 #' @return Invisibly returns the styled plot.
 #' @export
 finalise_lizardplot <- function(ggplot_name,
-                                source,
+                                source = "",
                                 save_filepath=NULL,
                                 output_name="TempLizardPlot",
                                 width_pixels=640,
@@ -140,8 +140,19 @@ finalise_lizardplot <- function(ggplot_name,
 
   # Determine save path
   if (is.null(save_filepath)) {
-    save_filepath <- paste0(gsub("\\\\", "/", getwd()), "/", output_name, ".", device)
+    save_filepath <- gsub("\\\\", "/", getwd())
   }
+
+  #check of suffix already present in output_name
+  suffixes <- c(".png", ".pdf", ".svg", ".ps")
+  name_suffix <- strsplit(output_name, "\\.")[[1]]
+  name_suffix <- name_suffix[length(name_suffix)]
+  if(length(grep(paste(suffixes, collapse = "|"), output_name, ignore.case = TRUE)) > 0 & tolower(name_suffix) == device) {
+    save_filepath <- file.path(save_filepath, output_name)
+  } else {
+    save_filepath <- file.path(save_filepath, paste(output_name, device, sep = "."))
+  }
+
 
   save_plot(plot_grid, width_pixels, height_pixels, save_filepath, device=device)
   invisible(plot_grid)
