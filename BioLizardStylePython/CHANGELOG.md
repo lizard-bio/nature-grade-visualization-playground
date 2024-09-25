@@ -2,7 +2,7 @@
 
 <!--next-version-placeholder-->
 
-## v.1.0.0 (2024-09-24)
+## v.1.0.0 (2024-09-25)
 
 First production release
 
