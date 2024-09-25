@@ -20,8 +20,6 @@ Development was continued by Anikó Meijer.
 
 ## Installation
 
-For **installation details**, usage examples, and example workflows, please refer to the **"In Action" files** specific to each package. Most information below this point is general, but the "In Action" files contain specialized guidance. At the very bottom of this README you can also find the needed installation info.
-
 ### Installing BioLizardStyleR
 
 ```{r}
@@ -51,6 +49,8 @@ pip install BioLizardStylePython
 ```
 
 ## Usage
+
+For **installation details**, usage examples, and example workflows, please refer to the **"In Action" files** specific to each package. Most information below this point is general, but the "In Action" files contain specialized guidance.
 
 Both packages have three main components:
 
