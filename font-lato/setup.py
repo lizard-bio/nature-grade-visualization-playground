@@ -41,7 +41,7 @@ classifiers = ['Development Status :: 5 - Production/Stable',
 
 setup(
     name            = 'font-lato',
-    version         = '0.0.1',
+    version         = '0.1.0',
     author          = 'Aniko Meijer',
     author_email    = 'aniko.meijer@lizard.bio',
     description     = 'Lato font repackaged for the Python Fonts module',

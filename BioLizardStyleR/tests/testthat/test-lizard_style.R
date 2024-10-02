@@ -33,7 +33,7 @@ poly_plot <- ggplot(datapoly, aes(x = x, y = y)) +
   lizard_style()
 
 #boxplot
-box_plot <- ggplot(data = data.frame(y = 1:9, c = as_factor(rep(1:3, each = 3))), aes(x = c, y = y)) +
+box_plot <- ggplot(data = data.frame(y = 1:9, c = as.factor(rep(1:3, each = 3))), aes(x = c, y = y)) +
   geom_boxplot() +
   lizard_style()
 

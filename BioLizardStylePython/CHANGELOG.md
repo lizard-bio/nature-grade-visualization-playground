@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v.1.0.0 (2024-09-25)
+
+First production release
+
+### Documentation
+
+- Update documentation with updated color scales from release 0.2.0
+
 ## v0.2.0 (2024-04-10)
 
 ### Feature
@@ -14,7 +22,7 @@
 ### Fix
 
 - fix bug in discrete qualitative fill scale
-- update default lizard_style colorscale to show colors in teh same ortder as discrete palette
+- update default lizard_style colorscale to show colors in the same ortder as discrete palette
 
 
 ### Tests

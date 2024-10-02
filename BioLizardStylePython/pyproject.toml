@@ -4,10 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BioLizardStylePython"
-version = "0.2.0"
+version = "1.0.0"
 authors = [
   { name = "BioLizard", email = "contact@lizard.bio"},
-  { name = "Robbe Neirynck", email = "robbe.neirynck1@hotmail.com" }
+  { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"},
+  { name = "Robbe Neirynck" },
 ]
 maintainers = [
   { name = "Alexander Koch", email = "alexander.koch@lizard.bio"},
@@ -27,7 +28,7 @@ dependencies = [
     "matplotlib>=3.7.1",
     "Pillow>=9.4.0",
     "fonts>=0.0.3",
-    "font-lato>=0.0.1"
+    "font-lato>=0.1.0"
 ]
 
 

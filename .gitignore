@@ -9,6 +9,7 @@ BioLizardStyleR/.Rhistory
 BioLizardStyleR/.Rproj.user
 BioLizardStylePython/.idea/*
 .idea
+.venv
 
 #pytest and unittest
 .pytest_cache

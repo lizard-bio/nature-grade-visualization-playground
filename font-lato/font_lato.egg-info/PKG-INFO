@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: font-lato
-Version: 0.0.1
+Version: 0.1.0
 Summary: Lato font repackaged for the Python Fonts module
 Home-page: https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main
 Author: Aniko Meijer
@@ -27,7 +27,8 @@ Preview: https://fonts.google.com/specimen/Lato
 This font has been repackaged for the Python Fonts module: https://pypi.org/project/fonts/
 
 Redistributed under the terms of the SIL Open Font License: https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL
-0.0.1
+
+0.1.0
 =====
 
 first release of font-lato
