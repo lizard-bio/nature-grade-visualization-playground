@@ -13,14 +13,16 @@ Description: The BioLizardStyleR package offers tools to craft ggplot2 visualiza
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Imports: 
     colorspace,
     extrafont,
     ggplot2,
     Cairo,
     png,
-    ggpubr
+    ggpubr,
+    gdtools,
+    gfonts
 Suggests: 
     knitr,
     rmarkdown,

@@ -6,7 +6,7 @@
 \usage{
 finalise_lizardplot(
   ggplot_name,
-  source,
+  source = "",
   save_filepath = NULL,
   output_name = "TempLizardPlot",
   width_pixels = 640,
