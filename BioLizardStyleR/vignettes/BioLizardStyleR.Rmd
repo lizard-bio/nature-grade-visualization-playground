@@ -36,19 +36,13 @@ library(BioLizardStyleR)
 
 # 2. Font Installation
 
-The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
+The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. If not yet installed, Lato is automatically installed when loading the package. This automatic installation relies on the [gdtools](https://github.com/davidgohel/gdtools) package, which supports debian, macos and windows platforms. In case you are using a different platform, or if this automatic installation fails on your system, you can install it manually using the following steps:
 
-If not yet installed, Lato is automatically installed when calling 'lizard_style()'. In case this automatic installation fails on your system, you can install it manually using the following steps:
+1. **Download Fonts**: Download the font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
+2. **Install Fonts**: Install the downloaded fonts on your system. For most systems a font manager is available/can be installed to help with this.
+3. **Register Font**: Once the installation is done, you can run `install_biolizard_fonts()` **without any arguments** to register the font with the extrafont package. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb package to reset its database.
 
-1. **Download Fonts**: Download the two font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
-2. **Install Fonts**: Install the downloaded fonts on your system.
-3. **Complete**: Once the installation is done, you're all set to use the font.
-
-Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions. Running the following function **without any arguments** should install the font. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument clearDatabase=TRUE. This will reinstall the extrafontdb package, a companion to extrafont, to reset its database.
-
-```
-install_biolizard_fonts()
-```
+Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions. 
 
 # 3. Crafting a BioLizard-Styled ggplot
 
