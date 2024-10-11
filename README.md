@@ -57,8 +57,7 @@ A detailed description of the functionalities in each package can be found on th
 
 ## Quick start
 
-For **installation details**, usage examples, and example workflows, please refer to the **"In Action" files** specific to each package. Most information below this point is general. More detailed informatation can be found in the [help pages](https://lizard-bio.github.io/nature-grade-visualization-playground/).
-
+For installation details, usage examples, and example workflows, please refer to the the [help pages](https://lizard-bio.github.io/nature-grade-visualization-playground/). Most information below this point is general.
 Both packages have three main components:
 
 ### 1. Styling Function: `lizard_style()`
