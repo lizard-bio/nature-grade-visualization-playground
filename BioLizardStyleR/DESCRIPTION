@@ -10,7 +10,7 @@ Description: The BioLizardStyleR package offers tools to craft ggplot2 visualiza
     in the distinct BioLizard style. It features an integrated font installer, a dedicated 
     ggplot2 theme function, a collection of custom color functions, and a function for 
     appending a Biolizard footer and exporting the resultant graph.
-License: GPL-2
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
