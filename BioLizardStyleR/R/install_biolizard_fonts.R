@@ -18,7 +18,7 @@
 #' install_biolizard_fonts()
 #' extrafont::fonts()  # to check the installed fonts
 #' }
-install_biolizard_fonts <- function(pattern = 'Lato', clearDataBase = FALSE) {
+install_biolizard_fonts <- function(pattern = '[Ll]ato', clearDataBase = FALSE) {
   # Clear database logic here
   if (clearDataBase == TRUE) {
     db_path <- paste0(system.file(package = "extrafontdb"),"/fontmap/fonttable.csv")
