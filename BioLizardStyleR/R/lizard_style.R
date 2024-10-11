@@ -31,10 +31,7 @@ set_default_BLZgreen <- function(){
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
-#' @import gfonts
-#' @import gdtools
 #' @importFrom ggplot2 theme element_text element_blank element_rect
-#' @importFrom gdtools install_gfont_script installed_gfonts
 #'
 #' @examples
 #' library(ggplot2)

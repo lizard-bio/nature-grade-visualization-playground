@@ -16,13 +16,12 @@ LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
     colorspace,
-    extrafont,
     ggplot2,
     Cairo,
     png,
     ggpubr,
-    gdtools,
-    gfonts
+    sysfonts,
+    systemfonts
 Suggests: 
     knitr,
     rmarkdown,
