@@ -27,8 +27,13 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
+# make sure to look up BioConductor packages (used in the vignette)
+setRepositories(ind = c(1:6, 8))
+
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
 ```
+
+For building the vignette, you also need the `pasilla` dataset. In case of issues with the installation of this package, you might have to install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
 ```{r}
 library(BioLizardStyleR)

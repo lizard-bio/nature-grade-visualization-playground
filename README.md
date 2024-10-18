@@ -27,6 +27,9 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
+# make sure to look up BioConductor packages (used in the vignette)
+setRepositories(ind = c(1:6, 8))
+
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
 
 ```
