@@ -26,6 +26,15 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    plotly,
+    pasilla,
+    edgeR,
+    lemon,
+    treemapify,
+    dplyr,
+    treemap,
+    corrr,
+    forcats
 Config/testthat/edition: 3
 VignetteBuilder: knitr
