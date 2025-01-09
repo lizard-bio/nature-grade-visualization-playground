@@ -28,5 +28,8 @@ if len(font_names) == 0:
 else:
     lato_localname = font_names.pop()  #pick first one, usually there should only be one.. (?)
 
-
 from .utils import *
+
+# set default color scale for seaborn
+import seaborn as sns
+sns.set_palette("l_viridis_pal")

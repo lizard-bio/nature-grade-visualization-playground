@@ -107,7 +107,7 @@ def _create_and_register_colormap(palette, name, reverse=False):
     cmap = matplotlib.colors.LinearSegmentedColormap.from_list(name, rgbcolors)
     if reverse:
         cmap = cmap.reversed()
-    matplotlib.colormaps.register(name=name, cmap=cmap)
+    matplotlib.colormaps.register(name=name, cmap=cmap, force=True)
 
 
 # Sequential Biolizard Color Map
@@ -139,6 +139,13 @@ biolizard_divergent_pal = colorspace.diverging_hcl(h=[60, 170], c=80, l=[50, 95]
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal")
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal_r", reverse=True)
 
+
+# viridis-like colormap
+# named l_viridis after the european green lizard (Lacerta viridis)
+from .l_viridis import cm_data
+l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
+matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal.reversed(), force=True)  # reverse to start with yellow
+matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal, force=True)
 
 def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="TempLizardPlot", save_filepath=None):
     """

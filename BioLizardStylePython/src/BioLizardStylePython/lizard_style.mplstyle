@@ -44,6 +44,9 @@ axes.spines.right:  False #Axis line at right of plot
 
 axes.prop_cycle: cycler('color', ['01a086', '1e2237', 'e9b940','105144', '6CC7B7', '233E60', '666666', 'D6D6D6'])
 
+#l_viridis as default for continuous scale
+image.cmap: l_viridis_pal
+
 #TICKS
 
 xtick.color: 555555
