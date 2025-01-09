@@ -12,7 +12,7 @@ biolizard_pal_sequential(n, reverse = FALSE)
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors}
 }
 \description{
-Biolizard sequential palette
+Sequential color palette inspired by Biolizard's signature green.
 }
 \examples{
 biolizard_pal_sequential(10)
@@ -20,5 +20,5 @@ biolizard_pal_sequential(4, reverse = TRUE)
 
 }
 \seealso{
-\code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_divergent}}
+\code{\link{biolizard_pal_paired}} \code{\link{biolizard_pal_hue}} \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_divergent}}
 }

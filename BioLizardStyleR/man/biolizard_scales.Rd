@@ -3,7 +3,8 @@
 \name{scale_color_biolizard}
 \alias{scale_color_biolizard}
 \alias{scale_colour_biolizard}
-\title{Biolizard Color Scale}
+\alias{scale_fill_biolizard}
+\title{Biolizard ggplot2 Scales}
 \usage{
 scale_color_biolizard(
   type = "discrete",
@@ -13,6 +14,13 @@ scale_color_biolizard(
 )
 
 scale_colour_biolizard(
+  type = "discrete",
+  scheme = "qualitative",
+  reverse = FALSE,
+  ...
+)
+
+scale_fill_biolizard(
   type = "discrete",
   scheme = "qualitative",
   reverse = FALSE,
@@ -34,9 +42,11 @@ Use this function to incorporate the Biolizard palettes as a color scale into a 
 The function supports three schemes:
 
 \itemize{
-  \item \strong{qualitative}: Tailored to be inclusive and friendly for those with Deuteranopia.
-  \item \strong{sequential}: Use this for ordered values. Represents underlying values using a sequence of increasing luminance. The hue is derived from the Biolizard green, using gradients in the HCL-spectrum for perceptual uniformity. Chroma follows a triangular progression for easier differentiation of the high-end values.
-  \item \strong{divergent}: Use this for values with a natural midpoint. Codes values by a triangular luminance sequence with different hues on each arm of the palette. Crafted using hues 291 and 170, making it accessible for all major forms of color blindness.
+  \item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
+  \item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
+  \item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+  \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
+  \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
 }
 \section{Application}{
@@ -60,5 +70,5 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 
 }
 \seealso{
-\code{\link{scale_fill_biolizard}}
+\code{\link{biolizard_pal_paired}} \code{\link{biolizard_pal_hue}} \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_sequential}} \code{\link{biolizard_pal_divergent}}
 }

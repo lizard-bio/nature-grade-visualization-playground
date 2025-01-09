@@ -2,17 +2,17 @@
 % Please edit documentation in R/color_functions.R
 \name{biolizard_pal_qualitative}
 \alias{biolizard_pal_qualitative}
-\title{Biolizard qualitative 8-color palette}
+\title{Biolizard qualitative 12-color palette}
 \usage{
 biolizard_pal_qualitative(n, reverse = FALSE)
 }
 \arguments{
-\item{n}{Integer, number of colors. Maximum 8.}
+\item{n}{Integer, number of colors. Maximum 12.}
 
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors}
 }
 \description{
-Biolizard qualitative 8-color palette
+Returns a colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
 }
 \examples{
 biolizard_pal_qualitative(8)
@@ -20,5 +20,5 @@ biolizard_pal_qualitative(4, reverse = TRUE)
 
 }
 \seealso{
-\code{\link{biolizard_pal_sequential}} \code{\link{biolizard_pal_divergent}}
+\code{\link{biolizard_pal_paired}} \code{\link{biolizard_pal_hue}} \code{\link{biolizard_pal_sequential}} \code{\link{biolizard_pal_divergent}}
 }
