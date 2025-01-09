@@ -39,12 +39,19 @@ scale_fill_biolizard(
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
 
-The function supports three schemes:
+The function supports five schemes for discrete data:
 
 \itemize{
   \item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
   \item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
   \item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+  \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
+  \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+}
+
+And 2 schemes for continuous data:
+
+\itemize{
   \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
   \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
@@ -65,7 +72,22 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
       x = "Horsepower",
       y = "Miles per Gallon",
       color = "Gears")
- testplot +  scale_color_biolizard(type='discrete',scheme='qualitative')
+ testplot +
+   scale_color_biolizard(type='discrete',scheme='qualitative') +
+   lizard_style()
+
+testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
+  geom_point() +
+    labs(
+      title = "Miles per Gallon vs. gears",
+      x = "Horsepower",
+      y = "Miles per Gallon",
+      color = "Miles per Gallon",
+      fill = "Miles per Gallon"
+    )
+ testplot +
+   scale_color_biolizard(type='continuous',scheme='sequential') +
+   lizard_style()
 }
 
 }
