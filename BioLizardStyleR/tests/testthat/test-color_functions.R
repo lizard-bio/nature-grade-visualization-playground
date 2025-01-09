@@ -41,6 +41,13 @@ test_that("biolizard_pal_paired works", {
   vdiffr::expect_doppelganger("discrete paired rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "paired", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "paired", reverse=TRUE))
 })
 
+test_that("biolizard_pal_hue works", {
+  expect_length(biolizard_pal_hue(1), 1)
+  expect_length(biolizard_pal_hue(100), 100)
+  vdiffr::expect_doppelganger("discrete hue", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "hues") + scale_fill_biolizard(type = "discrete", scheme = "hues"))
+  vdiffr::expect_doppelganger("discrete hue rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "hues", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "hues", reverse=TRUE))
+})
+
 test_that("biolizard_pal_sequential works", {
   expect_length(biolizard_pal_sequential(1), 1)
   expect_length(biolizard_pal_sequential(20), 20)

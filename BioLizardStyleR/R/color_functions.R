@@ -176,12 +176,19 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 #' @description
 #' Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
 #'
-#' The function supports three schemes:
+#' The function supports five schemes for discrete data:
 #'
 #' \itemize{
 #'   \item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
 #'   \item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
 #'   \item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+#'   \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
+#'   \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+#' }
+#'
+#' And 2 schemes for continuous data:
+#'
+#' \itemize{
 #'   \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
 #'   \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 #' }
@@ -238,8 +245,8 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
-           hues_FALSE = scale_color_gradientn(colors = biolizard_pal_hue(256, reverse = FALSE), ...),
-           hues_TRUE = scale_color_gradientn(colors = biolizard_pal_hue(256, reverse = TRUE), ...),
+           # hues_FALSE = scale_color_gradientn(colors = biolizard_pal_hue(256, reverse = FALSE), ...),
+           # hues_TRUE = scale_color_gradientn(colors = biolizard_pal_hue(256, reverse = TRUE), ...),
            sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
            sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
            # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
