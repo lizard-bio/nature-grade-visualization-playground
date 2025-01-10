@@ -271,7 +271,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_divergent()] [biolizard_pal_l_viridis()]
 #' @rdname biolizard_scales
 #' @export
-scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", reverse = FALSE, ...) {
+scale_color_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) rgb(x[1], x[2], x[3], maxColorValue = 1))
 
@@ -289,7 +289,8 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
            hues = scale_color_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            greens = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
-           divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
+           divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
+           stop("Requested scheme not available for discrete color palette.")
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
@@ -299,8 +300,9 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
            greens_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
            # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
            divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
-           # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
-           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1)), ...)
+           # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...),
+           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1)), ...),
+           stop("Requested scheme not available for continuous color palette.")
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
@@ -315,7 +317,7 @@ scale_colour_biolizard <- scale_color_biolizard
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @rdname biolizard_scales
 #' @export
-scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", reverse = FALSE, ...) {
+scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) rgb(x[1], x[2], x[3], maxColorValue = 1))
 

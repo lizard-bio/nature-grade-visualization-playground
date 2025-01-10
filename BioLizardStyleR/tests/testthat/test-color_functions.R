@@ -54,6 +54,8 @@ test_that("biolizard_pal_l_viridis works", {
   expect_error(biolizard_pal_l_viridis(0), regexp = "at least 1")
   vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
   vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
+  vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
+  vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
 })
 
 test_that("biolizard_pal_sequential works", {
