@@ -1,3 +1,4 @@
+# made with viscm (https://github.com/matplotlib/viscm)
 
 from matplotlib.colors import ListedColormap
 
