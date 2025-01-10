@@ -1,7 +1,7 @@
 Package: BioLizardStyleR
 Type: Package
 Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
   c(person("Alexander", "Koch", role = "cre", email = "alexander.koch@lizard.bio"),
     person("Aniko", "Meijer", role = "aut", email = "aniko.meijer@lizard.bio"),
@@ -22,10 +22,12 @@ Imports:
     png,
     ggpubr,
     sysfonts,
-    systemfonts
+    systemfonts,
+    lifecycle
 Suggests: 
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

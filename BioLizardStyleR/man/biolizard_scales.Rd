@@ -34,7 +34,7 @@ scale_fill_biolizard(
 
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors in the palette.}
 
-\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2]{discrete_scale}}. For continuous type, refer to the documentation of \code{\link[ggplot2]{scale_fill_gradientn}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
+\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}. For continuous type, refer to the documentation of \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradientn()}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
 }
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
@@ -42,18 +42,21 @@ Use this function to incorporate the Biolizard palettes as a color scale into a 
 The function supports five schemes for discrete data:
 
 \itemize{
-  \item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
-  \item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
-  \item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
-  \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
-  \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+\item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
+\item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
+\item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+\item \strong{greens}: Sequential color palette inspired by Biolizard's signature green.
+\item \strong{sequential}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use 'greens' instead.
+\item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
 
-And 2 schemes for continuous data:
+And three schemes for continuous data:
 
 \itemize{
-  \item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
-  \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+\item \strong{l_viridis}: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
+\item \strong{greens}: Sequential color palette inspired by Biolizard's signature green.
+\item \strong{sequential}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use 'greens' instead.
+\item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
 }
 \section{Application}{
@@ -86,11 +89,11 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
       fill = "Miles per Gallon"
     )
  testplot +
-   scale_color_biolizard(type='continuous',scheme='sequential') +
+   scale_color_biolizard(type='continuous',scheme='l_viridis') +
    lizard_style()
 }
 
 }
 \seealso{
-\code{\link{biolizard_pal_paired}} \code{\link{biolizard_pal_hue}} \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_sequential}} \code{\link{biolizard_pal_divergent}}
+\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_l_viridis]{biolizard_pal_l_viridis()}}
 }

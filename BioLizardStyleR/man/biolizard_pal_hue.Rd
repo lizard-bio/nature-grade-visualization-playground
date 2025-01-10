@@ -22,5 +22,5 @@ biolizard_pal_hue(5, reverse = TRUE)
 
 }
 \seealso{
-\code{\link{biolizard_pal_paired}} \code{\link{biolizard_pal_qualitative}} \code{\link{biolizard_pal_divergent}} \code{\link{biolizard_pal_sequential}}
+\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}}
 }

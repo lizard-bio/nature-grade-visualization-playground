@@ -48,14 +48,22 @@ test_that("biolizard_pal_hue works", {
   vdiffr::expect_doppelganger("discrete hue rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "hues", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "hues", reverse=TRUE))
 })
 
+test_that("biolizard_pal_l_viridis works", {
+  expect_length(biolizard_pal_l_viridis(1), 1)
+  expect_length(biolizard_pal_l_viridis(20), 20)
+  expect_error(biolizard_pal_l_viridis(0), regexp = "at least 1")
+  vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
+  vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
+})
+
 test_that("biolizard_pal_sequential works", {
   expect_length(biolizard_pal_sequential(1), 1)
   expect_length(biolizard_pal_sequential(20), 20)
   expect_error(biolizard_pal_sequential(0), regexp = "at least 1")
-  vdiffr::expect_doppelganger("discrete sequential", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "sequential") + scale_fill_biolizard(type = "discrete", scheme = "sequential"))
-  vdiffr::expect_doppelganger("discrete sequential rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "sequential", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "sequential", reverse=TRUE))
-  vdiffr::expect_doppelganger("continuous sequential", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential") +  scale_fill_biolizard(type = "continuous", scheme = "sequential"))
-  vdiffr::expect_doppelganger("continuous sequential rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE))
+  vdiffr::expect_doppelganger("discrete sequential", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "greens") + scale_fill_biolizard(type = "discrete", scheme = "greens"))
+  vdiffr::expect_doppelganger("discrete sequential rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "greens", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "greens", reverse=TRUE))
+  vdiffr::expect_doppelganger("continuous sequential", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "greens") +  scale_fill_biolizard(type = "continuous", scheme = "greens"))
+  vdiffr::expect_doppelganger("continuous sequential rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "greens", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "greens", reverse=TRUE))
 })
 
 test_that("biolizard_pal_divergent works", {
