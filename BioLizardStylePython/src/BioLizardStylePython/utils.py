@@ -153,6 +153,18 @@ def _create_and_register_colormap(palette, name, reverse=False):
     matplotlib.colormaps.register(name=name, cmap=cmap, force=True)
 
 
+
+# Hues Biolizard Color Map
+#
+# This colormap applies the Biolizard 'hues' palette.
+#
+# Details:
+# Maps each level to an evenly spaced hue on the color wheel,
+# starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+biolizard_hues_pal = colorspace.qualitative_hcl(h1=151.6, c=49.5, l=58.9, power=1)
+_create_and_register_colormap(biolizard_hues_pal, "biolizard_hues_pal")
+_create_and_register_colormap(biolizard_hues_pal, "biolizard_hues_pal_r", reverse=True)
+
 # Sequential Biolizard Color Map
 #
 # This colormap applies the sequential Biolizard palette.
