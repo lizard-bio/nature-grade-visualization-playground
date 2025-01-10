@@ -97,8 +97,13 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
 testplot_qualitative <- testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative") + lizard_style()
 testplot_qualitative
 
-# Applying the sequential color scale (assuming you have a different dataset or aesthetic)
-testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "sequential") + lizard_style()
+# Applying the sequential color scales (assuming you have a different dataset or aesthetic)
+## viridis-like scale
+testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "l_viridis") + lizard_style()
+testplot_sequential
+
+## greens scale
+testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "greens") + lizard_style()
 testplot_sequential
 
 # Applying the divergent color scale (assuming you have a different dataset or aesthetic)
@@ -192,7 +197,7 @@ positions <- data.frame(
 datapoly <- merge(values, positions, by = c("id"))
 ggplot(datapoly, aes(x = x, y = y)) +
   geom_polygon(aes(group = id, fill = id)) +
-  scale_fill_biolizard(type = "discrete", scheme = "sequential") +
+  scale_fill_biolizard(type = "discrete", scheme = "greens") +
   lizard_style()
 
 
@@ -236,10 +241,10 @@ ggplot(data = mtcars, aes(x = mpg)) +
 
 ## 4.6 Simple scatterplot
 
-```{r , fig.width=4}
+```{r , fig.width=6}
 
 ggplot(data = mtcars, aes(x = hp, y = mpg)) +
-  geom_point() +
+  geom_point(aes(color= mpg)) +
   geom_smooth() +
   labs(
     title = "Miles per Gallon vs. horsepower",
@@ -247,7 +252,9 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
     y = "Miles per Gallon",
     color = "Miles per Gallon",
     fill = "Miles per Gallon"
-  )
+  ) +
+  scale_color_biolizard(type = "continuous", scheme = "l_viridis") +
+  lizard_style()
 
 ```
 
@@ -302,7 +309,9 @@ ggplot(mtcars, aes(x=mpg, y=hp)) +
 
 Treemap plots are a powerful way of visualizing hierarchical data such as GO terms, for example. The size of the rectangles corresponds to the value you want to show (e.g. p value), and related rectangles are grouped together. This example makes use of the Pokémon dataset from the [highcharter](https://cran.r-project.org/web/packages/highcharter/index.html) package and is based on https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/.
 
-The example below also illustrates how the `colorRampPalette` function can be used to expand a discrete color scale if the number of colors is not sufficient. Note that a discrete, qualitative color scale may not be very useful for a large number of colors, as it will be hard to distinguish the individual colors from one another.
+<!-- The example below also illustrates how the `colorRampPalette` function can be used to expand a discrete color scale if the number of colors is not sufficient. Note that a discrete, qualitative color scale may not be very useful for a large number of colors, as it will be hard to distinguish the individual colors from one another. -->
+
+In this example, more colors are requested than are present in the qualitative color scales. The `biolizard_pal_hue` palette was developped for situations like this. It is a specific version of the `scales::pal_hue` function which is used by default by ggplot2, that starts at Biolizard's signature green.
 
 The treemapify package allows plotting treemaps with ggplot2.
 
@@ -329,10 +338,7 @@ data <- pokemon %>%
 
 head(data)
 
-# expand the biolizard qualitative palette
-ncols <- length(unique(data$type_1))
-BLZ_qual <- colorRampPalette(biolizard_pal_qualitative(8))(ncols)
-
+# plot the treemap
 ggplot(data, aes(area = n, label = type_2, fill = type_1,
                 subgroup = type_1)) +
   ggtitle("Number of pokémon stratified by type") +
@@ -349,7 +355,7 @@ ggplot(data, aes(area = n, label = type_2, fill = type_1,
                     family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
   
   # 5. BLZ style
-  scale_fill_manual(values = BLZ_qual) +
+  scale_fill_biolizard(scheme = "hues") +
   lizard_style() +
   theme(legend.position = "none")
 
@@ -364,9 +370,13 @@ if(!require("treemap", quietly = TRUE)){
 
 library(treemap)
 
+# get colors from the biolizard hues palette
+ncols <- length(unique(data$type_1))
+palette <- biolizard_pal_hue(ncols)
+
 treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
         title="Number of pokémon stratified by type", 
-        palette=BLZ_qual,  #set the BLZ color palette
+        palette=palette,  #set the BLZ color palette
         fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
         fontfamily.title = "Lato", fontfamily.labels = "Lato", fontfamily.legend = "Lato")  #set the lato font
 
@@ -442,7 +452,7 @@ g <- ggplot(chic, aes(temp, o3)) +
              subtitle='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
 
 g <- g + lizard_style() +
-      scale_fill_biolizard(type='continuous',scheme='sequential')
+      scale_fill_biolizard(type='continuous',scheme='greens')
 g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")

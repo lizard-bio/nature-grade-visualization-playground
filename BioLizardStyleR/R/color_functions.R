@@ -215,6 +215,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #'   \item **qualitative**: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
 #'   \item **paired**: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
 #'   \item **hues**: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+#'   \item **l_viridis**: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
 #'   \item **greens**: Sequential color palette inspired by Biolizard's signature green.
 #'   \item **sequential**: `r lifecycle::badge("deprecated")` Use 'greens' instead.
 #'   \item **divergent**: Divergent color palette inspired by Biolizard's signature green.
@@ -286,6 +287,7 @@ scale_color_biolizard <- function(type = "discrete", scheme = "qualitative", rev
            qualitative = discrete_scale("colour", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("colour", palette = function(n) biolizard_pal_paired(n, reverse), ...),
            hues = scale_color_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
+           l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            greens = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
@@ -329,6 +331,7 @@ scale_fill_biolizard <- function(type = "discrete", scheme = "qualitative", reve
            qualitative = discrete_scale("fill", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("fill", palette = function(n) biolizard_pal_paired(n, reverse), ...),
            hues = scale_fill_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
+           l_viridis = discrete_scale("fill", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            greens = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
