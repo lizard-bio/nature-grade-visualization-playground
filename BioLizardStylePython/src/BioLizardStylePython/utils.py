@@ -57,9 +57,11 @@ def biolizard_qualitative_pal():
         #>>> plt.show()
     """
     return matplotlib.colors.ListedColormap([
-        "#01a086", "#1e2237", "#e9b940","#105144",
-        "#6CC7B7", "#233E60", "#666666", "#D6D6D6"
+        "#01A086", "#1E2237", "#E9B940", "#5D7EA5", "#860202",
+        "#89D2C6", "#C56F27", "#EED8A1", "#9CAEC3", "#B073DE",
+        "#03F2F7", "#71BD8B"
     ])
+
 
 def biolizard_qualitative_pal_r():
     """
@@ -72,19 +74,60 @@ def biolizard_qualitative_pal_r():
         matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
 
     Example:
-        #>>> bar_colors = [biolizard_qualitative_pal(i) for i in range(len(categories))]
+        #>>> bar_colors = [biolizard_qualitative_pal_r(i) for i in range(len(categories))]
         #>>> bars = plt.bar(categories, values, color=bar_colors)
         #>>> plt.show()
     """
-    cmap = matplotlib.colors.ListedColormap([
-        "#01a086", "#1e2237", "#e9b940","#105144",
-        "#6CC7B7", "#233E60", "#666666", "#D6D6D6"
+    cmap = biolizard_qualitative_pal()
+
+    return cmap.reversed()
+
+def biolizard_paired_pal():
+    """
+    Generate a qualitative colormap for matplotlib.
+
+    Specifically designed to be inclusive, it is suitable for individuals with the most
+    common form of color blindness: Deuteranopia (Red-Green Color Blindness). 
+    Every two consecutive colors have a similar hue, making this palette especially suitable
+    for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
+
+    Returns:
+        matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
+
+    Example:
+        #>>> bar_colors = [biolizard_paired_pal(i) for i in range(len(categories))]
+        #>>> bars = plt.bar(categories, values, color=bar_colors)
+        #>>> plt.show()
+    """
+    return matplotlib.colors.ListedColormap([
+        "#6CC7B7", "#176B59", "#5D7EA5", "#1E2237",
+        "#EED8A1", "#e9b940", "#D6D6D6",  "#828282",
+        "#DE5F5F", "#860202"
     ])
+
+def biolizard_paired_pal_r():
+    """
+    Generate a qualitative colormap for matplotlib.
+
+    Specifically designed to be inclusive, it is suitable for individuals with the most
+    common form of color blindness: Deuteranopia (Red-Green Color Blindness). 
+    Every two consecutive colors have a similar hue, making this palette especially suitable
+    for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
+
+    Returns:
+        matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
+
+    Example:
+        #>>> bar_colors = [biolizard_paired_pal_r(i) for i in range(len(categories))]
+        #>>> bars = plt.bar(categories, values, color=bar_colors)
+        #>>> plt.show()
+    """
+    cmap = biolizard_paired_pal()
 
     return cmap.reversed()
 
 #Sequential and divergent color map
-#These two color maps will be registered as 'biolizard_<sequential/divergent>_pal' when installing the package.
+#These color maps will be registered as when installing the package.
 
 #Internal function
 def _create_and_register_colormap(palette, name, reverse=False):
@@ -107,8 +150,20 @@ def _create_and_register_colormap(palette, name, reverse=False):
     cmap = matplotlib.colors.LinearSegmentedColormap.from_list(name, rgbcolors)
     if reverse:
         cmap = cmap.reversed()
-    matplotlib.colormaps.register(name=name, cmap=cmap)
+    matplotlib.colormaps.register(name=name, cmap=cmap, force=True)
 
+
+
+# Hues Biolizard Color Map
+#
+# This colormap applies the Biolizard 'hues' palette.
+#
+# Details:
+# Maps each level to an evenly spaced hue on the color wheel,
+# starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
+biolizard_hues_pal = colorspace.qualitative_hcl(h1=151.6, c=49.5, l=58.9, power=1)
+_create_and_register_colormap(biolizard_hues_pal, "biolizard_hues_pal")
+_create_and_register_colormap(biolizard_hues_pal, "biolizard_hues_pal_r", reverse=True)
 
 # Sequential Biolizard Color Map
 #
@@ -139,6 +194,13 @@ biolizard_divergent_pal = colorspace.diverging_hcl(h=[60, 170], c=80, l=[50, 95]
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal")
 _create_and_register_colormap(biolizard_divergent_pal, "biolizard_divergent_pal_r", reverse=True)
 
+
+# viridis-like colormap
+# named l_viridis after the european green lizard (Lacerta viridis)
+from .l_viridis import cm_data
+l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
+matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal.reversed(), force=True)  # reverse to start with yellow
+matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal, force=True)
 
 def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="TempLizardPlot", save_filepath=None):
     """

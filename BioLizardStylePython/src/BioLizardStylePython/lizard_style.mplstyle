@@ -42,7 +42,10 @@ axes.spines.right:  False #Axis line at right of plot
 
 #Biolizard qualitative color palette (e.g. when plotting multiple lines)
 
-axes.prop_cycle: cycler('color', ['01a086', '1e2237', 'e9b940','105144', '6CC7B7', '233E60', '666666', 'D6D6D6'])
+axes.prop_cycle: cycler('color', ['01A086', '1E2237', 'E9B940', '5D7EA5', '860202', '89D2C6', 'C56F27', 'EED8A1', '9CAEC3', 'B073DE', '03F2F7', '71BD8B'])
+
+#l_viridis as default for continuous scale
+image.cmap: l_viridis_pal
 
 #TICKS
 

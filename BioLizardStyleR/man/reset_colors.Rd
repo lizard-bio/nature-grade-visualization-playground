@@ -8,7 +8,7 @@ reset_colors()
 }
 \description{
 This function resets the default colors for elements of ggplot2 plots, that
-are changed to BLZ green ("#01a086") when using the `lizard_style()` function.
+are changed to BLZ green ("#01a086") when using the \code{lizard_style()} function.
 Note that colors are automatically reset when restarting the R session.
 }
 \examples{
