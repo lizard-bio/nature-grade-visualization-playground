@@ -6,8 +6,13 @@ class PalettesTestCase(unittest.TestCase):
     
     def test_qualitative_ncolors(self):
         cols = biolizard_qualitative_pal().colors
-        self.assertEqual(len(cols), 8,
-                         "Qualitative palette does not contain 8 colors")
+        self.assertEqual(len(cols), 12,
+                         "Qualitative palette does not contain 12 colors")
+        
+    def test_paired_ncolors(self):
+        cols = biolizard_paired_pal().colors
+        self.assertEqual(len(cols), 10,
+                         "Qualitative palette does not contain 10 colors")
     
     def test_qualitative_ncolors5(self):
         cols = biolizard_qualitative_pal()(range(5))
@@ -16,7 +21,7 @@ class PalettesTestCase(unittest.TestCase):
         
     def test_qualitative_colors(self):
         cols = biolizard_qualitative_pal().colors[0:3]
-        self.assertEqual(cols, ['#01a086', '#1e2237', '#e9b940'],
+        self.assertEqual(cols, ['#01A086', '#1E2237', '#E9B940'],
                          "First three colors of qualitative palette do not match BLZ colors")
     
     def test_sequential_ncolors(self):

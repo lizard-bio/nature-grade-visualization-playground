@@ -17,5 +17,5 @@ A grob object representing the footer with the source text, logo, and the specif
 \description{
 Constructs a footer for a ggplot using specified source text, a logo image,
 and an optional font. The font size of the source text is determined dynamically
-based on its length using the \code{\link{compute_font_size}} function.
+based on its length using the \code{\link[=compute_font_size]{compute_font_size()}} function.
 }

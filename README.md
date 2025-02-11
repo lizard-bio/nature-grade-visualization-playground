@@ -12,8 +12,8 @@ For a list of guidelines and best practices that everyone within BioLizard shoul
 
 This repository contains two key packages:
 
-1. **BioLizardStyleR** - An R package designed for ggplot2.
-2. **BioLizardStylePython** - A Python package designed for matplotlib, also compatible with seaborn.
+1. [BioLizardStyleR](https://lizard-bio.github.io/nature-grade-visualization-playground/BioLizardStyleR/) - An R package designed for ggplot2.
+2. [BioLizardStylePython](https://lizard-bio.github.io/nature-grade-visualization-playground/BioLizardStylePython/) - A Python package designed for matplotlib, also compatible with seaborn.
 
 Developed by Robbe Neirynck during an internship at BioLizard, under the supervision of Alexander Koch.
 Development was continued by Anikó Meijer.
@@ -48,10 +48,16 @@ The BioLizardStylePython package is available on PyPI and can be easily installe
 pip install BioLizardStylePython
 ```
 
-## Usage
+## Documentation
 
-For **installation details**, usage examples, and example workflows, please refer to the **"In Action" files** specific to each package. Most information below this point is general, but the "In Action" files contain specialized guidance.
+A detailed description of the functionalities in each package can be found on these help pages:
 
+1. R: https://lizard-bio.github.io/nature-grade-visualization-playground/BioLizardStyleR/
+2. Python: https://lizard-bio.github.io/nature-grade-visualization-playground/BioLizardStylePython/
+
+## Quick start
+
+For installation details, usage examples, and example workflows, please refer to the the [help pages](https://lizard-bio.github.io/nature-grade-visualization-playground/). Most information below this point is general.
 Both packages have three main components:
 
 ### 1. Styling Function: `lizard_style()`

@@ -32,26 +32,12 @@ set_default_BLZgreen <- function(){
 #' @export
 #'
 #' @importFrom ggplot2 theme element_text element_blank element_rect
-#' @importFrom gdtools install_gfont_script installed_gfonts
 #'
 #' @examples
 #' library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
 lizard_style <- function() {
-  tryCatch({
-    if(!"Lato" %in% gdtools::installed_gfonts()){
-      message("The Lato font is not yet installed. Installing it now...")
-      gdtools::install_gfont_script("Lato")
-      # check if installation worked
-      if(!"Lato" %in% gdtools::installed_gfonts()){
-        stop("gdtools failed to install Lato. Try installing the Lato font manually from the ttf files in https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall and run `install_biolizard_fonts()`")
-      }
-    }
-  }, error = function(err) {
-    stop(paste("gdtools error: ", err, "\n\nTry installing the Lato font manually from the ttf files in https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall and run `install_biolizard_fonts()`"))
-  }
-  )
 
   #change default colors for geoms
   set_default_BLZgreen()

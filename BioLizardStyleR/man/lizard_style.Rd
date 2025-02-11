@@ -7,12 +7,12 @@
 lizard_style()
 }
 \value{
-A `ggplot2::theme` object that can be added to a ggplot2 plot.
+A \code{ggplot2::theme} object that can be added to a ggplot2 plot.
 }
 \description{
 This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
 sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-If not yet installed, this function will install the 'Lato' font using the `gdtools` package.
+If not yet installed, this function will install the 'Lato' font using the \code{gdtools} package.
 }
 \examples{
 library(ggplot2)

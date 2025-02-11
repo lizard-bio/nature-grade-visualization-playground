@@ -4,7 +4,7 @@
 \alias{install_biolizard_fonts}
 \title{Import BioLizard Fonts into R}
 \usage{
-install_biolizard_fonts(pattern = "Lato", clearDataBase = FALSE)
+install_biolizard_fonts(pattern = "[Ll]ato", clearDataBase = FALSE)
 }
 \arguments{
 \item{pattern}{A character string specifying the font file pattern. Default is 'Lato'.}
