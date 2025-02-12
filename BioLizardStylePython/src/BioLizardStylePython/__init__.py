@@ -29,3 +29,4 @@ else:
     lato_localname = font_names.pop()  #pick first one, usually there should only be one.. (?)
 
 from .utils import *
+from .plotly_template import *

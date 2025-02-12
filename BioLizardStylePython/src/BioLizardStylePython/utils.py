@@ -5,7 +5,7 @@ from PIL import Image
 from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
-from matplotlib import font_manager
+# from matplotlib import font_manager
 import colorspace
 
 # the three basic colors
@@ -14,7 +14,7 @@ blz_blue = "#1e2237"
 blz_yellow = "#e9b940"
 
 
-def lizard_style():
+def lizard_style(plotly=False):
     """
     Load and apply the lizard_style for matplotlib plots.
 
@@ -39,6 +39,11 @@ def lizard_style():
     plt.style.use(style_path)
     from BioLizardStylePython import lato_localname
     plt.rcParams['font.sans-serif'] = [lato_localname]
+
+    if plotly:
+        import plotly.io as pio
+        pio.templates.default = "lizard_style"
+
 
 
 def biolizard_qualitative_pal():
