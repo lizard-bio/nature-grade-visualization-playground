@@ -28,6 +28,8 @@ devtools::install_github("lizard-bio/nature-grade-visualization-playground", sub
 library(BioLizardStyleR)
 ```
 
+For building the vignette, you also need the `pasilla` dataset. In case of issues with the installation of this package, you might have to install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
+
 # 2. Font Installation
 
 The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.

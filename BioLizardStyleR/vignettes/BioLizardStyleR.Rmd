@@ -27,8 +27,13 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
+# make sure to look up BioConductor packages (used in the vignette)
+setRepositories(ind = c(1:6, 8))
+
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
 ```
+
+For building the vignette, you also need the `pasilla` dataset. In case of issues with the installation of this package, you might have to install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
 ```{r}
 library(BioLizardStyleR)
@@ -275,10 +280,6 @@ ggplot(mtcars, aes(x=mpg, y=hp)) +
 Note that the minimal style makes it difficult to distinguish the different blocks from each other. Readability of the figure is improved by plotting the axes for each plot, but they are removed by `facet_grid` and `facet_wrap` when the plots are on the same scale. The similar functions `facet_rep_grid` and `facet_rep_wrap` from the lemon package are more suitable with the lizard style, since they will show all axes.
 
 ```{r,  fig.show='hold', fig.width=3.3}
-if(!require("lemon", quietly = TRUE)){
-  BiocManager::install("lemon")
-}
-
 library(lemon)
 
 # use facet_wrap to stratify plots by one variable
@@ -307,14 +308,6 @@ The example below also illustrates how the `colorRampPalette` function can be us
 The treemapify package allows plotting treemaps with ggplot2.
 
 ```{r , fig.width=6, fig.height=4}
-if(!require("treemapify", quietly = TRUE)){
-  BiocManager::install("treemapify")
-}
-
-if(!require("highcharter", quietly = TRUE)){
-  install.packages("highcharter")
-}
-
 library(treemapify)
 library(dplyr)
 
@@ -358,10 +351,6 @@ ggplot(data, aes(area = n, label = type_2, fill = type_1,
 However, this is not ideal, since the font of the text still has to be defined manually, and thus the lizard_style() function does not work very well for these treemaps, even though they are ggplot2-based. Another option is to use the 'treemap' library, and move away from ggplot2 altogether, which generally leads to more aesthetically pleasing plots:
 
 ```{r, fig.width=6, fig.height=4}
-if(!require("treemap", quietly = TRUE)){
-  BiocManager::install("treemap")
-}
-
 library(treemap)
 
 treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
@@ -397,10 +386,6 @@ g + lizard_style() +
 
 
 ```{r , fig.width=5, fig.height=4}
-if (!requireNamespace(c("corrr","forcats"), quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages(c("corrr","forcats"))
-}
 library(corrr)
 library(forcats)
 
@@ -456,15 +441,6 @@ ggplotly can be used to make a ggplot interactive, for example to use in a html 
 Note: to succesfully install Pasilla, you might have to manually install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
 ```{r , fig.width=5, fig.height=4}
-
-if(!require("plotly", quietly = TRUE)){
-  BiocManager::install("plotly")
-}
-
-if(!require("pasilla", quietly = TRUE)){
-  BiocManager::install("pasilla")
-}
-
 library(pasilla)
 library(plotly)
 
@@ -478,9 +454,6 @@ SampleAnno = read.csv(file.path(datafiles, "pasilla_sample_annotation.csv"))
 head(SampleAnno)
 
 # DE analysis with edgeR
-if(!require("edgeR", quietly = TRUE)){
-  BiocManager::install("edgeR")
-}
 library(edgeR)
 
 Group <- as.factor(c(rep("untreated", 4), rep("treated", 3)))
@@ -532,64 +505,4 @@ p <- DE %>% {
 }
 ggplotly(p)
 
-```
-
-## 4.11 Maps
-
-note: to install 'sf' you might have to install libudunits2 and libgdal:
-
-- debian/ubuntu: `sudo apt-get update && sudo apt-get install libudunits2-dev libgdal-dev`
-- tophat/fedora: `dnf install udunits2-devel libgdal-devel`
-- OSX: `brew install udunits` & `brew install gdal`
-
-```{r , fig.width=6}
-if (!requireNamespace("sf", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("sf")
-}
-if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("rnaturalearth")
-}
-if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("rnaturalearthdata")
-}
-
-library("sf")
-library("rnaturalearth")
-library("rnaturalearthdata")
-
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-BLZ_offices <- c("Belgium", "Netherlands", "Switzerland", "United States of America")
-world$BLZ_office <- ifelse(world$name_en %in% BLZ_offices, "yes", "no")
-world$BLZ_office <- factor(world$BLZ_office, levels = c("yes", "no"))
-
-ggplot(data = world, aes(fill = BLZ_office)) +
-  geom_sf() +
-  scale_fill_biolizard(type = "discrete", scheme = "qualitative") +
-  lizard_style()
-
-```
-
-```{r, fig.width=6}
-# coloring the ocean, as in the map on our website
-ggplot(data = world, aes(fill = BLZ_office)) +
-  geom_sf() +
-  scale_fill_manual(values = c(blz_yellow, blz_green)) +
-  lizard_style() +
-  theme(panel.background = element_rect(fill = blz_blue),
-        panel.grid = element_blank())
-```
-
-```{r, fig.width=6}
-# europe only
-ggplot(data = dplyr::filter(world, continent == "Europe"), aes(fill = BLZ_office)) +
-  geom_sf() +
-  scale_fill_manual(values = c(blz_yellow, blz_green)) +
-  lizard_style() +
-  theme(panel.background = element_rect(fill = blz_blue),
-        panel.grid = element_blank()) +
-  coord_sf(xlim = c(-25,50), ylim = c(35,70), expand = FALSE)
 ```
