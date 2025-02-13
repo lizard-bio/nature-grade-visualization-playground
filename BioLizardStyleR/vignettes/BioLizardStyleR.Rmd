@@ -467,7 +467,6 @@ ggplotly can be used to make a ggplot interactive, for example to use in a html 
 Note: to succesfully install Pasilla, you might have to manually install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
 ```{r , fig.width=5, fig.height=4}
-
 if(!require("plotly", quietly = TRUE)){
   BiocManager::install("plotly")
 }
@@ -508,13 +507,20 @@ norm.counts <- cpm(y, normalized.lib.sizes = TRUE, log = T)
 # plot interactive PCA
 mds <- plotMDS(y, gene.selection="common", plot = F)
 toplot <- data.frame(Dim1 = mds$x, Dim2 = mds$y, Group = Group, sample = colnames(mds$distance.matrix.squared))
-pcaPlot <- ggplot(toplot, aes(Dim1, Dim2, colour = Group)) +
-  geom_point(aes(label = sample), size=3) + coord_fixed() +
-  xlab(paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")) +
-  ylab(paste0("PC2: ", round(mds$var.explained[2]*100), "% variance")) +
-  scale_color_biolizard() +
-  lizard_style()
-ggplotly(pcaPlot)
+fig <- plot_ly(
+  toplot,
+  type = "scatter",
+  mode = "markers",
+  x = ~Dim1,
+  y = ~Dim2,
+  color = ~Group,
+  colors = biolizard_pal_qualitative(2)) %>% 
+  lizard_layout() %>% 
+  layout(xaxis = list(title = paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")),
+         yaxis = list(title = paste0("PC2: ", round(mds$var.explained[2]*100), "% variance"))
+  )
+
+fig
 
 # fit general linear model
 design <- model.matrix(~ 0 + Group)
@@ -535,14 +541,17 @@ DE <- DE[!is.na(DE$padj), ]
 head(DE)
 
 # interactive volcano plot
-p <- DE %>% {
-  ggplot(., aes(x = log2FoldChange, y = -log10(pvalue))) +
-  geom_point(aes(color = padj < 0.05, label = rownames(.))) +
-  scale_color_biolizard(reverse = TRUE) +
-  lizard_style()
-}
-ggplotly(p)
-
+p <- plot_ly(
+  DE,
+  type = "scatter",
+  mode = "markers",
+  x = ~log2FoldChange,
+  y = ~-log10(pvalue),
+  color = ~padj < 0.05,
+  colors = biolizard_pal_qualitative(2, reverse = TRUE)) %>% 
+  lizard_layout() %>% 
+  layout(legend = list(title = list(text = "padj < 0.05")))
+p
 ```
 
 ## 4.11 Maps
