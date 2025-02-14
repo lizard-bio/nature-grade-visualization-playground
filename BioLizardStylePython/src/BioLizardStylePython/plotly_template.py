@@ -216,4 +216,3 @@ lizard_style_template.data = {
 }
 
 pio.templates["lizard_style"] = lizard_style_template
-pio.templates.default = "lizard_style"
