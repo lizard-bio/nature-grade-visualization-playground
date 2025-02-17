@@ -186,6 +186,7 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 #' @param n Integer, number of colors.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
 #' @importFrom scales pal_gradient_n
+#' @importFrom grDevices rgb
 #' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()]
 #' @export
 #'
@@ -194,7 +195,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
     stop("The requested number of colors must be at least 1.")
   }
   # convert rgb colors from viscm to hex
-  hex <- apply(l_viridis_rgb, 1, function(x) rgb(x[1], x[2], x[3], maxColorValue = 1))
+  hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
   colors <- pal_gradient_n(hex)(seq(0, 1, length.out = n))
   if (reverse) {
     return(colors)
@@ -268,12 +269,15 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of [ggplot2::discrete_scale()]. For continuous type, refer to the documentation of [ggplot2::scale_fill_gradientn()]. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_color_gradientn discrete_scale scale_color_hue
 #' @importFrom colorspace sequential_hcl diverging_hcl
+#' @importFrom grDevices rgb
 #' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_divergent()] [biolizard_pal_l_viridis()]
 #' @rdname biolizard_scales
 #' @export
-scale_color_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
+scale_color_biolizard <- function(type = "discrete",
+                                  scheme = ifelse(type == "discrete", "qualitative", "l_viridis"),
+                                  reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
-  l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) rgb(x[1], x[2], x[3], maxColorValue = 1))
+  l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
   # 'sequential' replaced by 'greens'
   if (scheme == "sequential"){
@@ -315,11 +319,13 @@ scale_colour_biolizard <- scale_color_biolizard
 
 #' @importFrom ggplot2 scale_fill_gradientn discrete_scale scale_fill_hue
 #' @importFrom colorspace sequential_hcl diverging_hcl
+#' @importFrom grDevices rgb
+#'
 #' @rdname biolizard_scales
 #' @export
 scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
-  l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) rgb(x[1], x[2], x[3], maxColorValue = 1))
+  l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
   # 'sequential' replaced by 'greens'
   if (scheme == "sequential"){
