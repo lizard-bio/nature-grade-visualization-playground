@@ -9,4 +9,4 @@
 library(testthat)
 library(BioLizardStyleR)
 
-test_check("BioLizardStyleR")
+testthat::test_check("BioLizardStyleR")
