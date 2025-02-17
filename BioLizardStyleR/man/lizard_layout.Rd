@@ -8,6 +8,8 @@ lizard_layout(fig, ...)
 }
 \arguments{
 \item{fig}{A plotly figure created with standard plotly language.}
+
+\item{...}{Further arguments for the plotly::layout() function}
 }
 \value{
 A plotly figure in the BioLizard style
@@ -17,8 +19,12 @@ This function applies a predefined 'Lizard' style to a plotly plot. It sets spec
 sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
 It does not yet work with ggplotly.
 }
+\details{
+Adapted from: https://github.com/plotly/plotly.R/issues/2117
+}
 \examples{
 library(plotly)
+# Works with plotly
 plot_ly(
   mtcars,
   type = "scatter",
@@ -27,4 +33,8 @@ plot_ly(
   y = ~disp,
   color = ~gear,
   colors = biolizard_pal_l_viridis(4)) \%>\% lizard_layout()
+
+# Works with ggplotly
+p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+ggplotly(p) \%>\% lizard_layout()
 }
