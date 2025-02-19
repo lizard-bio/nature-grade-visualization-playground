@@ -28,7 +28,8 @@ dependencies = [
     "matplotlib>=3.7.1",
     "Pillow>=9.4.0",
     "fonts>=0.0.3",
-    "font-lato>=0.1.0"
+    "font-lato>=0.1.0",
+    "deprecated>=1.2.0"
 ]
 
 
