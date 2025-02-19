@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 import matplotlib.colors
 from matplotlib import font_manager
 import colorspace
-# from deprecated.sphinx import deprecated
 
 # the three basic colors
 blz_green = "#01a086"
@@ -217,14 +216,6 @@ matplotlib.colormaps.register(name='biolizard_hues_pal_r', cmap=biolizard_hues_p
 # The sequential palette represents underlying values using a consistent sequence of increasing luminance.
 # The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
 # The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
-# biolizard_greens_pal = colorspace.sequential_hcl(h=170, c=[0,75,40], l=[90,35], power=1)
-# _create_and_register_colormap(biolizard_greens_pal, "biolizard_greens_pal")
-# _create_and_register_colormap(biolizard_greens_pal, "biolizard_greens_pal_r", reverse=True)
-
-# @deprecated(reason="Use `biolizard_greens_pal` instead.",
-#     version="1.0.0",)
-# def biolizard_sequential_pal():
-#     return(biolizard_greens_pal)
 _biolizard_sequential_pal = colorspace.sequential_hcl(h=170, c=[0,75,40], l=[90,35], power=1)
 biolizard_sequential_pal = _create_colormap('biolizard_sequential_pal', _biolizard_sequential_pal)
 biolizard_sequential_pal_r = _create_colormap('biolizard_sequential_pal_r', _biolizard_sequential_pal, reverse=True)
