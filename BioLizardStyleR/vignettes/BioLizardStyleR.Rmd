@@ -102,8 +102,8 @@ testplot_qualitative
 testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "l_viridis") + lizard_style()
 testplot_sequential
 
-## greens scale
-testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "greens") + lizard_style()
+## sequential scale inspired by BioLizard green
+testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "sequential") + lizard_style()
 testplot_sequential
 
 # Applying the divergent color scale (assuming you have a different dataset or aesthetic)
@@ -197,7 +197,7 @@ positions <- data.frame(
 datapoly <- merge(values, positions, by = c("id"))
 ggplot(datapoly, aes(x = x, y = y)) +
   geom_polygon(aes(group = id, fill = id)) +
-  scale_fill_biolizard(type = "discrete", scheme = "greens") +
+  scale_fill_biolizard(type = "discrete", scheme = "sequential") +
   lizard_style()
 
 
@@ -452,7 +452,7 @@ g <- ggplot(chic, aes(temp, o3)) +
              subtitle='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
 
 g <- g + lizard_style() +
-      scale_fill_biolizard(type='continuous',scheme='greens')
+      scale_fill_biolizard(type='continuous',scheme='sequential')
 g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
