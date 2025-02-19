@@ -34,7 +34,7 @@ def test_lizardstyle_lineplot():
 def test_lizardstyle_irisplot():
     # Sample data
     data = sns.load_dataset("iris")
-    sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal().colors[0:3])
+    sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal.colors[0:3])
     plt.title('A Flower Plot')
 
 #boxplot
