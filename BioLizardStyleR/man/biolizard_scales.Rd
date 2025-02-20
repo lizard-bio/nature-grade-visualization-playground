@@ -30,7 +30,7 @@ scale_fill_biolizard(
 \arguments{
 \item{type}{Character, either 'discrete' or 'continuous'.}
 
-\item{scheme}{Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'greens' or 'divergent'}
+\item{scheme}{Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'}
 
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors in the palette.}
 
@@ -46,8 +46,7 @@ The function supports five schemes for discrete data:
 \item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
 \item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
 \item \strong{l_viridis}: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-\item \strong{greens}: Sequential color palette inspired by Biolizard's signature green.
-\item \strong{sequential}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use 'greens' instead.
+\item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
 \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
 
@@ -55,8 +54,7 @@ And three schemes for continuous data:
 
 \itemize{
 \item \strong{l_viridis}: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-\item \strong{greens}: Sequential color palette inspired by Biolizard's signature green.
-\item \strong{sequential}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use 'greens' instead.
+\item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
 \item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
 }
 }

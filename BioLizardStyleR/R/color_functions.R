@@ -217,8 +217,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #'   \item **paired**: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
 #'   \item **hues**: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
 #'   \item **l_viridis**: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-#'   \item **greens**: Sequential color palette inspired by Biolizard's signature green.
-#'   \item **sequential**: `r lifecycle::badge("deprecated")` Use 'greens' instead.
+#'   \item **sequential**: Sequential color palette inspired by Biolizard's signature green.
 #'   \item **divergent**: Divergent color palette inspired by Biolizard's signature green.
 #' }
 #'
@@ -226,8 +225,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #'
 #' \itemize{
 #'   \item **l_viridis**: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-#'   \item **greens**: Sequential color palette inspired by Biolizard's signature green.
-#'   \item **sequential**: `r lifecycle::badge("deprecated")` Use 'greens' instead.
+#'   \item **sequential**: Sequential color palette inspired by Biolizard's signature green.
 #'   \item **divergent**: Divergent color palette inspired by Biolizard's signature green.
 #' }
 #'
@@ -264,7 +262,7 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
 #' }
 #'
 #' @param type Character, either 'discrete' or 'continuous'.
-#' @param scheme Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'greens' or 'divergent'
+#' @param scheme Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'
 #' @param reverse Boolean, if TRUE, reverse the order of the colors in the palette.
 #' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of [ggplot2::discrete_scale()]. For continuous type, refer to the documentation of [ggplot2::scale_fill_gradientn()]. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
 #' @importFrom ggplot2 scale_color_gradientn discrete_scale scale_color_hue
@@ -279,20 +277,13 @@ scale_color_biolizard <- function(type = "discrete",
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
-  # 'sequential' replaced by 'greens'
-  if (scheme == "sequential"){
-    lifecycle::deprecate_warn("0.1.1", "scale_color_biolizard(scheme = 'sequential')",
-                              details = "Please use scale_color_biolizard(scheme = 'greens') instead.")
-    scheme = "greens"
-  }
-
   if(type == "discrete") {
     switch(scheme,
            qualitative = discrete_scale("colour", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("colour", palette = function(n) biolizard_pal_paired(n, reverse), ...),
            hues = scale_color_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
-           greens = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           sequential = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
            stop("Requested scheme not available for discrete color palette.")
     )
@@ -300,8 +291,8 @@ scale_color_biolizard <- function(type = "discrete",
     switch(paste(scheme, reverse, sep="_"),
            l_viridis_FALSE = scale_color_gradientn(colors = rev(l_viridis_hex), ...),
            l_viridis_TRUE = scale_color_gradientn(colors = l_viridis_hex, ...),
-           greens_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
-           greens_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
+           sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
            # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
            divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
            # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...),
@@ -327,28 +318,21 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
-  # 'sequential' replaced by 'greens'
-  if (scheme == "sequential"){
-    lifecycle::deprecate_warn("0.1.1", "scale_color_biolizard(scheme = 'sequential')",
-                              details = "Please use scale_color_biolizard(scheme = 'greens') instead.")
-    scheme = "greens"
-  }
-
   if(type == "discrete") {
     switch(scheme,
            qualitative = discrete_scale("fill", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("fill", palette = function(n) biolizard_pal_paired(n, reverse), ...),
            hues = scale_fill_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("fill", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
-           greens = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           sequential = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
            l_viridis_FALSE = scale_fill_gradientn(colors = rev(l_viridis_hex), ...),
            l_viridis_TRUE = scale_fill_gradientn(colors = l_viridis_hex, ...),
-           greens_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
-           greens_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
+           sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
            # divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
            divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
            # divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)

@@ -62,10 +62,10 @@ testthat::test_that("biolizard_pal_sequential works", {
   testthat::expect_length(biolizard_pal_sequential(1), 1)
   testthat::expect_length(biolizard_pal_sequential(20), 20)
   testthat::expect_error(biolizard_pal_sequential(0), regexp = "at least 1")
-  vdiffr::expect_doppelganger("discrete sequential", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "greens") + scale_fill_biolizard(type = "discrete", scheme = "greens"))
-  vdiffr::expect_doppelganger("discrete sequential rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "greens", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "greens", reverse=TRUE))
-  vdiffr::expect_doppelganger("continuous sequential", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "greens") +  scale_fill_biolizard(type = "continuous", scheme = "greens"))
-  vdiffr::expect_doppelganger("continuous sequential rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "greens", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "greens", reverse=TRUE))
+  vdiffr::expect_doppelganger("discrete sequential", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "sequential") + scale_fill_biolizard(type = "discrete", scheme = "sequential"))
+  vdiffr::expect_doppelganger("discrete sequential rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "sequential", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "sequential", reverse=TRUE))
+  vdiffr::expect_doppelganger("continuous sequential", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential") +  scale_fill_biolizard(type = "continuous", scheme = "sequential"))
+  vdiffr::expect_doppelganger("continuous sequential rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE))
 })
 
 testthat::test_that("biolizard_pal_divergent works", {
