@@ -32,9 +32,9 @@ plot_ly(
   x = ~mpg,
   y = ~disp,
   color = ~gear,
-  colors = biolizard_pal_l_viridis(4)) \%>\% lizard_layout()
+  colors = biolizard_pal_l_viridis(4)) |> lizard_layout()
 
 # Works with ggplotly
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
-ggplotly(p) \%>\% lizard_layout()
+ggplotly(p) |> lizard_layout()
 }
