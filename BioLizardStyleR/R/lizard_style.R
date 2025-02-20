@@ -130,11 +130,11 @@ lizard_style <- function() {
 #'   x = ~mpg,
 #'   y = ~disp,
 #'   color = ~gear,
-#'   colors = biolizard_pal_l_viridis(4)) %>% lizard_layout()
+#'   colors = biolizard_pal_l_viridis(4)) |> lizard_layout()
 #'
 #' # Works with ggplotly
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
-#' ggplotly(p) %>% lizard_layout()
+#' ggplotly(p) |> lizard_layout()
 lizard_layout <- function(fig, ...) {
   # Get the local font file path
   lato_path <- system.file("fonts/Lato-Regular.ttf", package = "BioLizardStyleR")
@@ -167,7 +167,7 @@ lizard_layout <- function(fig, ...) {
   )
 
   # Adapt layout
-  fig <- fig %>% plotly::layout(
+  fig <- fig |> plotly::layout(
     font = list(family = "lato"),
     title = list(font = list(size = 16, color = "#222222")),
     legend = list(font = list(size = 10),
