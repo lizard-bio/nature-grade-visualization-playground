@@ -10,8 +10,6 @@
 #' @return Prints a success message if the desired font is loaded correctly. Additionally, warnings are issued if multiple fonts match the pattern or if no matching fonts are found.
 #'
 #' @export
-#' @importFrom extrafont font_import loadfonts
-#' @importFrom extrafont fonts
 #'
 #' @examples
 #' \dontrun{
@@ -28,18 +26,18 @@ install_biolizard_fonts <- function(pattern = '[Ll]ato', clearDataBase = FALSE) 
   }
   # Font import and checking logic here
   tryCatch({
-    font_import(pattern = pattern, prompt = FALSE)
+    extrafont::font_import(pattern = pattern, prompt = FALSE)
   }, error = function(err) {
     stop("No matching fonts found. Ensure the font is installed locally and verify your pattern input (looking for the .tff files).")
   }
   )
   # Check if any font matches the pattern
-  matching_fonts <- grep(pattern, fonts(), value = TRUE)
+  matching_fonts <- grep(pattern, extrafont::fonts(), value = TRUE)
   if (length(matching_fonts) == 0) {
     stop("No matching fonts found. Ensure the font is installed locally and verify your pattern input (looking for the .tff files).")
   }
   if (length(matching_fonts) > 0) {
-    loadfonts(device='all', quiet = TRUE)
+    extrafont::loadfonts(device='all', quiet = TRUE)
     print(paste('Success! The following fonts were installed:', paste(matching_fonts, collapse = ", ")))
   }
 }

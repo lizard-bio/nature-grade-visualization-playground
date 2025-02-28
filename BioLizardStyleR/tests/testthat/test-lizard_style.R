@@ -2,15 +2,15 @@ library(ggplot2)
 # install_biolizard_fonts()
 
 #lineplot
-line_plot <- ggplot(data = data.frame(x = 1:9, y = 1:9, c = rep(1:3, each = 3)), aes(x = x, y = y)) +
-  geom_point(size=3) +
-  geom_line(aes(group = c)) +
-  geom_hline(yintercept = 5) +
+line_plot <- ggplot2::ggplot(data = data.frame(x = 1:9, y = 1:9, c = rep(1:3, each = 3)), ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_point(size=3) +
+  ggplot2::geom_line(aes(group = c)) +
+  ggplot2::geom_hline(yintercept = 5) +
   lizard_style()
 
 #barplot
-bar_plot <- ggplot(data.frame(x=1:10, y=1:10), aes(x=x, y=y)) +
-  geom_col() +
+bar_plot <- ggplot2::ggplot(data.frame(x=1:10, y=1:10), ggplot2::aes(x=x, y=y)) +
+  ggplot2::geom_col() +
   lizard_style()
 
 #polygon plot
@@ -28,16 +28,16 @@ positions <- data.frame(
 )
 
 datapoly <- merge(values, positions, by = c("id"))
-poly_plot <- ggplot(datapoly, aes(x = x, y = y)) +
-  geom_polygon(aes(group = id)) +
+poly_plot <- ggplot2::ggplot(datapoly, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_polygon(ggplot2::aes(group = id)) +
   lizard_style()
 
 #boxplot
-box_plot <- ggplot(data = data.frame(y = 1:9, c = as.factor(rep(1:3, each = 3))), aes(x = c, y = y)) +
-  geom_boxplot() +
+box_plot <- ggplot2::ggplot(data = data.frame(y = 1:9, c = as.factor(rep(1:3, each = 3))), ggplot2::aes(x = c, y = y)) +
+  ggplot2::geom_boxplot() +
   lizard_style()
 
-test_that("lizard_style works", {
+testthat::test_that("lizard_style works", {
   vdiffr::expect_doppelganger("simple line plot", line_plot)
   vdiffr::expect_doppelganger("simple bar plot", bar_plot)
   vdiffr::expect_doppelganger("simple polygon plot", poly_plot)

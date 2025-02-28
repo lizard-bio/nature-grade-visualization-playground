@@ -346,11 +346,11 @@ library(dplyr)
 
 data("pokemon", package = "highcharter")
 # Cleaning up data for a treemap
-data <- pokemon %>% 
-  select(pokemon, type_1, type_2) %>%
-  mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) %>% 
-  group_by(type_1, type_2) %>%
-  summarise(n = length(pokemon)) %>% 
+data <- pokemon |> 
+  select(pokemon, type_1, type_2) |>
+  mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) |> 
+  group_by(type_1, type_2) |>
+  summarise(n = length(pokemon)) |> 
   ungroup()
 
 head(data)
