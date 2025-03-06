@@ -50,9 +50,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Usage &amp; Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-functionalities">Basic functionalities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#applying-the-style-sheet-lizard-style">1. Applying the style sheet: lizard_style()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-the-qualitative-color-palette">2. Using the qualitative color palette</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-the-sequential-divergent-color-map">3. Using the sequential &amp; divergent color map</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#appending-a-biolizard-footer-finalise-lizardplot">4. Appending a BioLizard footer: finalise_lizardplot()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-color-palettes">2. Using the color palettes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#discrete-data">2.1 Discrete data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#continuous-data">2.2 Continuous data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#appending-a-biolizard-footer-finalise-lizardplot">3. Appending a BioLizard footer: finalise_lizardplot()</a></li>
 </ul>
 </li>
 </ul>
@@ -147,88 +148,31 @@
 </div>
 </div>
 </section>
-<section id="using-the-qualitative-color-palette">
-<h3>2. Using the qualitative color palette<a class="headerlink" href="#using-the-qualitative-color-palette" title="Link to this heading"></a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()</span></code> function <strong>retrieves a predefined qualitative colormap</strong>. For instance, <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal().colors</span></code> returns a list of all 12 colors in hex code. Calling <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()(0)</span></code> fetches the first color in the palette, while <code class="docutils literal notranslate"><span class="pre">biolizard_qualitative_pal()(range(5))</span></code> retrieves the first five colors.</p>
-<p>Here’s two examples illustrating how to use this function:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 1</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="c1"># Sample data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
-<span class="c1"># Using the colormap in Seaborn&#39;s swarmplot</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="p">()</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2444744/3626689180.py:6: UserWarning: The palette list has more values (12) than needed (3), which may not be intended.
-  sns.swarmplot(x=&quot;species&quot;, y=&quot;sepal_length&quot;, hue =&quot;species&quot;, data=data, palette=biolizard_qualitative_pal().colors)
-</pre></div>
-</div>
-<img alt="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" src="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" />
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Example 2</span>
-<span class="c1"># Data for the bar plot</span>
-<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+<section id="using-the-color-palettes">
+<h3>2. Using the color palettes<a class="headerlink" href="#using-the-color-palettes" title="Link to this heading"></a></h3>
+<!-- The `biolizard_qualitative_pal()` function **retrieves a predefined qualitative colormap**. For instance, `biolizard_qualitative_pal().colors` returns a list of all 12 colors in hex code. Calling `biolizard_qualitative_pal()(0)` fetches the first color in the palette, while `biolizard_qualitative_pal()(range(5))` retrieves the first five colors.
 
-<span class="c1"># Generate colors from the qualitative palette</span>
-<span class="n">palette</span><span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="p">()</span>
-<span class="n">bar_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">))]</span>
-
-<span class="c1"># Create the bar plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bar_colors</span><span class="p">)</span>
-
-<span class="c1"># Add title and labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/90e565901e4166f9f5aef3d99fe99b58f1f1b103f0d0b705d6b88a6ed198de0a.png" src="_images/90e565901e4166f9f5aef3d99fe99b58f1f1b103f0d0b705d6b88a6ed198de0a.png" />
-</div>
-</div>
-<p>following the conventions of matplotlib, adding the suffix ‘_r’ calls the reversed color palette.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate colors from the qualitative palette</span>
-<span class="n">palette</span><span class="o">=</span> <span class="n">biolizard_qualitative_pal_r</span><span class="p">()</span>
-<span class="n">bar_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">))]</span>
-
-<span class="c1"># Create the bar plot</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">bar_colors</span><span class="p">)</span>
-
-<span class="c1"># Add title and labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/f73a7923536ba0d253c860882b8efc6f568ca7f9d09867c0997d945f5fa69beb.png" src="_images/f73a7923536ba0d253c860882b8efc6f568ca7f9d09867c0997d945f5fa69beb.png" />
-</div>
-</div>
+Here's two examples illustrating how to use this function: -->
+<p>There are two discrete colormaps and 4 continuous colormaps available in the BioLizard style packages.
+Discrete:</p>
+<ul class="simple">
+<li><p>biolizard_qualitative_pal: Colorblind-safe qualitative color palette starting with Biolizard’s signature green, blue and yellow. This is the default for discrete data.</p></li>
+<li><p>biolizard_paired_pal: Colorblind-safe qualitative color palette inspired by Biolizard’s signature colors, especially suited for levels that are related 2-by-2.</p></li>
+</ul>
+<p>These colormaps are available as <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code> objects.</p>
+<p>Continuous:</p>
+<ul class="simple">
+<li><p>biolizard_hues_pal: Designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard’s signature green. DOES NOT generate colorblind-safe palettes.</p></li>
+<li><p>biolizard_sequential_pal: Sequential color palette inspired by Biolizard’s signature green.</p></li>
+<li><p>biolizard_divergent_pal: Divergent color palette inspired by Biolizard’s signature green.</p></li>
+<li><p>l_viridis_pal: Sequential color palette inspired by the viridis color scale, passing through Biolizard’s signature yellow and green. This is the default for continuous data.</p></li>
+</ul>
+<p>These colormaps are available as <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.LinearSegmentedColormap</span></code> objects and have also been registered with matplotlib and can be used by passsing their name to the <code class="docutils literal notranslate"><span class="pre">palette</span></code> (seaborn) or <code class="docutils literal notranslate"><span class="pre">cmap</span></code> (matplotlib) parameters, where available.</p>
 <p>Note that you can also access the three base colors using:</p>
 <ul class="simple">
-<li><p>blz_green (“#01a086”)</p></li>
-<li><p>blz_blue (#1e2237)</p></li>
-<li><p>blz_yellow (#e9b940)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blz_green</span></code> (“#01a086”)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blz_blue</span></code> (#1e2237)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blz_yellow</span></code> (#e9b940)</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -242,31 +186,310 @@
 </div>
 </div>
 </div>
+<section id="discrete-data">
+<h4>2.1 Discrete data<a class="headerlink" href="#discrete-data" title="Link to this heading"></a></h4>
+<p>Following color scales were designed for discrete data:</p>
+<p><strong>biolizard_qualitative_pal</strong>: Colorblind-safe qualitative color palette starting with Biolizard’s signature green, blue and yellow. This is the default for discrete data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAGJSURBVHic7dYvLgdwHIBhf5KumCmaO7iFLAiCIkmKzcwJbJLNCWzu4JcUyXW4wjf5zN7nOcEb3+3t18efrX/i6P59OmHZ5/PedMKSm83ldMKyk4fz6YQlu18f0wnLTl8uphOWnVzdTicsefs+nk5Ytr85nE5YcnZ3MJ2w7PrzaTph2c50AADw9wwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgKBfYgoROBz2AP4AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#01a086ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #01a086ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#71bd8bff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #71bd8bff;"></div></div></div></div>
+</div>
+<p><strong>biolizard_paired_pal</strong>: Colorblind-safe qualitative color palette inspired by Biolizard’s signature colors, especially suited for levels that are related 2-by-2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_paired_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAF5SURBVHic7daxMYRhFEBRtCDWzkZKUIFRjUC6M3YDM/6YWCTVwAYKUIGAJr7xZtxzKrjhPb97f/05+0eej4/TCcvsLq+nE5Z5O95PJyzz8XI7nbDM9+d+OmGZr6uH6YRltm2bTljm5nSaTljm6XCYTljqYjoAAPh7BgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABA0C9aYxQJEK0JYgAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#6cc7b7ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6cc7b7ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#860202ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #860202ff;"></div></div></div></div>
+</div>
+<p><strong>biolizard_hues_pal</strong>: Note that while this is technically a continuous scale, it is designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard’s signature green. DOES NOT generate colorblind-safe palettes.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_hues_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_hues_pal</strong> </div><div class="cmap"><img alt="biolizard_hues_pal colormap" title="biolizard_hues_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIXRFWHRUaXRsZQBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB72dNsAAAAJ3RFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB1Oei5AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJHSURBVHic7dZLbtswFAVQUv1up3vrdrrPFknNDkzJ8LMZGZ3ecybE+5DWIAhu//Hr52ittb9ta9ezl/Pafy/999l/m/Vbv55/Zv/37I95ttlvR13P1bz0x6v3Xtx7eG9x73Tv+Xt9nt/n+W3Ov876y36O663Ps97PT6PUR78t+ns9v36U+ezve1t573/rbdb1d7ej3uf3+3V+q5/fP7vXT9+9Nnqdz7Of7PU2Xtrvs95KffvrGB/ee6zLWb7n1q/7u9V8fDhvq73FvdW8tcuiX/cvT+fHXj/bW/RP7o29f/Z+v8zqrH//3qv9UX5/lO+v37m6v9obi+99uPfQX+wt3l/fW9TLvbaY1/7z+tLK/nKvLfbm/Kj7on8/r/vH+32v6zu97PfyfWX+8M5J/5hvd/X+/wkACCIAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACDQPzXA8dKSeDZgAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#319d74ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #319d74ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#669855ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #669855ff;"></div></div></div></div>
+</div>
+<p>Adding the suffix “_r” reverses these palettes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal_r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list_r</strong> </div><div class="cmap"><img alt="from_list_r colormap" title="from_list_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGnRFWHRUaXRsZQBmcm9tX2xpc3RfciBjb2xvcm1hcIMcdCsAAAAgdEVYdERlc2NyaXB0aW9uAGZyb21fbGlzdF9yIGNvbG9ybWFwEgIwfQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAABiElEQVR4nO3WIS4AcBxAYRxHUiTuYHMFyaboZlMUkiIIguwImjtoipmiS8YV/slv9r7vBC++zdOnq5+Nf+Jm92Q6Ydnjxcd0wpLPvffphGWH26/TCUtebi+nE5Y9H91PJyz73tmfTljycvYwnbDseu9uOmHJ7vHXdMKyt/OD6YRlW9MBAMDfMwAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAgn4BilUVpuF2H/YAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#71bd8bff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #71bd8bff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#01a086ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #01a086ff;"></div></div></div></div>
+</div>
+<p>Colors can be retrieved from the discrete colorscales by passing a range to the palettes (returns an array of rgba values), or by using the <code class="docutils literal notranslate"><span class="pre">.colors</span></code> attribute (returns a list of all colors in the palette).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.00392157, 0.62745098, 0.5254902 , 1.        ],
+       [0.11764706, 0.13333333, 0.21568627, 1.        ],
+       [0.91372549, 0.7254902 , 0.25098039, 1.        ],
+       [0.36470588, 0.49411765, 0.64705882, 1.        ],
+       [0.5254902 , 0.00784314, 0.00784314, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#01A086&#39;,
+ &#39;#1E2237&#39;,
+ &#39;#E9B940&#39;,
+ &#39;#5D7EA5&#39;,
+ &#39;#860202&#39;,
+ &#39;#89D2C6&#39;,
+ &#39;#C56F27&#39;,
+ &#39;#EED8A1&#39;,
+ &#39;#9CAEC3&#39;,
+ &#39;#B073DE&#39;,
+ &#39;#03F2F7&#39;,
+ &#39;#71BD8B&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> is encoded as a continuous color palette, passing a range will lilely NOT yeild the desired effect, as the continuous color scale is represented by a sequence of 255 colors. Passing e.g. <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> will only retrieve the first 5 of these 255 colors. Instead, use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to ensure all colors are spaced evenly across the colorscale:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncolors</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">rgbacolors</span> <span class="o">=</span> <span class="n">biolizard_hues_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncolors</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, you can use <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.rgb2hex</span></code> to obtain hex values if needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">rgbacolors</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#319d74&#39;, &#39;#4f93ba&#39;, &#39;#b975ad&#39;, &#39;#b4805c&#39;, &#39;#669855&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="seaborn">
+<h5>2.1.1 Seaborn<a class="headerlink" href="#seaborn" title="Link to this heading"></a></h5>
+<p>Note that biolizard_qualitative_pal is the default colorscale for discrete data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="c1"># Sample data</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" src="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" />
+</div>
+</div>
+<p>Other discrete colormaps can be chosen by specifying a list of colors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_paired_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot: manual discrete palette&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1885402/3631860700.py:1: UserWarning: The palette list has more values (10) than needed (3), which may not be intended.
+  sns.swarmplot(x=&quot;species&quot;, y=&quot;sepal_length&quot;, hue =&quot;species&quot;, data=data, palette=biolizard_paired_pal.colors)
+</pre></div>
+</div>
+<img alt="_images/656e7ad4950170fcc46ac9d75a9a5d785ab45ecb0c4032dab7d950d2ea9962c7.png" src="_images/656e7ad4950170fcc46ac9d75a9a5d785ab45ecb0c4032dab7d950d2ea9962c7.png" />
+</div>
+</div>
+<p>Continuous colormaps can be referenced by their name, this ensures that colors are picked across the entire range of the continous scale:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_sequential_pal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot: manual continuous palette&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/70e3d7bc79756f70cfa8d484472d338ec94f0dfd1ea4e0cadde6a3b0a1be8e38.png" src="_images/70e3d7bc79756f70cfa8d484472d338ec94f0dfd1ea4e0cadde6a3b0a1be8e38.png" />
+</div>
+</div>
 </section>
-<section id="using-the-sequential-divergent-color-map">
-<h3>3. Using the sequential &amp; divergent color map<a class="headerlink" href="#using-the-sequential-divergent-color-map" title="Link to this heading"></a></h3>
-<p>When you load this package, it automatically <strong>registers two new colormaps in matplotlib</strong>: a Sequential colormap and a Divergent colormap: <strong>“biolizard_sequential_pal”</strong> and <strong>“biolizard_divergent_pal”</strong>. Both <strong>strings</strong> are now recognized my matplotlib.</p>
-<p><strong>Sequential</strong></p>
-<p>The Sequential Biolizard Color Map is tailored to depict underlying numerical values via a uniform progression in luminance. It employs the distinctive <strong><span style="color:#01a086">BioLizard green</span></strong> as its base hue. The palette uses HCL gradients for better perceptual uniformity compared to RGB, and uses a triangular chroma progression to distinguish middle-range values from extremes.</p>
-<p><strong>Divergent</strong></p>
-<p>This colormap is specifically designed for scenarios where the color corresponds to numerical values that have a natural midpoint. It utilizes a triangular luminance sequence with differing hues in each “arm” of the palette. Chroma and luminance are balanced between the two arms, and the neutral central value has zero chroma. The palette employs hues <strong><span style="color:#9C7000">60</span></strong> and <strong><span style="color:#01a086">170</span></strong>, the latter being Biolizard’s distinctive green. This hue combination ensures that the palette is accessible for all major forms of color blindness.</p>
-<p>Here an example illustrating how to use these palettes:</p>
+<section id="matplotlib">
+<h5>2.1.2 Matplotlib<a class="headerlink" href="#matplotlib" title="Link to this heading"></a></h5>
+<p>Colors from the discrete scale can be passed to the <code class="docutils literal notranslate"><span class="pre">color</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">plt.bar</span></code> for example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data for the bar plot</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+
+<span class="c1"># Create the bar plot</span>
+<span class="c1"># .colors returns a list that can be used for the color parameter </span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">biolizard_paired_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+
+<span class="c1"># Add title and labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/301920f5c4c251a21ec17256326b208644bfff5220f1b84cddd61f43221b7c0d.png" src="_images/301920f5c4c251a21ec17256326b208644bfff5220f1b84cddd61f43221b7c0d.png" />
+</div>
+</div>
+<p>Note that in case the colorscale contains less levels than the data, colors are recycled without warning!</p>
+<p>To use a continuous scale, we need to take colors at regular intervals across the colormap:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take colors at regular intervals across the colormap</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">biolizard_hues_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">categories</span><span class="p">)))</span>
+
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
+
+<span class="c1"># Add title and labels</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/abc530885446398cb8cbbf48cfd3de54ddc37deef0efaa8663df5b13f49e0a04.png" src="_images/abc530885446398cb8cbbf48cfd3de54ddc37deef0efaa8663df5b13f49e0a04.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="continuous-data">
+<h4>2.2 Continuous data<a class="headerlink" href="#continuous-data" title="Link to this heading"></a></h4>
+<p>Following color scales were designed for continous data:</p>
+<p><strong>l_viridis_pal</strong>: Sequential color palette inspired by the viridis color scale, passing through Biolizard’s signature yellow and green. This is the default for continuous data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_viridis_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>l_viridis_pal_r_r</strong> </div><div class="cmap"><img alt="l_viridis_pal_r_r colormap" title="l_viridis_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIHRFWHRUaXRsZQBsX3ZpcmlkaXNfcGFsX3JfciBjb2xvcm1hcBSYw5QAAAAmdEVYdERlc2NyaXB0aW9uAGxfdmlyaWRpc19wYWxfcl9yIGNvbG9ybWFwLysknAAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAAB8UlEQVR4nO3WTVICMRRG0cQtul8X5oA4gMYi4dmxsJx850yo7vyKDG7//HgfrbV2aVfH52jj+jyO52N8TM/T+H3+eD5+PI+T8V/vV6xfxnfv/9/j/aX1l9v68ntY1vW98XK/af3u+O398nub3pf73O85zd9cv3/OfP/H72N33fp/Lb7Xs33mexf7Vb+jef/1vGq/af7uvOKex8DuujafM61r1brinm2eN53flv2L52N+ce7uOd8Dz8+p9+t784pzlufq/JP7tJO/53z97ePF9a+ef/7+5++7/9l5vXi/u09/vM/JOW8NAIgjAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEBflg0laR4rrq4AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fabf54ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fabf54ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#1a487aff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #1a487aff;"></div></div></div></div>
+</div>
+<p><strong>biolizard_sequential_pal</strong>: Sequential color palette inspired by Biolizard’s signature green.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_sequential_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_sequential_pal</strong> </div><div class="cmap"><img alt="biolizard_sequential_pal colormap" title="biolizard_sequential_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJ3RFWHRUaXRsZQBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXCTS29EAAAALXRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXDbqAd9AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAHUSURBVHic7dbBUtswFEBR0///ynwFnRKbBU47iBGOQ2Fzz1lFmTxJ0eo+XS6XbVmWZVvebNvbp23/Zl9+sr79/s7579r35Pz60+cf7vt+vZ6+19fuuc7mHzzn4/v+5/lhbj35PvP3He/x+X7rwXtN3/XDve87d9xvvfPc8ZzZejx3tr7tP777OvvdcI91OPc6ucd1n78OvxvXL/v6ZZ/7s8/93tfPwz3+/qPb8t+HfTlbT+aO1o/OTe/xxbmj//fo3OE7VPe5c9/T+4z3Ojf3awEAcgQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgKBXmcGsRl6b5tgAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#e2e2e2ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #e2e2e2ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#006c4cff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #006c4cff;"></div></div></div></div>
+</div>
+<p><strong>biolizard_divergent_pal</strong>: Divergent color palette inspired by Biolizard’s signature green.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_divergent_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal colormap" title="biolizard_divergent_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbCBjb2xvcm1hcHsBaw4AAAAsdEVYdERlc2NyaXB0aW9uAGJpb2xpemFyZF9kaXZlcmdlbnRfcGFsIGNvbG9ybWFwKl8ZqQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAAB90lEQVR4nO3WSU7DQBRF0W/TCLFaFsQqEQOaBDOgEhSTih1QmLxzJqWq7y6T6A6PDzVVVQ1D1bG1OudL89X31cJ8uGvrfTu4bfvdet3Wmzbf7a8O5rXfH19rGFeejyfPl+b78+pdf+nz4bzrxzOvX3z+cPR87XXf1/fe89f3n35ujeu+Z/k7l75n5e8b//YdOx/T9LXWdLifr535tJ9/nHXf/88v+33bM+/f9s479/14fue98/t7821vPjufr5vOfDObb+bnbX1v8/e2f2vra1tf2vy57Z/aWu28ps762/mlnvvr99a//J7DfwEAIIIAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAn0CCbEykUoZWQIAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9c7000ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9c7000ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#009370ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009370ff;"></div></div></div></div>
+</div>
+<p>Adding the suffix “_r” reverses these palettes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_divergent_pal_r</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal_r_r colormap" title="biolizard_divergent_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAKnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXCVsAMHAAAAMHRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXAqLY89AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJFSURBVHic7dYxctQwAIZR2YaBAu7KXbgrwyRkTYHkHSnRxga6/71GY1mS7U2Rbynfv+2llFLKUodhbI75dbh/dt/SLT/Ome6fzJ++X/p169n3np3bzlsn9/v9X+vllzr/ue77VK/b+LGNdd+HpR+3Y77Uce3vt/Wlv17r+u04Z63zb59/39dfL+1+/bqt/o7H+jLbV/r5+vxtHdYP+9fh3GX4nvb943PH8Xj+sW54/nR/f377s96/7+Lzl3XY/97zh+8/zmn7t+F3ee93e/x7H/bbn6GOZd+769l8ud2Gdfup88qw/vX8tfd4/T5vv8f8/c69z9nvu/6d//b86frbxfVXz/9f82W2/uXhOfP74/zLqfn7/Xb9a5hv18/D/ad6/6le/6jjzzpfh3Es5fH9/fH9v93XxvZfGAAIIgAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAvwGCpD+aUziFqgAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#009370ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009370ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#9c7000ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9c7000ff;"></div></div></div></div>
+</div>
+<p>Colors can be retrieved from the continuous colorscales by passing an array of the desired length to the palettes, this returns an array of rgba values. Note that internally, each continuous color scale is represented as a sequence of 255 colors. All these colors can be retrieved by passing range(255) to your color scale of choice:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_viridis_pal</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.98047708, 0.74741876, 0.32824584, 1.        ],
+       [0.97453872, 0.74675386, 0.3270615 , 1.        ],
+       [0.96860339, 0.74608207, 0.3259049 , 1.        ],
+       ...,
+       [0.10233947, 0.28989547, 0.47624979, 1.        ],
+       [0.10272789, 0.28712708, 0.47695401, 1.        ],
+       [0.10313784, 0.28434012, 0.47768985, 1.        ]])
+</pre></div>
+</div>
+</div>
+</div>
+<p>When manually selecting colors from the palette, use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to ensure colors are spaced evenly across the palette:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncolors</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">rgbacolors</span> <span class="o">=</span> <span class="n">l_viridis_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncolors</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lastly, you can use <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.rgb2hex</span></code> to obtain hex values if needed:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">rgb2hex</span><span class="p">(</span><span class="n">col</span><span class="p">)</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">rgbacolors</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#fabf54&#39;,
+ &#39;#d0b94e&#39;,
+ &#39;#a5b24f&#39;,
+ &#39;#79a957&#39;,
+ &#39;#519e62&#39;,
+ &#39;#318f6d&#39;,
+ &#39;#1f7e74&#39;,
+ &#39;#196c76&#39;,
+ &#39;#195b77&#39;,
+ &#39;#1a487a&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h5>2.2.1 Matplotlib<a class="headerlink" href="#id1" title="Link to this heading"></a></h5>
+<p>Note that l_viridis is the default colorscale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Example data</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_sequential_pal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;l_viridis_pal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># l_viridis is the default in matplotlib:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -274,37 +497,75 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b87e9ffb180c83c293eef626fbcfe4858e3a8e088951ca117caa740394f37a5b.png" src="_images/b87e9ffb180c83c293eef626fbcfe4858e3a8e088951ca117caa740394f37a5b.png" />
-<img alt="_images/5975fb41fdc85f03e807bcb12051a5caf5869126a3b03c68d4f20f6bccd17178.png" src="_images/5975fb41fdc85f03e807bcb12051a5caf5869126a3b03c68d4f20f6bccd17178.png" />
-<img alt="_images/6fdb92ed5ffb44724cf8af22c38d5153794fcaa853a0c8d9881489cb9f97aa74.png" src="_images/6fdb92ed5ffb44724cf8af22c38d5153794fcaa853a0c8d9881489cb9f97aa74.png" />
-<img alt="_images/6fdb92ed5ffb44724cf8af22c38d5153794fcaa853a0c8d9881489cb9f97aa74.png" src="_images/6fdb92ed5ffb44724cf8af22c38d5153794fcaa853a0c8d9881489cb9f97aa74.png" />
+<img alt="_images/6efd2c97b263d21e1149164ffa7450926dfddbec2bd9c9f401f7f509328910ae.png" src="_images/6efd2c97b263d21e1149164ffa7450926dfddbec2bd9c9f401f7f509328910ae.png" />
 </div>
 </div>
-<p>The corresponding palettes with suffix ‘_r’ reverse the colors:</p>
+<p>The continous palettes have been registered with matplotlotlib and their names can be passed to the <code class="docutils literal notranslate"><span class="pre">cmap</span></code> parameter to change the continuous scale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_sequential_pal_r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_sequential_pal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal_r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;l_viridis_pal_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/813f01ad4d0bb837575260182370104fe957b894deec61c6f7143d91d74ec6a3.png" src="_images/813f01ad4d0bb837575260182370104fe957b894deec61c6f7143d91d74ec6a3.png" />
-<img alt="_images/93125d8548bcfb6be5536df59d54542928b89192bb06c72ae94f7902e255539d.png" src="_images/93125d8548bcfb6be5536df59d54542928b89192bb06c72ae94f7902e255539d.png" />
-<img alt="_images/0ae43162e8267192c5607d69d7b0257e3fd1075ad31b5c54e332e3c08314944c.png" src="_images/0ae43162e8267192c5607d69d7b0257e3fd1075ad31b5c54e332e3c08314944c.png" />
+<img alt="_images/a9596d80067d4715be2b86148c0ac061970626d19380a278ce348d00a39678e5.png" src="_images/a9596d80067d4715be2b86148c0ac061970626d19380a278ce348d00a39678e5.png" />
+<img alt="_images/c52289a71773b7dec7edf6b2a1b3ec83d5db09194a1c332ddb708aa91f79dff3.png" src="_images/c52289a71773b7dec7edf6b2a1b3ec83d5db09194a1c332ddb708aa91f79dff3.png" />
 </div>
 </div>
+<p>The corresponding palettes with suffix ‘_r’ reverse the colors:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal_r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/b4289f0135c76bfd74b0ac25537e3b0a5f1e48244865c8f73cf45c41a6e5472d.png" src="_images/b4289f0135c76bfd74b0ac25537e3b0a5f1e48244865c8f73cf45c41a6e5472d.png" />
+</div>
+</div>
+</section>
+<section id="id2">
+<h5>2.2.2 Seaborn<a class="headerlink" href="#id2" title="Link to this heading"></a></h5>
+<p>!! default not working for some reason:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/44be4ceb4382486281fe828c3497312eb97c8bbcdc676b64554d296ee90c856c.png" src="_images/44be4ceb4382486281fe828c3497312eb97c8bbcdc676b64554d296ee90c856c.png" />
+</div>
+</div>
+<p>The names of the palettes can be passed to the <code class="docutils literal notranslate"><span class="pre">palette</span></code> parameter to change the continuous scale:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_sequential_pal&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/2b4c5eb82d21eb627f298e2c05d6641a5488e7207e1ab3aead40cd2987387bc4.png" src="_images/2b4c5eb82d21eb627f298e2c05d6641a5488e7207e1ab3aead40cd2987387bc4.png" />
+</div>
+</div>
+</section>
+</section>
 <section id="appending-a-biolizard-footer-finalise-lizardplot">
-<h4>4. Appending a BioLizard footer: finalise_lizardplot()<a class="headerlink" href="#appending-a-biolizard-footer-finalise-lizardplot" title="Link to this heading"></a></h4>
+<h4>3. Appending a BioLizard footer: finalise_lizardplot()<a class="headerlink" href="#appending-a-biolizard-footer-finalise-lizardplot" title="Link to this heading"></a></h4>
 <p>The <code class="docutils literal notranslate"><span class="pre">finalise_lizardplot</span></code> function finalizes a matplotlib plot by appending a footer at the bottom and saving the resulting image. The footer includes a BioLizard logo and a customizable source text.</p>
 <p><strong>Parameters</strong></p>
 <ul class="simple">
@@ -318,8 +579,7 @@
 <p>Here’s an example:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
@@ -417,32 +677,27 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0f55b1758f486d4f648d52b6ca793b28ee87237ba982a37d9415ff96c29a8915.png" src="_images/0f55b1758f486d4f648d52b6ca793b28ee87237ba982a37d9415ff96c29a8915.png" />
+<img alt="_images/04c37785cdc537a9b533d5440d2829132557fb519c1032334d89d2fdf328cd0f.png" src="_images/04c37785cdc537a9b533d5440d2829132557fb519c1032334d89d2fdf328cd0f.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">palette</span><span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="p">()</span>
-<span class="n">my_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
-
-<span class="c1"># specify hue to show the three species</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
-           <span class="n">palette</span><span class="o">=</span><span class="n">my_colors</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify hue to show the three species</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7634df028710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7bc34a543170&gt;
 </pre></div>
 </div>
-<img alt="_images/22004a52765111ed4159e3ead01295e4604b1bbf666a1ab88299e72cb37e4316.png" src="_images/22004a52765111ed4159e3ead01295e4604b1bbf666a1ab88299e72cb37e4316.png" />
+<img alt="_images/eac062bf8cbb7d79068e7a3831960ee98b4d4e2d7e840814c800bd3f304744c4.png" src="_images/eac062bf8cbb7d79068e7a3831960ee98b4d4e2d7e840814c800bd3f304744c4.png" />
 </div>
 </div>
 <p>Note that using the reversed palette starts picking the colors from the end of the palette. If you want to pick the colors you need, and reverse them afterward (eg yellow-blue-green instead of green-blue-yellow), use the regular palette and reverse the colors after picking them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">palette</span><span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="p">()</span>
-<span class="n">my_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">palette</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_colors</span> <span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 
 <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
 
@@ -462,7 +717,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2444744/272072304.py:17: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1885402/3460807827.py:16: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()
 </pre></div>
 </div>
@@ -481,7 +736,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7634df198bc0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7bc34a005eb0&gt;
 </pre></div>
 </div>
 <img alt="_images/ccb86c22c27e921201d69b0753ca84774e4b4c73394358ad3258794f36e5a6a4.png" src="_images/ccb86c22c27e921201d69b0753ca84774e4b4c73394358ad3258794f36e5a6a4.png" />
@@ -499,7 +754,9 @@ In this example, more colors are requested than are present in the qualitative c
 <span class="c1"># Sample data</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">896</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">654</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Group&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span>
-<span class="n">colors</span> <span class="o">=</span> <span class="n">biolizard_hues_pal</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+
+<span class="c1"># take colors at regular intervals across the colormap</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="n">biolizard_hues_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)))</span>
 
 <span class="c1"># Treemap</span>
 <span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
@@ -514,7 +771,7 @@ In this example, more colors are requested than are present in the qualitative c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b8284bf802617d063d65ec3b5cd72acb3cc2d8c076ce02222b69fa80fc442fd5.png" src="_images/b8284bf802617d063d65ec3b5cd72acb3cc2d8c076ce02222b69fa80fc442fd5.png" />
+<img alt="_images/607155767ca0515ae66ef1fc2f40fd393f0dd0181b9617175ff1a5d6371a2b57.png" src="_images/607155767ca0515ae66ef1fc2f40fd393f0dd0181b9617175ff1a5d6371a2b57.png" />
 </div>
 </div>
 </section>
@@ -545,7 +802,7 @@ In this example, more colors are requested than are present in the qualitative c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/1f4315ecd69d8e5a6a2e80664e46efc22e30ac0f8896e019d74b18f000f6c82d.png" src="_images/1f4315ecd69d8e5a6a2e80664e46efc22e30ac0f8896e019d74b18f000f6c82d.png" />
+<img alt="_images/f272e7d9c88e3104f877deca34186e40e6fd4bea69e4e41c985f1cba4ab2cebd.png" src="_images/f272e7d9c88e3104f877deca34186e40e6fd4bea69e4e41c985f1cba4ab2cebd.png" />
 </div>
 </div>
 </section>
