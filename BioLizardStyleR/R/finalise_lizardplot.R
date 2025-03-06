@@ -11,6 +11,10 @@
 #' @param height Height of the output image in pixels.
 #' @param save_filepath Path where the plot should be saved.
 #' @param device The output format (e.g., "png", "pdf", "svg", "ps").
+#' @importFrom grid grid.draw
+#' @importFrom ggplot2 ggsave
+#' @importFrom grDevices dev.off
+#' @importFrom Cairo CairoPDF CairoSVG CairoPS
 save_plot <- function (plot_grid, width, height, save_filepath, device) {
 
   if (device == "png") {
@@ -26,7 +30,7 @@ save_plot <- function (plot_grid, width, height, save_filepath, device) {
     )
 
     grid::grid.draw(plot_grid)
-    dev.off()
+    grDevices::dev.off()
   }
 }
 

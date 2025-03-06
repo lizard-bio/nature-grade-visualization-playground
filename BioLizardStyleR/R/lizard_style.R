@@ -105,3 +105,80 @@ lizard_style <- function() {
   )
 
 }
+
+
+#' Apply the lizard layout to a plotly plot
+#'
+#' This function applies a predefined 'Lizard' style to a plotly plot. It sets specific font types,
+#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
+#' It does not yet work with ggplotly.
+#'
+#' Adapted from: https://github.com/plotly/plotly.R/issues/2117
+#'
+#' @param fig A plotly figure created with standard plotly language.
+#' @param ... Further arguments for the plotly::layout() function
+#' @return A plotly figure in the BioLizard style
+#' @export
+#'
+#' @examples
+#' library(plotly)
+#' # Works with plotly
+#' plot_ly(
+#'   mtcars,
+#'   type = "scatter",
+#'   mode = "markers",
+#'   x = ~mpg,
+#'   y = ~disp,
+#'   color = ~gear,
+#'   colors = biolizard_pal_l_viridis(4)) |> lizard_layout()
+#'
+#' # Works with ggplotly
+#' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+#' ggplotly(p) |> lizard_layout()
+lizard_layout <- function(fig, ...) {
+  # Get the local font file path
+  lato_path <- system.file("fonts/Lato-Regular.ttf", package = "BioLizardStyleR")
+
+  # Check if the file exists
+  if (!file.exists(lato_path)) {
+    stop("Error: Lato font not found in package. Ensure it's in inst/fonts/")
+  }
+
+  # Create CSS to load the font
+  lato_css <- paste0(
+    "<style type='text/css'>",
+    "@font-face { font-family: 'lato'; src: url('", lato_path, "'); }",
+    "body, text { font-family: 'lato'; }",
+    "</style>"
+  )
+
+  # Add the CSS as an HTML dependency
+  fig$dependencies <- c(
+    fig$dependencies,
+    list(
+      htmltools::htmlDependency(
+        name = "lato-font",
+        version = "0",
+        src = c(file = system.file("fonts", package = "BioLizardStyleR")),
+        stylesheet = "Lato-Regular.ttf",
+        head = lato_css
+      )
+    )
+  )
+
+  # Adapt layout
+  fig <- fig |> plotly::layout(
+    font = list(family = "lato"),
+    title = list(font = list(size = 16, color = "#222222")),
+    legend = list(font = list(size = 10),
+                  title = list(font = list(color = "#222222", size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    paper_bgcolor = "white",
+    plot_bgcolor = "white",
+    ...
+  )
+
+  return(fig)
+}
+

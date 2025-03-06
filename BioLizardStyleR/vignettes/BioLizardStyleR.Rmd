@@ -20,11 +20,12 @@ knitr::opts_chunk$set(
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 # 1. Installation
-To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package.
+To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. If the installation 
+fails due to an error with the fonts, please follow step 2.
 
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
+install.packages("devtools")
 }
 
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
@@ -34,13 +35,31 @@ devtools::install_github("lizard-bio/nature-grade-visualization-playground", sub
 library(BioLizardStyleR)
 ```
 
+```{r include = FALSE}
+vignette_packages <- c("lemon", "treemapify", "highcharter", "treemap", "corrr", "forcats",
+    "plotly", "pasilla", "edgeR", "sf", "rnaturalearth", "rnaturalearthdata", "hexbin")
+
+missing_packages <- vignette_packages[!vignette_packages %in% installed.packages()[, "Package"]]
+if (length(missing_packages) > 0) {
+  eval_packages_installed <- FALSE
+} else {
+  eval_packages_installed <- TRUE
+}
+```
+
+```{r, eval = !eval_packages_installed, results = "asis", echo = FALSE}
+cat(paste0("<span style = \"color: red;\">Please install the following packages to fully enjoy this vignette: ",
+           "\`install.packages(c(", paste0(paste0("\"", missing_packages, "\""), collapse = ", "), "))\`</span>"))
+cat("\n")
+```
+
 # 2. Font Installation
 
-The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. If not yet installed, Lato is automatically installed when loading the package. This automatic installation relies on the [gdtools](https://github.com/davidgohel/gdtools) package, which supports debian, macos and windows platforms. In case you are using a different platform, or if this automatic installation fails on your system, you can install it manually using the following steps:
+The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. If not yet installed, Lato is automatically installed when loading the package. This automatic installation relies on the [sysfonts](https://github.com/yixuan/sysfonts) package, which supports debian and windows platforms. In case you are using a different platform, or if this automatic installation fails on your system, you can install it manually using the following steps:
 
 1. **Download Fonts**: Download the font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
 2. **Install Fonts**: Install the downloaded fonts on your system. For most systems a font manager is available/can be installed to help with this.
-3. **Register Font**: Once the installation is done, you can run `install_biolizard_fonts()` **without any arguments** to register the font with the extrafont package. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb package to reset its database.
+3. **Register Fonts**: On other systems, once the installation is done, you can run `install_biolizard_fonts()` **without any arguments** to register the font with the extrafont package. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb package to reset its database.
 
 Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions. 
 
@@ -48,17 +67,17 @@ Note that this installation is a one-time process and normally doesn't need to b
 
 Transforming your ggplot to match the BioLizard style involves a three-step process. Let's illustrate this on a basic ggplot.
 
-```{r , fig.width=6}
+```{r, fig.width=6}
 library(ggplot2)
 data("mtcars")
 mtcars$gear <- factor(mtcars$gear, levels = c(3, 4, 5), ordered = TRUE)
 
-testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) + 
-              geom_point(aes(color = gear),size=3) +  
-              labs(title = "Miles per Gallon vs. Horsepower",  
-                   x = "Horsepower",  
-                   y = "Miles per Gallon",  
-                   color = "Gears")
+testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) + 
+  ggplot2::geom_point(ggplot2::aes(color = gear),size=3) +  
+  ggplot2::labs(title = "Miles per Gallon vs. Horsepower",  
+                 x = "Horsepower",  
+                 y = "Miles per Gallon",  
+                 color = "Gears")
 testplot
 ```
 
@@ -66,7 +85,7 @@ testplot
 
 In the initial step, we implement the biolizard theme through the `lizard_style()` function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you might need to make further theme adjustments.
 
-```{r , fig.width=6}
+```{r, fig.width=6}
 testplot <- testplot + lizard_style()
 testplot
 ```
@@ -79,14 +98,14 @@ Once you've styled your plot, you can enhance it with a 'BioLizard' color palett
 
 The coloring functions within the package adhere to a flexible structure: scale_color/fill_biolizard. The type (discrete/continuous) and the scheme (qualitative/sequential/divergent) must be determined as function parameters.
 
-```{r , fig.width=6}
+```{r, fig.width=6}
 data("mtcars")
 mtcars$gear <- as.factor(mtcars$gear)
 
 # Base plot
-testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
-  geom_point(aes(color = gear), size=3) +
-  labs(
+testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
+  ggplot2::geom_point(aes(color = gear), size=3) +
+  ggplot2::labs(
     title = "Miles per Gallon vs. Horsepower",
     x = "Horsepower",
     y = "Miles per Gallon",
@@ -94,27 +113,37 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg)) +
   )
 
 # Applying the qualitative color scale
-testplot_qualitative <- testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative") + lizard_style()
+testplot_qualitative <- testplot + 
+  scale_color_biolizard(type = "discrete", scheme = "qualitative") + 
+  lizard_style()
 testplot_qualitative
 
 # Applying the sequential color scales (assuming you have a different dataset or aesthetic)
 ## viridis-like scale
-testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "l_viridis") + lizard_style()
+testplot_sequential <- testplot + 
+  scale_color_biolizard(type = "discrete", scheme = "l_viridis") + 
+  lizard_style()
 testplot_sequential
 
-## greens scale
-testplot_sequential <- testplot + scale_color_biolizard(type = "discrete", scheme = "greens") + lizard_style()
+## sequential scale inspired by BioLizard green
+testplot_sequential <- testplot + 
+  scale_color_biolizard(type = "discrete", scheme = "sequential") + 
+  lizard_style()
 testplot_sequential
 
 # Applying the divergent color scale (assuming you have a different dataset or aesthetic)
-testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent") + lizard_style()
+testplot_divergent <- testplot + 
+  scale_color_biolizard(type = "discrete", scheme = "divergent") + 
+  lizard_style()
 testplot_divergent
 ```
 
 It is possible to reverse the color scales by setting `reverse = TRUE`
 
-```{r , fig.width=6}
-testplot_divergent <- testplot + scale_color_biolizard(type = "discrete", scheme = "divergent", reverse = TRUE) + lizard_style()
+```{r, fig.width=6}
+testplot_divergent <- testplot + 
+  scale_color_biolizard(type = "discrete", scheme = "divergent", reverse = TRUE) +
+  lizard_style()
 testplot_divergent
 ```
 
@@ -125,16 +154,15 @@ The discrete color palettes can also be called directly, in case you would like 
 mycolors <- biolizard_pal_sequential(3, reverse = TRUE)
 gearcolors <- mycolors[as.factor(mtcars$gear)]
 
-plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
-legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
+graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 
 #use BLZ base colors
 mycolors <- c(blz_green, blz_blue, blz_yellow)
 gearcolors <- mycolors[as.factor(mtcars$gear)]
 
-plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
-legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
-
+graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 ```
 
 
@@ -143,8 +171,11 @@ legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty =
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`. The `device` argument allows to choose from the file types "png" (default), "pdf", "svg", or "ps".
 
 ```{r}
-finalise_lizardplot(testplot + scale_color_biolizard(type = "discrete", scheme = "qualitative") + lizard_style(),
-                    source='Source: The mtcars dataset')
+finalise_lizardplot(
+  testplot + 
+    scale_color_biolizard(type = "discrete", scheme = "qualitative") + 
+    lizard_style(),
+  source='Source: The mtcars dataset')
 ```
 
 ## 3.4 Reset ggplot2 defaults
@@ -154,12 +185,12 @@ Note that calling `lizard_style()` will overwrite the default colors for points,
 In the plot below, the points are shown in <span style="color: #01a086;">BioLizard green</span>. Using `reset_colors()` will revert these changes:
 
 ```{r, fig.show='hold'}
-p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, disp)) + 
+  ggplot2::geom_point()
 p
 
 reset_colors()
 p
-
 ```
 
 # 4. Examples
@@ -171,8 +202,8 @@ x = 1:8
 y = 1:8
 
 df <- data.frame(x=x, y=y)
-ggplot(df, aes(x=x, y=y, fill = factor(x))) +
-  geom_col() +
+ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, fill = factor(x))) +
+  ggplot2::geom_col() +
   scale_fill_biolizard() +
   lizard_style()
 ```
@@ -180,7 +211,6 @@ ggplot(df, aes(x=x, y=y, fill = factor(x))) +
 ## 4.2 Simple polygon plot
 
 ```{r}
-
 ids <- factor(c("1.1", "2.1", "1.2", "2.2", "1.3", "2.3"))
 values <- data.frame(
   id = ids,
@@ -195,58 +225,54 @@ positions <- data.frame(
 )
 
 datapoly <- merge(values, positions, by = c("id"))
-ggplot(datapoly, aes(x = x, y = y)) +
-  geom_polygon(aes(group = id, fill = id)) +
-  scale_fill_biolizard(type = "discrete", scheme = "greens") +
+
+ggplot2::ggplot(datapoly, ggplot2::aes(x = x, y = y)) +
+  ggplot2::geom_polygon(ggplot2::aes(group = id, fill = id)) +
+  scale_fill_biolizard(type = "discrete", scheme = "sequential") +
   lizard_style()
-
-
 ```
 
 ## 4.3 Simple box plot
 
-```{r , fig.width=4}
-ggplot(data = mtcars, aes(x = as.factor(gear), y = mpg)) +
-  geom_boxplot() +
-  labs(
+```{r, fig.width=4}
+ggplot2::ggplot(data = mtcars, ggplot2::aes(x = as.factor(gear), y = mpg)) +
+  ggplot2::geom_boxplot() +
+  ggplot2::labs(
     title = "Miles per Gallon vs. Gears",
     x = "Gears",
     y = "Miles per Gallon"
   ) +
   lizard_style()
-
 ```
 
 A violin plot is similar to a boxplot, but captures more information on the data distribution:
 
 ```{r , fig.width=4}
-ggplot(data = mtcars, aes(x = as.factor(gear), y = mpg)) +
-  geom_violin() +
-  labs(
+ggplot2::ggplot(data = mtcars, ggplot2::aes(x = as.factor(gear), y = mpg)) +
+  ggplot2::geom_violin() +
+  ggplot2::labs(
     title = "Miles per Gallon vs. Gears",
     x = "Gears",
     y = "Miles per Gallon"
   ) +
   lizard_style()
-
 ```
 
 ## 4.5 Simple density plot
 
 ```{r , fig.width=4}
-ggplot(data = mtcars, aes(x = mpg)) +
-  geom_density() +
+ggplot2::ggplot(data = mtcars, ggplot2::aes(x = mpg)) +
+  ggplot2::geom_density() +
   lizard_style()
 ```
 
 ## 4.6 Simple scatterplot
 
 ```{r , fig.width=6}
-
-ggplot(data = mtcars, aes(x = hp, y = mpg)) +
-  geom_point(aes(color= mpg)) +
-  geom_smooth() +
-  labs(
+ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
+  ggplot2::geom_point(ggplot2::aes(color= mpg)) +
+  ggplot2::geom_smooth() +
+  ggplot2::labs(
     title = "Miles per Gallon vs. horsepower",
     x = "Horsepower",
     y = "Miles per Gallon",
@@ -255,7 +281,6 @@ ggplot(data = mtcars, aes(x = hp, y = mpg)) +
   ) +
   scale_color_biolizard(type = "continuous", scheme = "l_viridis") +
   lizard_style()
-
 ```
 
 ## 4.7 Facets
@@ -263,46 +288,40 @@ Faceting is a great way to lay out related plots side-by-side, with the axes eit
 
 ```{r,  fig.show='hold', fig.width=3.3}
 # use facet_wrap to stratify plots by one variable
-ggplot(mtcars, aes(x=mpg, y=hp)) +
-  geom_point() +
-  facet_wrap(vars(gear)) +
+ggplot2::ggplot(mtcars, ggplot2::aes(x=mpg, y=hp)) +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(ggplot2::vars(gear)) +
   lizard_style() +
-  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+  ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, angle = 90, vjust = 0.5))
 
 
 # use facet_grid for two variables
-ggplot(mtcars, aes(x=mpg, y=hp)) +
-  geom_point() +
-  facet_grid(rows = vars(gear), cols = vars(carb)) +
+ggplot2::ggplot(mtcars, ggplot2::aes(x=mpg, y=hp)) +
+  ggplot2::geom_point() +
+  ggplot2::facet_grid(rows = ggplot2::vars(gear), cols = ggplot2::vars(carb)) +
   lizard_style() +
-  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
-
+  ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, angle = 90, vjust = 0.5))
 ```
 
 Note that the minimal style makes it difficult to distinguish the different blocks from each other. Readability of the figure is improved by plotting the axes for each plot, but they are removed by `facet_grid` and `facet_wrap` when the plots are on the same scale. The similar functions `facet_rep_grid` and `facet_rep_wrap` from the lemon package are more suitable with the lizard style, since they will show all axes.
 
-```{r,  fig.show='hold', fig.width=3.3}
-if(!require("lemon", quietly = TRUE)){
-  BiocManager::install("lemon")
-}
-
-library(lemon)
+```{r, eval = eval_packages_installed, fig.show='hold', fig.width=3.3}
+library("lemon")
 
 # use facet_wrap to stratify plots by one variable
-ggplot(mtcars, aes(x=mpg, y=hp)) +
-  geom_point() +
-  facet_rep_wrap(vars(gear)) +
+ggplot2::ggplot(mtcars, ggplot2::aes(x=mpg, y=hp)) +
+  ggplot2::geom_point() +
+  lemon::facet_rep_wrap(ggplot2::vars(gear)) +
   lizard_style() +
-  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
+  ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, angle = 90, vjust = 0.5))
 
 
 # use facet_grid for two variables
-ggplot(mtcars, aes(x=mpg, y=hp)) +
-  geom_point() +
-  facet_rep_grid(rows = vars(gear), cols = vars(carb)) +
+ggplot2::ggplot(mtcars, ggplot2::aes(x=mpg, y=hp)) +
+  ggplot2::geom_point() +
+  lemon::facet_rep_grid(rows = ggplot2::vars(gear), cols = ggplot2::vars(carb)) +
   lizard_style() +
-  theme(axis.text.x = element_text(size = 8, angle = 90, vjust = 0.5))
-
+  ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, angle = 90, vjust = 0.5))
 ```
 
 ## 4.8 Treemap plots
@@ -315,71 +334,57 @@ In this example, more colors are requested than are present in the qualitative c
 
 The treemapify package allows plotting treemaps with ggplot2.
 
-```{r , fig.width=6, fig.height=4}
-if(!require("treemapify", quietly = TRUE)){
-  BiocManager::install("treemapify")
-}
-
-if(!require("highcharter", quietly = TRUE)){
-  install.packages("highcharter")
-}
-
+```{r, eval = eval_packages_installed, fig.width=6, fig.height=4}
 library(treemapify)
 library(dplyr)
 
 data("pokemon", package = "highcharter")
 # Cleaning up data for a treemap
-data <- pokemon %>% 
-  select(pokemon, type_1, type_2) %>%
-  mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) %>% 
-  group_by(type_1, type_2) %>%
-  summarise(n = length(pokemon)) %>% 
-  ungroup()
+data <- pokemon |>
+  dplyr::select(pokemon, type_1, type_2) |>
+  dplyr::mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) |> 
+  dplyr::group_by(type_1, type_2) |>
+  dplyr::summarise(n = length(pokemon)) |> 
+  dplyr::ungroup()
 
 head(data)
 
 # plot the treemap
-ggplot(data, aes(area = n, label = type_2, fill = type_1,
-                subgroup = type_1)) +
-  ggtitle("Number of pokémon stratified by type") +
+ggplot2::ggplot(data, ggplot2::aes(area = n, label = type_2, fill = type_1,
+                                   subgroup = type_1)) +
+  ggplot2::ggtitle("Number of pokémon stratified by type") +
   # 1. Draw type_2 borders and fill colors
-  geom_treemap() +
+  treemapify::geom_treemap() +
   # 2. Draw type_1 borders
-  geom_treemap_subgroup_border() +
+  treemapify::geom_treemap_subgroup_border() +
   # 3. Print type_1 text
-  geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour = "black",
-                             fontface = "italic", min.size = 0,
-                             family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+  treemapify::geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour = "black",
+                                         fontface = "italic", min.size = 0,
+                                         family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
   # 4. Print type_2 text
-  geom_treemap_text(colour = "white", place = "topleft", reflow = T,
-                    family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+  treemapify::geom_treemap_text(colour = "white", place = "topleft", reflow = T,
+                                family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
   
   # 5. BLZ style
   scale_fill_biolizard(scheme = "hues") +
   lizard_style() +
-  theme(legend.position = "none")
-
+  ggplot2::theme(legend.position = "none")
 ```
 
 However, this is not ideal, since the font of the text still has to be defined manually, and thus the lizard_style() function does not work very well for these treemaps, even though they are ggplot2-based. Another option is to use the 'treemap' library, and move away from ggplot2 altogether, which generally leads to more aesthetically pleasing plots:
 
-```{r, fig.width=6, fig.height=4}
-if(!require("treemap", quietly = TRUE)){
-  BiocManager::install("treemap")
-}
-
+```{r, eval = eval_packages_installed, fig.width=6, fig.height=4}
 library(treemap)
 
 # get colors from the biolizard hues palette
 ncols <- length(unique(data$type_1))
 palette <- biolizard_pal_hue(ncols)
 
-treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
-        title="Number of pokémon stratified by type", 
-        palette=palette,  #set the BLZ color palette
-        fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
-        fontfamily.title = "Lato", fontfamily.labels = "Lato", fontfamily.legend = "Lato")  #set the lato font
-
+treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
+                 title="Number of pokémon stratified by type", 
+                 palette=palette,  #set the BLZ color palette
+                 fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
+                 fontfamily.title = "Lato", fontfamily.labels = "Lato", fontfamily.legend = "Lato")  #set the lato font
 ```
 
 ## 4.9 Chicago plots
@@ -387,72 +392,65 @@ treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
 ```{r, fig.width=6}
-if (!requireNamespace("readr", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("readr")
-}
-library(ggplot2)
-chic <- readr::read_csv("https://figshare.com/ndownloader/files/42307179") #An example dataset
+chic <- utils::read.csv("https://figshare.com/ndownloader/files/42307179") #An example dataset
 
-g <- ggplot(chic, aes(x = season, y = o3,
-                   color = season)) +
-    labs(x = "Season", y = "Ozone") + 
-    geom_violin(fill = "gray80", linewidth = 1, alpha = .5) +
-    geom_jitter(alpha = .25, width = .3) +
-    coord_flip()
+g <- ggplot2::ggplot(chic, ggplot2::aes(x = season, y = o3,
+                                        color = season)) +
+  ggplot2::labs(x = "Season", y = "Ozone") + 
+  ggplot2::geom_violin(fill = "gray80", linewidth = 1, alpha = .5) +
+  ggplot2::geom_jitter(alpha = .25, width = .3) +
+  ggplot2::coord_flip()
 
 g + lizard_style() +
   scale_color_biolizard()
 ```
 
 
-```{r , fig.width=5, fig.height=4}
-if (!requireNamespace(c("corrr","forcats"), quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages(c("corrr","forcats"))
-}
+```{r, eval = eval_packages_installed, fig.width=5, fig.height=4}
 library(corrr)
 library(forcats)
 
 corm <-
-  chic |>
-  dplyr::select(temp, dewpoint, pm10, o3) |>
-  corrr::correlate(diagonal = 1) |>
+  chic |> 
+  dplyr::select(temp, dewpoint, pm10, o3) |> 
+  corrr::correlate(diagonal = 1) |> 
   corrr::shave(upper = FALSE)
 
-corm <- corm |>
+corm <- corm |> 
   tidyr::pivot_longer(
     cols = -term,
     names_to = "colname",
     values_to = "corr"
-  ) |>
+  ) |> 
   dplyr::mutate(
     rowname = forcats::fct_inorder(term),
     colname = forcats::fct_inorder(colname),
     label = dplyr::if_else(is.na(corr), "", sprintf("%1.2f", corr))
   )
 
-g <- ggplot(corm, aes(rowname, fct_rev(colname),
-                     fill = corr)) +
-      geom_tile() +
-      geom_text(aes(label = label)) +
-      coord_fixed(expand = FALSE) +
-      labs(x = NULL, y = NULL) 
+g <- ggplot2::ggplot(corm, ggplot2::aes(rowname, fct_rev(colname),
+                                        fill = corr)) +
+  ggplot2::geom_tile() +
+  ggplot2::geom_text(ggplot2::aes(label = label)) +
+  ggplot2::coord_fixed(expand = FALSE) +
+  ggplot2::labs(x = NULL, y = NULL) 
 
-g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1),na.value = "white", name="Pearson\nCorrelation") +
-        lizard_style() +
-        theme(legend.position = c(.95, .8))
-
+g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1), 
+                         na.value = "white", name="Pearson\nCorrelation") +
+  lizard_style() +
+  ggplot2::theme(legend.position = "inside", legend.position.inside = c(.95, .8))
 ```
 
 ```{r, fig.width=5, fig.height=4}
-g <- ggplot(chic, aes(temp, o3)) +
-        geom_hex(color = "grey") +
-        labs(x = "Temperature (°F)", y = "Ozone Level", title= 'How Temperature Affects Ozone Levels',
-             subtitle='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
+g <- ggplot2::ggplot(chic, ggplot2::aes(temp, o3)) +
+  ggplot2::geom_hex(color = "grey") +
+  ggplot2::labs(x = "Temperature (°F)", 
+                y = "Ozone Level", 
+                title = 'How Temperature Affects Ozone Levels',
+                subtitle ='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
 
 g <- g + lizard_style() +
-      scale_fill_biolizard(type='continuous',scheme='greens')
+  scale_fill_biolizard(type = 'continuous',scheme = 'sequential')
 g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
@@ -461,30 +459,22 @@ finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricsch
 
 ## 4.10 Interactive plots (DE analysis)
 
-ggplotly can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). 
+`ggplotly` can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). Make sure that you do **not** apply `lizard_style()` to the ggplot call when you want to use `ggplotly`. 
+The function `lizard_layout()` applies the lizard theme to a plotly object.
 
 Note: to succesfully install Pasilla, you might have to manually install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
-```{r , fig.width=5, fig.height=4}
-
-if(!require("plotly", quietly = TRUE)){
-  BiocManager::install("plotly")
-}
-
-if(!require("pasilla", quietly = TRUE)){
-  BiocManager::install("pasilla")
-}
-
+```{r, eval = eval_packages_installed, fig.width=5, fig.height=4}
 library(pasilla)
 library(plotly)
 
 # get gene counts
-datafiles <-  system.file("extdata", package="pasilla", mustWork=TRUE)
-count.table <-  read.table(file.path(datafiles, "pasilla_gene_counts.tsv"), header=TRUE, row.names=1, quote="", comment.char="" )
+datafiles <- system.file("extdata", package="pasilla", mustWork=TRUE)
+count.table <- utils::read.table(file.path(datafiles, "pasilla_gene_counts.tsv"), header=TRUE, row.names=1, quote="", comment.char="" )
 head(count.table)
 
 # get metadata
-SampleAnno = read.csv(file.path(datafiles, "pasilla_sample_annotation.csv"))
+SampleAnno <- utils::read.csv(file.path(datafiles, "pasilla_sample_annotation.csv"))
 head(SampleAnno)
 
 # DE analysis with edgeR
@@ -494,54 +484,56 @@ if(!require("edgeR", quietly = TRUE)){
 library(edgeR)
 
 Group <- as.factor(c(rep("untreated", 4), rep("treated", 3)))
-y <- DGEList(counts = count.table, group = Group)
+y <- edgeR::DGEList(counts = count.table, group = Group)
 
 # filter genes
-keep <- filterByExpr(y)
+keep <- edgeR::filterByExpr(y)
 y <- y[keep, , keep.lib.sizes = FALSE]
 
 # normalize counts
-y <- calcNormFactors(y)
-norm.counts <- cpm(y, normalized.lib.sizes = TRUE, log = T)
+y <- edgeR::calcNormFactors(y)
+norm.counts <- edgeR::cpm(y, normalized.lib.sizes = TRUE, log = T)
 
 # plot interactive PCA
-mds <- plotMDS(y, gene.selection="common", plot = F)
+mds <- limma::plotMDS(y, gene.selection="common", plot = F)
 toplot <- data.frame(Dim1 = mds$x, Dim2 = mds$y, Group = Group, sample = colnames(mds$distance.matrix.squared))
-pcaPlot <- ggplot(toplot, aes(Dim1, Dim2, colour = Group)) +
-  geom_point(aes(label = sample), size=3) + coord_fixed() +
-  xlab(paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")) +
-  ylab(paste0("PC2: ", round(mds$var.explained[2]*100), "% variance")) +
-  scale_color_biolizard() +
-  lizard_style()
-ggplotly(pcaPlot)
+pcaPlot <- ggplot2::ggplot(toplot, ggplot2::aes(Dim1, Dim2, colour = Group)) +
+  ggplot2::geom_point() + 
+  ggplot2::geom_text(ggplot2::aes(label = sample), size = 3, nudge_y = 0.05) +
+  ggplot2::coord_fixed() +
+  ggplot2::xlab(paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")) +
+  ggplot2::ylab(paste0("PC2: ", round(mds$var.explained[2]*100), "% variance")) +
+  scale_color_biolizard() 
+
+plotly::ggplotly(pcaPlot) |> lizard_layout()
+
+# The lizard style is added through lizard_layout() on plotly instead of lizard_style() in ggplot
 
 # fit general linear model
-design <- model.matrix(~ 0 + Group)
+design <- stats::model.matrix(~ 0 + Group)
 colnames(design) <- levels(Group)
-y <- estimateDisp(y, design)
-fit <- glmQLFit(y, design)
+y <- edgeR::estimateDisp(y, design)
+fit <- edgeR::glmQLFit(y, design)
 
 # fit contrasts of interest
-my.contrasts <- makeContrasts(treatedVsUntreated = treated-untreated,
-                              levels=design)
+my.contrasts <- limma::makeContrasts(treatedVsUntreated = treated-untreated,
+                                     levels=design)
 
-lrt <- glmQLFTest(fit, contrast = my.contrasts)
+lrt <- edgeR::glmQLFTest(fit, contrast = my.contrasts)
 
-DE <- topTags(lrt, n="all")$table
+DE <- edgeR::topTags(lrt, n="all")$table
 colnames(DE) <- c("log2FoldChange", "logCPM", "LR", "pvalue", "padj")
 DE <- DE[order(DE$padj), ]
 DE <- DE[!is.na(DE$padj), ]
 head(DE)
 
 # interactive volcano plot
-p <- DE %>% {
-  ggplot(., aes(x = log2FoldChange, y = -log10(pvalue))) +
-  geom_point(aes(color = padj < 0.05, label = rownames(.))) +
-  scale_color_biolizard(reverse = TRUE) +
-  lizard_style()
-}
-ggplotly(p)
+p <- DE |> 
+  ggplot2::ggplot(ggplot2::aes(x = log2FoldChange, y = -log10(pvalue))) +
+  ggplot2::geom_point(ggplot2::aes(color = padj < 0.05)) +
+  scale_color_biolizard(reverse = TRUE)
 
+plotly::ggplotly(p) |> lizard_layout()
 ```
 
 ## 4.11 Maps
@@ -552,54 +544,40 @@ note: to install 'sf' you might have to install libudunits2 and libgdal:
 - tophat/fedora: `dnf install udunits2-devel libgdal-devel`
 - OSX: `brew install udunits` & `brew install gdal`
 
-```{r , fig.width=6}
-if (!requireNamespace("sf", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("sf")
-}
-if (!requireNamespace("rnaturalearth", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("rnaturalearth")
-}
-if (!requireNamespace("rnaturalearthdata", quietly = TRUE)) {
-  # Install the package if it's not installed
-  install.packages("rnaturalearthdata")
-}
-
+```{r, eval = eval_packages_installed, fig.width=6}
 library("sf")
 library("rnaturalearth")
 library("rnaturalearthdata")
 
-world <- ne_countries(scale = "medium", returnclass = "sf")
+world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
 
 BLZ_offices <- c("Belgium", "Netherlands", "Switzerland", "United States of America")
 world$BLZ_office <- ifelse(world$name_en %in% BLZ_offices, "yes", "no")
 world$BLZ_office <- factor(world$BLZ_office, levels = c("yes", "no"))
 
-ggplot(data = world, aes(fill = BLZ_office)) +
-  geom_sf() +
+ggplot2::ggplot(data = world, ggplot2::aes(fill = BLZ_office)) +
+  ggplot2::geom_sf() +
   scale_fill_biolizard(type = "discrete", scheme = "qualitative") +
   lizard_style()
-
 ```
 
-```{r, fig.width=6}
+```{r, eval = eval_packages_installed, fig.width=6}
 # coloring the ocean, as in the map on our website
-ggplot(data = world, aes(fill = BLZ_office)) +
-  geom_sf() +
-  scale_fill_manual(values = c(blz_yellow, blz_green)) +
+ggplot2::ggplot(data = world, ggplot2::aes(fill = BLZ_office)) +
+  ggplot2::geom_sf() +
+  ggplot2::scale_fill_manual(values = c(blz_yellow, blz_green)) +
   lizard_style() +
-  theme(panel.background = element_rect(fill = blz_blue),
-        panel.grid = element_blank())
+  ggplot2::theme(panel.background = ggplot2::element_rect(fill = blz_blue),
+                 panel.grid = ggplot2::element_blank())
 ```
 
-```{r, fig.width=6}
+```{r, eval = eval_packages_installed, fig.width=6}
 # europe only
-ggplot(data = dplyr::filter(world, continent == "Europe"), aes(fill = BLZ_office)) +
-  geom_sf() +
-  scale_fill_manual(values = c(blz_yellow, blz_green)) +
+ggplot2::ggplot(data = dplyr::filter(world, continent == "Europe"), ggplot2::aes(fill = BLZ_office)) +
+  ggplot2::geom_sf() +
+  ggplot2::scale_fill_manual(values = c(blz_yellow, blz_green)) +
   lizard_style() +
-  theme(panel.background = element_rect(fill = blz_blue),
-        panel.grid = element_blank()) +
-  coord_sf(xlim = c(-25,50), ylim = c(35,70), expand = FALSE)
+  ggplot2::theme(panel.background = ggplot2::element_rect(fill = blz_blue),
+                 panel.grid = ggplot2::element_blank()) +
+  ggplot2::coord_sf(xlim = c(-25, 50), ylim = c(35, 70), expand = FALSE)
 ```
