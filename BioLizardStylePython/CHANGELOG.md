@@ -2,6 +2,32 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.0 (2025-03-06)
+
+### Feature
+
+- new palettes:
+    - viridis-like continuous colorscale "l_viridis"
+    - colorscale for paired discrete data
+    - hues colorscale for discrete data with many levels
+- plotly template for interactive graphs with plotly express and plotly graph objects
+
+### Fix
+
+- adjust discrete palette to avoid dark colors that are hard to distinguish from each other + extend to 10 colors
+- BREAKING CHANGE: make sure all discrete colorscales and all continuous colorscales behave the same way, i.e. calling a discrete palette return a `matplotlib.colors.ListedColormap` object, and all continuous palettes return a `matplotlib.colors.LinearSegmentedColormap` object.
+
+### Tests
+
+- added + adjusted tests for new color scales
+
+### Documentation
+
+- added plotly docs
+- added extra info about the colorscales and how to intereact with them
+- restructure examples notebook: separate sections for seaborn and matplotlib 
+
+
 ## v.1.0.0 (2024-09-25)
 
 First production release
