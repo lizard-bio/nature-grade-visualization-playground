@@ -208,7 +208,7 @@ def _create_colormap(name, palette, reverse=False):
 # with Biolizard's signature green in the middle. DOES NOT generate colorblind-safe palettes.
 _biolizard_hues_pal = colorspace.qualitative_hcl(h = [151.6,
                                                       lambda n: 330 * (n - 1) / n + 151.6],   #330 degrees instead of 360 to avoid the last being identical to the first one 
-                                                c=49.5, l=58.9, power=1)
+                                                c=49.5, l=58.9)
 biolizard_hues_pal = _create_colormap('biolizard_hues_pal', _biolizard_hues_pal)
 biolizard_hues_pal_r = _create_colormap('biolizard_hues_pal_r', _biolizard_hues_pal, reverse=True)
 matplotlib.colormaps.register(name='biolizard_hues_pal', cmap=biolizard_hues_pal, force=True)
