@@ -2,10 +2,10 @@ import os
 import io
 # import numpy as np
 from PIL import Image
-from pathlib import Path
+# from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
-from matplotlib import font_manager
+# from matplotlib import font_manager
 import colorspace
 
 # the three basic colors
