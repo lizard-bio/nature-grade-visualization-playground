@@ -16,7 +16,7 @@ This repository contains two key packages:
 2. [BioLizardStylePython](https://lizard-bio.github.io/nature-grade-visualization-playground/BioLizardStylePython/) - A Python package designed for matplotlib, also compatible with seaborn.
 
 Developed by Robbe Neirynck during an internship at BioLizard, under the supervision of Alexander Koch.
-Development was continued by Anikó Meijer.
+Development was continued by Anikó Meijer and Artuur Couckuyt.
 
 ## Installation
 
@@ -32,6 +32,7 @@ devtools::install_github("lizard-bio/nature-grade-visualization-playground", sub
 
 ### Installing BioLizardStylePython
 
+<!---
 #### 1. Extra requirements
 
 `BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
@@ -39,10 +40,12 @@ devtools::install_github("lizard-bio/nature-grade-visualization-playground", sub
 pip install git+https://github.com/retostauffer/python-colorspace.git
 ```
 Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython`.
+-->
 
-#### 2. Package Installation
+<!-- #### 2. Package Installation -->
 
 The BioLizardStylePython package is available on PyPI and can be easily installed using:
+
 ```
 pip install BioLizardStylePython
 ```
@@ -61,7 +64,7 @@ Both packages have three main components:
 
 ### 1. Styling Function: `lizard_style()`
 
-This function applies a BioLizard aesthetic to your ggplot, matplotlib, or seaborn plots. The aim is to ensure that plots maintain a uniform look, irrespective of whether they were made in R or Python.
+This function applies a BioLizard aesthetic to your ggplot, matplotlib, seaborn or plotly plots. The aim is to ensure that plots maintain a uniform look, irrespective of whether they were made in R or Python.
 
 ### 2. BioLizard Color Palettes
 
