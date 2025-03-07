@@ -9,8 +9,8 @@
     # If it is not installed, then we install it
     packageStartupMessage("Loading Lato font...")
     errorMessage <- paste0("\nTry installing the Lato font manually from the ttf files in ",
-    "https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall ",
-    "and run `install_biolizard_fonts()`")
+    "https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall ")
+    # "and run `install_biolizard_fonts()`")
 
     # If MacOS is used, the .ttf files from inst/fonts are copied to ~/Library/Fonts
     if (Sys.info()["sysname"] == "Darwin"){

@@ -8,11 +8,13 @@ version = "2.0.0"
 authors = [
   { name = "BioLizard", email = "contact@lizard.bio"},
   { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"},
-  { name = "Robbe Neirynck" },
+  { name = "Artuur Couckuyt", email = "artuur.couckuyt@lizard.bio"},
+  { name = "Robbe Neirynck" }
 ]
 maintainers = [
   { name = "Alexander Koch", email = "alexander.koch@lizard.bio"},
-  { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"}
+  { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"},
+  { name = "Artuur Couckuyt", email = "artuur.couckuyt@lizard.bio"}
 ]
 description = "Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn."
 readme = "README.md"

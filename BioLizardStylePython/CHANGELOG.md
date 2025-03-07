@@ -4,6 +4,12 @@
 
 ## v2.0.0 (2025-03-06)
 
+Plotly layout and improved color scales.
+
+### Breaking changes
+
+- Make sure all discrete colorscales and all continuous colorscales behave the same way, i.e. calling a discrete palette returns a `matplotlib.colors.ListedColormap` object, and all continuous palettes now return a `matplotlib.colors.LinearSegmentedColormap` object.
+
 ### Feature
 
 - new palettes:
@@ -15,7 +21,7 @@
 ### Fix
 
 - adjust discrete palette to avoid dark colors that are hard to distinguish from each other + extend to 10 colors
-- BREAKING CHANGE: make sure all discrete colorscales and all continuous colorscales behave the same way, i.e. calling a discrete palette return a `matplotlib.colors.ListedColormap` object, and all continuous palettes return a `matplotlib.colors.LinearSegmentedColormap` object.
+- Make sure all discrete colorscales and all continuous colorscales behave the same way, i.e. calling a discrete palette returns a `matplotlib.colors.ListedColormap` object, and all continuous palettes now return a `matplotlib.colors.LinearSegmentedColormap` object.
 
 ### Tests
 
