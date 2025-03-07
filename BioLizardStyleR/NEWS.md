@@ -23,7 +23,8 @@ fix installation bugs, improved color scales,  and add plotly functionality.
 ## Bug fixes
 
 - adjust discrete palette to avoid dark colors that are hard to distinguish from each other + extend to 10 colors
-- 
+- adapt vignette with optional chunks to avoid package installation issues and change vignette installation to FALSE in README
+- on MacOS the ttf fonts are copied from inst/fonts to ~library/fonts to automatically install Lato
 
 ## Other notes
 
