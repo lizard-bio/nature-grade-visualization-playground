@@ -22,22 +22,22 @@
 </g>
 <defs>
   <clipPath id='cpMzIuNzl8NjI0LjA4fDIyLjc4fDU0NS4xMQ=='>
-    <rect x='32.79' y='22.78' width='591.28' height='522.33' />
+    <rect x='32.79' y='22.78' width='591.29' height='522.33' />
   </clipPath>
 </defs>
 <g clip-path='url(#cpMzIuNzl8NjI0LjA4fDIyLjc4fDU0NS4xMQ==)'>
-<rect x='32.79' y='22.78' width='591.28' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='169.84' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #489C77; fill: #489C77;' />
-<circle cx='169.84' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #489C77; fill: #489C77;' />
-<circle cx='137.55' cy='270.81' r='1.95' style='stroke-width: 0.71; stroke: #36917F; fill: #36917F;' />
-<circle cx='169.84' cy='299.10' r='1.95' style='stroke-width: 0.71; stroke: #449A79; fill: #449A79;' />
+<rect x='32.79' y='22.78' width='591.29' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='169.83' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #489C77; fill: #489C77;' />
+<circle cx='169.83' cy='307.19' r='1.95' style='stroke-width: 0.71; stroke: #489C77; fill: #489C77;' />
+<circle cx='137.54' cy='270.81' r='1.95' style='stroke-width: 0.71; stroke: #36917F; fill: #36917F;' />
+<circle cx='169.83' cy='299.10' r='1.95' style='stroke-width: 0.71; stroke: #449A79; fill: #449A79;' />
 <circle cx='293.30' cy='353.66' r='1.95' style='stroke-width: 0.71; stroke: #66A96A; fill: #66A96A;' />
 <circle cx='160.34' cy='365.78' r='1.95' style='stroke-width: 0.71; stroke: #6FAC66; fill: #6FAC66;' />
 <circle cx='426.25' cy='442.57' r='1.95' style='stroke-width: 0.71; stroke: #B3B852; fill: #B3B852;' />
 <circle cx='78.66' cy='238.48' r='1.95' style='stroke-width: 0.71; stroke: #288784; fill: #288784;' />
 <circle cx='141.34' cy='270.81' r='1.95' style='stroke-width: 0.71; stroke: #36917F; fill: #36917F;' />
 <circle cx='194.53' cy='343.56' r='1.95' style='stroke-width: 0.71; stroke: #5FA76D; fill: #5FA76D;' />
-<circle cx='194.53' cy='371.84' r='1.95' style='stroke-width: 0.71; stroke: #74AD64; fill: #74AD64;' />
+<circle cx='194.53' cy='371.85' r='1.95' style='stroke-width: 0.71; stroke: #74AD64; fill: #74AD64;' />
 <circle cx='302.79' cy='400.13' r='1.95' style='stroke-width: 0.71; stroke: #8DB35B; fill: #8DB35B;' />
 <circle cx='302.79' cy='381.95' r='1.95' style='stroke-width: 0.71; stroke: #7DAF61; fill: #7DAF61;' />
 <circle cx='302.79' cy='424.38' r='1.95' style='stroke-width: 0.71; stroke: #A3B655; fill: #A3B655;' />
@@ -46,7 +46,7 @@
 <circle cx='397.76' cy='434.48' r='1.95' style='stroke-width: 0.71; stroke: #ACB754; fill: #ACB754;' />
 <circle cx='86.26' cy='76.83' r='1.95' style='stroke-width: 0.71; stroke: #354A8D; fill: #354A8D;' />
 <circle cx='59.67' cy='117.25' r='1.95' style='stroke-width: 0.71; stroke: #205C93; fill: #205C93;' />
-<circle cx='84.36' cy='46.53' r='1.95' style='stroke-width: 0.71; stroke: #3E3D82; fill: #3E3D82;' />
+<circle cx='84.36' cy='46.52' r='1.95' style='stroke-width: 0.71; stroke: #3E3D82; fill: #3E3D82;' />
 <circle cx='145.14' cy='297.08' r='1.95' style='stroke-width: 0.71; stroke: #439A7A; fill: #439A7A;' />
 <circle cx='245.81' cy='418.32' r='1.95' style='stroke-width: 0.71; stroke: #9DB557; fill: #9DB557;' />
 <circle cx='245.81' cy='424.38' r='1.95' style='stroke-width: 0.71; stroke: #A3B655; fill: #A3B655;' />
@@ -59,7 +59,7 @@
 <circle cx='293.30' cy='333.45' r='1.95' style='stroke-width: 0.71; stroke: #58A470; fill: #58A470;' />
 <circle cx='597.20' cy='428.42' r='1.95' style='stroke-width: 0.71; stroke: #A6B755; fill: #A6B755;' />
 <circle cx='167.94' cy='299.10' r='1.95' style='stroke-width: 0.71; stroke: #449A79; fill: #449A79;' />
-<rect x='32.79' y='22.78' width='591.28' height='522.33' style='stroke-width: 1.07; stroke: #333333;' />
+<rect x='32.79' y='22.78' width='591.29' height='522.33' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <text x='27.86' y='532.48' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>10</text>
