@@ -20,15 +20,14 @@ knitr::opts_chunk$set(
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 # 1. Installation
-To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. If the installation 
-fails due to an error with the fonts, please follow step 2.
+To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Lato". If the font is not yet installed, installation  will be attempted automatically when you load the library.
 
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) {
 install.packages("devtools")
 }
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = TRUE)
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
 ```
 
 ```{r}
@@ -53,17 +52,22 @@ cat(paste0("<span style = \"color: red;\">Please install the following packages 
 cat("\n")
 ```
 
-# 2. Font Installation
+If automatic font installation fails on your system, you can install the font manually using
+the following steps:
 
-The BioLizardStyleR package makes use of the signature BioLizard font 'Lato'. If not yet installed, Lato is automatically installed when loading the package. This automatic installation relies on the [sysfonts](https://github.com/yixuan/sysfonts) package, which supports debian and windows platforms. In case you are using a different platform, or if this automatic installation fails on your system, you can install it manually using the following steps:
+1. **Download Fonts**: Download the font files from the
+GitHub repository [Nature Grade Visualization
+Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
+2. **Install Fonts**: Install the downloaded fonts on your system with your favorite font manager. 
+<!-- 3. **Register Fonts**: On other systems, once the installation is done, you can run -->
+<!-- `install_biolizard_fonts()` **without any arguments** to register the font with -->
+<!-- the extrafont package. If you encounter issues due to a pre-existing -->
+<!-- installation of the extrafont package and need to clear the database, use the -->
+<!-- argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb -->
+<!-- package to reset its database. Note that this installation is a one-time process -->
+<!-- and normally doesn't need to be repeated in subsequent R sessions. -->
 
-1. **Download Fonts**: Download the font files from the GitHub repository [Nature Grade Visualization Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main).
-2. **Install Fonts**: Install the downloaded fonts on your system. For most systems a font manager is available/can be installed to help with this.
-3. **Register Fonts**: On other systems, once the installation is done, you can run `install_biolizard_fonts()` **without any arguments** to register the font with the extrafont package. If you encounter issues due to a pre-existing installation of the extrafont package and need to clear the database, use the argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb package to reset its database.
-
-Note that this installation is a one-time process and normally doesn't need to be repeated in subsequent R sessions. 
-
-# 3. Crafting a BioLizard-Styled ggplot
+# 2. Crafting a BioLizard-Styled ggplot
 
 Transforming your ggplot to match the BioLizard style involves a three-step process. Let's illustrate this on a basic ggplot.
 
@@ -81,7 +85,7 @@ testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
 testplot
 ```
 
-## 3.1 Applying the Biolizard theme
+## 2.1 Applying the Biolizard theme
 
 In the initial step, we implement the biolizard theme through the `lizard_style()` function. This not only modifies various theme settings but also adjusts the font. An important note here is that the lizard theme can only act as a starting template! Depending on your specific plot, title length, variables in use, and other factors, you might need to make further theme adjustments.
 
@@ -92,7 +96,7 @@ testplot
 
 **Tip:** you can use `theme_set(lizard_style())` at the beginning of your script or report to set the theme to lizard_style() in all plots, without having to add `+ lizard_style()` to each plot individually. Te reset the theme to the ggplot2 default, you can call `reset_theme_settings()`.
 
-## 3.2 Adding a BioLizard color palette
+## 2.2 Adding a BioLizard color palette
 
 Once you've styled your plot, you can enhance it with a 'BioLizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
 
@@ -166,7 +170,7 @@ graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch =
 ```
 
 
-## 3.3 Adding a BioLizard footer and exporting the plot.
+## 2.3 Adding a BioLizard footer and exporting the plot.
 
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`. The `device` argument allows to choose from the file types "png" (default), "pdf", "svg", or "ps".
 
@@ -178,7 +182,7 @@ finalise_lizardplot(
   source='Source: The mtcars dataset')
 ```
 
-## 3.4 Reset ggplot2 defaults
+## 2.4 Reset ggplot2 defaults
 
 Note that calling `lizard_style()` will overwrite the default colors for points, lines, boxplots, areas, etc.. . To reset them to the ggplot2 defaults, you can either restart the R session or use `reset_colors()`.
 
@@ -193,9 +197,9 @@ reset_colors()
 p
 ```
 
-# 4. Examples
+# 3. Examples
 
-## 4.1 Simple bar chart
+## 3.1 Simple bar chart
 
 ```{r}
 x = 1:8
@@ -208,7 +212,7 @@ ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, fill = factor(x))) +
   lizard_style()
 ```
 
-## 4.2 Simple polygon plot
+## 3.2 Simple polygon plot
 
 ```{r}
 ids <- factor(c("1.1", "2.1", "1.2", "2.2", "1.3", "2.3"))
@@ -232,7 +236,7 @@ ggplot2::ggplot(datapoly, ggplot2::aes(x = x, y = y)) +
   lizard_style()
 ```
 
-## 4.3 Simple box plot
+## 3.3 Simple box plot
 
 ```{r, fig.width=4}
 ggplot2::ggplot(data = mtcars, ggplot2::aes(x = as.factor(gear), y = mpg)) +
@@ -258,7 +262,7 @@ ggplot2::ggplot(data = mtcars, ggplot2::aes(x = as.factor(gear), y = mpg)) +
   lizard_style()
 ```
 
-## 4.5 Simple density plot
+## 3.4 Simple density plot
 
 ```{r , fig.width=4}
 ggplot2::ggplot(data = mtcars, ggplot2::aes(x = mpg)) +
@@ -266,7 +270,7 @@ ggplot2::ggplot(data = mtcars, ggplot2::aes(x = mpg)) +
   lizard_style()
 ```
 
-## 4.6 Simple scatterplot
+## 3.5 Simple scatterplot
 
 ```{r , fig.width=6}
 ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
@@ -283,7 +287,7 @@ ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
   lizard_style()
 ```
 
-## 4.7 Facets
+## 3.6 Facets
 Faceting is a great way to lay out related plots side-by-side, with the axes either on the same scale or on different scales.
 
 ```{r,  fig.show='hold', fig.width=3.3}
@@ -324,7 +328,7 @@ ggplot2::ggplot(mtcars, ggplot2::aes(x=mpg, y=hp)) +
   ggplot2::theme(axis.text.x = ggplot2::element_text(size = 8, angle = 90, vjust = 0.5))
 ```
 
-## 4.8 Treemap plots
+## 3.7 Treemap plots
 
 Treemap plots are a powerful way of visualizing hierarchical data such as GO terms, for example. The size of the rectangles corresponds to the value you want to show (e.g. p value), and related rectangles are grouped together. This example makes use of the Pokémon dataset from the [highcharter](https://cran.r-project.org/web/packages/highcharter/index.html) package and is based on https://yjunechoe.github.io/posts/2020-06-30-treemap-with-ggplot/.
 
@@ -387,7 +391,7 @@ treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
                  fontfamily.title = "Lato", fontfamily.labels = "Lato", fontfamily.legend = "Lato")  #set the lato font
 ```
 
-## 4.9 Chicago plots
+## 3.8 Chicago plots
 
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
@@ -457,7 +461,7 @@ finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricsch
 ```
 
 
-## 4.10 Interactive plots (DE analysis)
+## 3.9 Interactive plots (DE analysis)
 
 `ggplotly` can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). Make sure that you do **not** apply `lizard_style()` to the ggplot call when you want to use `ggplotly`. 
 The function `lizard_layout()` applies the lizard theme to a plotly object.
@@ -536,7 +540,7 @@ p <- DE |>
 plotly::ggplotly(p) |> lizard_layout()
 ```
 
-## 4.11 Maps
+## 3.10 Maps
 
 note: to install 'sf' you might have to install libudunits2 and libgdal:
 

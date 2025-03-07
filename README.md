@@ -27,10 +27,8 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR", build_vignettes = FALSE)
+devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
 ```
-
-On MacOS, it is recommended to first install the [fonts](https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall). 
 
 ### Installing BioLizardStylePython
 
