@@ -24,7 +24,7 @@ Imports:
     ggpubr,
     sysfonts,
     systemfonts,
-    lifecycle
+    curl
 Suggests: 
     knitr,
     htmltools,
