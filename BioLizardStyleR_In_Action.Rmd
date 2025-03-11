@@ -42,6 +42,7 @@ Playground](https://github.com/lizard-bio/nature-grade-visualization-playground/
 <!-- argument `clearDatabase=TRUE`. This will clear the cache of the extrafontdb -->
 <!-- package to reset its database. Note that this installation is a one-time process -->
 <!-- and normally doesn't need to be repeated in subsequent R sessions. -->
+
 ```
 install_biolizard_fonts()
 ```

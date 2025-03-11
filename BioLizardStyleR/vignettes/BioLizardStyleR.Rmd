@@ -27,8 +27,14 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
 install.packages("devtools")
 }
 
+# make sure to look up BioConductor packages (used in the vignette)
+setRepositories(ind = c(1:6, 8))
+
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+
 ```
+
+For building the vignette, you also need the `pasilla` dataset. In case of issues with the installation of this package, you might have to install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
 
 ```{r}
 library(BioLizardStyleR)
@@ -482,9 +488,6 @@ SampleAnno <- utils::read.csv(file.path(datafiles, "pasilla_sample_annotation.cs
 head(SampleAnno)
 
 # DE analysis with edgeR
-if(!require("edgeR", quietly = TRUE)){
-  BiocManager::install("edgeR")
-}
 library(edgeR)
 
 Group <- as.factor(c(rep("untreated", 4), rep("treated", 3)))
