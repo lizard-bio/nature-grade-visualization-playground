@@ -14,7 +14,7 @@ fix installation bugs, improved color scales, and add plotly functionality.
 
 ## New features
 
-- `lizard_layout()` function for styling in plotly
+- `lizard_layout()` function for styling in plotly, issue #7 
 -  new palettes:
     - viridis-like continuous colorscale "l_viridis"
     - colorscale for paired discrete data
