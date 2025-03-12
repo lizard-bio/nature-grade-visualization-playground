@@ -50,7 +50,7 @@ lizard_style <- function() {
                                        color="#222222",
                                        face="bold"),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family="Lato Medium",
+    plot.subtitle = ggplot2::element_text(family="Lato",
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -60,27 +60,27 @@ lizard_style <- function() {
     #This sets the position and alignment of the legend, removes background for it and sets the requirements for any text within the legend.
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family="Lato Medium",
+    legend.title = ggplot2::element_text(family="Lato",
                                          size=11,
                                          color="#222222"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family="Lato Medium",
+    legend.text = ggplot2::element_text(family="Lato",
                                         size=10,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family="Lato Medium",
+    axis.title = ggplot2::element_text(family="Lato",
                                        size=14,
                                        color="#222222"),
-    axis.text = ggplot2::element_text(family="Lato Medium",
+    axis.text = ggplot2::element_text(family="Lato",
                                       size=12,
                                       color="#555555"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
-    axis.title.y = ggplot2::element_text(family="Lato Medium",
+    axis.title.y = ggplot2::element_text(family="Lato",
                                          size=14,
                                          color="#222222"),
-    axis.title.x = ggplot2::element_text(family="Lato Medium",
+    axis.title.x = ggplot2::element_text(family="Lato",
                                          size=14,
                                          color="#222222",
                                          margin=ggplot2::margin(b = 5)),
@@ -105,3 +105,80 @@ lizard_style <- function() {
   )
 
 }
+
+
+#' Apply the lizard layout to a plotly plot
+#'
+#' This function applies a predefined 'Lizard' style to a plotly plot. It sets specific font types,
+#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
+#' It does not yet work with ggplotly.
+#'
+#' Adapted from: https://github.com/plotly/plotly.R/issues/2117
+#'
+#' @param fig A plotly figure created with standard plotly language.
+#' @param ... Further arguments for the plotly::layout() function
+#' @return A plotly figure in the BioLizard style
+#' @export
+#'
+#' @examples
+#' library(plotly)
+#' # Works with plotly
+#' plot_ly(
+#'   mtcars,
+#'   type = "scatter",
+#'   mode = "markers",
+#'   x = ~mpg,
+#'   y = ~disp,
+#'   color = ~gear,
+#'   colors = biolizard_pal_l_viridis(4)) |> lizard_layout()
+#'
+#' # Works with ggplotly
+#' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+#' ggplotly(p) |> lizard_layout()
+lizard_layout <- function(fig, ...) {
+  # Get the local font file path
+  lato_path <- system.file("fonts/Lato-Regular.ttf", package = "BioLizardStyleR")
+
+  # Check if the file exists
+  if (!file.exists(lato_path)) {
+    stop("Error: Lato font not found in package. Ensure it's in inst/fonts/")
+  }
+
+  # Create CSS to load the font
+  lato_css <- paste0(
+    "<style type='text/css'>",
+    "@font-face { font-family: 'lato'; src: url('", lato_path, "'); }",
+    "body, text { font-family: 'lato'; }",
+    "</style>"
+  )
+
+  # Add the CSS as an HTML dependency
+  fig$dependencies <- c(
+    fig$dependencies,
+    list(
+      htmltools::htmlDependency(
+        name = "lato-font",
+        version = "0",
+        src = c(file = system.file("fonts", package = "BioLizardStyleR")),
+        stylesheet = "Lato-Regular.ttf",
+        head = lato_css
+      )
+    )
+  )
+
+  # Adapt layout
+  fig <- fig |> plotly::layout(
+    font = list(family = "lato"),
+    title = list(font = list(size = 16, color = "#222222")),
+    legend = list(font = list(size = 10),
+                  title = list(font = list(color = "#222222", size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    paper_bgcolor = "white",
+    plot_bgcolor = "white",
+    ...
+  )
+
+  return(fig)
+}
+

@@ -6,4 +6,5 @@
 :hidden:
 
 example.ipynb
+plotly.ipynb
 ```

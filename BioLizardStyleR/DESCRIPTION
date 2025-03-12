@@ -1,39 +1,53 @@
 Package: BioLizardStyleR
 Type: Package
 Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
-Version: 0.1.0
+Version: 2.0.0
 Authors@R:
   c(person("Alexander", "Koch", role = "cre", email = "alexander.koch@lizard.bio"),
     person("Aniko", "Meijer", role = "aut", email = "aniko.meijer@lizard.bio"),
+    person("Artuur", "Couckuyt", role = "aut", email = "artuur.couckuyt@lizard.bio"),
     person("Robbe", "Neirynck", role = "aut", email = "robbe.neirynck1@hotmail.com"))
 Description: The BioLizardStyleR package offers tools to craft ggplot2 visualizations 
     in the distinct BioLizard style. It features an integrated font installer, a dedicated 
     ggplot2 theme function, a collection of custom color functions, and a function for 
     appending a Biolizard footer and exporting the resultant graph.
-License: MIT
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.2
 Imports: 
     colorspace,
+    scales,
     ggplot2,
     Cairo,
     png,
     ggpubr,
     sysfonts,
-    systemfonts
+    systemfonts,
+    curl
 Suggests: 
     knitr,
+    htmltools,
+    extrafont,
     rmarkdown,
-    testthat (>= 3.0.0),
     plotly,
-    pasilla,
-    edgeR,
-    lemon,
-    treemapify,
-    dplyr,
-    treemap,
+    BiocManager,
     corrr,
-    forcats
+    dplyr,
+    edgeR,
+    forcats,
+    lemon,
+    limma,
+    rnaturalearth,
+    tidyr,
+    treemap,
+    treemapify,
+    pasilla,
+    highcharter,
+    rnaturalearthdata,
+    sf,
+    vdiffr,
+    testthat (>= 3.0.0)
 Config/testthat/edition: 3
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

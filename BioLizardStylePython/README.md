@@ -4,24 +4,31 @@ Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn.
 
 ## Installation
 
+<!---
 ### 1. Extra requirements
 `BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
 ```
 pip install git+https://github.com/retostauffer/python-colorspace.git
 ```
-Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython`.
+Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython
+-->
 
-### 2. Package Installation
+<!-- ### 1. Package Installation -->
 
 The BioLizardStylePython package is available on PyPI and can be easily installed using:
 ```
 pip install BioLizardStylePython
 ```
 
-### 3. Font package
-
 The BioLizardStylePython package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
 The font has been packaged using the [Python Fonts module](https://pypi.org/project/fonts/) and should be installed automatically when installing BioLizardStylePython. See [font-lato](https://pypi.org/project/font-lato/) for more information.
+
+<!---
+ ### 3. Font package
+
+The BioLizardStylePython package makes use of the signature BioLizard font 'Lato'. This font can be found on Google Fonts under an open font license.
+The font has been packaged using the [Python Fonts module](https://pypi.org/project/fonts/) and should be installed automatically when installing BioLizardStylePython. See [font-lato](https://pypi.org/project/font-lato/) for more information. 
+-->
 
 ## Usage
 

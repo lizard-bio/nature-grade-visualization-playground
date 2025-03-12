@@ -11,6 +11,10 @@
 #' @param height Height of the output image in pixels.
 #' @param save_filepath Path where the plot should be saved.
 #' @param device The output format (e.g., "png", "pdf", "svg", "ps").
+#' @importFrom grid grid.draw
+#' @importFrom ggplot2 ggsave
+#' @importFrom grDevices dev.off
+#' @importFrom Cairo CairoPDF CairoSVG CairoPS
 save_plot <- function (plot_grid, width, height, save_filepath, device) {
 
   if (device == "png") {
@@ -26,7 +30,7 @@ save_plot <- function (plot_grid, width, height, save_filepath, device) {
     )
 
     grid::grid.draw(plot_grid)
-    dev.off()
+    grDevices::dev.off()
   }
 }
 
@@ -84,7 +88,7 @@ compute_font_size <- function(text_length) {
 #'
 #' Constructs a footer for a ggplot using specified source text, a logo image,
 #' and an optional font. The font size of the source text is determined dynamically
-#' based on its length using the \code{\link{compute_font_size}} function.
+#' based on its length using the [compute_font_size()] function.
 #'
 #' @param source Text to display as the source in the footer.
 #' @param logo_image_path Path to the logo image. Defaults to the "BiolizardLogo.png" within the package.

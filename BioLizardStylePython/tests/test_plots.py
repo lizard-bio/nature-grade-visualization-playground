@@ -34,7 +34,7 @@ def test_lizardstyle_lineplot():
 def test_lizardstyle_irisplot():
     # Sample data
     data = sns.load_dataset("iris")
-    sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal().colors[0:3])
+    sns.swarmplot(x="species", y="sepal_length", hue ="species", data=data, palette=biolizard_qualitative_pal.colors[0:3])
     plt.title('A Flower Plot')
 
 #boxplot
@@ -70,4 +70,12 @@ def test_lizardstyle_cmapplot_div():
     np.random.seed(42)
     data = np.random.rand(5, 5)  # Example data
     plt.imshow(data, cmap='biolizard_divergent_pal')
+    plt.colorbar()
+
+@image_comparison(baseline_images=['l_viridis_cmapplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_cmapplot_l_viridis():
+    np.random.seed(42)
+    data = np.random.rand(5, 5)  # Example data
+    plt.imshow(data, cmap='l_viridis_pal')
     plt.colorbar()
