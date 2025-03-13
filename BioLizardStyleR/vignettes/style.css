@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+/*** default styling ***/
+html, body, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Lato', sans-serif;
+	font-size: 1rem;
+	color: rgb(0, 0, 0);
+	font-weight: 400;
+	line-height: 1.6;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  box-sizing: border-box;
+  margin-left:210px;
+  line-height: 20px;
+}
+
+
+em {
+	color: rgb(0, 0, 0);
+}
+
+/* https://github.com/rstudio/markdown/blob/master/inst/resources/default.css */
+body, .footnotes, code { font-size: .9em; }
+li li { font-size: .95em; }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+pre, img { max-width: 100%; }
+pre, pre:hover {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+pre code {
+  display: block;
+  overflow-x: auto;
+}
+code { font-family: 'Courier New'; }
+:not(pre) > code, code[class] { background-color: #F8F8F8; }
+code.language-undefined, pre > code:not([class]) {
+  background-color: inherit;
+  border: 1px solid #eee;
+}
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee; }
+blockquote {
+  color: #666;
+  margin: 0;
+  padding-left: 1em;
+  border-left: 0.5em solid #eee;
+}
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered li { list-style: none; }
+#TOC .numbered { padding-left: 0; }
+#TOC .numbered ul { padding-left: 1em; }
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.footnote-ref a::before { content: "["; }
+.footnote-ref a::after { content: "]"; }
+section.footnotes::before {
+  content: "";
+  display: block;
+  max-width: 20em;
+}
+
+@media print {
+  body {
+    font-size: 12pt;
+    max-width: 100%;
+  }
+  tr, img { page-break-inside: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
+}
+
+/* heading */
+
+div#header {
+	margin-bottom: 2.3rem;
+}
+
+h1.title {
+	color: #01a086;
+	font-size: 2.3rem;
+	font-weight: 600;
+	margin-top: 9rem;
+}
+
+h3.subtitle em {
+	color: #e9b940;
+	font-style: normal;
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+h4.author em {
+	font-style: normal;
+	font-size: 1rem;
+	margin-top: 2rem;
+	font-weight: 600;
+	color: #1e2237;
+}
+
+h4.date em {
+	font-style: normal;
+	color: #1e2237;
+	font-size: 1rem;
+}
+
+/*** headers ***/
+
+h1 {
+	margin-top: 2rem;
+}
+
+h1:not(.title) {
+	color: #e9b940;
+	font-size: 1.7rem;
+	letter-spacing: 0.02rem;
+	font-weight: 900;
+}
+
+h2 {
+	color: #1e2237;
+	font-size: 1.5rem;
+}
+
+h3 {
+	color: #5D7EA5;
+	font-size: 1.4rem;
+}
+
+h4 {
+	color: #860202;
+	font-size: 1.3rem;
+}
+
+h5 {
+	color: #B073DE;
+	font-size: 1.2rem;
+}
+
+h6 {
+	color: #DE5F5F;
+	font-size: 1.1rem;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#TOC {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 250px;
+  overflow:auto;
+}
+
+
+
