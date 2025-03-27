@@ -7,9 +7,15 @@ except ModuleNotFoundError:
 
 # clear matplotlib cache to make sure lato font is recognized
 import matplotlib as mpl
-import os, glob
+import os
+import glob
+import warnings
+
 for f in glob.glob(mpl.get_cachedir() + '/*'):
-    os.remove(f)
+    try:
+        os.remove(f)
+    except PermissionError:
+        warnings.warn(f"Permission denied: {f}", UserWarning)
 
 
 # # check if lato font installed and install if needed
