@@ -28,6 +28,7 @@ classifiers = [
 
 dependencies = [
     "matplotlib>=3.7.1",
+    "seaborn>=0.13.2",
     "Pillow>=9.4.0",
     "fonts>=0.0.3",
     "font-lato>=0.1.0",
@@ -36,6 +37,11 @@ dependencies = [
     "plotly>=5.20.0"
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.5",
+    "numpy>=2.2.4",
+]
 
 [project.urls]
 "Homepage" = "https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main"
