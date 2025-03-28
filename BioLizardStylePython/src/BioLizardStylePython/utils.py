@@ -37,8 +37,8 @@ def lizard_style(plotly=False):
     """
     style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
     plt.style.use(style_path)
-    from BioLizardStylePython import lato_localname
-    plt.rcParams['font.sans-serif'] = [lato_localname]
+    # from BioLizardStylePython import lato_localname
+    # plt.rcParams['font.sans-serif'] = [lato_localname]
 
     if plotly:
         import plotly.io as pio

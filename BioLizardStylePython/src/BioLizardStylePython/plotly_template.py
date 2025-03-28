@@ -1,6 +1,7 @@
 import plotly.graph_objects as go
 import plotly.io as pio
 import matplotlib.colors
+from fonts.ttf import Lato, LatoBold
 from .utils import biolizard_qualitative_pal, biolizard_divergent_pal, l_viridis_pal, blz_blue, blz_green
 
 lizard_style_template = go.layout.Template()
@@ -16,7 +17,7 @@ lizard_style_template.layout = {
                    'sequential': [matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)],
                    'sequentialminus': [matplotlib.colors.rgb2hex(l_viridis_pal.reversed()(i)) for i in range(255)]},
     'colorway': biolizard_qualitative_pal.colors,
-    'font': {'family': 'Lato', 'size': 12},
+    'font': {'family': Lato, 'size': 12},
     'geo': {'bgcolor': blz_blue,
             'oceancolor': blz_blue,
             'lakecolor': blz_blue,
@@ -113,7 +114,7 @@ lizard_style_template.layout = {
                           'showline': True,
                           'ticks': 'outside',
                           'exponentformat': 'power'}},
-    'title': {'x': 0.05, 'font': {'family': 'Lato Black', 'size': 16, 'color': '#222222'}},
+    'title': {'x': 0.05, 'font': {'family': LatoBold, 'size': 16, 'color': '#222222'}},
     'violinmode' : 'group',
     'waterfallmode': 'group',
     'xaxis': {'automargin': True,
@@ -125,7 +126,7 @@ lizard_style_template.layout = {
               'showgrid': False,
               'showline': True,
               'ticks': 'outside',
-              'title': {'standoff': 15, 'font': {'family': 'Lato', 'size': 14, 'color': '#222222'}},
+              'title': {'standoff': 15, 'font': {'family': Lato, 'size': 14, 'color': '#222222'}},
               'zeroline': False,
               'zerolinecolor': '#808080',
               'exponentformat': 'power'},
@@ -138,7 +139,7 @@ lizard_style_template.layout = {
               'showgrid': False,
               'showline': True,
               'ticks': 'outside',
-              'title': {'standoff': 15, 'font': {'family': 'Lato', 'size': 14, 'color': '#222222'}},
+              'title': {'standoff': 15, 'font': {'family': Lato, 'size': 14, 'color': '#222222'}},
               'zeroline': False,
               'zerolinecolor': '#808080',
               'exponentformat': 'power'},
