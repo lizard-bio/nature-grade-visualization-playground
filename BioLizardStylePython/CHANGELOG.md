@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v2.0.1
+big fixes issue [#34](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/34) and [#33](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/33)
+
+### Fix
+
+- remove matplotlib cache clearing at __init__.py, issue [#34](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/34)
+- always use lato from lato-font package, instead of searcing for local lato installation 
+- Add seaborn as a dependency and define optional dev dependencies issue [#33](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/33)
+
 ## v2.0.0 (2025-03-06)
 
 Plotly layout and improved color scales.
