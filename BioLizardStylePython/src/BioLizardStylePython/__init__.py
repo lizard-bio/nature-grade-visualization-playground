@@ -7,26 +7,39 @@ except ModuleNotFoundError:
 
 # clear matplotlib cache to make sure lato font is recognized
 import matplotlib as mpl
-import os, glob
-for f in glob.glob(mpl.get_cachedir() + '/*'):
-    os.remove(f)
+# import os
+# import glob
+# import warnings
+
+# for f in glob.glob(mpl.get_cachedir() + '/*'):
+#     try:
+#         os.remove(f)
+#     except PermissionError:
+#         warnings.warn(f"Permission denied: {f}", UserWarning)
 
 
-# # check if lato font installed and install if needed
+# # # check if lato font installed and install if needed
+# from matplotlib import font_manager
+# fonts = font_manager.fontManager.ttflist
+# font_names = [font.name for font in fonts if 'lato' in font.name.lower()]
+# font_names = set(font_names)
+
+
+# if len(font_names) == 0:
+#     from fonts.ttf import Lato, LatoBold
+#     font_manager.fontManager.addfont(Lato)  #  adds a custom font from a file without installing it into the operating system
+#     font_manager.fontManager.addfont(LatoBold)
+#     prop = font_manager.FontProperties(fname=Lato)
+#     lato_localname = prop.get_name()
+# else:
+#     lato_localname = font_names.pop()  #pick first one, usually there should only be one.. (?)
+
 from matplotlib import font_manager
-fonts = font_manager.fontManager.ttflist
-font_names = [font.name for font in fonts if 'lato' in font.name.lower()]
-font_names = set(font_names)
-
-
-if len(font_names) == 0:
-    from fonts.ttf import Lato, LatoBold
-    font_manager.fontManager.addfont(Lato)  #  adds a custom font from a file without installing it into the operating system
-    font_manager.fontManager.addfont(LatoBold)
-    prop = font_manager.FontProperties(fname=Lato)
-    lato_localname = prop.get_name()
-else:
-    lato_localname = font_names.pop()  #pick first one, usually there should only be one.. (?)
+from fonts.ttf import Lato, LatoBold
+font_manager.fontManager.addfont(Lato)  #  adds a custom font from a file without installing it into the operating system
+font_manager.fontManager.addfont(LatoBold)
+# prop = font_manager.FontProperties(fname=Lato)
+# lato_localname = prop.get_name()
 
 from .utils import *
 from .plotly_template import *
