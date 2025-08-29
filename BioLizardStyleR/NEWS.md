@@ -8,6 +8,10 @@
 ## Bug fixes
 -->
 
+# BioLizardStyleR 2.0.1
+
+Fix bug where y axis text is angled faulty when using set_theme(lizard_style())
+
 # BioLizardStyleR 2.0.0
 
 fix installation bugs, improved color scales, and add plotly functionality.
