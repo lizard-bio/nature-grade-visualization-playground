@@ -10,7 +10,8 @@
 
 # BioLizardStyleR 2.0.1
 
-Fix bug where y axis text is angled faulty when using set_theme(lizard_style())
+- Fix bug where y axis text is angled faulty when using set_theme(lizard_style())
+- Explicitly make lizard_style() inherit from ggplot2's default style theme_grey() to avoid differences in behavior based in default that was set by user. 
 
 # BioLizardStyleR 2.0.0
 
