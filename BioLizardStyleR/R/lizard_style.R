@@ -31,7 +31,7 @@ set_default_BLZgreen <- function(){
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
-#' @importFrom ggplot2 theme element_text element_blank element_rect
+#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey
 #'
 #' @examples
 #' library(ggplot2)
@@ -42,13 +42,15 @@ lizard_style <- function() {
   #change default colors for geoms
   set_default_BLZgreen()
 
-  ggplot2::theme(
+  t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
     plot.title = ggplot2::element_text(family="Lato",
                                        size=16,
                                        color="#222222",
-                                       face="bold"),
+                                       face="bold",
+                                       hjust = 0,
+                                       vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family="Lato",
                                           size=12,
@@ -106,6 +108,8 @@ lizard_style <- function() {
 
   )
 
+  # inherit all other settings from theme_grey()
+  ggplot2::theme_grey() %+replace% t
 }
 
 
