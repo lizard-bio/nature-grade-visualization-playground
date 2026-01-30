@@ -402,12 +402,13 @@ treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
 ```{r, fig.width=6}
-chic <- utils::read.csv("https://figshare.com/ndownloader/files/42307179") #An example dataset
+example_file <- system.file("chicago-nmmaps-custom.csv", package = "BioLizardStyleR")
+chic <- utils::read.csv(example_file) #An example dataset
 
 g <- ggplot2::ggplot(chic, ggplot2::aes(x = season, y = o3,
                                         color = season)) +
   ggplot2::labs(x = "Season", y = "Ozone") + 
-  ggplot2::geom_violin(fill = "gray80", linewidth = 1, alpha = .5) +
+  ggplot2::geom_violin(linewidth = 1, alpha = .5) +
   ggplot2::geom_jitter(alpha = .25, width = .3) +
   ggplot2::coord_flip()
 

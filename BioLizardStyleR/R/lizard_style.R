@@ -1,23 +1,35 @@
 # Adapted from the BBC ggplot2 theme available under GPL-2 License
 
-#' set default colors of plot elements to BLZ green
+# Internal functions and definitions
+base_element_c <- "#000000"
+base_fill_c <- "#faf4ed"
+# base_fill_c <- "#badeed"
+highlight_element_c <- "#FF6F59"
+# highlight_element_c <- "#9fd356"
+highlight_fill_c <- "#badeed"
+
+base_text_c <- "#000000"
+
+
+
+#' set default colors of plot elements to black
 #'
 #' @importFrom ggplot2  update_geom_defaults
-set_default_BLZgreen <- function(){
-   ggplot2::update_geom_defaults("point", list(colour = "#01a086", fill = "#01a086"))
+set_default_BLZcolors <- function(){
+   ggplot2::update_geom_defaults("point", list(colour = base_element_c, fill = base_element_c))
 
-   ggplot2::update_geom_defaults("line", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("hline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("vline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("abline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("density", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("smooth", list(colour = "#1e2237"))
+   ggplot2::update_geom_defaults("line", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("hline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("vline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("abline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("density", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("smooth", list(colour = highlight_element_c, fill = "grey80"))
 
-   ggplot2::update_geom_defaults("boxplot", list(fill = "#01a086", colour = "black"))
-   ggplot2::update_geom_defaults("violin", list(fill = "#01a086", colour = "black"))
+   ggplot2::update_geom_defaults("boxplot", list(fill = base_fill_c, colour = base_element_c))
+   ggplot2::update_geom_defaults("violin", list(fill = base_fill_c, colour = base_element_c))
 
-   ggplot2::update_geom_defaults("rect", list(fill = "#01a086"))
-   ggplot2::update_geom_defaults("polygon", list(fill = "#01a086"))
+   ggplot2::update_geom_defaults("rect", list(fill = base_fill_c, colour = NA))  # colour = NA to remove outline
+   ggplot2::update_geom_defaults("polygon", list(fill = base_fill_c, colour = NA))
 }
 
 
@@ -40,14 +52,14 @@ set_default_BLZgreen <- function(){
 lizard_style <- function() {
 
   #change default colors for geoms
-  set_default_BLZgreen()
+  set_default_BLZcolors()
 
   t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
     plot.title = ggplot2::element_text(family="Lato",
                                        size=16,
-                                       color="#222222",
+                                       color=base_text_c,
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
@@ -64,7 +76,7 @@ lizard_style <- function() {
     legend.background = ggplot2::element_blank(),
     legend.title = ggplot2::element_text(family="Lato",
                                          size=11,
-                                         color="#222222"),
+                                         color=base_text_c),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(family="Lato",
                                         size=10,
@@ -73,23 +85,23 @@ lizard_style <- function() {
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
     axis.title = ggplot2::element_text(family="Lato",
                                        size=14,
-                                       color="#222222"),
+                                       color=base_text_c),
     axis.text = ggplot2::element_text(family="Lato",
                                       size=12,
-                                      color="#555555"),
+                                      color=base_text_c),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
     axis.title.y = ggplot2::element_text(family="Lato",
                                          size=14,
-                                         color="#222222",
+                                         color=base_text_c,
                                          angle=90,
                                          vjust=1),
     axis.title.x = ggplot2::element_text(family="Lato",
                                          size=14,
-                                         color="#222222",
+                                         color=base_text_c,
                                          margin=ggplot2::margin(b = 5)),
-    axis.ticks = ggplot2::element_line(color="#555555"),
-    axis.line = ggplot2::element_line(color="#808080"),
+    axis.ticks = ggplot2::element_line(color=base_element_c),
+    axis.line = ggplot2::element_line(color=base_element_c),
 
     #Grid lines
     #This removes all minor and major gridlines
@@ -102,8 +114,8 @@ lizard_style <- function() {
     #This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
     panel.background = ggplot2::element_blank(),
 
-    #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
-    strip.background = ggplot2::element_rect(fill="white", linewidth = 0),
+    #Strip background (This sets the panel background for facet-wrapped plots)
+    strip.background = ggplot2::element_rect(fill=highlight_fill_c, linewidth = 0),
     strip.text = ggplot2::element_text(size  = 14,  hjust = 0.5)
 
   )
@@ -175,11 +187,11 @@ lizard_layout <- function(fig, ...) {
   # Adapt layout
   fig <- fig |> plotly::layout(
     font = list(family = "lato"),
-    title = list(font = list(size = 16, color = "#222222")),
+    title = list(font = list(size = 16, color = base_text_c)),
     legend = list(font = list(size = 10),
-                  title = list(font = list(color = "#222222", size = 11))),
-    xaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
-    yaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+                  title = list(font = list(color = base_text_c, size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
     paper_bgcolor = "white",
     plot_bgcolor = "white",
     ...
