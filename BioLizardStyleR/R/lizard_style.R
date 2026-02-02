@@ -26,7 +26,7 @@ set_default_BLZgreen <- function(){
 #'
 #' This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
 #' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' If not yet installed, this function will install the 'Lato' font using the `gdtools` package.
+#' If not yet installed, this function will install the 'Red Hat Display' font using the `gdtools` package.
 #'
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
@@ -45,14 +45,14 @@ lizard_style <- function() {
   t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family="Lato",
+    plot.title = ggplot2::element_text(family="Red Hat Display",
                                        size=16,
                                        color="#222222",
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family="Lato",
+    plot.subtitle = ggplot2::element_text(family="Red Hat Display",
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -62,29 +62,29 @@ lizard_style <- function() {
     #This sets the position and alignment of the legend, removes background for it and sets the requirements for any text within the legend.
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family="Lato",
+    legend.title = ggplot2::element_text(family="Red Hat Display",
                                          size=11,
                                          color="#222222"),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family="Lato",
+    legend.text = ggplot2::element_text(family="Red Hat Display",
                                         size=10,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family="Lato",
+    axis.title = ggplot2::element_text(family="Red Hat Display",
                                        size=14,
                                        color="#222222"),
-    axis.text = ggplot2::element_text(family="Lato",
+    axis.text = ggplot2::element_text(family="Red Hat Display",
                                       size=12,
                                       color="#555555"),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
-    axis.title.y = ggplot2::element_text(family="Lato",
+    axis.title.y = ggplot2::element_text(family="Red Hat Display",
                                          size=14,
                                          color="#222222",
                                          angle=90,
                                          vjust=1),
-    axis.title.x = ggplot2::element_text(family="Lato",
+    axis.title.x = ggplot2::element_text(family="Red Hat Display",
                                          size=14,
                                          color="#222222",
                                          margin=ggplot2::margin(b = 5)),
@@ -143,18 +143,18 @@ lizard_style <- function() {
 #' ggplotly(p) |> lizard_layout()
 lizard_layout <- function(fig, ...) {
   # Get the local font file path
-  lato_path <- system.file("fonts/Lato-Regular.ttf", package = "BioLizardStyleR")
+  RHD_path <- system.file("fonts/RedHatDisplay-Regular.ttf", package = "BioLizardStyleR")
 
   # Check if the file exists
-  if (!file.exists(lato_path)) {
+  if (!file.exists(RHD_path)) {
     stop("Error: Lato font not found in package. Ensure it's in inst/fonts/")
   }
 
   # Create CSS to load the font
-  lato_css <- paste0(
+  rhd_css <- paste0(
     "<style type='text/css'>",
-    "@font-face { font-family: 'lato'; src: url('", lato_path, "'); }",
-    "body, text { font-family: 'lato'; }",
+    "@font-face { font-family: 'Red Hat Display'; src: url('", RHD_path, "'); }",
+    "body, text { font-family: 'Red Hat Display', sans-serif; }",
     "</style>"
   )
 
@@ -163,18 +163,18 @@ lizard_layout <- function(fig, ...) {
     fig$dependencies,
     list(
       htmltools::htmlDependency(
-        name = "lato-font",
+        name = "RHD-font",
         version = "0",
         src = c(file = system.file("fonts", package = "BioLizardStyleR")),
-        stylesheet = "Lato-Regular.ttf",
-        head = lato_css
+        stylesheet = "RedHatDisplay-Regular.ttf",
+        head = rhd_css
       )
     )
   )
 
   # Adapt layout
   fig <- fig |> plotly::layout(
-    font = list(family = "lato"),
+    font = list(family = "Red Hat Display"),
     title = list(font = list(size = 16, color = "#222222")),
     legend = list(font = list(size = 10),
                   title = list(font = list(color = "#222222", size = 11))),
