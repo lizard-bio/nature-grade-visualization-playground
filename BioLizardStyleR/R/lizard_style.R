@@ -157,7 +157,7 @@ lizard_layout <- function(fig, ...) {
 
   # Check if the file exists
   if (!file.exists(RHD_path)) {
-    stop("Error: Lato font not found in package. Ensure it's in inst/fonts/")
+    stop("Error: Red Hat Display font not found in package. Ensure it's in inst/fonts/")
   }
 
   # Create CSS to load the font

@@ -8,7 +8,7 @@
   } else {
     # If it is not installed, then we install it
     packageStartupMessage("Loading Red Hat Display font...")
-    errorMessage <- paste0("\nLato font installation failed. Try installing the Red Hat Display font manually from the ttf files in ",
+    errorMessage <- paste0("\nRed Hat Display font installation failed. Try installing the Red Hat Display font manually from the ttf files in ",
     "https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main/FontsToInstall.")
     # "and run `install_biolizard_fonts()`")
 
@@ -43,6 +43,8 @@
     } else {
       tryCatch({
         sysfonts::font_add_google(name = "Red Hat Display")
+        # ensure showtext is used to draw figures: this will enable the font in the plots
+        showtext::showtext_auto()
       }, error = function(err) {
         stop(paste("sysfonts error: ", err, errorMessage))
       })
