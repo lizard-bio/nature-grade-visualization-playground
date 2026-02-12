@@ -3,9 +3,7 @@
 # Internal functions and definitions
 base_element_c <- "#000000"
 base_fill_c <- "#faf4ed"
-# base_fill_c <- "#badeed"
-highlight_element_c <- "#FF6F59"
-# highlight_element_c <- "#9fd356"
+highlight_element_c <- "#0d47a1"
 highlight_fill_c <- "#badeed"
 
 base_text_c <- "#000000"
@@ -23,7 +21,7 @@ set_default_BLZcolors <- function(){
    ggplot2::update_geom_defaults("vline", list(colour = base_element_c))
    ggplot2::update_geom_defaults("abline", list(colour = base_element_c))
    ggplot2::update_geom_defaults("density", list(colour = base_element_c))
-   ggplot2::update_geom_defaults("smooth", list(colour = highlight_element_c, fill = "grey80"))
+   ggplot2::update_geom_defaults("smooth", list(colour = highlight_element_c, fill = highlight_fill_c))
 
    ggplot2::update_geom_defaults("boxplot", list(fill = base_fill_c, colour = base_element_c))
    ggplot2::update_geom_defaults("violin", list(fill = base_fill_c, colour = base_element_c))
@@ -115,7 +113,7 @@ lizard_style <- function() {
     panel.background = ggplot2::element_blank(),
 
     #Strip background (This sets the panel background for facet-wrapped plots)
-    strip.background = ggplot2::element_rect(fill=highlight_fill_c, linewidth = 0),
+    strip.background = ggplot2::element_rect(fill=base_fill_c),
     strip.text = ggplot2::element_text(size  = 14,  hjust = 0.5)
 
   )
