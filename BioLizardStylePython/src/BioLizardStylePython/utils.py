@@ -1,10 +1,13 @@
 import os
 import io
+
 # import numpy as np
 from PIL import Image
+
 # from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
+
 # from matplotlib import font_manager
 import colorspace
 
@@ -21,8 +24,8 @@ def lizard_style(plotly=False):
     Parameters:
     -----------
     font_name : str, optional
-        The name of the font to be used for the plots. By default, it uses 'Lato'.
-        If you want to use your own local installation of Lato or any other font,
+        The name of the font to be used for the plots. By default, it uses 'Red Hat Display'.
+        If you want to use your own local installation of Red Hat Display or any other font,
         specify the font name using this parameter. For more details on how to use
         the font_name parameter, refer to the 'In_Action' file on GitHub.
 
@@ -35,20 +38,31 @@ def lizard_style(plotly=False):
     Ensure that the specified font is installed on your system and is recognized by matplotlib.
 
     """
-    style_path = os.path.join(os.path.dirname(__file__), 'lizard_style.mplstyle')
+    style_path = os.path.join(os.path.dirname(__file__), "lizard_style.mplstyle")
     plt.style.use(style_path)
-    # from BioLizardStylePython import lato_localname
-    # plt.rcParams['font.sans-serif'] = [lato_localname]
 
     if plotly:
         import plotly.io as pio
+
         pio.templates.default = "lizard_style"
 
-biolizard_qualitative_pal = matplotlib.colors.ListedColormap([
-    "#01A086", "#1E2237", "#E9B940", "#5D7EA5", "#860202",
-    "#89D2C6", "#C56F27", "#EED8A1", "#9CAEC3", "#B073DE",
-    "#03F2F7", "#71BD8B"
-])
+
+biolizard_qualitative_pal = matplotlib.colors.ListedColormap(
+    [
+        "#01A086",
+        "#1E2237",
+        "#E9B940",
+        "#5D7EA5",
+        "#860202",
+        "#89D2C6",
+        "#C56F27",
+        "#EED8A1",
+        "#9CAEC3",
+        "#B073DE",
+        "#03F2F7",
+        "#71BD8B",
+    ]
+)
 # matplotlib.colormaps.register(name="biolizard_qualitative_pal", cmap=biolizard_qualitative_pal, force=True)    #does not yeild desired behaviour when calling a discrete colormap
 biolizard_qualitative_pal_r = biolizard_qualitative_pal.reversed()
 # matplotlib.colormaps.register(name="biolizard_qualitative_pal_r", cmap=biolizard_qualitative_pal_r, force=True)   #does not yeild desired behaviour when calling a discrete colormap
@@ -94,11 +108,20 @@ biolizard_qualitative_pal_r = biolizard_qualitative_pal.reversed()
 
 #     return cmap.reversed()
 
-biolizard_paired_pal = matplotlib.colors.ListedColormap([
-    "#6CC7B7", "#176B59", "#5D7EA5", "#1E2237",
-    "#EED8A1", "#e9b940", "#D6D6D6",  "#828282",
-    "#DE5F5F", "#860202"
-])
+biolizard_paired_pal = matplotlib.colors.ListedColormap(
+    [
+        "#6CC7B7",
+        "#176B59",
+        "#5D7EA5",
+        "#1E2237",
+        "#EED8A1",
+        "#e9b940",
+        "#D6D6D6",
+        "#828282",
+        "#DE5F5F",
+        "#860202",
+    ]
+)
 # matplotlib.colormaps.register(name="biolizard_paired_pal", cmap=biolizard_paired_pal, force=True)   #does not yeild desired behaviour when calling a discrete colormap
 biolizard_paired_pal_r = biolizard_paired_pal.reversed()
 # matplotlib.colormaps.register(name="biolizard_paired_pal_r", cmap=biolizard_paired_pal_r, force=True)   #does not yeild desired behaviour when calling a discrete colormap
@@ -108,7 +131,7 @@ biolizard_paired_pal_r = biolizard_paired_pal.reversed()
 #     Generate a qualitative colormap for matplotlib.
 
 #     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness). 
+#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
 #     Every two consecutive colors have a similar hue, making this palette especially suitable
 #     for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
 
@@ -131,7 +154,7 @@ biolizard_paired_pal_r = biolizard_paired_pal.reversed()
 #     Generate a qualitative colormap for matplotlib.
 
 #     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness). 
+#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
 #     Every two consecutive colors have a similar hue, making this palette especially suitable
 #     for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
 
@@ -147,8 +170,8 @@ biolizard_paired_pal_r = biolizard_paired_pal.reversed()
 
 #     return cmap.reversed()
 
-#Sequential and divergent color map
-#These color maps will be registered as when installing the package.
+# Sequential and divergent color map
+# These color maps will be registered as when installing the package.
 
 # #Internal function
 # def _create_and_register_colormap(palette, name, reverse=False):
@@ -198,7 +221,6 @@ def _create_colormap(name, palette, reverse=False):
     return cmap
 
 
-
 # Hues Biolizard Color Map
 #
 # This colormap applies the Biolizard 'hues' palette.
@@ -206,13 +228,24 @@ def _create_colormap(name, palette, reverse=False):
 # Details:
 # Maps each level to an evenly spaced hue on the color wheel,
 # with Biolizard's signature green in the middle. DOES NOT generate colorblind-safe palettes.
-_biolizard_hues_pal = colorspace.qualitative_hcl(h = [151.6,
-                                                      lambda n: 330 * (n - 1) / n + 151.6],   #330 degrees instead of 360 to avoid the last being identical to the first one 
-                                                c=49.5, l=58.9)
-biolizard_hues_pal = _create_colormap('biolizard_hues_pal', _biolizard_hues_pal)
-biolizard_hues_pal_r = _create_colormap('biolizard_hues_pal_r', _biolizard_hues_pal, reverse=True)
-matplotlib.colormaps.register(name='biolizard_hues_pal', cmap=biolizard_hues_pal, force=True)
-matplotlib.colormaps.register(name='biolizard_hues_pal_r', cmap=biolizard_hues_pal_r, force=True)
+_biolizard_hues_pal = colorspace.qualitative_hcl(
+    h=[
+        151.6,
+        lambda n: 330 * (n - 1) / n + 151.6,
+    ],  # 330 degrees instead of 360 to avoid the last being identical to the first one
+    c=49.5,
+    l=58.9,
+)
+biolizard_hues_pal = _create_colormap("biolizard_hues_pal", _biolizard_hues_pal)
+biolizard_hues_pal_r = _create_colormap(
+    "biolizard_hues_pal_r", _biolizard_hues_pal, reverse=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_hues_pal", cmap=biolizard_hues_pal, force=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_hues_pal_r", cmap=biolizard_hues_pal_r, force=True
+)
 
 # Sequential Biolizard Color Map
 #
@@ -222,11 +255,21 @@ matplotlib.colormaps.register(name='biolizard_hues_pal_r', cmap=biolizard_hues_p
 # The sequential palette represents underlying values using a consistent sequence of increasing luminance.
 # The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
 # The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
-_biolizard_sequential_pal = colorspace.sequential_hcl(h=170, c=[0,75,40], l=[90,35], power=1)
-biolizard_sequential_pal = _create_colormap('biolizard_sequential_pal', _biolizard_sequential_pal)
-biolizard_sequential_pal_r = _create_colormap('biolizard_sequential_pal_r', _biolizard_sequential_pal, reverse=True)
-matplotlib.colormaps.register(name='biolizard_sequential_pal', cmap=biolizard_sequential_pal, force=True)
-matplotlib.colormaps.register(name='biolizard_sequential_pal_r', cmap=biolizard_sequential_pal_r, force=True)
+_biolizard_sequential_pal = colorspace.sequential_hcl(
+    h=170, c=[0, 75, 40], l=[90, 35], power=1
+)
+biolizard_sequential_pal = _create_colormap(
+    "biolizard_sequential_pal", _biolizard_sequential_pal
+)
+biolizard_sequential_pal_r = _create_colormap(
+    "biolizard_sequential_pal_r", _biolizard_sequential_pal, reverse=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_sequential_pal", cmap=biolizard_sequential_pal, force=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_sequential_pal_r", cmap=biolizard_sequential_pal_r, force=True
+)
 
 # Divergent Biolizard Color Map
 #
@@ -240,56 +283,75 @@ matplotlib.colormaps.register(name='biolizard_sequential_pal_r', cmap=biolizard_
 # (c) the neutral central value has zero chroma.
 # The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green.
 # This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
-_biolizard_divergent_pal = colorspace.diverging_hcl(h=[60, 170], c=80, l=[50, 95], power=1)
-biolizard_divergent_pal = _create_colormap('biolizard_divergent_pal', _biolizard_divergent_pal)
-biolizard_divergent_pal_r = _create_colormap('biolizard_divergent_pal_r', _biolizard_divergent_pal, reverse=True)
-matplotlib.colormaps.register(name='biolizard_divergent_pal', cmap=biolizard_divergent_pal, force=True)
-matplotlib.colormaps.register(name='biolizard_divergent_pal_r', cmap=biolizard_divergent_pal_r, force=True)
-
+_biolizard_divergent_pal = colorspace.diverging_hcl(
+    h=[60, 170], c=80, l=[50, 95], power=1
+)
+biolizard_divergent_pal = _create_colormap(
+    "biolizard_divergent_pal", _biolizard_divergent_pal
+)
+biolizard_divergent_pal_r = _create_colormap(
+    "biolizard_divergent_pal_r", _biolizard_divergent_pal, reverse=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_divergent_pal", cmap=biolizard_divergent_pal, force=True
+)
+matplotlib.colormaps.register(
+    name="biolizard_divergent_pal_r", cmap=biolizard_divergent_pal_r, force=True
+)
 
 
 # viridis-like colormap
 # named l_viridis after the european green lizard (Lacerta viridis)
 from .l_viridis import cm_data
+
 rgbcolors = [matplotlib.colors.to_rgb(color) for color in cm_data]
-l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list("l_viridis_pal_r", rgbcolors)
-l_viridis_pal = l_viridis_pal_r.reversed()   # reverse to start with yellow
-matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=True)  
+l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "l_viridis_pal_r", rgbcolors
+)
+l_viridis_pal = l_viridis_pal_r.reversed()  # reverse to start with yellow
+matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=True)
 matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal_r, force=True)
 # l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
 
 
-def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="TempLizardPlot", save_filepath=None):
+def finalise_lizardplot(
+    plot,
+    source_text,
+    fontsize=12,
+    pdf=False,
+    output_name="TempLizardPlot",
+    save_filepath=None,
+):
     """
-   Finalise and save a plot with custom adjustments and a source text.
+    Finalise and save a plot with custom adjustments and a source text.
 
-   This function takes a provided plot, adjusts its layout, and appends a footer
-   at the bottom containing a source text and a logo. The combined image is then saved
-   either as a PNG or a PDF.
+    This function takes a provided plot, adjusts its layout, and appends a footer
+    at the bottom containing a source text and a logo. The combined image is then saved
+    either as a PNG or a PDF.
 
-   Parameters:
-   - plot (matplotlib.figure.Figure): The input plot to be finalized.
-   - source_text (str): The source text to be displayed at the bottom of the plot.
-   - fontsize (int, optional): Font size of the source text. Defaults to 12.
-   - pdf (bool, optional): If True, saves the output as a PDF. Otherwise, saves as a PNG. Defaults to False.
-   - output_name (str, optional): Name of the output file (without extension). Defaults to "TempLizardPlot".
-   - save_filepath (str, optional): Full path to save the output (with extension). If specified, it takes precedence over output_name.
+    Parameters:
+    - plot (matplotlib.figure.Figure): The input plot to be finalized.
+    - source_text (str): The source text to be displayed at the bottom of the plot.
+    - fontsize (int, optional): Font size of the source text. Defaults to 12.
+    - pdf (bool, optional): If True, saves the output as a PDF. Otherwise, saves as a PNG. Defaults to False.
+    - output_name (str, optional): Name of the output file (without extension). Defaults to "TempLizardPlot".
+    - save_filepath (str, optional): Full path to save the output (with extension). If specified, it takes precedence over output_name.
 
-   Returns:
-   None. The combined image is saved to the specified location or the current working directory.
+    Returns:
+    None. The combined image is saved to the specified location or the current working directory.
 
-   Example:
-   #>>> fig, ax = plt.subplots()
-   #>>> ax.plot([0, 1], [0, 1])
-   #>>> finalise_lizardplot(fig, "Source: BioLizard Data", pdf=True)
-   """
+    Example:
+    #>>> fig, ax = plt.subplots()
+    #>>> ax.plot([0, 1], [0, 1])
+    #>>> finalise_lizardplot(fig, "Source: BioLizard Data", pdf=True)
+    """
     # Adjust the provided plot
     plot.subplots_adjust(left=0.11, bottom=0.13, right=0.95)
 
     # Save the adjusted plot to a temporary buffer
     buf = io.BytesIO()
     dpi = 300  # Increased DPI for higher resolution
-    plot.savefig(buf, format='png', pad_inches=0.1, dpi=dpi)
+    plot.savefig(buf, format="png", pad_inches=0.1, dpi=dpi)
     buf.seek(0)
     img2 = Image.open(buf)
 
@@ -302,35 +364,42 @@ def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="
 
     fig1 = plt.figure(figsize=(custom_fig_width_inches, custom_fig_height_inches))
     ax = fig1.add_axes([0, 0, 1, 1])
-    ax.plot([0, 1], [1, 1], color='black', linewidth=1.5, transform=ax.transAxes)
+    ax.plot([0, 1], [1, 1], color="black", linewidth=1.5, transform=ax.transAxes)
 
-    font_name = plt.rcParams['font.sans-serif'][0]
+    font_name = plt.rcParams["font.sans-serif"][0]
 
-    ax.text(0.05, 0.5, source_text, verticalalignment='center', transform=ax.transAxes, fontsize=fontsize,
-            fontname=font_name)
+    ax.text(
+        0.05,
+        0.5,
+        source_text,
+        verticalalignment="center",
+        transform=ax.transAxes,
+        fontsize=fontsize,
+        fontname=font_name,
+    )
 
-    ax_image = fig1.add_axes([0.90, -0.09, 0.10, 1], anchor='NE', zorder=-1)
+    ax_image = fig1.add_axes([0.90, -0.09, 0.10, 1], anchor="NE", zorder=-1)
 
     # Get the directory of the current script
     current_directory = os.path.dirname(os.path.abspath(__file__))
     # Construct the path to the image
-    image_path = os.path.join(current_directory, 'logo', 'BiolizardLogo.png')
+    image_path = os.path.join(current_directory, "logo", "BiolizardLogo.png")
     # Read the image
     img = plt.imread(image_path)
 
     ax_image.imshow(img)
-    ax_image.axis('off')
-    ax.axis('off')
+    ax_image.axis("off")
+    ax.axis("off")
 
     # Save the custom figure to a temporary buffer
     buf1 = io.BytesIO()
-    fig1.savefig(buf1, format='png', pad_inches=0.1, dpi=dpi)
+    fig1.savefig(buf1, format="png", pad_inches=0.1, dpi=dpi)
     buf1.seek(0)
     img1 = Image.open(buf1)
     plt.close(fig1)
 
     # Concatenate the two images vertically
-    combined_img = Image.new('RGB', (swarmplot_width, img1.height + img2.height))
+    combined_img = Image.new("RGB", (swarmplot_width, img1.height + img2.height))
     combined_img.paste(img2, (0, 0))
     combined_img.paste(img1, (0, img2.height))
 
@@ -339,17 +408,11 @@ def finalise_lizardplot(plot, source_text, fontsize=12, pdf=False, output_name="
         if save_filepath:
             filename = save_filepath
         else:
-            filename = output_name + '.pdf'
+            filename = output_name + ".pdf"
         combined_img.save(filename, "PDF", resolution=100.0)
     else:
         if save_filepath:
             filename = save_filepath
         else:
-            filename = output_name + '.png'
+            filename = output_name + ".png"
         combined_img.save(filename)
-
-
-
-
-
-

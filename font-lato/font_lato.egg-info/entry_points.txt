@@ -1,2 +1,0 @@
-[fonts_ttf]
-lato = font_lato:font_files

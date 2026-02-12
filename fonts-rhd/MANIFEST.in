@@ -1,0 +1,7 @@
+include CHANGELOG.txt
+include LICENSE.txt
+include README.txt
+include setup.py
+recursive-include font_rhd *.py
+recursive-include font_rhd/files *.ttf
+include font_rhd/files/OFL.txt
