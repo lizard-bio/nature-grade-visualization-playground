@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: font-rhd
+Version: 0.1.2
+Summary: Red Hat Display font repackaged for the Python Fonts module
+Home-page: https://github.com/lizard-bio/nature-grade-visualization-playground/tree/main
+Author: Aniko Meijer
+Author-email: aniko.meijer@lizard.bio
+License: MIT
+Keywords: Red Hat Display Font
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Operating System :: POSIX :: Linux
+Classifier: License :: OSI Approved :: SIL Open Font License 1.1 (OFL-1.1)
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 2.6
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Software Development
+Classifier: Topic :: Text Processing :: Fonts
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: summary
+
+Fonts: Red Hat Display
+======================
+
+Red Hat Display is a Google Font by MCKL released under the OFL.
+
+Preview: https://fonts.google.com/specimen/Red+Hat+Display
+
+This font has been repackaged for the Python Fonts module: `fonts package <https://pypi.org/project/fonts/>`_
+
+Redistributed under the terms of the SIL Open Font License: `SIL OFL <https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>`_
+
+0.1.2
+=====
+
+first release of font-rhd

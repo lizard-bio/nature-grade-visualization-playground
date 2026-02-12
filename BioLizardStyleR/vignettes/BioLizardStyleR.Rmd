@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 # 1. Installation
-To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Lato". If the font is not yet installed, installation  will be attempted automatically when you load the library.
+To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Red Hat Display". If the font is not yet installed, installation  will be attempted automatically when you load the library.
 
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) {
@@ -165,14 +165,14 @@ The discrete color palettes can also be called directly, in case you would like 
 mycolors <- biolizard_pal_sequential(3, reverse = TRUE)
 gearcolors <- mycolors[as.factor(mtcars$gear)]
 
-graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Red Hat Display")
 graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 
 # #use BLZ base colors
 # mycolors <- c(blz_green, blz_blue, blz_yellow)
 # gearcolors <- mycolors[as.factor(mtcars$gear)]
 # 
-# graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Lato")
+# graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Red Hat Display")
 # graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 ```
 
@@ -371,10 +371,10 @@ ggplot2::ggplot(data, ggplot2::aes(area = n, label = type_2, fill = type_1,
   # 3. Print type_1 text
   treemapify::geom_treemap_subgroup_text(place = "centre", grow = T, alpha = 0.5, colour = "black",
                                          fontface = "italic", min.size = 0,
-                                         family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+                                         family = "Red Hat Display") +   #need to add "Red Hat Display" manually as this text is not accessed in theme()
   # 4. Print type_2 text
   treemapify::geom_treemap_text(colour = "white", place = "topleft", reflow = T,
-                                family = "Lato") +   #need to add "Lato" manually as this text is not accessed in theme()
+                                family = "Red Hat Display") +   #need to add "Red Hat Display" manually as this text is not accessed in theme()
   
   # 5. BLZ style
   scale_fill_biolizard(scheme = "hues") +
@@ -395,7 +395,7 @@ treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
                  title="Number of pokémon stratified by type", 
                  palette=palette,  #set the BLZ color palette
                  fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
-                 fontfamily.title = "rhd", fontfamily.labels = "rhd", fontfamily.legend = "rhd")  #set the lato font
+                 fontfamily.title = "Red Hat Display", fontfamily.labels = "Red Hat Display", fontfamily.legend = "Red Hat Display")  #set the Red Hat Display font
 ```
 
 ## 3.8 Chicago plots
