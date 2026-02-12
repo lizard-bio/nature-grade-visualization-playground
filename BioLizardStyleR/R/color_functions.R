@@ -3,31 +3,53 @@
 # The qualitative palette function is inspired from the Economist color scales theme available under GPL-2 License.
 
 # Internal functions and definitions
-# biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#00C2F9", "#FF5AAF","#FF6E3A","#00FCCF",
-#                                    "#8400CD" ,"#E20134","#008DF9", "#FFB2FD","#A40122")
+# old scale
+# biolizard_qualitative_palette <- c("#01A086", "#1E2237", "#E9B940", "#5D7EA5", "#860202",
+#                                    "#89D2C6", "#C56F27", "#EED8A1", "#9CAEC3", "#B073DE",
+#                                    "#03F2F7", "#71BD8B")
+# biolizard_paired_palette <- c("#6CC7B7", "#176B59", "#5D7EA5", "#1E2237",
+#                               "#EED8A1", "#e9b940", "#D6D6D6",  "#828282",
+#                               "#DE5F5F", "#860202")
 
-# biolizard_qualitative_palette <- c("#01a086", "#1e2237", "#e9b940","#105144", "#6CC7B7", "#233E60", "#666666", "#D6D6D6")
-biolizard_qualitative_palette <- c("#01A086", "#1E2237", "#E9B940", "#5D7EA5", "#860202",
-                                   "#89D2C6", "#C56F27", "#EED8A1", "#9CAEC3", "#B073DE",
-                                   "#03F2F7", "#71BD8B")
-biolizard_paired_palette <- c("#6CC7B7", "#176B59", "#5D7EA5", "#1E2237",
-                              "#EED8A1", "#e9b940", "#D6D6D6",  "#828282",
-                              "#DE5F5F", "#860202")
+# new scale
+# biolizard_qualitative_palette <- c("#9fd356", "#009944", "#0d47a1", "#1e88e5", "#E5A4CB", "#FF6F59", "#75DDDD", "#F72585")
+biolizard_qualitative_palette <- c("#9fd356", "#0d47a1", "#E5A4CB", "#FF6F59", "#75DDDD", "#009944", "#1e88e5", "#F72585")
+
+biolizard_paired_palette <- c("#9fd356", "#009944", "#1e88e5", "#0d47a1", "#E5A4CB", "#F72585")
 
 
 # the three main colors
+# deprecate: no main colors anymore --> all black
 
 #' Biolizard green
 #' @export
-blz_green <- "#01a086"
+# blz_green <- "#01a086"
+blz_green <- {
+  lifecycle::deprecate_warn("3.0.0", what = I("blz_green"),
+                            details = "The BioLizard green (#01a086) is no longer part of the BioLizard brand. Returning black.")
+  "#000000"
+}
 
 #' Biolizard dark blue
 #' @export
-blz_blue <- "#1e2237"
+# blz_blue <- "#1e2237"
+blz_blue <- {
+  lifecycle::deprecate_warn("3.0.0", what = I("blz_blue"),
+                            details = "The BioLizard dark blue (#1e2237) is no longer part of the BioLizard brand. Returning black.")
+  "#000000"
+}
+
 
 #' Biolizard yellow
 #' @export
-blz_yellow <- "#e9b940"
+# blz_yellow <- "#e9b940"
+blz_yellow <- {
+  lifecycle::deprecate_warn("3.0.0", what = I("blz_yellow"),
+                            details = "The BioLizard yellow (#e9b940) is no longer part of the BioLizard brand. Returning black.")
+  "#000000"
+}
+
+
 
 # color palette functions
 
@@ -110,9 +132,9 @@ biolizard_pal_paired <- function(n, reverse = FALSE) {
 #'
 biolizard_pal_hue <- function(n, reverse = FALSE) {
   if (!reverse) {
-    return(pal_hue(l = 58.9, c = 49.5, h.start = 151.6)(n))
+    return(pal_hue(l = 55, c = 71, h.start = 135)(n))
   } else {
-    return(pal_hue(l = 58.9, c = 49.5, h.start = 151.6, direction = -1)(n))
+    return(pal_hue(l = 55, c = 71, h.start = 135, direction = -1)(n))
   }
 }
 
@@ -135,7 +157,7 @@ biolizard_pal_sequential <- function(n, reverse = FALSE) {
   if (n < 1) {
     stop("The requested number of colors must be at least 1.")
   }
-  colors <- sequential_hcl(n, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)
+  colors <- sequential_hcl(n, h = 250, c = c(90, 100, 70), l = c(75, 15), power = 1)
   if (reverse) {
     return(rev(colors))
   } else {
@@ -163,7 +185,7 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
     stop("The requested number of colors must be at least 2.")
   }
   # colors <- diverging_hcl(n, h = c(291, 170), c = 80, l = c(35, 95), power = 1)
-  colors <- diverging_hcl(n, h = c(60, 170), c = 80, l = c(50, 90), power = 1)
+  colors <- diverging_hcl(n, h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)
   if (reverse) {
     return(rev(colors))
   } else {
@@ -281,7 +303,7 @@ scale_color_biolizard <- function(type = "discrete",
     switch(scheme,
            qualitative = discrete_scale("colour", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("colour", palette = function(n) biolizard_pal_paired(n, reverse), ...),
-           hues = scale_color_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
+           hues = scale_color_hue(l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            sequential = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
@@ -291,12 +313,12 @@ scale_color_biolizard <- function(type = "discrete",
     switch(paste(scheme, reverse, sep="_"),
            l_viridis_FALSE = scale_color_gradientn(colors = rev(l_viridis_hex), ...),
            l_viridis_TRUE = scale_color_gradientn(colors = l_viridis_hex, ...),
-           sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
-           sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 250, c = c(90, 100, 70), l = c(75, 15), power = 1), ...),
+           sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(90, 100, 70), l = c(75, 15), power = 1)), ...),
            # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
-           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
+           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
            # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...),
-           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1)), ...),
+           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
            stop("Requested scheme not available for continuous color palette.")
     )
   } else {
@@ -322,7 +344,7 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
     switch(scheme,
            qualitative = discrete_scale("fill", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("fill", palette = function(n) biolizard_pal_paired(n, reverse), ...),
-           hues = scale_fill_hue(l = 58.9, c = 49.5, h.start = 152, direction = ifelse(reverse, -1, 1), ...),
+           hues = scale_fill_hue(l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("fill", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            sequential = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
@@ -331,12 +353,12 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
     switch(paste(scheme, reverse, sep="_"),
            l_viridis_FALSE = scale_fill_gradientn(colors = rev(l_viridis_hex), ...),
            l_viridis_TRUE = scale_fill_gradientn(colors = l_viridis_hex, ...),
-           sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1), ...),
-           sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 170, c = c(0, 75, 40), l = c(90, 35), power = 1)), ...),
+           sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 250, c = c(90, 100, 70), l = c(75, 15), power = 1), ...),
+           sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(90, 100, 70), l = c(75, 15), power = 1)), ...),
            # divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
-           divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1), ...),
+           divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
            # divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
-           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256, h = c(60, 170), c = 80, l = c(50, 90), power = 1)), ...)
+           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...)
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
