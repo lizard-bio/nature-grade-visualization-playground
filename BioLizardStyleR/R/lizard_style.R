@@ -41,28 +41,35 @@ set_default_BLZcolors <- function(){
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
-#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey
+#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey %+replace%
 #'
 #' @examples
-#' library(ggplot2)
+#' \dontrun{library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
+#' }
 lizard_style <- function() {
 
   #change default colors for geoms
   set_default_BLZcolors()
 
+  # Check if font is available, if not, fall back on sans
+  my_font <- "Red Hat Display"
+  if (!systemfonts::font_info(my_font)$path != "") {
+    my_font <- "sans"
+  }
+
   t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family="Red Hat Display",
+    plot.title = ggplot2::element_text(family=my_font,
                                        size=16,
                                        color=base_text_c,
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family="Red Hat Display",
+    plot.subtitle = ggplot2::element_text(family=my_font,
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -72,29 +79,29 @@ lizard_style <- function() {
     #This sets the position and alignment of the legend, removes background for it and sets the requirements for any text within the legend.
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family="Red Hat Display",
+    legend.title = ggplot2::element_text(family=my_font,
                                          size=11,
                                          color=base_text_c),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family="Red Hat Display",
+    legend.text = ggplot2::element_text(family=my_font,
                                         size=10,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family="Red Hat Display",
+    axis.title = ggplot2::element_text(family=my_font,
                                        size=14,
                                        color=base_text_c),
-    axis.text = ggplot2::element_text(family="Red Hat Display",
+    axis.text = ggplot2::element_text(family=my_font,
                                       size=12,
                                       color=base_text_c),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
-    axis.title.y = ggplot2::element_text(family="Red Hat Display",
+    axis.title.y = ggplot2::element_text(family=my_font,
                                          size=14,
                                          color=base_text_c,
                                          angle=90,
                                          vjust=1),
-    axis.title.x = ggplot2::element_text(family="Red Hat Display",
+    axis.title.x = ggplot2::element_text(family=my_font,
                                          size=14,
                                          color=base_text_c,
                                          margin=ggplot2::margin(b = 5)),

@@ -10,11 +10,12 @@
 #' @importFrom ggplot2 update_geom_defaults
 #' @examples
 #' library(ggplot2)
-#' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+#' \dontrun{p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
 #' p  # default colors have changed to BLZ green, even without applying the theme
 #' reset_colors()
 #' p  # ggplot default colors
+#' }
 reset_colors <- function(){
   update_geom_defaults("point",   list(colour = "black", fill = NA))
 
