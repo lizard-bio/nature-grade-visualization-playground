@@ -1,5 +1,6 @@
 import os
 import io
+import warnings
 
 # import numpy as np
 from PIL import Image
@@ -179,20 +180,6 @@ matplotlib.colormaps.register(
 )
 
 
-# viridis-like colormap
-# TODO: deprecate
-# named l_viridis after the european green lizard (Lacerta viridis)
-from .l_viridis import cm_data
-
-rgbcolors = [matplotlib.colors.to_rgb(color) for color in cm_data]
-l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
-    "l_viridis_pal_r", rgbcolors
-)
-l_viridis_pal = l_viridis_pal_r.reversed()  # reverse to start with yellow
-matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=True)
-matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal_r, force=True)
-# l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
-
 # beige-blue colormap
 from .beige_blue import cm_data as cm_data_beige_blue
 rgbcolors_beige_blue = [matplotlib.colors.to_rgb(color) for color in cm_data_beige_blue]
@@ -212,6 +199,53 @@ biolizard_beige_gn_blue_pal_r = matplotlib.colors.LinearSegmentedColormap.from_l
 biolizard_beige_gn_blue_pal = biolizard_beige_gn_blue_pal_r.reversed() # reverse to start with beige
 matplotlib.colormaps.register(name="biolizard_beige_gn_blue_pal", cmap=biolizard_beige_gn_blue_pal, force=True)
 matplotlib.colormaps.register(name="biolizard_beige_gn_blue_pal_r", cmap=biolizard_beige_gn_blue_pal_r, force=True)
+
+# viridis-like colormap: DEPRECATED
+# named l_viridis after the european green lizard (Lacerta viridis)
+from .l_viridis import cm_data
+
+rgbcolors = [matplotlib.colors.to_rgb(color) for color in cm_data]
+_deprecated_l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "_deprecated_l_viridis_pal_r", rgbcolors
+)
+_deprecated_l_viridis_pal = _deprecated_l_viridis_pal_r.reversed()  # reverse to start with yellow
+
+class DeprecatedColormap(matplotlib.colors.Colormap):
+    def __init__(self, base_cmap, name):
+        self._base_cmap = base_cmap
+        self.name = name
+        super().__init__(name, N=base_cmap.N)
+    def __call__(self, *args, **kwargs):
+        warnings.warn(
+            f"{self.name} is deprecated and will be removed in a future version. "
+            "Please use biolizard_beige_gn_blue_pal instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return self._base_cmap(*args, **kwargs)
+    def __getattr__(self, attr):
+        # Forward all other attributes to the base colormap
+        return getattr(self._base_cmap, attr)
+
+l_viridis_pal = DeprecatedColormap(biolizard_beige_gn_blue_pal, "l_viridis_pal")
+l_viridis_pal_r = DeprecatedColormap(biolizard_beige_gn_blue_pal_r, "l_viridis_pal_r")
+
+matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=True)
+matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal_r, force=True)
+
+# deprecation logic for attribute access
+deprecated_names = ['l_viridis_pal', 'l_viridis_pal_r']
+
+def __getattr__(name):
+    if name in deprecated_names:
+        warnings.warn(
+            f"{name} is deprecated and will be removed in a future version. Please use biolizard_beige_gn_blue_pal instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return l_viridis_pal if name == 'l_viridis_pal' else l_viridis_pal_r
+    raise AttributeError(f"module {__name__} has no attribute {name}")
+
 
 def finalise_lizardplot(
     plot,
