@@ -131,7 +131,7 @@ testplot_qualitative
 # Applying the sequential color scales (assuming you have a different dataset or aesthetic)
 ## viridis-like scale
 testplot_sequential <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "l_viridis") + 
+  scale_color_biolizard(type = "discrete", scheme = "beige_blue") + 
   lizard_style()
 testplot_sequential
 
@@ -189,21 +189,6 @@ finalise_lizardplot(
   source='Source: The mtcars dataset')
 ```
 
-## 2.4 Reset ggplot2 defaults
-
-Note that calling `lizard_style()` will overwrite the default colors for points, lines, boxplots, areas, etc.. . To reset them to the ggplot2 defaults, you can either restart the R session or use `reset_colors()`.
-
-In the plot below, the points are shown in <span style="color: #01a086;">BioLizard green</span>. Using `reset_colors()` will revert these changes:
-
-```{r, fig.show='hold'}
-p <- ggplot2::ggplot(mtcars, ggplot2::aes(mpg, disp)) + 
-  ggplot2::geom_point()
-p
-
-reset_colors()
-p
-```
-
 # 3. Examples
 
 ## 3.1 Simple bar chart
@@ -239,7 +224,7 @@ datapoly <- merge(values, positions, by = c("id"))
 
 ggplot2::ggplot(datapoly, ggplot2::aes(x = x, y = y)) +
   ggplot2::geom_polygon(ggplot2::aes(group = id, fill = id)) +
-  scale_fill_biolizard(type = "discrete", scheme = "sequential") +
+  scale_fill_biolizard(type = "discrete", scheme = "beige_gn_blue") +
   lizard_style()
 ```
 
@@ -290,7 +275,7 @@ ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
     color = "Miles per Gallon",
     fill = "Miles per Gallon"
   ) +
-  scale_color_biolizard(type = "continuous", scheme = "sequential") +
+  scale_color_biolizard(type = "continuous", scheme = "beige_blue") +
   lizard_style()
 ```
 
@@ -462,7 +447,7 @@ g <- ggplot2::ggplot(chic, ggplot2::aes(temp, o3)) +
                 subtitle ='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
 
 g <- g + lizard_style() +
-  scale_fill_biolizard(type = 'continuous',scheme = 'sequential')
+  scale_fill_biolizard(type = 'continuous',scheme = 'beige_blue')
 g
 
 finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/)")
@@ -543,50 +528,4 @@ p <- DE |>
   scale_color_biolizard(reverse = TRUE)
 
 plotly::ggplotly(p) |> lizard_layout()
-```
-
-## 3.10 Maps
-
-note: to install 'sf' you might have to install libudunits2 and libgdal:
-
-- debian/ubuntu: `sudo apt-get update && sudo apt-get install libudunits2-dev libgdal-dev`
-- tophat/fedora: `dnf install udunits2-devel libgdal-devel`
-- OSX: `brew install udunits` & `brew install gdal`
-
-```{r, eval = eval_packages_installed, fig.width=6}
-library("sf")
-library("rnaturalearth")
-library("rnaturalearthdata")
-
-world <- rnaturalearth::ne_countries(scale = "medium", returnclass = "sf")
-
-BLZ_offices <- c("Belgium", "Netherlands", "Switzerland", "United States of America")
-world$BLZ_office <- ifelse(world$name_en %in% BLZ_offices, "yes", "no")
-world$BLZ_office <- factor(world$BLZ_office, levels = c("yes", "no"))
-
-ggplot2::ggplot(data = world, ggplot2::aes(fill = BLZ_office)) +
-  ggplot2::geom_sf() +
-  scale_fill_biolizard(type = "discrete", scheme = "qualitative") +
-  lizard_style()
-```
-
-```{r, eval = eval_packages_installed, fig.width=6}
-# coloring the ocean, as in the map on our website
-ggplot2::ggplot(data = world, ggplot2::aes(fill = BLZ_office)) +
-  ggplot2::geom_sf() +
-  ggplot2::scale_fill_manual(values = c(blz_yellow, blz_green)) +
-  lizard_style() +
-  ggplot2::theme(panel.background = ggplot2::element_rect(fill = blz_blue),
-                 panel.grid = ggplot2::element_blank())
-```
-
-```{r, eval = eval_packages_installed, fig.width=6}
-# europe only
-ggplot2::ggplot(data = dplyr::filter(world, continent == "Europe"), ggplot2::aes(fill = BLZ_office)) +
-  ggplot2::geom_sf() +
-  ggplot2::scale_fill_manual(values = c(blz_yellow, blz_green)) +
-  lizard_style() +
-  ggplot2::theme(panel.background = ggplot2::element_rect(fill = blz_blue),
-                 panel.grid = ggplot2::element_blank()) +
-  ggplot2::coord_sf(xlim = c(-25, 50), ylim = c(35, 70), expand = FALSE)
 ```

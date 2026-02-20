@@ -303,6 +303,7 @@ matplotlib.colormaps.register(
 
 
 # viridis-like colormap
+# TODO: deprecate
 # named l_viridis after the european green lizard (Lacerta viridis)
 from .l_viridis import cm_data
 
@@ -315,6 +316,25 @@ matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=Tr
 matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal_r, force=True)
 # l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
 
+# beige-blue colormap
+from .beige_blue import cm_data as cm_data_beige_blue
+rgbcolors_beige_blue = [matplotlib.colors.to_rgb(color) for color in cm_data_beige_blue]
+biolizard_beige_blue_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "biolizard_beige_blue_r", rgbcolors_beige_blue
+)
+biolizard_beige_blue = biolizard_beige_blue_r.reversed() # reverse to start with beige
+matplotlib.colormaps.register(name="biolizard_beige_blue", cmap=biolizard_beige_blue, force=True)
+matplotlib.colormaps.register(name="biolizard_beige_blue_r", cmap=biolizard_beige_blue_r, force=True)
+
+# beige-green-blue colormap
+from .beige_gn_blue import cm_data as cm_data_beige_gn_blue
+rgbcolors_beige_gn_blue = [matplotlib.colors.to_rgb(color) for color in cm_data_beige_gn_blue]
+biolizard_beige_gn_blue_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "biolizard_beige_gn_blue_r", rgbcolors_beige_gn_blue
+)
+biolizard_beige_gn_blue = biolizard_beige_gn_blue_r.reversed() # reverse to start with beige
+matplotlib.colormaps.register(name="biolizard_beige_gn_blue", cmap=biolizard_beige_gn_blue, force=True)
+matplotlib.colormaps.register(name="biolizard_beige_gn_blue_r", cmap=biolizard_beige_gn_blue_r, force=True)
 
 def finalise_lizardplot(
     plot,

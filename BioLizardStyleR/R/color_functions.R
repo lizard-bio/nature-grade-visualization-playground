@@ -64,7 +64,7 @@ blz_yellow <- {
 #'
 #' @param n Integer, number of colors. Maximum 12.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
-#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_sequential()] [biolizard_pal_divergent()]
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_sequential()] [biolizard_pal_divergent()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue()]
 #' @export
 #'
 biolizard_pal_qualitative <- function(n, reverse = FALSE) {
@@ -95,7 +95,7 @@ biolizard_pal_qualitative <- function(n, reverse = FALSE) {
 #'
 #' @param n Integer, number of colors. Maximum 10.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
-#' @seealso [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_divergent()]
+#' @seealso [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_divergent()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue()]
 #' @export
 #'
 biolizard_pal_paired <- function(n, reverse = FALSE) {
@@ -127,7 +127,7 @@ biolizard_pal_paired <- function(n, reverse = FALSE) {
 #' @param n Integer, number of colors.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
 #' @importFrom scales pal_hue
-#' @seealso [biolizard_pal_paired()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()] [biolizard_pal_sequential()]
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()] [biolizard_pal_sequential()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue()]
 #' @export
 #'
 biolizard_pal_hue <- function(n, reverse = FALSE) {
@@ -150,7 +150,7 @@ biolizard_pal_hue <- function(n, reverse = FALSE) {
 #' @param n Integer, number of colors.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
 #' @importFrom colorspace sequential_hcl
-#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()]
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue()]
 #' @export
 #'
 biolizard_pal_sequential <- function(n, reverse = FALSE) {
@@ -177,7 +177,7 @@ biolizard_pal_sequential <- function(n, reverse = FALSE) {
 #' @param n Integer, number of colors.
 #' @param reverse Boolean, if TRUE, reverse the order of the colors
 #' @importFrom colorspace diverging_hcl
-#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()]
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue()]
 #' @export
 #'
 biolizard_pal_divergent <- function(n, reverse = FALSE) {
@@ -194,7 +194,7 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 }
 
 
-#' l_viridis continuous color scale
+#' l_viridis continuous color scale TODO: deprecate
 #'
 #' @description
 #' This color scale is inspired by the viridis colorscale, and passes through biolizard's signature yellow and green (or very similar).
@@ -226,6 +226,68 @@ biolizard_pal_l_viridis <- function(n, reverse = FALSE) {
   }
 }
 
+#' beige-blue continuous scale
+#'
+#' @description
+#' Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.
+#' It was created using `viscm` (https://github.com/matplotlib/viscm).
+#'
+#' @examples
+#' biolizard_pal_beige_blue(10)
+#' biolizard_pal_beige_blue(4, reverse = TRUE)
+#'
+#' @param n Integer, number of colors.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors
+#' @importFrom scales pal_gradient_n
+#' @importFrom grDevices rgb
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()] [biolizard_pal_sequential()] [biolizard_pal_beige_gn_blue()]
+#' @export
+#'
+biolizard_pal_beige_blue <- function(n, reverse = FALSE) {
+  if (n < 1) {
+    stop("The requested number of colors must be at least 1.")
+  }
+  # convert rgb colors from viscm to hex
+  hex <- apply(beige_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  colors <- pal_gradient_n(hex)(seq(0, 1, length.out = n))
+  if (reverse) {
+    return(colors)
+  } else {
+    return(rev(colors))  #reverse to make the palette start with yellow
+  }
+}
+
+
+#' beige-green-blue continuous scale
+#'
+#' @description
+#' Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.
+#' It was created using `viscm` (https://github.com/matplotlib/viscm).
+#'
+#' @examples
+#' biolizard_pal_beige_gn_blue(10)
+#' biolizard_pal_beige_gn_blue(4, reverse = TRUE)
+#'
+#' @param n Integer, number of colors.
+#' @param reverse Boolean, if TRUE, reverse the order of the colors
+#' @importFrom scales pal_gradient_n
+#' @importFrom grDevices rgb
+#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_divergent()] [biolizard_pal_beige_blue()] [biolizard_pal_sequential()]
+#' @export
+#'
+biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
+  if (n < 1) {
+    stop("The requested number of colors must be at least 1.")
+  }
+  # convert rgb colors from viscm to hex
+  hex <- apply(beige_gn_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  colors <- pal_gradient_n(hex)(seq(0, 1, length.out = n))
+  if (reverse) {
+    return(colors)
+  } else {
+    return(rev(colors))  #reverse to make the palette start with yellow
+  }
+}
 
 #' Biolizard ggplot2 Scales
 #'
@@ -298,6 +360,8 @@ scale_color_biolizard <- function(type = "discrete",
                                   reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  beige_blue_hex <- apply(beige_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  beige_gn_blue_hex <- apply(beige_gn_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
   if(type == "discrete") {
     switch(scheme,
@@ -307,6 +371,8 @@ scale_color_biolizard <- function(type = "discrete",
            l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            sequential = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
+           beige_blue = discrete_scale("colour", palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
+           beige_gn_blue = discrete_scale("colour", palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
            stop("Requested scheme not available for discrete color palette.")
     )
   } else if(type == "continuous") {
@@ -315,10 +381,12 @@ scale_color_biolizard <- function(type = "discrete",
            l_viridis_TRUE = scale_color_gradientn(colors = l_viridis_hex, ...),
            sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
            sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
-           # divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
            divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
-           # divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...),
            divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
+           beige_blue_FALSE = scale_color_gradientn(colors = rev(beige_blue_hex), ...),
+           beige_blue_TRUE = scale_color_gradientn(colors = beige_blue_hex, ...),
+           beige_gn_blue_FALSE = scale_color_gradientn(colors = rev(beige_gn_blue_hex), ...),
+           beige_gn_blue_TRUE = scale_color_gradientn(colors = beige_gn_blue_hex, ...),
            stop("Requested scheme not available for continuous color palette.")
     )
   } else {
@@ -339,6 +407,8 @@ scale_colour_biolizard <- scale_color_biolizard
 scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
   # convert l_viridis rgb colors from viscm to hex
   l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  beige_blue_hex <- apply(beige_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  beige_gn_blue_hex <- apply(beige_gn_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
   if(type == "discrete") {
     switch(scheme,
@@ -347,7 +417,10 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
            hues = scale_fill_hue(l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
            l_viridis = discrete_scale("fill", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
            sequential = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
-           divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...)
+           divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
+           beige_blue = discrete_scale("fill", palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
+           beige_gn_blue = discrete_scale("fill", palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
+           stop("Requested scheme not available for discrete color palette.")
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
@@ -355,10 +428,13 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
            l_viridis_TRUE = scale_fill_gradientn(colors = l_viridis_hex, ...),
            sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
            sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
-           # divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1), ...),
            divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
-           # divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256, h = c(291, 170), c = 80, l = c(35, 95), power = 1)), ...)
-           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...)
+           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
+           beige_blue_FALSE = scale_fill_gradientn(colors = rev(beige_blue_hex), ...),
+           beige_blue_TRUE = scale_fill_gradientn(colors = beige_blue_hex, ...),
+           beige_gn_blue_FALSE = scale_fill_gradientn(colors = rev(beige_gn_blue_hex), ...),
+           beige_gn_blue_TRUE = scale_fill_gradientn(colors = beige_gn_blue_hex, ...),
+           stop("Requested scheme not available for continuous color palette.")
     )
   } else {
     stop("Invalid type provided. Acceptable values are 'discrete' or 'continuous'.")
