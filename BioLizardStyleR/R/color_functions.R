@@ -410,7 +410,7 @@ scale_colour_biolizard <- scale_color_biolizard
 #'
 #' @rdname biolizard_scales
 #' @export
-scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "l_viridis"), reverse = FALSE, ...) {
+scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "sequential"), reverse = FALSE, ...) {
   if (scheme == "l_viridis") {
     lifecycle::deprecate_warn("3.0.0", what = "scale_fill_biolizard(scheme = 'l_viridis')",
                               details = "Please use scheme = 'beige_blue', 'beige_gn_blue' or 'sequential' instead. Returning values from beige_gn_blue.")

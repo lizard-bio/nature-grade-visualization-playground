@@ -22,7 +22,7 @@ scale_colour_biolizard(
 
 scale_fill_biolizard(
   type = "discrete",
-  scheme = ifelse(type == "discrete", "qualitative", "l_viridis"),
+  scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
   ...
 )
