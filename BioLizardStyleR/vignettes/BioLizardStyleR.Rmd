@@ -4,7 +4,6 @@ output:
   html_document:
     toc: true
     toc_float: true
-    css: style.css
 vignette: >
   %\VignetteIndexEntry{BioLizardStyleR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -18,8 +17,62 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # Introduction
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
+
+# Rmd CSS style guide
+
+The box below shows how to BioLizard-ify a Rmd knit to an HTML using a CSS style file. In the YAML header,
+you can set output to html_document with two options: toc: true and toc_float: true.
+
+```{css style-guide}
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display');
+
+/*** default styling ***/
+html, body, h1, h2, h3, h4, h5, h6 {
+font-family: 'Red Hat Display', sans-serif;
+}
+
+div.main-container {
+background-color: white;
+max-width: 1200px !important;
+padding: 40px;
+margin-top: 50px;
+margin-bottom: 50px;
+border-radius: 15px;
+box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h4.author em {
+font-size: 1rem;
+margin-top: 2rem;
+font-weight: 600;
+color: #000000;
+}
+
+h4.date em {
+color: #000000;
+font-size: 1rem;
+}
+
+h1:not(.title) {
+color: #009944;
+}
+
+h2 {
+color: #0d47a1;
+}
+
+h3 {
+color: #FF6F59;
+}
+
+body {
+background: linear-gradient(180deg, #faf4ed 0%, #badeed 100%);
+background-attachment: scroll;
+}
+```
 
 # 1. Installation
 To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Lato". If the font is not yet installed, installation  will be attempted automatically when you load the library.
@@ -404,7 +457,8 @@ treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
 Idea from  ["A ggplot2 Tutorial for Beautiful Plotting in R"](https://www.cedricscherer.com/2019/08/05/a-ggplot2-tutorial-for-beautiful-plotting-in-r/).
 
 ```{r, fig.width=6}
-chic <- utils::read.csv("https://figshare.com/ndownloader/files/42307179") #An example dataset
+example_file <- system.file("extdata/chicago-nmmaps-custom.csv", package = "BioLizardStyleR")
+chic <- utils::read.csv(example_file) #An example dataset
 
 g <- ggplot2::ggplot(chic, ggplot2::aes(x = season, y = o3,
                                         color = season)) +
@@ -594,4 +648,4 @@ ggplot2::ggplot(data = dplyr::filter(world, continent == "Europe"), ggplot2::aes
 \
 
 ***
-![BioLizard Logo](./bioliz.png){width=40% class="center"}
+![BioLizard Logo](./BioLizardLogo.png){width=40% class="center"}
