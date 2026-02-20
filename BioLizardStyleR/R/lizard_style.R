@@ -143,6 +143,9 @@ lizard_style <- function() {
 #' @return A plotly figure in the BioLizard style
 #' @export
 #'
+#' @importFrom htmlwidgets prependContent
+#' @importFrom htmltools tags
+#'
 #' @examples
 #' library(plotly)
 #' # Works with plotly
@@ -159,44 +162,29 @@ lizard_style <- function() {
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' ggplotly(p) |> lizard_layout()
 lizard_layout <- function(fig, ...) {
-  # Get the local font file path
-  RHD_path <- system.file("fonts/RedHatDisplay-Regular.ttf", package = "BioLizardStyleR")
-
-  # Check if the file exists
-  if (!file.exists(RHD_path)) {
-    stop("Error: Red Hat Display font not found in package. Ensure it's in inst/fonts/")
-  }
-
   # Create CSS to load the font
-  rhd_css <- paste0(
-    "<style type='text/css'>",
-    "@font-face { font-family: 'Red Hat Display'; src: url('", RHD_path, "'); }",
-    "body, text { font-family: 'Red Hat Display', sans-serif; }",
-    "</style>"
-  )
+  css_text <- "body, text { font-family: 'Red Hat Display', sans-serif !important; }"
 
-  # Add the CSS as an HTML dependency
-  fig$dependencies <- c(
-    fig$dependencies,
-    list(
-      htmltools::htmlDependency(
-        name = "RHD-font",
-        version = "0",
-        src = c(file = system.file("fonts", package = "BioLizardStyleR")),
-        stylesheet = "RedHatDisplay-Regular.ttf",
-        head = rhd_css
-      )
+  # 2. Use a simpler way to inject the Google Font
+  fig <- htmlwidgets::prependContent(
+    fig,
+    htmltools::tags$head(
+      htmltools::tags$link(
+        rel = "stylesheet",
+        href = "https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap"
+      ),
+      htmltools::tags$style(htmltools::HTML(css_text))
     )
   )
 
   # Adapt layout
   fig <- fig |> plotly::layout(
     font = list(family = "Red Hat Display"),
-    title = list(font = list(size = 16, color = base_text_c)),
+    title = list(font = list(size = 16, color = "black")),
     legend = list(font = list(size = 10),
-                  title = list(font = list(color = base_text_c, size = 11))),
-    xaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
-    yaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+                  title = list(font = list(color = "black", size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
     paper_bgcolor = "white",
     plot_bgcolor = "white",
     ...

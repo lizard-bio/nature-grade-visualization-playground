@@ -25,10 +25,11 @@ Imports:
     ggpubr,
     sysfonts,
     systemfonts,
-    showtext
+    showtext,
+    htmltools,
+    htmlwidgets
 Suggests: 
     knitr,
-    htmltools,
     extrafont,
     rmarkdown,
     plotly,
