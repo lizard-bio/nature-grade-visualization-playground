@@ -13,8 +13,8 @@ biolizard_pal_hue(n, reverse = FALSE)
 }
 \description{
 Specific case of the \code{scales::pal_hue} function that returns a discrete color scale
-starting with Biolizard's signature green (#01a086). This scale can be expanded to large
-number of colors, but DOES NOT guarantee color-blind safe palettes.
+starting with the dark green color in the brand book. This scale can be expanded to large
+number of colors, but DOES NOT guarantee colorblind-safe palettes.
 }
 \examples{
 biolizard_pal_hue(12)
@@ -22,5 +22,5 @@ biolizard_pal_hue(5, reverse = TRUE)
 
 }
 \seealso{
-\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}}
+\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \code{\link[=biolizard_pal_beige_gn_blue]{biolizard_pal_beige_gn_blue()}}
 }

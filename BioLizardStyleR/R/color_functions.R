@@ -194,13 +194,14 @@ biolizard_pal_divergent <- function(n, reverse = FALSE) {
 }
 
 
-#' l_viridis continuous color scale DEPRECATED
+#' l_viridis continuous color scale
 #'
 #' @description
 #' `r lifecycle::badge("deprecated")`
-#' DEPRECATED. Use biolizard_pal_beige_blue(), biolizard_pal_beige_gn_blue() or biolizard_pal_sequential() instead. Returns values of biolizard_pal_beige_gn_blue().
 #'
-#' This color scale is inspired by the viridis colorscale, and passes through biolizard's signature yellow and green (or very similar).
+#' Use biolizard_pal_beige_blue(), biolizard_pal_beige_gn_blue() or biolizard_pal_sequential() instead. Returns values of biolizard_pal_beige_gn_blue().
+#'
+#' (deprecated) This color scale is inspired by the viridis colorscale, and passes through biolizard's signature yellow and green (or very similar).
 #' Like viridis it is colorblind-friendly and perceptually uniform.
 #' It was created using `viscm` (https://github.com/matplotlib/viscm) and named l_viridis, after the European green lizard (Lacerta viridis)
 #'
@@ -289,7 +290,7 @@ biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
 #' @description
 #' Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
 #'
-#' The function supports five schemes for discrete data:
+#' The function supports 7 schemes for discrete data:
 #'
 #' \itemize{
 #'   \item **qualitative**: Colorblind-safe, qualitative color palette featuring the 8 saturated colors from the BioLizard brand book.
@@ -302,7 +303,7 @@ biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
 #'   \item **beige_gn_blue**: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.
 #' }
 #'
-#' And three schemes for continuous data:
+#' And 4 schemes for continuous data:
 #'
 #' \itemize{
 #'   \item **l_viridis**: `r lifecycle::badge("deprecated")` Use "beige_blue", "beige_gn_blue" or "sequential" instead. Returning colors from beige_gn_blue.

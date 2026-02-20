@@ -12,7 +12,7 @@ biolizard_pal_sequential(n, reverse = FALSE)
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors}
 }
 \description{
-Sequential color palette inspired by Biolizard's signature green.
+Sequential, colorblind-safe and perceptually uniform continuous color palette inspired by the light and darker shades of blue in the BioLizard brand book.
 }
 \examples{
 biolizard_pal_sequential(10)
@@ -20,5 +20,5 @@ biolizard_pal_sequential(4, reverse = TRUE)
 
 }
 \seealso{
-\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}}
+\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \code{\link[=biolizard_pal_beige_gn_blue]{biolizard_pal_beige_gn_blue()}}
 }
