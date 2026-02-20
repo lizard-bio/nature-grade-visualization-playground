@@ -13,9 +13,10 @@ Note that colors are automatically reset when restarting the R session.
 }
 \examples{
 library(ggplot2)
-p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
+\dontrun{p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 p + lizard_style()
 p  # default colors have changed to BLZ green, even without applying the theme
 reset_colors()
 p  # ggplot default colors
+}
 }

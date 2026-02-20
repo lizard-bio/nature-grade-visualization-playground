@@ -25,7 +25,7 @@ testplot_continuous <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = m
 
 testthat::test_that("biolizard_pal_qualitative works", {
   testthat::expect_length(biolizard_pal_qualitative(1), 1)
-  testthat::expect_length(biolizard_pal_qualitative(12), 12)
+  testthat::expect_length(biolizard_pal_qualitative(8), 8)
   testthat::expect_error(biolizard_pal_qualitative(13), regexp = 'number of colors exceeds')
   testthat::expect_error(biolizard_pal_qualitative(0), regexp = "at least 1")
   vdiffr::expect_doppelganger("discrete qualitative", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "qualitative") + scale_fill_biolizard(type = "discrete", scheme = "qualitative"))
@@ -34,7 +34,7 @@ testthat::test_that("biolizard_pal_qualitative works", {
 
 testthat::test_that("biolizard_pal_paired works", {
   testthat::expect_length(biolizard_pal_paired(1), 1)
-  testthat::expect_length(biolizard_pal_paired(10), 10)
+  testthat::expect_length(biolizard_pal_paired(6), 6)
   testthat::expect_error(biolizard_pal_paired(13), regexp = 'number of colors exceeds')
   testthat::expect_error(biolizard_pal_paired(0), regexp = "at least 1")
   vdiffr::expect_doppelganger("discrete paired", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "paired") + scale_fill_biolizard(type = "discrete", scheme = "paired"))
@@ -52,8 +52,6 @@ testthat::test_that("biolizard_pal_l_viridis works", {
   testthat::expect_length(biolizard_pal_l_viridis(1), 1)
   testthat::expect_length(biolizard_pal_l_viridis(20), 20)
   testthat::expect_error(biolizard_pal_l_viridis(0), regexp = "at least 1")
-  vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
-  vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
   vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
   vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
 })

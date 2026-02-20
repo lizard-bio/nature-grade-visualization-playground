@@ -41,28 +41,35 @@ set_default_BLZcolors <- function(){
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
-#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey
+#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey %+replace%
 #'
 #' @examples
-#' library(ggplot2)
+#' \dontrun{library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
+#' }
 lizard_style <- function() {
 
   #change default colors for geoms
   set_default_BLZcolors()
 
+  # Check if font is available, if not, fall back on sans
+  my_font <- "Red Hat Display"
+  if (!systemfonts::font_info(my_font)$path != "") {
+    my_font <- "sans"
+  }
+
   t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family="Red Hat Display",
+    plot.title = ggplot2::element_text(family=my_font,
                                        size=16,
                                        color=base_text_c,
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family="Red Hat Display",
+    plot.subtitle = ggplot2::element_text(family=my_font,
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -72,29 +79,29 @@ lizard_style <- function() {
     #This sets the position and alignment of the legend, removes background for it and sets the requirements for any text within the legend.
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family="Red Hat Display",
+    legend.title = ggplot2::element_text(family=my_font,
                                          size=11,
                                          color=base_text_c),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family="Red Hat Display",
+    legend.text = ggplot2::element_text(family=my_font,
                                         size=10,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family="Red Hat Display",
+    axis.title = ggplot2::element_text(family=my_font,
                                        size=14,
                                        color=base_text_c),
-    axis.text = ggplot2::element_text(family="Red Hat Display",
+    axis.text = ggplot2::element_text(family=my_font,
                                       size=12,
                                       color=base_text_c),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
-    axis.title.y = ggplot2::element_text(family="Red Hat Display",
+    axis.title.y = ggplot2::element_text(family=my_font,
                                          size=14,
                                          color=base_text_c,
                                          angle=90,
                                          vjust=1),
-    axis.title.x = ggplot2::element_text(family="Red Hat Display",
+    axis.title.x = ggplot2::element_text(family=my_font,
                                          size=14,
                                          color=base_text_c,
                                          margin=ggplot2::margin(b = 5)),
@@ -136,6 +143,9 @@ lizard_style <- function() {
 #' @return A plotly figure in the BioLizard style
 #' @export
 #'
+#' @importFrom htmlwidgets prependContent
+#' @importFrom htmltools tags
+#'
 #' @examples
 #' library(plotly)
 #' # Works with plotly
@@ -152,44 +162,29 @@ lizard_style <- function() {
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' ggplotly(p) |> lizard_layout()
 lizard_layout <- function(fig, ...) {
-  # Get the local font file path
-  RHD_path <- system.file("fonts/RedHatDisplay-Regular.ttf", package = "BioLizardStyleR")
-
-  # Check if the file exists
-  if (!file.exists(RHD_path)) {
-    stop("Error: Red Hat Display font not found in package. Ensure it's in inst/fonts/")
-  }
-
   # Create CSS to load the font
-  rhd_css <- paste0(
-    "<style type='text/css'>",
-    "@font-face { font-family: 'Red Hat Display'; src: url('", RHD_path, "'); }",
-    "body, text { font-family: 'Red Hat Display', sans-serif; }",
-    "</style>"
-  )
+  css_text <- "body, text { font-family: 'Red Hat Display', sans-serif !important; }"
 
-  # Add the CSS as an HTML dependency
-  fig$dependencies <- c(
-    fig$dependencies,
-    list(
-      htmltools::htmlDependency(
-        name = "RHD-font",
-        version = "0",
-        src = c(file = system.file("fonts", package = "BioLizardStyleR")),
-        stylesheet = "RedHatDisplay-Regular.ttf",
-        head = rhd_css
-      )
+  # 2. Use a simpler way to inject the Google Font
+  fig <- htmlwidgets::prependContent(
+    fig,
+    htmltools::tags$head(
+      htmltools::tags$link(
+        rel = "stylesheet",
+        href = "https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap"
+      ),
+      htmltools::tags$style(htmltools::HTML(css_text))
     )
   )
 
   # Adapt layout
   fig <- fig |> plotly::layout(
     font = list(family = "Red Hat Display"),
-    title = list(font = list(size = 16, color = base_text_c)),
+    title = list(font = list(size = 16, color = "black")),
     legend = list(font = list(size = 10),
-                  title = list(font = list(color = base_text_c, size = 11))),
-    xaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
-    yaxis = list(tickfont = list(size = 12, color = base_text_c), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+                  title = list(font = list(color = "black", size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
     paper_bgcolor = "white",
     plot_bgcolor = "white",
     ...

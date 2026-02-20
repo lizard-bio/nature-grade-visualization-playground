@@ -15,7 +15,8 @@ sizes and other graphical elements to ensure the plot conforms to the common Bio
 If not yet installed, this function will install the 'Red Hat Display' font using the \code{gdtools} package.
 }
 \examples{
-library(ggplot2)
+\dontrun{library(ggplot2)
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 p + lizard_style()
+}
 }
