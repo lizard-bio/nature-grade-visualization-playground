@@ -12,9 +12,19 @@ import matplotlib.colors
 import colorspace
 
 # the three basic colors
-blz_green = "#01a086"
-blz_blue = "#1e2237"
-blz_yellow = "#e9b940"
+# deprecated in the new brand style: return black
+blz_green = "#000000"
+blz_blue = "#000000"
+blz_yellow = "#000000"
+
+# base element and text colors
+blz_base_element = "#000000"
+blz_base_fill = "#faf4ed"
+blz_base_text = "#000000"
+
+# highlight colors
+blz_highlight_element = "#0d47a1"
+blz_highlight_fill = "#badeed"
 
 
 def lizard_style(plotly=False):
@@ -49,18 +59,14 @@ def lizard_style(plotly=False):
 
 biolizard_qualitative_pal = matplotlib.colors.ListedColormap(
     [
-        "#01A086",
-        "#1E2237",
-        "#E9B940",
-        "#5D7EA5",
-        "#860202",
-        "#89D2C6",
-        "#C56F27",
-        "#EED8A1",
-        "#9CAEC3",
-        "#B073DE",
-        "#03F2F7",
-        "#71BD8B",
+        "#9fd356",
+        "#0d47a1",
+        "#E5A4CB",
+        "#FF6F59",
+        "#75DDDD",
+        "#009944",
+        "#1e88e5",
+        "#F72585"
     ]
 )
 # matplotlib.colormaps.register(name="biolizard_qualitative_pal", cmap=biolizard_qualitative_pal, force=True)    #does not yeild desired behaviour when calling a discrete colormap
@@ -110,16 +116,12 @@ biolizard_qualitative_pal_r = biolizard_qualitative_pal.reversed()
 
 biolizard_paired_pal = matplotlib.colors.ListedColormap(
     [
-        "#6CC7B7",
-        "#176B59",
-        "#5D7EA5",
-        "#1E2237",
-        "#EED8A1",
-        "#e9b940",
-        "#D6D6D6",
-        "#828282",
-        "#DE5F5F",
-        "#860202",
+        "#9fd356",
+        "#009944",
+        "#1e88e5",
+        "#0d47a1",
+        "#E5A4CB",
+        "#F72585"
     ]
 )
 # matplotlib.colormaps.register(name="biolizard_paired_pal", cmap=biolizard_paired_pal, force=True)   #does not yeild desired behaviour when calling a discrete colormap
@@ -230,11 +232,11 @@ def _create_colormap(name, palette, reverse=False):
 # with Biolizard's signature green in the middle. DOES NOT generate colorblind-safe palettes.
 _biolizard_hues_pal = colorspace.qualitative_hcl(
     h=[
-        151.6,
-        lambda n: 330 * (n - 1) / n + 151.6,
+        135,
+        lambda n: 330 * (n - 1) / n + 135,
     ],  # 330 degrees instead of 360 to avoid the last being identical to the first one
-    c=49.5,
-    l=58.9,
+    c=71,
+    l=55,
 )
 biolizard_hues_pal = _create_colormap("biolizard_hues_pal", _biolizard_hues_pal)
 biolizard_hues_pal_r = _create_colormap(
@@ -256,7 +258,7 @@ matplotlib.colormaps.register(
 # The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
 # The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
 _biolizard_sequential_pal = colorspace.sequential_hcl(
-    h=170, c=[0, 75, 40], l=[90, 35], power=1
+    h=250, c=[100, 90], l=[75, 20], power=1
 )
 biolizard_sequential_pal = _create_colormap(
     "biolizard_sequential_pal", _biolizard_sequential_pal
@@ -284,7 +286,7 @@ matplotlib.colormaps.register(
 # The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green.
 # This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
 _biolizard_divergent_pal = colorspace.diverging_hcl(
-    h=[60, 170], c=80, l=[50, 95], power=1
+    h=[250, 115], c=[80, 100], l=[35, 90], power=1
 )
 biolizard_divergent_pal = _create_colormap(
     "biolizard_divergent_pal", _biolizard_divergent_pal

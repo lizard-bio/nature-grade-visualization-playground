@@ -5,9 +5,11 @@ from fonts.ttf import RedHatDisplay, RedHatDisplayBold
 from .utils import (
     biolizard_qualitative_pal,
     biolizard_divergent_pal,
-    l_viridis_pal,
-    blz_blue,
-    blz_green,
+    biolizard_sequential_pal,
+    blz_base_element,
+    blz_base_fill,
+    blz_base_text,
+    blz_highlight_element,
 )
 
 lizard_style_template = go.layout.Template()
@@ -21,7 +23,7 @@ lizard_style_template.layout = {
     "coloraxis": {
         "colorbar": {
             "outlinewidth": 1,
-            "tickcolor": "#555555",
+            "tickcolor": blz_base_element,
             "ticks": "outside",
             "exponentformat": "E",
         }
@@ -30,18 +32,18 @@ lizard_style_template.layout = {
         "diverging": [
             matplotlib.colors.rgb2hex(biolizard_divergent_pal(i)) for i in range(255)
         ],
-        "sequential": [matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)],
+        "sequential": [matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)],
         "sequentialminus": [
-            matplotlib.colors.rgb2hex(l_viridis_pal.reversed()(i)) for i in range(255)
+            matplotlib.colors.rgb2hex(biolizard_sequential_pal.reversed()(i)) for i in range(255)
         ],
     },
     "colorway": biolizard_qualitative_pal.colors,
     "font": {"family": "Red Hat Display", "size": 12},
     "geo": {
-        "bgcolor": blz_blue,
-        "oceancolor": blz_blue,
-        "lakecolor": blz_blue,
-        "landcolor": blz_green,
+        "bgcolor": "white",
+        "oceancolor": "white",
+        "lakecolor": "white",
+        "landcolor": blz_highlight_element,
         "showlakes": True,
         "showland": True,
         "subunitcolor": "white",
@@ -68,60 +70,60 @@ lizard_style_template.layout = {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "spikecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": "#808080",
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
         "yaxis": {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "spikecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": "#808080",
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
         "zaxis": {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "spikecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": "#808080",
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
     },
     "separators": ". ",
-    "shapedefaults": {"fillcolor": blz_green, "line": {"width": 0}, "opacity": 1},
+    "shapedefaults": {"fillcolor": blz_base_fill, "line": {"width": 0}, "opacity": 1},
     "ternary": {
         "aaxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -130,9 +132,9 @@ lizard_style_template.layout = {
         "baxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -142,9 +144,9 @@ lizard_style_template.layout = {
         "caxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": "#222222",
-            "linecolor": "#808080",
-            "tickcolor": "#555555",
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -156,8 +158,7 @@ lizard_style_template.layout = {
         "font": {
             "family": "Red Hat Display",
             "size": 16,
-            "color": "#222222",
-            "weight": "bold",
+            "color": blz_base_text
         },
     },
     "violinmode": "group",
@@ -165,37 +166,37 @@ lizard_style_template.layout = {
     "xaxis": {
         "automargin": True,
         "gridcolor": "rgb(232,232,232)",
-        "linecolor": "#808080",
-        "spikecolor": "#808080",
-        "dividercolor": "#808080",
-        "tickcolor": "#555555",
+        "linecolor": blz_base_element,
+        "spikecolor": blz_base_element,
+        "dividercolor": blz_base_element,
+        "tickcolor": blz_base_element,
         "showgrid": False,
         "showline": True,
         "ticks": "outside",
         "title": {
             "standoff": 15,
-            "font": {"family": "Red Hat Display", "size": 14, "color": "#222222"},
+            "font": {"family": "Red Hat Display", "size": 14, "color": blz_base_text},
         },
         "zeroline": False,
-        "zerolinecolor": "#808080",
+        "zerolinecolor": blz_base_element,
         "exponentformat": "power",
     },
     "yaxis": {
         "automargin": True,
         "gridcolor": "rgb(232,232,232)",
-        "linecolor": "#808080",
-        "spikecolor": "#808080",
-        "dividercolor": "#808080",
-        "tickcolor": "#555555",
+        "linecolor": blz_base_element,
+        "spikecolor": blz_base_element,
+        "dividercolor": blz_base_element,
+        "tickcolor": blz_base_element,
         "showgrid": False,
         "showline": True,
         "ticks": "outside",
         "title": {
             "standoff": 15,
-            "font": {"family": "Red Hat Display", "size": 14, "color": "#222222"},
+            "font": {"family": "Red Hat Display", "size": 14, "color": blz_base_text},
         },
         "zeroline": False,
-        "zerolinecolor": "#808080",
+        "zerolinecolor": blz_base_element,
         "exponentformat": "power",
     },
 }
@@ -203,8 +204,8 @@ lizard_style_template.layout = {
 lizard_style_template.data = {
     "bar": [
         {
-            "error_x": {"color": "#555555"},
-            "error_y": {"color": "#555555"},
+            "error_x": {"color": blz_base_element},
+            "error_y": {"color": blz_base_element},
             "marker": {
                 "line": {"color": "white", "width": 0.5},
                 "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2},
@@ -224,18 +225,18 @@ lizard_style_template.data = {
     "carpet": [
         {
             "aaxis": {
-                "endlinecolor": "#808080",
-                "gridcolor": blz_green,
-                "linecolor": blz_green,
-                "minorgridcolor": blz_green,
-                "startlinecolor": "#808080",
+                "endlinecolor": blz_base_element,
+                "gridcolor": blz_base_element,
+                "linecolor": blz_base_element,
+                "minorgridcolor": blz_base_element,
+                "startlinecolor": blz_base_element,
             },
             "baxis": {
-                "endlinecolor": "#808080",
-                "gridcolor": blz_green,
-                "linecolor": blz_green,
-                "minorgridcolor": blz_green,
-                "startlinecolor": "#808080",
+                "endlinecolor": blz_base_element,
+                "gridcolor": blz_base_element,
+                "linecolor": blz_base_element,
+                "minorgridcolor": blz_base_element,
+                "startlinecolor": blz_base_element,
             },
             "type": "carpet",
         }
@@ -244,12 +245,12 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "choropleth",
         }
@@ -258,12 +259,12 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "contour",
         }
@@ -272,7 +273,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -283,18 +284,18 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "heatmap",
         }
     ],
-    # 'heatmapgl': [{'colorbar': {'outlinewidth': 1, 'tickcolor': '#555555', 'ticks': 'outside', 'exponentformat': 'E'},
-    #                'colorscale': [matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)],
+    # 'heatmapgl': [{'colorbar': {'outlinewidth': 1, 'tickcolor': blz_base_element, 'ticks': 'outside', 'exponentformat': 'E'},
+    #                'colorscale': [matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)],
     #                'type': 'heatmapgl'}],
     "histogram": [
         {"marker": {"line": {"color": "white", "width": 0.6}}, "type": "histogram"}
@@ -303,12 +304,12 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "histogram2d",
         }
@@ -317,12 +318,12 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "histogram2dcontour",
         }
@@ -331,7 +332,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -343,7 +344,7 @@ lizard_style_template.data = {
             "line": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -363,7 +364,7 @@ lizard_style_template.data = {
             "line": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -371,7 +372,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -384,7 +385,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -397,7 +398,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -410,7 +411,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -423,7 +424,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -436,7 +437,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -449,7 +450,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -462,7 +463,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": "#555555",
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -474,20 +475,20 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": "#555555",
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(l_viridis_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
             ],
             "type": "surface",
         }
     ],
     "table": [
         {
-            "cells": {"fill": {"color": "white"}, "line": {"color": "#808080"}},
-            "header": {"fill": {"color": blz_green}, "line": {"color": "#808080"}},
+            "cells": {"fill": {"color": "white"}, "line": {"color": blz_base_element}},
+            "header": {"fill": {"color": blz_base_fill}, "line": {"color": blz_base_element}},
             "type": "table",
         }
     ],

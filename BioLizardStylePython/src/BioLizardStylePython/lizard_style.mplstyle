@@ -7,8 +7,8 @@
 ## Patches are graphical objects that fill 2D space, like polygons or circles.
 
 patch.linewidth: 0 # edge width in points.
-patch.facecolor: 01a086  # BLZ green
-patch.edgecolor: EEEEEE
+patch.facecolor: faf4ed  # beige
+patch.edgecolor: black
 patch.antialiased: True # render patches in antialiased (no jaggies)
 
 ## ***************************************************************************
@@ -23,7 +23,7 @@ font.size: 14
 ## ***************************************************************************
 
 axes.facecolor: white # axes background color
-axes.edgecolor: gray # axes edge color, color of axes themselves
+axes.edgecolor: black # axes edge color, color of axes themselves
 axes.linewidth: 0.8
 
 axes.grid: False
@@ -42,16 +42,17 @@ axes.spines.right:  False #Axis line at right of plot
 
 #Biolizard qualitative color palette (e.g. when plotting multiple lines)
 
-axes.prop_cycle: cycler('color', ['01A086', '1E2237', 'E9B940', '5D7EA5', '860202', '89D2C6', 'C56F27', 'EED8A1', '9CAEC3', 'B073DE', '03F2F7', '71BD8B'])
+#axes.prop_cycle: cycler('color', ['9fd356', '0d47a1', 'E5A4CB', 'FF6F59', '75DDDD', '009944', '1e88e5', 'F72585'])
+axes.prop_cycle: cycler('color', ['black'])
 
-#l_viridis as default for continuous scale
-image.cmap: l_viridis_pal
+#sequential as default for continuous scale
+image.cmap: biolizard_sequential_pal
 
 #TICKS
 
-xtick.color: 555555
+xtick.color: black
 xtick.direction: out # direction: {in, out, inout}
-ytick.color: 555555
+ytick.color: black
 ytick.direction: out # direction: {in, out, inout}
 
 xtick.bottom:        True
