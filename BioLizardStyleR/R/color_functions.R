@@ -90,7 +90,7 @@ biolizard_pal_qualitative <- function(n, reverse = FALSE) {
 #' e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
 #'
 #' @examples
-#' biolizard_pal_paired(8)
+#' biolizard_pal_paired(6)
 #' biolizard_pal_paired(4, reverse = TRUE)
 #'
 #' @param n Integer, number of colors. Maximum 10.
