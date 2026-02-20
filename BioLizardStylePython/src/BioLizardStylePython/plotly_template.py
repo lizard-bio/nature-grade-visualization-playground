@@ -6,13 +6,11 @@ from .utils import (
     biolizard_qualitative_pal,
     biolizard_divergent_pal,
     biolizard_sequential_pal,
+    blz_base_element,
+    blz_base_fill,
+    blz_base_text,
+    blz_highlight_element,
 )
-
-base_element_c = "#000000"
-base_fill_c = "#faf4ed"
-highlight_element_c = "#0d47a1"
-highlight_fill_c = "#badeed"
-base_text_c = "#000000"
 
 lizard_style_template = go.layout.Template()
 lizard_style_template.layout = {
@@ -25,7 +23,7 @@ lizard_style_template.layout = {
     "coloraxis": {
         "colorbar": {
             "outlinewidth": 1,
-            "tickcolor": base_element_c,
+            "tickcolor": blz_base_element,
             "ticks": "outside",
             "exponentformat": "E",
         }
@@ -45,7 +43,7 @@ lizard_style_template.layout = {
         "bgcolor": "white",
         "oceancolor": "white",
         "lakecolor": "white",
-        "landcolor": highlight_element_c,
+        "landcolor": blz_highlight_element,
         "showlakes": True,
         "showland": True,
         "subunitcolor": "white",
@@ -72,60 +70,60 @@ lizard_style_template.layout = {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "spikecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": base_element_c,
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
         "yaxis": {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "spikecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": base_element_c,
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
         "zaxis": {
             "backgroundcolor": "white",
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "spikecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "spikecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showbackground": True,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
             "zeroline": False,
-            "zerolinecolor": base_element_c,
+            "zerolinecolor": blz_base_element,
             "exponentformat": "power",
         },
     },
     "separators": ". ",
-    "shapedefaults": {"fillcolor": base_fill_c, "line": {"width": 0}, "opacity": 1},
+    "shapedefaults": {"fillcolor": blz_base_fill, "line": {"width": 0}, "opacity": 1},
     "ternary": {
         "aaxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -134,9 +132,9 @@ lizard_style_template.layout = {
         "baxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -146,9 +144,9 @@ lizard_style_template.layout = {
         "caxis": {
             "gridcolor": "rgb(232,232,232)",
             "gridwidth": 2,
-            "color": base_element_c,
-            "linecolor": base_element_c,
-            "tickcolor": base_element_c,
+            "color": blz_base_element,
+            "linecolor": blz_base_element,
+            "tickcolor": blz_base_element,
             "showgrid": False,
             "showline": True,
             "ticks": "outside",
@@ -160,7 +158,7 @@ lizard_style_template.layout = {
         "font": {
             "family": "Red Hat Display",
             "size": 16,
-            "color": base_text_c
+            "color": blz_base_text
         },
     },
     "violinmode": "group",
@@ -168,37 +166,37 @@ lizard_style_template.layout = {
     "xaxis": {
         "automargin": True,
         "gridcolor": "rgb(232,232,232)",
-        "linecolor": base_element_c,
-        "spikecolor": base_element_c,
-        "dividercolor": base_element_c,
-        "tickcolor": base_element_c,
+        "linecolor": blz_base_element,
+        "spikecolor": blz_base_element,
+        "dividercolor": blz_base_element,
+        "tickcolor": blz_base_element,
         "showgrid": False,
         "showline": True,
         "ticks": "outside",
         "title": {
             "standoff": 15,
-            "font": {"family": "Red Hat Display", "size": 14, "color": base_text_c},
+            "font": {"family": "Red Hat Display", "size": 14, "color": blz_base_text},
         },
         "zeroline": False,
-        "zerolinecolor": base_element_c,
+        "zerolinecolor": blz_base_element,
         "exponentformat": "power",
     },
     "yaxis": {
         "automargin": True,
         "gridcolor": "rgb(232,232,232)",
-        "linecolor": base_element_c,
-        "spikecolor": base_element_c,
-        "dividercolor": base_element_c,
-        "tickcolor": base_element_c,
+        "linecolor": blz_base_element,
+        "spikecolor": blz_base_element,
+        "dividercolor": blz_base_element,
+        "tickcolor": blz_base_element,
         "showgrid": False,
         "showline": True,
         "ticks": "outside",
         "title": {
             "standoff": 15,
-            "font": {"family": "Red Hat Display", "size": 14, "color": base_text_c},
+            "font": {"family": "Red Hat Display", "size": 14, "color": blz_base_text},
         },
         "zeroline": False,
-        "zerolinecolor": base_element_c,
+        "zerolinecolor": blz_base_element,
         "exponentformat": "power",
     },
 }
@@ -206,8 +204,8 @@ lizard_style_template.layout = {
 lizard_style_template.data = {
     "bar": [
         {
-            "error_x": {"color": base_element_c},
-            "error_y": {"color": base_element_c},
+            "error_x": {"color": blz_base_element},
+            "error_y": {"color": blz_base_element},
             "marker": {
                 "line": {"color": "white", "width": 0.5},
                 "pattern": {"fillmode": "overlay", "size": 10, "solidity": 0.2},
@@ -227,18 +225,18 @@ lizard_style_template.data = {
     "carpet": [
         {
             "aaxis": {
-                "endlinecolor": base_element_c,
-                "gridcolor": base_element_c,
-                "linecolor": base_element_c,
-                "minorgridcolor": base_element_c,
-                "startlinecolor": base_element_c,
+                "endlinecolor": blz_base_element,
+                "gridcolor": blz_base_element,
+                "linecolor": blz_base_element,
+                "minorgridcolor": blz_base_element,
+                "startlinecolor": blz_base_element,
             },
             "baxis": {
-                "endlinecolor": base_element_c,
-                "gridcolor": base_element_c,
-                "linecolor": base_element_c,
-                "minorgridcolor": base_element_c,
-                "startlinecolor": base_element_c,
+                "endlinecolor": blz_base_element,
+                "gridcolor": blz_base_element,
+                "linecolor": blz_base_element,
+                "minorgridcolor": blz_base_element,
+                "startlinecolor": blz_base_element,
             },
             "type": "carpet",
         }
@@ -247,7 +245,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -261,7 +259,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -275,7 +273,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -286,7 +284,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -296,7 +294,7 @@ lizard_style_template.data = {
             "type": "heatmap",
         }
     ],
-    # 'heatmapgl': [{'colorbar': {'outlinewidth': 1, 'tickcolor': base_element_c, 'ticks': 'outside', 'exponentformat': 'E'},
+    # 'heatmapgl': [{'colorbar': {'outlinewidth': 1, 'tickcolor': blz_base_element, 'ticks': 'outside', 'exponentformat': 'E'},
     #                'colorscale': [matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)],
     #                'type': 'heatmapgl'}],
     "histogram": [
@@ -306,7 +304,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -320,7 +318,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -334,7 +332,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -346,7 +344,7 @@ lizard_style_template.data = {
             "line": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -366,7 +364,7 @@ lizard_style_template.data = {
             "line": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -374,7 +372,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -387,7 +385,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -400,7 +398,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -413,7 +411,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -426,7 +424,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -439,7 +437,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -452,7 +450,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -465,7 +463,7 @@ lizard_style_template.data = {
             "marker": {
                 "colorbar": {
                     "outlinewidth": 1,
-                    "tickcolor": base_element_c,
+                    "tickcolor": blz_base_element,
                     "ticks": "outside",
                     "exponentformat": "E",
                 }
@@ -477,7 +475,7 @@ lizard_style_template.data = {
         {
             "colorbar": {
                 "outlinewidth": 1,
-                "tickcolor": base_element_c,
+                "tickcolor": blz_base_element,
                 "ticks": "outside",
                 "exponentformat": "E",
             },
@@ -489,8 +487,8 @@ lizard_style_template.data = {
     ],
     "table": [
         {
-            "cells": {"fill": {"color": "white"}, "line": {"color": base_element_c}},
-            "header": {"fill": {"color": base_fill_c}, "line": {"color": base_element_c}},
+            "cells": {"fill": {"color": "white"}, "line": {"color": blz_base_element}},
+            "header": {"fill": {"color": blz_base_fill}, "line": {"color": blz_base_element}},
             "type": "table",
         }
     ],

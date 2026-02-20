@@ -17,6 +17,15 @@ blz_green = "#000000"
 blz_blue = "#000000"
 blz_yellow = "#000000"
 
+# base element and text colors
+blz_base_element = "#000000"
+blz_base_fill = "#faf4ed"
+blz_base_text = "#000000"
+
+# highlight colors
+blz_highlight_element = "#0d47a1"
+blz_highlight_fill = "#badeed"
+
 
 def lizard_style(plotly=False):
     """

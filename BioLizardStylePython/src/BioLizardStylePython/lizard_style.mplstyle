@@ -42,7 +42,8 @@ axes.spines.right:  False #Axis line at right of plot
 
 #Biolizard qualitative color palette (e.g. when plotting multiple lines)
 
-axes.prop_cycle: cycler('color', ['9fd356', '0d47a1', 'E5A4CB', 'FF6F59', '75DDDD', '009944', '1e88e5', 'F72585'])
+#axes.prop_cycle: cycler('color', ['9fd356', '0d47a1', 'E5A4CB', 'FF6F59', '75DDDD', '009944', '1e88e5', 'F72585'])
+axes.prop_cycle: cycler('color', ['black'])
 
 #sequential as default for continuous scale
 image.cmap: biolizard_sequential_pal
