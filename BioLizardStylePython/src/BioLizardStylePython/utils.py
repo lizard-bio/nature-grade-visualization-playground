@@ -1,5 +1,6 @@
 import os
 import io
+import warnings
 
 # import numpy as np
 from PIL import Image
@@ -57,6 +58,7 @@ def lizard_style(plotly=False):
         pio.templates.default = "lizard_style"
 
 
+# Colorblind-safe qualitative color palette based on the colors in the bliolizard brand book.
 biolizard_qualitative_pal = matplotlib.colors.ListedColormap(
     [
         "#9fd356",
@@ -69,51 +71,9 @@ biolizard_qualitative_pal = matplotlib.colors.ListedColormap(
         "#F72585"
     ]
 )
-# matplotlib.colormaps.register(name="biolizard_qualitative_pal", cmap=biolizard_qualitative_pal, force=True)    #does not yeild desired behaviour when calling a discrete colormap
 biolizard_qualitative_pal_r = biolizard_qualitative_pal.reversed()
-# matplotlib.colormaps.register(name="biolizard_qualitative_pal_r", cmap=biolizard_qualitative_pal_r, force=True)   #does not yeild desired behaviour when calling a discrete colormap
 
-# def biolizard_qualitative_pal():
-#     """
-#     Generate a qualitative colormap for matplotlib.
-
-#     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
-
-#     Returns:
-#         matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
-
-#     Example:
-#         #>>> bar_colors = [biolizard_qualitative_pal(i) for i in range(len(categories))]
-#         #>>> bars = plt.bar(categories, values, color=bar_colors)
-#         #>>> plt.show()
-#     """
-#     return matplotlib.colors.ListedColormap([
-#         "#01A086", "#1E2237", "#E9B940", "#5D7EA5", "#860202",
-#         "#89D2C6", "#C56F27", "#EED8A1", "#9CAEC3", "#B073DE",
-#         "#03F2F7", "#71BD8B"
-#     ])
-
-
-# def biolizard_qualitative_pal_r():
-#     """
-#     Generate a qualitative colormap for matplotlib. Colors are reversed compared to biolizard_qualitative_pal.
-
-#     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
-
-#     Returns:
-#         matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
-
-#     Example:
-#         #>>> bar_colors = [biolizard_qualitative_pal_r(i) for i in range(len(categories))]
-#         #>>> bars = plt.bar(categories, values, color=bar_colors)
-#         #>>> plt.show()
-#     """
-#     cmap = biolizard_qualitative_pal()
-
-#     return cmap.reversed()
-
+# Colorblind-safe qualitative color palette based on the colors in the bliolizard brand book, especially suited for levels that are related 2-by-2.
 biolizard_paired_pal = matplotlib.colors.ListedColormap(
     [
         "#9fd356",
@@ -124,80 +84,7 @@ biolizard_paired_pal = matplotlib.colors.ListedColormap(
         "#F72585"
     ]
 )
-# matplotlib.colormaps.register(name="biolizard_paired_pal", cmap=biolizard_paired_pal, force=True)   #does not yeild desired behaviour when calling a discrete colormap
 biolizard_paired_pal_r = biolizard_paired_pal.reversed()
-# matplotlib.colormaps.register(name="biolizard_paired_pal_r", cmap=biolizard_paired_pal_r, force=True)   #does not yeild desired behaviour when calling a discrete colormap
-
-# def biolizard_paired_pal():
-#     """
-#     Generate a qualitative colormap for matplotlib.
-
-#     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
-#     Every two consecutive colors have a similar hue, making this palette especially suitable
-#     for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
-
-#     Returns:
-#         matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
-
-#     Example:
-#         #>>> bar_colors = [biolizard_paired_pal(i) for i in range(len(categories))]
-#         #>>> bars = plt.bar(categories, values, color=bar_colors)
-#         #>>> plt.show()
-#     """
-#     return matplotlib.colors.ListedColormap([
-#         "#6CC7B7", "#176B59", "#5D7EA5", "#1E2237",
-#         "#EED8A1", "#e9b940", "#D6D6D6",  "#828282",
-#         "#DE5F5F", "#860202"
-#     ])
-
-# def biolizard_paired_pal_r():
-#     """
-#     Generate a qualitative colormap for matplotlib.
-
-#     Specifically designed to be inclusive, it is suitable for individuals with the most
-#     common form of color blindness: Deuteranopia (Red-Green Color Blindness).
-#     Every two consecutive colors have a similar hue, making this palette especially suitable
-#     for paired levels: e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
-
-#     Returns:
-#         matplotlib.colors.ListedColormap: A colormap object suitable for use with matplotlib plots.
-
-#     Example:
-#         #>>> bar_colors = [biolizard_paired_pal_r(i) for i in range(len(categories))]
-#         #>>> bars = plt.bar(categories, values, color=bar_colors)
-#         #>>> plt.show()
-#     """
-#     cmap = biolizard_paired_pal()
-
-#     return cmap.reversed()
-
-# Sequential and divergent color map
-# These color maps will be registered as when installing the package.
-
-# #Internal function
-# def _create_and_register_colormap(palette, name, reverse=False):
-#     """
-#     Create and register a colormap with matplotlib.
-
-#     This function generates a colormap from a given palette and registers it with
-#     matplotlib under the specified name.
-
-#     Parameters:
-#     - palette (function): A function that returns a list of colors.
-#     - name (str): The name under which the colormap will be registered with matplotlib.
-
-#     Example:
-#     #>>> biolizard_sequential_pal = colorspace.sequential_hcl(h=170, c=[40,0,75], l=[35,90], power=1)
-#     #>>> create_and_register_colormap(biolizard_sequential_pal, "biolizard_sequential_pal")
-#     """
-#     colors = palette(256)
-#     rgbcolors = [matplotlib.colors.to_rgb(color) for color in colors]
-#     cmap = matplotlib.colors.LinearSegmentedColormap.from_list(name, rgbcolors)
-#     if reverse:
-#         cmap = cmap.reversed()
-#     matplotlib.colormaps.register(name=name, cmap=cmap, force=True)
-
 
 def _create_colormap(name, palette, reverse=False):
     """
@@ -228,8 +115,7 @@ def _create_colormap(name, palette, reverse=False):
 # This colormap applies the Biolizard 'hues' palette.
 #
 # Details:
-# Maps each level to an evenly spaced hue on the color wheel,
-# with Biolizard's signature green in the middle. DOES NOT generate colorblind-safe palettes.
+# Maps each level to an evenly spaced hue on the color wheel, starting with the dark green color from the brand book. DOES NOT generate colorblind-safe palettes.
 _biolizard_hues_pal = colorspace.qualitative_hcl(
     h=[
         135,
@@ -254,9 +140,7 @@ matplotlib.colormaps.register(
 # This colormap applies the sequential Biolizard palette.
 #
 # Details:
-# The sequential palette represents underlying values using a consistent sequence of increasing luminance.
-# The hue is derived from the Biolizard green. The palette utilizes gradients within the HCL-spectrum for perceptual uniformity.
-# The chroma follows a triangular progression to help differentiate the middle range values from the extreme values.
+# Sequential, colorblind-safe, perceptually unifom color palette inspired by the light and dark blue shades of the brand.
 _biolizard_sequential_pal = colorspace.sequential_hcl(
     h=250, c=[100, 90], l=[75, 20], power=1
 )
@@ -278,13 +162,7 @@ matplotlib.colormaps.register(
 # This colormap applies the divergent Biolizard palette for scenarios where color corresponds to categories with a natural midpoint.
 #
 # Details:
-# This divergent palette codes underlying numeric values by a triangular luminance sequence with different hues
-# in the left and in the right "arms" of the palette. Specifically:
-# (a) a single hue is used for each arm of the palette,
-# (b) chroma and luminance trajectory are balanced between the two arms,
-# (c) the neutral central value has zero chroma.
-# The palette is crafted using hue 291 and hue 170, which is the distinctive biolizard green.
-# This unique hue pairing produces a palette that remains accessible for all major forms of color blindness.
+# Divergent, colorblind-safe and perceptually uniform (within each branch) continuous color palette inspired by the green-blue color gradient in the biolizard brand book.
 _biolizard_divergent_pal = colorspace.diverging_hcl(
     h=[250, 115], c=[80, 100], l=[35, 90], power=1
 )
@@ -302,18 +180,71 @@ matplotlib.colormaps.register(
 )
 
 
-# viridis-like colormap
+# beige-blue colormap
+from .beige_blue import cm_data as cm_data_beige_blue
+rgbcolors_beige_blue = [matplotlib.colors.to_rgb(color) for color in cm_data_beige_blue]
+biolizard_beige_blue_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "biolizard_beige_blue_pal_r", rgbcolors_beige_blue
+)
+biolizard_beige_blue_pal = biolizard_beige_blue_pal_r.reversed() # reverse to start with beige
+matplotlib.colormaps.register(name="biolizard_beige_blue_pal", cmap=biolizard_beige_blue_pal, force=True)
+matplotlib.colormaps.register(name="biolizard_beige_blue_pal_r", cmap=biolizard_beige_blue_pal_r, force=True)
+
+# beige-green-blue colormap
+from .beige_gn_blue import cm_data as cm_data_beige_gn_blue
+rgbcolors_beige_gn_blue = [matplotlib.colors.to_rgb(color) for color in cm_data_beige_gn_blue]
+biolizard_beige_gn_blue_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "biolizard_beige_gn_blue_pal_r", rgbcolors_beige_gn_blue
+)
+biolizard_beige_gn_blue_pal = biolizard_beige_gn_blue_pal_r.reversed() # reverse to start with beige
+matplotlib.colormaps.register(name="biolizard_beige_gn_blue_pal", cmap=biolizard_beige_gn_blue_pal, force=True)
+matplotlib.colormaps.register(name="biolizard_beige_gn_blue_pal_r", cmap=biolizard_beige_gn_blue_pal_r, force=True)
+
+# viridis-like colormap: DEPRECATED
 # named l_viridis after the european green lizard (Lacerta viridis)
 from .l_viridis import cm_data
 
 rgbcolors = [matplotlib.colors.to_rgb(color) for color in cm_data]
-l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
-    "l_viridis_pal_r", rgbcolors
+_deprecated_l_viridis_pal_r = matplotlib.colors.LinearSegmentedColormap.from_list(
+    "_deprecated_l_viridis_pal_r", rgbcolors
 )
-l_viridis_pal = l_viridis_pal_r.reversed()  # reverse to start with yellow
+_deprecated_l_viridis_pal = _deprecated_l_viridis_pal_r.reversed()  # reverse to start with yellow
+
+class DeprecatedColormap(matplotlib.colors.Colormap):
+    def __init__(self, base_cmap, name):
+        self._base_cmap = base_cmap
+        self.name = name
+        super().__init__(name, N=base_cmap.N)
+    def __call__(self, *args, **kwargs):
+        warnings.warn(
+            f"{self.name} is deprecated and will be removed in a future version. "
+            "Please use biolizard_beige_gn_blue_pal instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return self._base_cmap(*args, **kwargs)
+    def __getattr__(self, attr):
+        # Forward all other attributes to the base colormap
+        return getattr(self._base_cmap, attr)
+
+l_viridis_pal = DeprecatedColormap(biolizard_beige_gn_blue_pal, "l_viridis_pal")
+l_viridis_pal_r = DeprecatedColormap(biolizard_beige_gn_blue_pal_r, "l_viridis_pal_r")
+
 matplotlib.colormaps.register(name="l_viridis_pal", cmap=l_viridis_pal, force=True)
 matplotlib.colormaps.register(name="l_viridis_pal_r", cmap=l_viridis_pal_r, force=True)
-# l_viridis_pal = matplotlib.colors.ListedColormap(cm_data)
+
+# deprecation logic for attribute access
+deprecated_names = ['l_viridis_pal', 'l_viridis_pal_r']
+
+def __getattr__(name):
+    if name in deprecated_names:
+        warnings.warn(
+            f"{name} is deprecated and will be removed in a future version. Please use biolizard_beige_gn_blue_pal instead.",
+            DeprecationWarning,
+            stacklevel=2
+        )
+        return l_viridis_pal if name == 'l_viridis_pal' else l_viridis_pal_r
+    raise AttributeError(f"module {__name__} has no attribute {name}")
 
 
 def finalise_lizardplot(

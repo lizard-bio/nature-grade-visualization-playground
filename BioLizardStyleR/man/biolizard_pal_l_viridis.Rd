@@ -12,7 +12,11 @@ biolizard_pal_l_viridis(n, reverse = FALSE)
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors}
 }
 \description{
-This color scale is inspired by the viridis colorscale, and passes through biolizard's signature yellow and green (or very similar).
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+Use biolizard_pal_beige_blue(), biolizard_pal_beige_gn_blue() or biolizard_pal_sequential() instead. Returns values of biolizard_pal_beige_gn_blue().
+
+(deprecated) This color scale is inspired by the viridis colorscale, and passes through biolizard's signature yellow and green (or very similar).
 Like viridis it is colorblind-friendly and perceptually uniform.
 It was created using \code{viscm} (https://github.com/matplotlib/viscm) and named l_viridis, after the European green lizard (Lacerta viridis)
 }
@@ -22,5 +26,5 @@ biolizard_pal_l_viridis(4, reverse = TRUE)
 
 }
 \seealso{
-\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}}
+\code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \code{\link[=biolizard_pal_beige_gn_blue]{biolizard_pal_beige_gn_blue()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}}
 }

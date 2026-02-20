@@ -7,12 +7,12 @@
 biolizard_pal_paired(n, reverse = FALSE)
 }
 \arguments{
-\item{n}{Integer, number of colors. Maximum 10.}
+\item{n}{Integer, number of colors. Maximum 6.}
 
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors}
 }
 \description{
-Returns a colorblind-safe qualitative color palette inspired by Biolizard's signature green, blue and yellow.
+Returns a colorblind-safe qualitative color palette featuring the colors in the Biolizard brand book.
 Every two consecutive colors have a similar hue, making this palette especially suitable for paired levels:
 e.g. two cases for different time points, such as control_t1, case_t1, control_t2, case_t2, control_t3, case_t3, ...
 }
@@ -22,5 +22,5 @@ biolizard_pal_paired(4, reverse = TRUE)
 
 }
 \seealso{
-\code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}}
+\code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \code{\link[=biolizard_pal_beige_gn_blue]{biolizard_pal_beige_gn_blue()}}
 }
