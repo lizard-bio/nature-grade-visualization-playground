@@ -7,6 +7,7 @@
 \title{Biolizard ggplot2 Scales}
 \usage{
 scale_color_biolizard(
+  name = waiver(),
   type = "discrete",
   scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
@@ -14,6 +15,7 @@ scale_color_biolizard(
 )
 
 scale_colour_biolizard(
+  name = waiver(),
   type = "discrete",
   scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
@@ -21,6 +23,7 @@ scale_colour_biolizard(
 )
 
 scale_fill_biolizard(
+  name = waiver(),
   type = "discrete",
   scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
@@ -28,6 +31,8 @@ scale_fill_biolizard(
 )
 }
 \arguments{
+\item{name}{The name of the scale. Used as the axis or legend title. If waiver(), the default, the name of the scale is taken from the first mapping used for that aesthetic. If NULL, the legend title will be omitted.}
+
 \item{type}{Character, either 'discrete' or 'continuous'.}
 
 \item{scheme}{Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'}
@@ -98,5 +103,5 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
 
 }
 \seealso{
-\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_l_viridis]{biolizard_pal_l_viridis()}}
+\code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \link{biolizard_pal_beige_gn_blue} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}}
 }
