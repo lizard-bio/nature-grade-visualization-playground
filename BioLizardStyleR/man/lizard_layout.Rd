@@ -16,8 +16,7 @@ A plotly figure in the BioLizard style
 }
 \description{
 This function applies a predefined 'Lizard' style to a plotly plot. It sets specific font types,
-sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-It does not yet work with ggplotly.
+sizes and other graphical elements to ensure the plot conforms to the BioLizard brand.
 }
 \details{
 Adapted from: https://github.com/plotly/plotly.R/issues/2117
