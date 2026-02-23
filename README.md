@@ -27,26 +27,12 @@ if (!requireNamespace("devtools", quietly = TRUE)) {
   install.packages("devtools")
 }
 
-# make sure to look up BioConductor packages (used in the vignette)
-setRepositories(ind = c(1:6, 8))
-
 devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
 
 ```
 
 ### Installing BioLizardStylePython
 
-<!---
-#### 1. Extra requirements
-
-`BioLizardStylePython` relies on the colorspace package, which is not available on the Python Package Index (PyPI). However, it is hosted on GitHub and needs to be installed directly from there. To install the `colorspace` package, please run the following command in your terminal:
-```
-pip install git+https://github.com/retostauffer/python-colorspace.git
-```
-Once you've successfully installed `colorspace`, you can proceed with the installation and usage of `BioLizardStylePython`.
--->
-
-<!-- #### 2. Package Installation -->
 
 The BioLizardStylePython package is available on PyPI and can be easily installed using:
 
