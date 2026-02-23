@@ -42,7 +42,7 @@ library(BioLizardStyleR)
 
 ```{r include = FALSE}
 vignette_packages <- c("lemon", "treemapify", "highcharter", "treemap", "corrr", "forcats",
-    "plotly", "pasilla", "edgeR", "sf", "rnaturalearth", "rnaturalearthdata", "hexbin")
+    "plotly", "pasilla", "edgeR", "hexbin")
 
 missing_packages <- vignette_packages[!vignette_packages %in% installed.packages()[, "Package"]]
 if (length(missing_packages) > 0) {
@@ -104,9 +104,20 @@ testplot
 
 ## 2.2 Adding a BioLizard color palette
 
-Once you've styled your plot, you can enhance it with a 'BioLizard' color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
+Once you've styled your plot, you can enhance it with a BioLizard color palette. You have the option to choose from qualitative, sequential, or divergent palettes tailored for either discrete or continuous variables. These palettes incorporate the distinct hues of the BioLizard house colors, while ensuring they are color-blind friendly and perceptually uniform. For a deeper understanding of each palette, it's recommended to consult the documentation for the respective function.
 
-The coloring functions within the package adhere to a flexible structure: scale_color/fill_biolizard. The type (discrete/continuous) and the scheme (qualitative/sequential/divergent) must be determined as function parameters.
+The coloring functions within the package adhere to a flexible structure: scale_color/fill_biolizard. The type (discrete/continuous) and the scheme must be determined as function parameters.
+
+There are 7 available schemes:
+
+* qualitative: [discrete data only] Colorblind-safe, qualitative color palette featuring the 8 saturated colors from the BioLizard brand book.
+* paired: [discrete data only] Colorblind-safe qualitative color palette featuring the colors in the Biolizard brand book, especially suited for levels that are related 2-by-2.
+* hues: [discrete data only] Maps each level to an evenly spaced hue on the color wheel, starting with the dark green from the brand book. DOES NOT generate colorblind-safe palettes.
+* sequential: Sequential, colorblind-safe and perceptually uniform color palette inspired by the light and darker shades of blue in the BioLizard brand book.
+* divergent: Divergent, colorblind-safe and perceptually uniform (within each branch) color palette inspired by the green-blue color gradient in the biolizard brand book.
+* beige_blue: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.
+* beige_gn_blue: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.
+
 
 ```{r, fig.width=6}
 data("mtcars")
@@ -129,15 +140,14 @@ testplot_qualitative <- testplot +
 testplot_qualitative
 
 # Applying the sequential color scales (assuming you have a different dataset or aesthetic)
-## viridis-like scale
 testplot_sequential <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "beige_blue") + 
+  scale_color_biolizard(type = "discrete", scheme = "sequential") + 
   lizard_style()
 testplot_sequential
 
-## sequential scale inspired by BioLizard green
+## sequential scale inspired by BioLizard beige and blue (assuming you have a different dataset or aesthetic)
 testplot_sequential <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "sequential") + 
+  scale_color_biolizard(type = "discrete", scheme = "beige_blue") + 
   lizard_style()
 testplot_sequential
 
@@ -275,7 +285,7 @@ ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
     color = "Miles per Gallon",
     fill = "Miles per Gallon"
   ) +
-  scale_color_biolizard(type = "continuous", scheme = "beige_blue") +
+  scale_color_biolizard(type = "continuous", scheme = "sequential") +
   lizard_style()
 ```
 
@@ -362,7 +372,7 @@ ggplot2::ggplot(data, ggplot2::aes(area = n, label = type_2, fill = type_1,
                                 family = "Red Hat Display") +   #need to add "Red Hat Display" manually as this text is not accessed in theme()
   
   # 5. BLZ style
-  scale_fill_biolizard(scheme = "hues") +
+  scale_fill_biolizard(scheme = "beige_gn_blue") +
   lizard_style() +
   ggplot2::theme(legend.position = "none")
 ```
@@ -374,7 +384,7 @@ library(treemap)
 
 # get colors from the biolizard hues palette
 ncols <- length(unique(data$type_1))
-palette <- biolizard_pal_hue(ncols)
+palette <- biolizard_pal_beige_gn_blue(ncols)
 
 treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
                  title="Number of pokémon stratified by type", 
