@@ -28,7 +28,8 @@ Imports:
     systemfonts,
     showtext,
     htmltools,
-    htmlwidgets
+    htmlwidgets,
+    lifecycle
 Suggests: 
     knitr,
     extrafont,

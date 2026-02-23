@@ -48,10 +48,11 @@ testthat::test_that("biolizard_pal_hue works", {
   vdiffr::expect_doppelganger("discrete hue rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "hues", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "hues", reverse=TRUE))
 })
 
+# deprecated
 testthat::test_that("biolizard_pal_l_viridis works", {
-  testthat::expect_length(biolizard_pal_l_viridis(1), 1)
-  testthat::expect_length(biolizard_pal_l_viridis(20), 20)
-  testthat::expect_error(biolizard_pal_l_viridis(0), regexp = "at least 1")
+  testthat::expect_warning(biolizard_pal_l_viridis(1), class = "lifecycle_warning_deprecated")
+  testthat::expect_warning(testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis"), class = "lifecycle_warning_deprecated")
+  testthat::expect_warning(testplot_continuous +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"), class = "lifecycle_warning_deprecated")
   vdiffr::expect_doppelganger("continuous l_viridis", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis") +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis"))
   vdiffr::expect_doppelganger("continuous l_viridis rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "l_viridis", reverse=TRUE))
 })
@@ -65,6 +66,27 @@ testthat::test_that("biolizard_pal_sequential works", {
   vdiffr::expect_doppelganger("continuous sequential", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential") +  scale_fill_biolizard(type = "continuous", scheme = "sequential"))
   vdiffr::expect_doppelganger("continuous sequential rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "sequential", reverse=TRUE))
 })
+
+testthat::test_that("biolizard_pal_beige_blue works", {
+  testthat::expect_length(biolizard_pal_beige_blue(1), 1)
+  testthat::expect_length(biolizard_pal_beige_blue(20), 20)
+  testthat::expect_error(biolizard_pal_beige_blue(0), regexp = "at least 1")
+  vdiffr::expect_doppelganger("discrete beige_blue", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "beige_blue") + scale_fill_biolizard(type = "discrete", scheme = "beige_blue"))
+  vdiffr::expect_doppelganger("discrete beige_blue rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "beige_blue", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "beige_blue", reverse=TRUE))
+  vdiffr::expect_doppelganger("continuous beige_blue", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "beige_blue") +  scale_fill_biolizard(type = "continuous", scheme = "beige_blue"))
+  vdiffr::expect_doppelganger("continuous beige_blue rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "beige_blue", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "beige_blue", reverse=TRUE))
+})
+
+testthat::test_that("biolizard_pal_beige_gn_blue works", {
+  testthat::expect_length(biolizard_pal_beige_gn_blue(1), 1)
+  testthat::expect_length(biolizard_pal_beige_gn_blue(20), 20)
+  testthat::expect_error(biolizard_pal_beige_gn_blue(0), regexp = "at least 1")
+  vdiffr::expect_doppelganger("discrete beige_gn_blue", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "beige_gn_blue") + scale_fill_biolizard(type = "discrete", scheme = "beige_gn_blue"))
+  vdiffr::expect_doppelganger("discrete beige_gn_blue rev", testplot_discrete + scale_color_biolizard(type = "discrete", scheme = "beige_gn_blue", reverse=TRUE) + scale_fill_biolizard(type = "discrete", scheme = "beige_gn_blue", reverse=TRUE))
+  vdiffr::expect_doppelganger("continuous beige_gn_blue", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "beige_gn_blue") +  scale_fill_biolizard(type = "continuous", scheme = "beige_gn_blue"))
+  vdiffr::expect_doppelganger("continuous beige_gn_blue rev", testplot_continuous + scale_color_biolizard(type = "continuous", scheme = "beige_gn_blue", reverse=TRUE) +  scale_fill_biolizard(type = "continuous", scheme = "beige_gn_blue", reverse=TRUE))
+})
+
 
 testthat::test_that("biolizard_pal_divergent works", {
   testthat::expect_length(biolizard_pal_divergent(20), 20)

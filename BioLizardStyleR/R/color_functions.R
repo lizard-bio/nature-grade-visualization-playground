@@ -351,7 +351,7 @@ biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
 #' @param scheme Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'
 #' @param reverse Boolean, if TRUE, reverse the order of the colors in the palette.
 #' @param ... Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of [ggplot2::discrete_scale()]. For continuous type, refer to the documentation of [ggplot2::scale_fill_gradientn()]. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).
-#' @importFrom ggplot2 scale_color_gradientn discrete_scale scale_color_hue
+#' @importFrom ggplot2 scale_color_gradientn discrete_scale scale_color_hue waiver
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @importFrom grDevices rgb
 #' @seealso [biolizard_pal_qualitative()] [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_sequential()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue] [biolizard_pal_divergent()]
@@ -406,7 +406,7 @@ scale_color_biolizard <- function(name = waiver(),
 #' @export
 scale_colour_biolizard <- scale_color_biolizard
 
-#' @importFrom ggplot2 scale_fill_gradientn discrete_scale scale_fill_hue
+#' @importFrom ggplot2 scale_fill_gradientn discrete_scale scale_fill_hue waiver
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @importFrom grDevices rgb
 #'
