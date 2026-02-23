@@ -35,8 +35,7 @@ set_default_BLZcolors <- function(){
 #' Apply the lizard Style Theme to a ggplot2 Plot
 #'
 #' This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
-#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' If not yet installed, this function will install the 'Red Hat Display' font using the `gdtools` package.
+#' sizes and other graphical elements to ensure the plot conforms to the BioLizard brand book.
 #'
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
@@ -55,8 +54,9 @@ lizard_style <- function() {
 
   # Check if font is available, if not, fall back on sans
   my_font <- "Red Hat Display"
-  if (!systemfonts::font_info(my_font)$path != "") {
+  if (systemfonts::font_info(my_font)$path == "") {
     my_font <- "sans"
+    warning("Red Hat Display font not found! Using sans.")
   }
 
   t <- ggplot2::theme(
@@ -133,8 +133,7 @@ lizard_style <- function() {
 #' Apply the lizard layout to a plotly plot
 #'
 #' This function applies a predefined 'Lizard' style to a plotly plot. It sets specific font types,
-#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' It does not yet work with ggplotly.
+#' sizes and other graphical elements to ensure the plot conforms to the BioLizard brand.
 #'
 #' Adapted from: https://github.com/plotly/plotly.R/issues/2117
 #'
