@@ -4,7 +4,6 @@
 - [ ]  adjust documentation
     - [ ]  Vignette
     - [ ]  re-create function-specific documentation: run `devtools::document()` from the package root dir
-    - [ ]  in_Action file in root of the repo
     - [ ]  README in the root of the repo
 - [ ]  describe changes in NEWS.md
 - [ ]  bump up version number
@@ -18,7 +17,6 @@
     - [ ]  python package README
     - [ ]  notebooks in docs/ folder
     - [ ]  re-build the documentation with sphinx: run `make clean html`  from the docs/ folder
-    - [ ]  in_Action file in root of the repo
     - [ ]  README in the root of the repo
 - [ ]  describe changes in CHANGELOG.md
 - [ ]  bump up version number
