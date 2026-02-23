@@ -346,6 +346,7 @@ biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
 #'    lizard_style()
 #' }
 #'
+#' @param name The name of the scale. Used as the axis or legend title. If waiver(), the default, the name of the scale is taken from the first mapping used for that aesthetic. If NULL, the legend title will be omitted.
 #' @param type Character, either 'discrete' or 'continuous'.
 #' @param scheme Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'
 #' @param reverse Boolean, if TRUE, reverse the order of the colors in the palette.
@@ -353,10 +354,11 @@ biolizard_pal_beige_gn_blue <- function(n, reverse = FALSE) {
 #' @importFrom ggplot2 scale_color_gradientn discrete_scale scale_color_hue
 #' @importFrom colorspace sequential_hcl diverging_hcl
 #' @importFrom grDevices rgb
-#' @seealso [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_qualitative()] [biolizard_pal_sequential()] [biolizard_pal_divergent()] [biolizard_pal_l_viridis()]
+#' @seealso [biolizard_pal_qualitative()] [biolizard_pal_paired()] [biolizard_pal_hue()] [biolizard_pal_sequential()] [biolizard_pal_beige_blue()] [biolizard_pal_beige_gn_blue] [biolizard_pal_divergent()]
 #' @rdname biolizard_scales
 #' @export
-scale_color_biolizard <- function(type = "discrete",
+scale_color_biolizard <- function(name = waiver(),
+                                  type = "discrete",
                                   scheme = ifelse(type == "discrete", "qualitative", "sequential"),
                                   reverse = FALSE, ...) {
   if (scheme == "l_viridis") {
@@ -371,28 +373,28 @@ scale_color_biolizard <- function(type = "discrete",
 
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("colour", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
-           paired = discrete_scale("colour", palette = function(n) biolizard_pal_paired(n, reverse), ...),
-           hues = scale_color_hue(l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
-           l_viridis = discrete_scale("colour", palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
-           sequential = discrete_scale("colour", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
-           divergent = discrete_scale("colour", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
-           beige_blue = discrete_scale("colour", palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
-           beige_gn_blue = discrete_scale("colour", palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
+           qualitative = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
+           paired = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_paired(n, reverse), ...),
+           hues = scale_color_hue(name = name, l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
+           l_viridis = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
+           sequential = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           divergent = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_divergent(n, reverse), ...),
+           beige_blue = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
+           beige_gn_blue = discrete_scale("colour", name = name, palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
            stop("Requested scheme not available for discrete color palette.")
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
-           l_viridis_FALSE = scale_color_gradientn(colors = rev(l_viridis_hex), ...),
-           l_viridis_TRUE = scale_color_gradientn(colors = l_viridis_hex, ...),
-           sequential_FALSE = scale_color_gradientn(colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
-           sequential_TRUE = scale_color_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
-           divergent_FALSE = scale_color_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
-           divergent_TRUE = scale_color_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
-           beige_blue_FALSE = scale_color_gradientn(colors = rev(beige_blue_hex), ...),
-           beige_blue_TRUE = scale_color_gradientn(colors = beige_blue_hex, ...),
-           beige_gn_blue_FALSE = scale_color_gradientn(colors = rev(beige_gn_blue_hex), ...),
-           beige_gn_blue_TRUE = scale_color_gradientn(colors = beige_gn_blue_hex, ...),
+           l_viridis_FALSE = scale_color_gradientn(name = name, colors = rev(l_viridis_hex), ...),
+           l_viridis_TRUE = scale_color_gradientn(name = name, colors = l_viridis_hex, ...),
+           sequential_FALSE = scale_color_gradientn(name = name, colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
+           sequential_TRUE = scale_color_gradientn(name = name, colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
+           divergent_FALSE = scale_color_gradientn(name = name, colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
+           divergent_TRUE = scale_color_gradientn(name = name, colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
+           beige_blue_FALSE = scale_color_gradientn(name = name, colors = rev(beige_blue_hex), ...),
+           beige_blue_TRUE = scale_color_gradientn(name = name, colors = beige_blue_hex, ...),
+           beige_gn_blue_FALSE = scale_color_gradientn(name = name, colors = rev(beige_gn_blue_hex), ...),
+           beige_gn_blue_TRUE = scale_color_gradientn(name = name, colors = beige_gn_blue_hex, ...),
            stop("Requested scheme not available for continuous color palette.")
     )
   } else {
@@ -410,7 +412,10 @@ scale_colour_biolizard <- scale_color_biolizard
 #'
 #' @rdname biolizard_scales
 #' @export
-scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "discrete", "qualitative", "sequential"), reverse = FALSE, ...) {
+scale_fill_biolizard <- function(name = waiver(),
+                                 type = "discrete",
+                                 scheme = ifelse(type == "discrete", "qualitative", "sequential"),
+                                 reverse = FALSE, ...) {
   if (scheme == "l_viridis") {
     lifecycle::deprecate_warn("3.0.0", what = "scale_fill_biolizard(scheme = 'l_viridis')",
                               details = "Please use scheme = 'beige_blue', 'beige_gn_blue' or 'sequential' instead. Returning values from beige_gn_blue.")
@@ -423,28 +428,28 @@ scale_fill_biolizard <- function(type = "discrete", scheme = ifelse(type == "dis
 
   if(type == "discrete") {
     switch(scheme,
-           qualitative = discrete_scale("fill", palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
-           paired = discrete_scale("fill", palette = function(n) biolizard_pal_paired(n, reverse), ...),
-           hues = scale_fill_hue(l = 55, c = 71, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
-           l_viridis = discrete_scale("fill", palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
-           sequential = discrete_scale("fill", palette = function(n) biolizard_pal_sequential(n, reverse), ...),
-           divergent = discrete_scale("fill", palette = function(n) biolizard_pal_divergent(n, reverse), ...),
-           beige_blue = discrete_scale("fill", palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
-           beige_gn_blue = discrete_scale("fill", palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
+           qualitative = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
+           paired = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_paired(n, reverse), ...),
+           hues = scale_fill_hue(l = 55, c = 71, name = name, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
+           l_viridis = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
+           sequential = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_sequential(n, reverse), ...),
+           divergent = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_divergent(n, reverse), ...),
+           beige_blue = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
+           beige_gn_blue = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
            stop("Requested scheme not available for discrete color palette.")
     )
   } else if(type == "continuous") {
     switch(paste(scheme, reverse, sep="_"),
-           l_viridis_FALSE = scale_fill_gradientn(colors = rev(l_viridis_hex), ...),
-           l_viridis_TRUE = scale_fill_gradientn(colors = l_viridis_hex, ...),
-           sequential_FALSE = scale_fill_gradientn(colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
-           sequential_TRUE = scale_fill_gradientn(colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
-           divergent_FALSE = scale_fill_gradientn(colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
-           divergent_TRUE = scale_fill_gradientn(colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
-           beige_blue_FALSE = scale_fill_gradientn(colors = rev(beige_blue_hex), ...),
-           beige_blue_TRUE = scale_fill_gradientn(colors = beige_blue_hex, ...),
-           beige_gn_blue_FALSE = scale_fill_gradientn(colors = rev(beige_gn_blue_hex), ...),
-           beige_gn_blue_TRUE = scale_fill_gradientn(colors = beige_gn_blue_hex, ...),
+           l_viridis_FALSE = scale_fill_gradientn(name = name, colors = rev(l_viridis_hex), ...),
+           l_viridis_TRUE = scale_fill_gradientn(name = name, colors = l_viridis_hex, ...),
+           sequential_FALSE = scale_fill_gradientn(name = name, colors = sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1), ...),
+           sequential_TRUE = scale_fill_gradientn(name = name, colors = rev(sequential_hcl(256, h = 250, c = c(100, 90), l = c(75, 20), power = 1)), ...),
+           divergent_FALSE = scale_fill_gradientn(name = name, colors = diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1), ...),
+           divergent_TRUE = scale_fill_gradientn(name = name, colors = rev(diverging_hcl(256,  h = c(250, 115), c = c(80, 100), l = c(35, 90), power = 1)), ...),
+           beige_blue_FALSE = scale_fill_gradientn(name = name, colors = rev(beige_blue_hex), ...),
+           beige_blue_TRUE = scale_fill_gradientn(name = name, colors = beige_blue_hex, ...),
+           beige_gn_blue_FALSE = scale_fill_gradientn(name = name, colors = rev(beige_gn_blue_hex), ...),
+           beige_gn_blue_TRUE = scale_fill_gradientn(name = name, colors = beige_gn_blue_hex, ...),
            stop("Requested scheme not available for continuous color palette.")
     )
   } else {
