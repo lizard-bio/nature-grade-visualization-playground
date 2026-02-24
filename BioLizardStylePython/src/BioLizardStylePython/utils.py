@@ -297,7 +297,8 @@ def finalise_lizardplot(
 
     fig1 = plt.figure(figsize=(custom_fig_width_inches, custom_fig_height_inches))
     ax = fig1.add_axes([0, 0, 1, 1])
-    ax.plot([0, 1], [1, 1], color="black", linewidth=1.5, transform=ax.transAxes)
+    ax.plot([0, 0.99], [0.9, 0.9], color="black", linewidth=1, transform=ax.transAxes)
+    ax.plot([0.99], [0.9], "o", transform=ax.transAxes, markersize=5)
 
     font_name = plt.rcParams["font.sans-serif"][0]
 
@@ -311,7 +312,7 @@ def finalise_lizardplot(
         fontname=font_name,
     )
 
-    ax_image = fig1.add_axes([0.90, -0.09, 0.10, 1], anchor="NE", zorder=-1)
+    ax_image = fig1.add_axes([0.85, -0.15, 0.15, 1], anchor="NE", zorder=-1)
 
     # Get the directory of the current script
     current_directory = os.path.dirname(os.path.abspath(__file__))
