@@ -96,8 +96,8 @@ create_footer <- function (source, logo_image_path=get_image_path()) {
   fontsize <- compute_font_size(nchar(source))
 
   # location of the dot at the end of the line
-  dot_x_location <- unit(1, 'npc') - unit(0.5, "char")  # aligned in the middle, substract half of the dot's size (1char)
-  line_x_location <- unit(c(0, 1), 'npc') - unit(c(0,0.5), 'char')
+  dot_x_location <- grid::unit(1, 'npc') - grid::unit(0.5, "char")  # aligned in the middle, substract half of the dot's size (1char)
+  line_x_location <- grid::unit(c(0, 1), 'npc') - grid::unit(c(0,0.5), 'char')
 
   footer <- grid::grobTree(
     grid::linesGrob(x = line_x_location, y = grid::unit(1.1, "npc")),
