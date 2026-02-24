@@ -17,21 +17,17 @@
 #' @importFrom Cairo CairoPDF CairoSVG CairoPS
 save_plot <- function (plot_grid, width, height, save_filepath, device) {
 
-  if (device == "png") {
-    ggplot2::ggsave(filename = save_filepath, plot = plot_grid,
-                    width = width/72, height = height/72, bg = "white", device = "png")
-  } else {
-    # Set the appropriate Cairo device based on the specified format
-    switch(device,
-           'pdf' = { Cairo::CairoPDF(file = save_filepath, width = width/72, height = height/72) },
-           'svg' = { Cairo::CairoSVG(file = save_filepath, width = width/72, height = height/72) },
-           'ps' = { Cairo::CairoPS(file = save_filepath, width = width/72, height = height/72) },
-           { stop(paste("Unsupported device:", device)) }
-    )
+  # Set the appropriate Cairo device based on the specified format
+  switch(device,
+         'png' = { Cairo::CairoPNG(file = save_filepath, width = width, height = height) },
+         'pdf' = { Cairo::CairoPDF(file = save_filepath, width = width/72, height = height/72) },
+         'svg' = { Cairo::CairoSVG(file = save_filepath, width = width/72, height = height/72) },
+         'ps' = { Cairo::CairoPS(file = save_filepath, width = width/72, height = height/72) },
+         { stop(paste("Unsupported device:", device)) }
+  )
 
-    grid::grid.draw(plot_grid)
-    grDevices::dev.off()
-  }
+  grid::grid.draw(plot_grid)
+  grDevices::dev.off()
 }
 
 #' Left Align Text in ggplot
@@ -69,7 +65,7 @@ compute_font_size <- function(text_length) {
   max_length <- 250
   min_length <- 1
   max_fontsize <- 16
-  min_fontsize <- 1.5
+  min_fontsize <- 8
 
   # Linearly scale font size
   if (text_length <= min_length) {
@@ -99,10 +95,16 @@ create_footer <- function (source, logo_image_path=get_image_path()) {
   # Dynamically compute font size
   fontsize <- compute_font_size(nchar(source))
 
-  footer <- grid::grobTree(grid::linesGrob(x = grid::unit(c(0, 1), "npc"), y = grid::unit(1.1, "npc")),
-                           grid::textGrob(source,
-                                          x = 0.004, hjust = 0, gp = grid::gpar(fontsize=fontsize, fontfamily="Nunito Sans 10pt Medium")),
-                           grid::rasterGrob(png::readPNG(logo_image_path), x=0.935, width = 0.2))
+  # location of the dot at the end of the line
+  dot_x_location <- unit(1, 'npc') - unit(0.5, "char")  # aligned in the middle, substract half of the dot's size (1char)
+  line_x_location <- unit(c(0, 1), 'npc') - unit(c(0,0.5), 'char')
+
+  footer <- grid::grobTree(
+    grid::linesGrob(x = line_x_location, y = grid::unit(1.1, "npc")),
+    grid::pointsGrob(x = dot_x_location, y = grid::unit(1.1, "npc"), pch = 16),
+    grid::textGrob(source,
+                   x = 0.004, hjust = 0, gp = grid::gpar(fontsize=fontsize, fontfamily="Red Hat Display")),
+    grid::rasterGrob(png::readPNG(logo_image_path), x = grid::unit(1, "npc"), width = 0.2, hjust = 1))
   return(footer)
 }
 
@@ -137,8 +139,8 @@ finalise_lizardplot <- function(ggplot_name,
 
   footer <- create_footer(source, logo_image_path)
 
-  plot_left_aligned <- left_align(ggplot_name, c("subtitle", "title", "caption"))
-  plot_grid <- ggpubr::ggarrange(plot_left_aligned, footer,
+  # plot_left_aligned <- left_align(ggplot_name, c("subtitle", "title", "caption"))
+  plot_grid <- ggpubr::ggarrange(ggplot_name, footer,
                                  ncol = 1, nrow = 2,
                                  heights = c(1, 0.1))
 
