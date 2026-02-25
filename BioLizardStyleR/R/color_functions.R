@@ -422,7 +422,7 @@ scale_fill_biolizard <- function(name = waiver(),
   }
 
   # convert l_viridis rgb colors from viscm to hex
-  l_viridis_hex <- apply(l_viridis_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
+  l_viridis_hex <- apply(beige_gn_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
   beige_blue_hex <- apply(beige_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
   beige_gn_blue_hex <- apply(beige_gn_blue_rgb, 1, function(x) grDevices::rgb(x[1], x[2], x[3], maxColorValue = 1))
 
@@ -431,7 +431,7 @@ scale_fill_biolizard <- function(name = waiver(),
            qualitative = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_qualitative(n, reverse), ...),
            paired = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_paired(n, reverse), ...),
            hues = scale_fill_hue(l = 55, c = 71, name = name, h.start = 135, direction = ifelse(reverse, -1, 1), ...),
-           l_viridis = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_l_viridis(n, reverse), ...),
+           l_viridis = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_beige_gn_blue(n, reverse), ...),
            sequential = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_sequential(n, reverse), ...),
            divergent = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_divergent(n, reverse), ...),
            beige_blue = discrete_scale("fill", name = name, palette = function(n) biolizard_pal_beige_blue(n, reverse), ...),
