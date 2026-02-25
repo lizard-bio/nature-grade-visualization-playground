@@ -25,7 +25,7 @@ set_default_BLZcolors <- function(){
 
    ggplot2::update_geom_defaults("boxplot", list(fill = base_fill_c, colour = base_element_c))
    ggplot2::update_geom_defaults("violin", list(fill = base_fill_c, colour = base_element_c))
-
+   ggplot2::update_geom_defaults("bar", list(fill = base_fill_c, colour = base_element_c))
    ggplot2::update_geom_defaults("rect", list(fill = base_fill_c, colour = base_element_c))
    ggplot2::update_geom_defaults("polygon", list(fill = base_fill_c, colour = base_element_c))
 }
