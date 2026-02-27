@@ -22,32 +22,41 @@ biolizard_paired_palette <- c("#9fd356", "#009944", "#1e88e5", "#0d47a1", "#E5A4
 # deprecate: no main colors anymore --> all black
 
 #' Biolizard green
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' The BioLizard green (#01a086) is no longer part of the BioLizard brand.
+#' This variable now returns black (#000000) to prevent breaking code.
+#'
 #' @export
 # blz_green <- "#01a086"
-blz_green <- {
-  lifecycle::deprecate_warn("3.0.0", what = I("blz_green"),
-                            details = "The BioLizard green (#01a086) is no longer part of the BioLizard brand. Returning black.")
-  "#000000"
-}
+blz_green <- "#000000"
+
 
 #' Biolizard dark blue
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' The BioLizard blue (#1e2237) is no longer part of the BioLizard brand.
+#' This variable now returns black (#000000) to prevent breaking code.
+#'
 #' @export
 # blz_blue <- "#1e2237"
-blz_blue <- {
-  lifecycle::deprecate_warn("3.0.0", what = I("blz_blue"),
-                            details = "The BioLizard dark blue (#1e2237) is no longer part of the BioLizard brand. Returning black.")
-  "#000000"
-}
+blz_blue <- "#000000"
 
 
 #' Biolizard yellow
+#'
+#' @description
+#' `r lifecycle::badge("deprecated")`
+#'
+#' The BioLizard yellow (#e9b940") is no longer part of the BioLizard brand.
+#' This variable now returns black (#000000) to prevent breaking code.
+#'
 #' @export
 # blz_yellow <- "#e9b940"
-blz_yellow <- {
-  lifecycle::deprecate_warn("3.0.0", what = I("blz_yellow"),
-                            details = "The BioLizard yellow (#e9b940) is no longer part of the BioLizard brand. Returning black.")
-  "#000000"
-}
+blz_yellow <- "#000000"
 
 
 

@@ -11,6 +11,9 @@ An object of class \code{character} of length 1.
 blz_blue
 }
 \description{
-Biolizard dark blue
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+The BioLizard blue (#1e2237) is no longer part of the BioLizard brand.
+This variable now returns black (#000000) to prevent breaking code.
 }
 \keyword{datasets}
