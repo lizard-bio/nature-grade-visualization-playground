@@ -42,10 +42,10 @@
     
     Once uploaded, package should be viewable on TestPyPI: https://test.pypi.org/project/BioLizardStylePython 
     
-    install package from testpypi in clean environment & check if everything works:
+- [ ]  install package from testpypi in clean environment & check if everything works:
     
     ```bash
-    python3 -m pip install --index-url https://test.pypi.org/simple/ --no-deps BioLizardStylePython
+    python3 -m pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --no-deps BioLizardStylePython
     ```
 
 ## After release of a new version (merge into main)
