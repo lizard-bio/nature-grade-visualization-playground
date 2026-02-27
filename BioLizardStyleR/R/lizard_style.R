@@ -1,23 +1,33 @@
 # Adapted from the BBC ggplot2 theme available under GPL-2 License
 
-#' set default colors of plot elements to BLZ green
+# Internal functions and definitions
+base_element_c <- "#000000"
+base_fill_c <- "#faf4ed"
+highlight_element_c <- "#0d47a1"
+highlight_fill_c <- "#badeed"
+
+base_text_c <- "#000000"
+
+
+
+#' set default colors of plot elements to black
 #'
 #' @importFrom ggplot2  update_geom_defaults
-set_default_BLZgreen <- function(){
-   ggplot2::update_geom_defaults("point", list(colour = "#01a086", fill = "#01a086"))
+set_default_BLZcolors <- function(){
+   ggplot2::update_geom_defaults("point", list(colour = base_element_c, fill = base_element_c))
 
-   ggplot2::update_geom_defaults("line", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("hline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("vline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("abline", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("density", list(colour = "#01a086"))
-   ggplot2::update_geom_defaults("smooth", list(colour = "#1e2237"))
+   ggplot2::update_geom_defaults("line", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("hline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("vline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("abline", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("density", list(colour = base_element_c))
+   ggplot2::update_geom_defaults("smooth", list(colour = highlight_element_c, fill = highlight_fill_c))
 
-   ggplot2::update_geom_defaults("boxplot", list(fill = "#01a086", colour = "black"))
-   ggplot2::update_geom_defaults("violin", list(fill = "#01a086", colour = "black"))
-
-   ggplot2::update_geom_defaults("rect", list(fill = "#01a086"))
-   ggplot2::update_geom_defaults("polygon", list(fill = "#01a086"))
+   ggplot2::update_geom_defaults("boxplot", list(fill = base_fill_c, colour = base_element_c))
+   ggplot2::update_geom_defaults("violin", list(fill = base_fill_c, colour = base_element_c))
+   ggplot2::update_geom_defaults("bar", list(fill = base_fill_c, colour = base_element_c))
+   ggplot2::update_geom_defaults("rect", list(fill = base_fill_c, colour = base_element_c))
+   ggplot2::update_geom_defaults("polygon", list(fill = base_fill_c, colour = base_element_c))
 }
 
 
@@ -25,34 +35,41 @@ set_default_BLZgreen <- function(){
 #' Apply the lizard Style Theme to a ggplot2 Plot
 #'
 #' This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
-#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' If not yet installed, this function will install the 'Lato' font using the `gdtools` package.
+#' sizes and other graphical elements to ensure the plot conforms to the BioLizard brand book.
 #'
 #' @return A `ggplot2::theme` object that can be added to a ggplot2 plot.
 #' @export
 #'
-#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey
+#' @importFrom ggplot2 theme element_text element_blank element_rect theme_grey %+replace%
 #'
 #' @examples
-#' library(ggplot2)
+#' \dontrun{library(ggplot2)
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' p + lizard_style()
+#' }
 lizard_style <- function() {
 
   #change default colors for geoms
-  set_default_BLZgreen()
+  set_default_BLZcolors()
+
+  # Check if font is available, if not, fall back on sans
+  my_font <- "Red Hat Display"
+  if (systemfonts::font_info(my_font)$path == "") {
+    my_font <- "sans"
+    warning("Red Hat Display font not found! Using sans.")
+  }
 
   t <- ggplot2::theme(
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
-    plot.title = ggplot2::element_text(family="Lato",
+    plot.title = ggplot2::element_text(family=my_font,
                                        size=16,
-                                       color="#222222",
+                                       color=base_text_c,
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
-    plot.subtitle = ggplot2::element_text(family="Lato",
+    plot.subtitle = ggplot2::element_text(family=my_font,
                                           size=12,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
@@ -62,34 +79,34 @@ lizard_style <- function() {
     #This sets the position and alignment of the legend, removes background for it and sets the requirements for any text within the legend.
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
-    legend.title = ggplot2::element_text(family="Lato",
+    legend.title = ggplot2::element_text(family=my_font,
                                          size=11,
-                                         color="#222222"),
+                                         color=base_text_c),
     legend.key = ggplot2::element_blank(),
-    legend.text = ggplot2::element_text(family="Lato",
+    legend.text = ggplot2::element_text(family=my_font,
                                         size=10,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
-    axis.title = ggplot2::element_text(family="Lato",
+    axis.title = ggplot2::element_text(family=my_font,
                                        size=14,
-                                       color="#222222"),
-    axis.text = ggplot2::element_text(family="Lato",
+                                       color=base_text_c),
+    axis.text = ggplot2::element_text(family=my_font,
                                       size=12,
-                                      color="#555555"),
+                                      color=base_text_c),
     axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
     axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
-    axis.title.y = ggplot2::element_text(family="Lato",
+    axis.title.y = ggplot2::element_text(family=my_font,
                                          size=14,
-                                         color="#222222",
+                                         color=base_text_c,
                                          angle=90,
                                          vjust=1),
-    axis.title.x = ggplot2::element_text(family="Lato",
+    axis.title.x = ggplot2::element_text(family=my_font,
                                          size=14,
-                                         color="#222222",
+                                         color=base_text_c,
                                          margin=ggplot2::margin(b = 5)),
-    axis.ticks = ggplot2::element_line(color="#555555"),
-    axis.line = ggplot2::element_line(color="#808080"),
+    axis.ticks = ggplot2::element_line(color=base_element_c),
+    axis.line = ggplot2::element_line(color=base_element_c),
 
     #Grid lines
     #This removes all minor and major gridlines
@@ -102,8 +119,8 @@ lizard_style <- function() {
     #This sets the panel background as blank, removing the standard grey ggplot background colour from the plot
     panel.background = ggplot2::element_blank(),
 
-    #Strip background (This sets the panel background for facet-wrapped plots to white, removing the standard grey ggplot background colour)
-    strip.background = ggplot2::element_rect(fill="white", linewidth = 0),
+    #Strip background (This sets the panel background for facet-wrapped plots)
+    strip.background = ggplot2::element_rect(fill=base_fill_c),
     strip.text = ggplot2::element_text(size  = 14,  hjust = 0.5)
 
   )
@@ -116,8 +133,7 @@ lizard_style <- function() {
 #' Apply the lizard layout to a plotly plot
 #'
 #' This function applies a predefined 'Lizard' style to a plotly plot. It sets specific font types,
-#' sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-#' It does not yet work with ggplotly.
+#' sizes and other graphical elements to ensure the plot conforms to the BioLizard brand.
 #'
 #' Adapted from: https://github.com/plotly/plotly.R/issues/2117
 #'
@@ -125,6 +141,9 @@ lizard_style <- function() {
 #' @param ... Further arguments for the plotly::layout() function
 #' @return A plotly figure in the BioLizard style
 #' @export
+#'
+#' @importFrom htmlwidgets prependContent
+#' @importFrom htmltools tags
 #'
 #' @examples
 #' library(plotly)
@@ -142,44 +161,29 @@ lizard_style <- function() {
 #' p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 #' ggplotly(p) |> lizard_layout()
 lizard_layout <- function(fig, ...) {
-  # Get the local font file path
-  lato_path <- system.file("fonts/Lato-Regular.ttf", package = "BioLizardStyleR")
-
-  # Check if the file exists
-  if (!file.exists(lato_path)) {
-    stop("Error: Lato font not found in package. Ensure it's in inst/fonts/")
-  }
-
   # Create CSS to load the font
-  lato_css <- paste0(
-    "<style type='text/css'>",
-    "@font-face { font-family: 'lato'; src: url('", lato_path, "'); }",
-    "body, text { font-family: 'lato'; }",
-    "</style>"
-  )
+  css_text <- "body, text { font-family: 'Red Hat Display', sans-serif !important; }"
 
-  # Add the CSS as an HTML dependency
-  fig$dependencies <- c(
-    fig$dependencies,
-    list(
-      htmltools::htmlDependency(
-        name = "lato-font",
-        version = "0",
-        src = c(file = system.file("fonts", package = "BioLizardStyleR")),
-        stylesheet = "Lato-Regular.ttf",
-        head = lato_css
-      )
+  # 2. Use a simpler way to inject the Google Font
+  fig <- htmlwidgets::prependContent(
+    fig,
+    htmltools::tags$head(
+      htmltools::tags$link(
+        rel = "stylesheet",
+        href = "https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap"
+      ),
+      htmltools::tags$style(htmltools::HTML(css_text))
     )
   )
 
   # Adapt layout
   fig <- fig |> plotly::layout(
-    font = list(family = "lato"),
-    title = list(font = list(size = 16, color = "#222222")),
+    font = list(family = "Red Hat Display"),
+    title = list(font = list(size = 16, color = "black")),
     legend = list(font = list(size = 10),
-                  title = list(font = list(color = "#222222", size = 11))),
-    xaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
-    yaxis = list(tickfont = list(size = 12, color = "#555555"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+                  title = list(font = list(color = "black", size = 11))),
+    xaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
     paper_bgcolor = "white",
     plot_bgcolor = "white",
     ...

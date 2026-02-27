@@ -43,7 +43,7 @@ def test_lizardstyle_irisplot():
 def test_lizardstyle_boxplot():
     # Sample data
     data = sns.load_dataset("iris")
-    sns.boxplot(x="species", y="sepal_length", data=data)
+    sns.boxplot(x="species", y="sepal_length", data=data, boxprops={"facecolor": blz_base_fill})
     plt.title('A Flower Plot')
 
 #density plot
@@ -52,7 +52,7 @@ def test_lizardstyle_boxplot():
 def test_lizardstyle_distplot():
     # Sample data
     data = sns.load_dataset("iris")
-    sns.displot(data, x="sepal_length", hue="species", kind="kde", fill=True)
+    sns.displot(data, x="sepal_length", hue="species", kind="kde", fill=True,palette=biolizard_qualitative_pal.colors[0:3])
     plt.title('A Flower Plot')
 
 # colormap
@@ -78,4 +78,20 @@ def test_lizardstyle_cmapplot_l_viridis():
     np.random.seed(42)
     data = np.random.rand(5, 5)  # Example data
     plt.imshow(data, cmap='l_viridis_pal')
+    plt.colorbar()
+
+@image_comparison(baseline_images=['beige_blue_cmapplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_cmapplot_beige_blue():
+    np.random.seed(42)
+    data = np.random.rand(5, 5)  # Example data
+    plt.imshow(data, cmap='biolizard_beige_blue_pal')
+    plt.colorbar()
+
+@image_comparison(baseline_images=['beige_gn_blue_cmapplot'], remove_text=False,
+                extensions=['png'], style='mpl20')
+def test_lizardstyle_cmapplot_beige_gn_blue():
+    np.random.seed(42)
+    data = np.random.rand(5, 5)  # Example data
+    plt.imshow(data, cmap='biolizard_beige_gn_blue_pal')
     plt.colorbar()

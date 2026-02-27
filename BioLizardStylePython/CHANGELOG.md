@@ -2,6 +2,15 @@
 
 <!--next-version-placeholder-->
 
+## v3.0.0
+
+### Breaking changes
+
+- BioLizardStyleR now is adapted to the new house style of BioLizard, including the
+BioLizard colors and fonts.
+
+
+
 ## v2.0.1
 big fixes issue [#34](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/34) and [#33](https://github.com/lizard-bio/nature-grade-visualization-playground/issues/33)
 

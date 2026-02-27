@@ -64,7 +64,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#simple-scatterplot">3. Simple scatterplot</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#facets">4. Facets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#treemap-plots">5. Treemap plots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#fun-with-maps">6. Fun with maps</a></li>
 </ul>
 </li>
 </ul>
@@ -110,7 +109,9 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">BioLizardStylePython</span> <span class="kn">import</span> <span class="o">*</span>
+
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
 
 <span class="c1"># Function to create random lineplot</span>
 <span class="k">def</span> <span class="nf">create_line_plot</span><span class="p">():</span>
@@ -119,14 +120,15 @@
     <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">y3</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 1&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 2&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Line 3&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Random Plot with 3 Lines&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;X-axis&#39;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Y-axis&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Line 1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Line 2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Line 3&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Random Plot with 3 Lines&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;X-axis&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Y-axis&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
 
 <span class="n">create_line_plot</span><span class="p">()</span>
 </pre></div>
@@ -144,44 +146,50 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/653d0c8292a74b3028063a651a157275e08d252d41b88868c5a9895a70c4a05f.png" src="_images/653d0c8292a74b3028063a651a157275e08d252d41b88868c5a9895a70c4a05f.png" />
+<img alt="_images/f8c7283e114ac9d120f6de18dc2ff2a9b0ca175ec14dabf1079c7431eb969092.png" src="_images/f8c7283e114ac9d120f6de18dc2ff2a9b0ca175ec14dabf1079c7431eb969092.png" />
 </div>
 </div>
+<p>Note that the default color is black, for a ‘sharper’ and more sobre look. In case a color scale is needed, as in this example, there are multiple scales you can pick from and add manually.</p>
 </section>
 <section id="using-the-color-palettes">
 <h3>2. Using the color palettes<a class="headerlink" href="#using-the-color-palettes" title="Link to this heading"></a></h3>
 <!-- The `biolizard_qualitative_pal()` function **retrieves a predefined qualitative colormap**. For instance, `biolizard_qualitative_pal().colors` returns a list of all 12 colors in hex code. Calling `biolizard_qualitative_pal()(0)` fetches the first color in the palette, while `biolizard_qualitative_pal()(range(5))` retrieves the first five colors.
 
 Here's two examples illustrating how to use this function: -->
-<p>There are two discrete colormaps and 4 continuous colormaps available in the BioLizard style packages.
-Discrete:</p>
+<p>There are two discrete colormaps and 4 continuous colormaps available in the BioLizard style packages.</p>
+<p><strong>Discrete</strong>:</p>
 <ul class="simple">
-<li><p>biolizard_qualitative_pal: Colorblind-safe qualitative color palette starting with Biolizard’s signature green, blue and yellow. This is the default for discrete data.</p></li>
-<li><p>biolizard_paired_pal: Colorblind-safe qualitative color palette inspired by Biolizard’s signature colors, especially suited for levels that are related 2-by-2.</p></li>
+<li><p>biolizard_qualitative_pal: Colorblind-safe qualitative color palette based on the colors in the biolizard brand book.</p></li>
+<li><p>biolizard_paired_pal: Colorblind-safe qualitative color palette based on the colors in the biolizard brand book, especially suited for levels that are related 2-by-2.</p></li>
 </ul>
 <p>These colormaps are available as <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.ListedColormap</span></code> objects.</p>
-<p>Continuous:</p>
+<p><strong>Continuous</strong>:</p>
 <ul class="simple">
-<li><p>biolizard_hues_pal: Designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard’s signature green. DOES NOT generate colorblind-safe palettes.</p></li>
-<li><p>biolizard_sequential_pal: Sequential color palette inspired by Biolizard’s signature green.</p></li>
-<li><p>biolizard_divergent_pal: Divergent color palette inspired by Biolizard’s signature green.</p></li>
-<li><p>l_viridis_pal: Sequential color palette inspired by the viridis color scale, passing through Biolizard’s signature yellow and green. This is the default for continuous data.</p></li>
+<li><p>biolizard_hues_pal: Designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with the dark green color from the brand book. DOES NOT generate colorblind-safe palettes.</p></li>
+<li><p>biolizard_sequential_pal: Sequential, colorblind-safe, perceptually unifom color palette inspired by the light and dark blue shades of the brand. This is the default for continuous data.</p></li>
+<li><p>biolizard_divergent_pal: Divergent, colorblind-safe and perceptually uniform (within each branch) continuous color palette inspired by the green-blue color gradient in the biolizard brand book.</p></li>
+<li><p>biolizard_beige_blue_pal: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.</p></li>
+<li><p>biolizard_beige_gn_blue_pal: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.</p></li>
 </ul>
-<p>These colormaps are available as <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.LinearSegmentedColormap</span></code> objects and have also been registered with matplotlib and can be used by passsing their name to the <code class="docutils literal notranslate"><span class="pre">palette</span></code> (seaborn) or <code class="docutils literal notranslate"><span class="pre">cmap</span></code> (matplotlib) parameters, where available.</p>
-<p>Note that you can also access the three base colors using:</p>
+<p>These colormaps are available as <code class="docutils literal notranslate"><span class="pre">matplotlib.colors.LinearSegmentedColormap</span></code> objects and are registered with matplotlib. This means they can be used by passsing their name to the <code class="docutils literal notranslate"><span class="pre">palette</span></code> (seaborn) or <code class="docutils literal notranslate"><span class="pre">cmap</span></code> (matplotlib) parameters, where available.</p>
+<p><strong>Basic colors</strong>:</p>
+<p>Basic colors of the brand style are black, white, light blue and light beige.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">blz_green</span></code> (“#01a086”)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">blz_blue</span></code> (#1e2237)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">blz_yellow</span></code> (#e9b940)</p></li>
+<li><p>The plot background is white</p></li>
+<li><p>Black is used for all plot elements that do not require colors such as axes, titles and plot elements when there is only one group (i.e. no need to distinguish lines or points by color): <code class="docutils literal notranslate"><span class="pre">blz_base_element</span></code>, <code class="docutils literal notranslate"><span class="pre">blz_base_text</span></code></p></li>
+<li><p>light beige is used as fill color when no color scale is needed, e.g. as fill color for box plots: <code class="docutils literal notranslate"><span class="pre">blz_base_fill</span></code></p></li>
+<li><p>light blue can be used as fill color to highlight specific elements in the plots: <code class="docutils literal notranslate"><span class="pre">blz_highlight_fill</span></code></p></li>
+<li><p>A darker blue can be used to highlight plot elements such as lines or points: <code class="docutils literal notranslate"><span class="pre">blz_highlight_element</span></code></p></li>
 </ul>
+<p>The hex value of these colors can be called by using the corresponding variables:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blz_green</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">blz_base_fill</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;#01a086&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;#faf4ed&#39;
 </pre></div>
 </div>
 </div>
@@ -189,7 +197,7 @@ Discrete:</p>
 <section id="discrete-data">
 <h4>2.1 Discrete data<a class="headerlink" href="#discrete-data" title="Link to this heading"></a></h4>
 <p>Following color scales were designed for discrete data:</p>
-<p><strong>biolizard_qualitative_pal</strong>: Colorblind-safe qualitative color palette starting with Biolizard’s signature green, blue and yellow. This is the default for discrete data.</p>
+<p><strong>biolizard_qualitative_pal</strong>: Colorblind-safe qualitative color palette based on the colors in the biolizard brand book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_qualitative_pal</span>
@@ -197,9 +205,9 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAGJSURBVHic7dYvLgdwHIBhf5KumCmaO7iFLAiCIkmKzcwJbJLNCWzu4JcUyXW4wjf5zN7nOcEb3+3t18efrX/i6P59OmHZ5/PedMKSm83ldMKyk4fz6YQlu18f0wnLTl8uphOWnVzdTicsefs+nk5Ytr85nE5YcnZ3MJ2w7PrzaTph2c50AADw9wwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgKBfYgoROBz2AP4AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#01a086ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #01a086ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#71bd8bff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #71bd8bff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAFpSURBVHic7daxUUIBFABBtQwCC7AVcjJish8xVGDGDB0wQB90YGiiVVACduELbreCC+/18r15voQt+/V0wqif7cd0wqjV12k6YdRh+ZxOGHW876YTRr0/btMJo37P1+mEUW/TAQDA/zMAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIL+AAFcDiAqb7W0AAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div>
 </div>
-<p><strong>biolizard_paired_pal</strong>: Colorblind-safe qualitative color palette inspired by Biolizard’s signature colors, especially suited for levels that are related 2-by-2.</p>
+<p><strong>biolizard_paired_pal</strong>: Colorblind-safe qualitative color palette based on the colors in the biolizard brand book, especially suited for levels that are related 2-by-2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_paired_pal</span>
@@ -207,9 +215,9 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAF5SURBVHic7daxMYRhFEBRtCDWzkZKUIFRjUC6M3YDM/6YWCTVwAYKUIGAJr7xZtxzKrjhPb97f/05+0eej4/TCcvsLq+nE5Z5O95PJyzz8XI7nbDM9+d+OmGZr6uH6YRltm2bTljm5nSaTljm6XCYTljqYjoAAPh7BgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABA0C9aYxQJEK0JYgAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#6cc7b7ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6cc7b7ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#860202ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #860202ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAFYSURBVHic7daxDQFQAABRjGAAAxhIpzCKScQaItFZQGMKRmAJ8ZN/701w5S1Pj91nwc8d7q/RCdPZvM+jE6bzvl1HJ0znud+OTpjO+ngZnTCl1egAAOD/DAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAoC9ZSwwgfgKa/QAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div>
 </div>
-<p><strong>biolizard_hues_pal</strong>: Note that while this is technically a continuous scale, it is designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard’s signature green. DOES NOT generate colorblind-safe palettes.</p>
+<p><strong>biolizard_hues_pal</strong>: Note that while this is technically a continuous scale, it is designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with the dark green color from the brand book. DOES NOT generate colorblind-safe palettes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_hues_pal</span>
@@ -217,7 +225,7 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_hues_pal</strong> </div><div class="cmap"><img alt="biolizard_hues_pal colormap" title="biolizard_hues_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIXRFWHRUaXRsZQBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB72dNsAAAAJ3RFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB1Oei5AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJHSURBVHic7dZLbtswFAVQUv1up3vrdrrPFknNDkzJ8LMZGZ3ecybE+5DWIAhu//Hr52ittb9ta9ezl/Pafy/999l/m/Vbv55/Zv/37I95ttlvR13P1bz0x6v3Xtx7eG9x73Tv+Xt9nt/n+W3Ov876y36O663Ps97PT6PUR78t+ns9v36U+ezve1t573/rbdb1d7ej3uf3+3V+q5/fP7vXT9+9Nnqdz7Of7PU2Xtrvs95KffvrGB/ee6zLWb7n1q/7u9V8fDhvq73FvdW8tcuiX/cvT+fHXj/bW/RP7o29f/Z+v8zqrH//3qv9UX5/lO+v37m6v9obi+99uPfQX+wt3l/fW9TLvbaY1/7z+tLK/nKvLfbm/Kj7on8/r/vH+32v6zu97PfyfWX+8M5J/5hvd/X+/wkACCIAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACDQPzXA8dKSeDZgAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#319d74ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #319d74ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#669855ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #669855ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_hues_pal</strong> </div><div class="cmap"><img alt="biolizard_hues_pal colormap" title="biolizard_hues_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIXRFWHRUaXRsZQBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB72dNsAAAAJ3RFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB1Oei5AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAI9SURBVHic7dY7bttAFAXQoWQbQeA6C8oqs9MgsEW60JAAnzQhAZf3nGb0PkOqEIQ7tT+/l9Zaa9O13a3nZV9Pl+f9tT6aD/dO3jt9fzqYf/feYG8Z3T+7P6iXwXx0/2x/q+t88N7D/UH90G//3f/V5++9/tnnP3r/rfff1rrPX3v9uuzrl16/tLWu531+Lf3r6GwH8+28f7iU/mUwv7RS9/m11HU+De5t87VubdDf10f9qc1P3z/Vuu+t/Tbo1/1tb5mf39t+QPPurP3R3va8qfaf77XR3kP/+f5S907Ol62+lbrOB/vD9+znw36p6/dYtvfcyn59zme5X/c+d3tbPX30b//R63997+9uvgz+VuZS1715dO/k8x7qwfMP753cr/Pv1rd+rv8LAEAQAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgb4A4Qbtew6jUckAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#009842ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009842ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#6d8f00ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6d8f00ff;"></div></div></div></div>
 </div>
 <p>Adding the suffix “_r” reverses these palettes:</p>
 <div class="cell docutils container">
@@ -227,7 +235,7 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list_r</strong> </div><div class="cmap"><img alt="from_list_r colormap" title="from_list_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGnRFWHRUaXRsZQBmcm9tX2xpc3RfciBjb2xvcm1hcIMcdCsAAAAgdEVYdERlc2NyaXB0aW9uAGZyb21fbGlzdF9yIGNvbG9ybWFwEgIwfQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAABiElEQVR4nO3WIS4AcBxAYRxHUiTuYHMFyaboZlMUkiIIguwImjtoipmiS8YV/slv9r7vBC++zdOnq5+Nf+Jm92Q6Ydnjxcd0wpLPvffphGWH26/TCUtebi+nE5Y9H91PJyz73tmfTljycvYwnbDseu9uOmHJ7vHXdMKyt/OD6YRlW9MBAMDfMwAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAggwAAAQZAAAIMgAAEGQAACDIAABAkAEAgCADAABBBgAAgn4BilUVpuF2H/YAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#71bd8bff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #71bd8bff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#01a086ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #01a086ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list_r</strong> </div><div class="cmap"><img alt="from_list_r colormap" title="from_list_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGnRFWHRUaXRsZQBmcm9tX2xpc3RfciBjb2xvcm1hcIMcdCsAAAAgdEVYdERlc2NyaXB0aW9uAGZyb21fbGlzdF9yIGNvbG9ybWFwEgIwfQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAABaklEQVR4nO3WMW2CARgA0bYOENEUAzjAByQ4aNKNlYUw/RszGrCCgA61wNi66DfcewpuvNfn++n3JezjsJ9OGPW92k0njPraXqcTRp2X43TCqJ/N53TCqPXtMZ0warncpxNGvU0HAAD/zwAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACPoDe1UNR7lllXYAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div></div></div></div>
 </div>
 <p>Colors can be retrieved from the discrete colorscales by passing a range to the palettes (returns an array of rgba values), or by using the <code class="docutils literal notranslate"><span class="pre">.colors</span></code> attribute (returns a list of all colors in the palette).</p>
 <div class="cell docutils container">
@@ -237,11 +245,11 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.00392157, 0.62745098, 0.5254902 , 1.        ],
-       [0.11764706, 0.13333333, 0.21568627, 1.        ],
-       [0.91372549, 0.7254902 , 0.25098039, 1.        ],
-       [0.36470588, 0.49411765, 0.64705882, 1.        ],
-       [0.5254902 , 0.00784314, 0.00784314, 1.        ]])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.62352941, 0.82745098, 0.3372549 , 1.        ],
+       [0.05098039, 0.27843137, 0.63137255, 1.        ],
+       [0.89803922, 0.64313725, 0.79607843, 1.        ],
+       [1.        , 0.43529412, 0.34901961, 1.        ],
+       [0.45882353, 0.86666667, 0.86666667, 1.        ]])
 </pre></div>
 </div>
 </div>
@@ -253,23 +261,19 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#01A086&#39;,
- &#39;#1E2237&#39;,
- &#39;#E9B940&#39;,
- &#39;#5D7EA5&#39;,
- &#39;#860202&#39;,
- &#39;#89D2C6&#39;,
- &#39;#C56F27&#39;,
- &#39;#EED8A1&#39;,
- &#39;#9CAEC3&#39;,
- &#39;#B073DE&#39;,
- &#39;#03F2F7&#39;,
- &#39;#71BD8B&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#9fd356&#39;,
+ &#39;#0d47a1&#39;,
+ &#39;#E5A4CB&#39;,
+ &#39;#FF6F59&#39;,
+ &#39;#75DDDD&#39;,
+ &#39;#009944&#39;,
+ &#39;#1e88e5&#39;,
+ &#39;#F72585&#39;]
 </pre></div>
 </div>
 </div>
 </div>
-<p>Since <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> is encoded as a continuous color palette, passing a range will lilely NOT yeild the desired effect, as the continuous color scale is represented by a sequence of 255 colors. Passing e.g. <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> will only retrieve the first 5 of these 255 colors. Instead, use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to ensure all colors are spaced evenly across the colorscale:</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> is encoded as a continuous color palette, passing a range will lilely NOT yield the desired effect, as the continuous color scale is represented by a sequence of 255 colors. Passing e.g. <code class="docutils literal notranslate"><span class="pre">range(5)</span></code> will only retrieve the first 5 of these 255 colors. Instead, use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to ensure all colors are spaced evenly across the colorscale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncolors</span> <span class="o">=</span> <span class="mi">5</span>
@@ -286,57 +290,79 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#319d74&#39;, &#39;#4f93ba&#39;, &#39;#b975ad&#39;, &#39;#b4805c&#39;, &#39;#669855&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#009842&#39;, &#39;#0096b8&#39;, &#39;#b565c3&#39;, &#39;#c36c55&#39;, &#39;#6d8f00&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <section id="seaborn">
 <h5>2.1.1 Seaborn<a class="headerlink" href="#seaborn" title="Link to this heading"></a></h5>
-<p>Note that biolizard_qualitative_pal is the default colorscale for discrete data:</p>
+<p>Discrete colormaps can be chosen by specifying a list of colors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
 <span class="c1"># Sample data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" src="_images/33988d2de57151ed11fabe24381ac7c5945e777aa3ca9fb243d689a11494622d.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3785299121.py:5: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+  sns.swarmplot(
+</pre></div>
+</div>
+<img alt="_images/910943356048d488a17ad688ea13f611f837a965165d084cb705bbf1ffe408fb.png" src="_images/910943356048d488a17ad688ea13f611f837a965165d084cb705bbf1ffe408fb.png" />
 </div>
 </div>
-<p>Other discrete colormaps can be chosen by specifying a list of colors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_paired_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot: manual discrete palette&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_paired_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">,</span>  <span class="c1"># Note that a paired palette does not make much sense in this case, but it is just for demonstration purposes</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1937011/3631860700.py:1: UserWarning: The palette list has more values (10) than needed (3), which may not be intended.
-  sns.swarmplot(x=&quot;species&quot;, y=&quot;sepal_length&quot;, hue =&quot;species&quot;, data=data, palette=biolizard_paired_pal.colors)
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3666193060.py:1: UserWarning: The palette list has more values (6) than needed (3), which may not be intended.
+  sns.swarmplot(
 </pre></div>
 </div>
-<img alt="_images/656e7ad4950170fcc46ac9d75a9a5d785ab45ecb0c4032dab7d950d2ea9962c7.png" src="_images/656e7ad4950170fcc46ac9d75a9a5d785ab45ecb0c4032dab7d950d2ea9962c7.png" />
+<img alt="_images/729fd54e25ff2c15fcc6bb77736e6fe1aae90e0a4171a0a2e76bc500f145e058.png" src="_images/729fd54e25ff2c15fcc6bb77736e6fe1aae90e0a4171a0a2e76bc500f145e058.png" />
 </div>
 </div>
 <p>Continuous colormaps can be referenced by their name, this ensures that colors are picked across the entire range of the continous scale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_sequential_pal&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot: manual continuous palette&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_beige_blue_pal&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/70e3d7bc79756f70cfa8d484472d338ec94f0dfd1ea4e0cadde6a3b0a1be8e38.png" src="_images/70e3d7bc79756f70cfa8d484472d338ec94f0dfd1ea4e0cadde6a3b0a1be8e38.png" />
+<img alt="_images/d4f8697f4ecd3ce1d8942493afff12a9b69f054eb7ba81cb6c0d6c96efd6730c.png" src="_images/d4f8697f4ecd3ce1d8942493afff12a9b69f054eb7ba81cb6c0d6c96efd6730c.png" />
 </div>
 </div>
 </section>
@@ -346,25 +372,25 @@ Discrete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Data for the bar plot</span>
-<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
-<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span>
+<span class="n">categories</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">)]</span>
+<span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span> <span class="o">*</span> <span class="mi">3</span>
 
 <span class="c1"># Create the bar plot</span>
-<span class="c1"># .colors returns a list that can be used for the color parameter </span>
+<span class="c1"># .colors returns a list that can be used for the color parameter</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">biolizard_paired_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
 
 <span class="c1"># Add title and labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Example Bar Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Categories&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Values&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/301920f5c4c251a21ec17256326b208644bfff5220f1b84cddd61f43221b7c0d.png" src="_images/301920f5c4c251a21ec17256326b208644bfff5220f1b84cddd61f43221b7c0d.png" />
+<img alt="_images/074f04cee62ebe1efa0b052a75baa1da01989178c098fa2f55fedb9823a4ea7b.png" src="_images/074f04cee62ebe1efa0b052a75baa1da01989178c098fa2f55fedb9823a4ea7b.png" />
 </div>
 </div>
 <p>Note that in case the colorscale contains less levels than the data, colors are recycled without warning!</p>
@@ -377,16 +403,16 @@ Discrete:</p>
 <span class="n">bars</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">categories</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">)</span>
 
 <span class="c1"># Add title and labels</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Example Bar Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Categories&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Example Bar Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Categories&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Values&quot;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/abc530885446398cb8cbbf48cfd3de54ddc37deef0efaa8663df5b13f49e0a04.png" src="_images/abc530885446398cb8cbbf48cfd3de54ddc37deef0efaa8663df5b13f49e0a04.png" />
+<img alt="_images/f42c584649974a1c6e32347bfe68e8a59e8122b3102240742587e5640f486150.png" src="_images/f42c584649974a1c6e32347bfe68e8a59e8122b3102240742587e5640f486150.png" />
 </div>
 </div>
 </section>
@@ -394,17 +420,27 @@ Discrete:</p>
 <section id="continuous-data">
 <h4>2.2 Continuous data<a class="headerlink" href="#continuous-data" title="Link to this heading"></a></h4>
 <p>Following color scales were designed for continous data:</p>
-<p><strong>l_viridis_pal</strong>: Sequential color palette inspired by the viridis color scale, passing through Biolizard’s signature yellow and green. This is the default for continuous data.</p>
+<p><strong>biolizard_beige_blue_pal</strong>:  Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_viridis_pal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_beige_blue_pal</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>l_viridis_pal_r_r</strong> </div><div class="cmap"><img alt="l_viridis_pal_r_r colormap" title="l_viridis_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIHRFWHRUaXRsZQBsX3ZpcmlkaXNfcGFsX3JfciBjb2xvcm1hcBSYw5QAAAAmdEVYdERlc2NyaXB0aW9uAGxfdmlyaWRpc19wYWxfcl9yIGNvbG9ybWFwLysknAAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAAB8UlEQVR4nO3WTVICMRRG0cQtul8X5oA4gMYi4dmxsJx850yo7vyKDG7//HgfrbV2aVfH52jj+jyO52N8TM/T+H3+eD5+PI+T8V/vV6xfxnfv/9/j/aX1l9v68ntY1vW98XK/af3u+O398nub3pf73O85zd9cv3/OfP/H72N33fp/Lb7Xs33mexf7Vb+jef/1vGq/af7uvOKex8DuujafM61r1brinm2eN53flv2L52N+ce7uOd8Dz8+p9+t784pzlufq/JP7tJO/53z97ePF9a+ef/7+5++7/9l5vXi/u09/vM/JOW8NAIgjAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEBflg0laR4rrq4AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fabf54ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fabf54ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#1a487aff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #1a487aff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_blue_pal_r_r colormap" title="biolizard_beige_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAK3RFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgtk8ygAAADF0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2JsdWVfcGFsX3JfciBjb2xvcm1hcERqePQAAAAwdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ6qeThwAAAAydEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3JnhDjROwAAAdBJREFUeJzt1kGOlFAUQNGH+1+cu3APDgonFRNB/GC3ick9Z0Lzgf+oqh7c7fu3r/vMzGvfZ2bmfZjXHM7fx/2frb/PZ26t7+8/Xqf1Z3P31dyfzx3uX64f5yzmX3zvy+c+a/6n73N3/5tzHz//6/rr6v7l+y7WL7+fm+97mrP6/Heff3bf9f/73c/z0fd8OOf2+sP5/9u8w/X54H5zdf/NOaf1xb6zeP50Pr+/fnXf5fXFfdfH44v8+bjd3G9b7Lcd5y/2304/9N/t92UAgBwBAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACDoBwWhuoD6mHaBAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div>
 </div>
-<p><strong>biolizard_sequential_pal</strong>: Sequential color palette inspired by Biolizard’s signature green.</p>
+<p><strong>biolizard_beige_gn_blue_pal</strong>: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_beige_gn_blue_pal</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_gn_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_gn_blue_pal_r_r colormap" title="biolizard_beige_gn_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAALnRFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfZ25fYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgkRsaQAAADR0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2duX2JsdWVfcGFsX3JfciBjb2xvcm1hcGrMzAIAAAAwdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ6qeThwAAAAydEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3JnhDjROwAAAiZJREFUeJzt1ktypDAQRdHE+19c78J76AhLHtjgQJBNedCjd86koqREUJ/B3f6+/5lVVWOOqqqa+2st7+ds1r9ex7pe83ZuvX68OLeeN16da573ca7On7vbH9330uxfn/v+/Mv38nDeMd/OzdPcuNx/LnNjWa/l+nW+zq/r+vf1H8fctpy7z23N/nban838nPfX/azv15/n5mV9v65O68fccd+6Xf+ZX/e789bn2A9u5pbz67f7xw2ezrlfr+V5j7HHc5brmv1X5y73a/f/9/X7S/c91Um3355/+T/dP1d/3+73r/v1Fz9P9//oz7//Pbv/zfoc7e92ud+/52uZv953mVvebw9z3f7W7Hfvj/lxf9+nueN1LHPf628FAMQRAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQKBPqNCtgML8bsYAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div>
+</div>
+<p><strong>biolizard_sequential_pal</strong>: Sequential, colorblind-safe and perceptually uniform color palette inspired by the light and darker shades of blue in the BioLizard brand book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_sequential_pal</span>
@@ -412,9 +448,9 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_sequential_pal</strong> </div><div class="cmap"><img alt="biolizard_sequential_pal colormap" title="biolizard_sequential_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJ3RFWHRUaXRsZQBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXCTS29EAAAALXRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXDbqAd9AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAHUSURBVHic7dbBUtswFEBR0///ynwFnRKbBU47iBGOQ2Fzz1lFmTxJ0eo+XS6XbVmWZVvebNvbp23/Zl9+sr79/s7579r35Pz60+cf7vt+vZ6+19fuuc7mHzzn4/v+5/lhbj35PvP3He/x+X7rwXtN3/XDve87d9xvvfPc8ZzZejx3tr7tP777OvvdcI91OPc6ucd1n78OvxvXL/v6ZZ/7s8/93tfPwz3+/qPb8t+HfTlbT+aO1o/OTe/xxbmj//fo3OE7VPe5c9/T+4z3Ojf3awEAcgQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgKBXmcGsRl6b5tgAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#e2e2e2ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #e2e2e2ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#006c4cff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #006c4cff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_sequential_pal</strong> </div><div class="cmap"><img alt="biolizard_sequential_pal colormap" title="biolizard_sequential_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJ3RFWHRUaXRsZQBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXCTS29EAAAALXRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXDbqAd9AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAG5SURBVHic7dZLTsMwFEDRlNWyR7ZWWkYp4DRK+uEj3XMm6CW2Y5XJPby+nc/TF/N0HubF+2HdtLJvdf+N5z98jzvvtfj+3vOffM/P5+d988rz02LfvH66Op821p0W87B/PG9YN99nbX4fnh/n58N8HH/QrXntH7p7fnDf5fHO+Vnn/JfvPHyvv5pvvPfq/NPf/+39G+/v3bd4v3Wv65/df+7WOXvnw4PrDhvrhvmyfuv5978vEwCQIwAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABH0ADuUlf2gX5KsAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#68bbffff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #68bbffff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0038b9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0038b9ff;"></div></div></div></div>
 </div>
-<p><strong>biolizard_divergent_pal</strong>: Divergent color palette inspired by Biolizard’s signature green.</p>
+<p><strong>biolizard_divergent_pal</strong>: Divergent, colorblind-safe and perceptually uniform (within each branch) color palette inspired by the green-blue color gradient in the biolizard brand book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_divergent_pal</span>
@@ -422,7 +458,7 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal colormap" title="biolizard_divergent_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbCBjb2xvcm1hcHsBaw4AAAAsdEVYdERlc2NyaXB0aW9uAGJpb2xpemFyZF9kaXZlcmdlbnRfcGFsIGNvbG9ybWFwKl8ZqQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAAB90lEQVR4nO3WSU7DQBRF0W/TCLFaFsQqEQOaBDOgEhSTih1QmLxzJqWq7y6T6A6PDzVVVQ1D1bG1OudL89X31cJ8uGvrfTu4bfvdet3Wmzbf7a8O5rXfH19rGFeejyfPl+b78+pdf+nz4bzrxzOvX3z+cPR87XXf1/fe89f3n35ujeu+Z/k7l75n5e8b//YdOx/T9LXWdLifr535tJ9/nHXf/88v+33bM+/f9s479/14fue98/t7821vPjufr5vOfDObb+bnbX1v8/e2f2vra1tf2vy57Z/aWu28ps762/mlnvvr99a//J7DfwEAIIIAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAn0CCbEykUoZWQIAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9c7000ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9c7000ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#009370ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009370ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal colormap" title="biolizard_divergent_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbCBjb2xvcm1hcHsBaw4AAAAsdEVYdERlc2NyaXB0aW9uAGJpb2xpemFyZF9kaXZlcmdlbnRfcGFsIGNvbG9ybWFwKl8ZqQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAACJ0lEQVR4nO3WS27bMBSG0SulLQq02+siu75O+rClDky3MCXGsuHZf87kxiRNP5AE31Tfvq9VVTXNdWjO07Fzr5rz9fHUzRrM9c7+vXl7/9c2v7T5uc1P3fzY5ofNvPzw1q2/tY91Xd/Oyw9zt759PO3uz/P+ubk/N7hvc27un/f+ff256cl7/j/v2OtN/X39r+291/t3fv/cNHzec59jeN+j5wfve3O++3Oquvy9rOtSVVXLZp7v7N/OtZ0f79/eu9Sd/aP3vHx/9Pqj76Nbr/37t/e+av/84H4/T4P9U7d/2l1f1j9t/m7nfrXv4Wdb/9Gdr5u5do+fnaN7zg/eMzrfr58H69f3Ude57K9vHi/d8w6e27zewXPt3wEAkEQAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgf4CUvFBBG6ICjQAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div></div></div></div>
 </div>
 <p>Adding the suffix “_r” reverses these palettes:</p>
 <div class="cell docutils container">
@@ -432,23 +468,23 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal_r_r colormap" title="biolizard_divergent_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAKnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXCVsAMHAAAAMHRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXAqLY89AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJFSURBVHic7dYxctQwAIZR2YaBAu7KXbgrwyRkTYHkHSnRxga6/71GY1mS7U2Rbynfv+2llFLKUodhbI75dbh/dt/SLT/Ome6fzJ++X/p169n3np3bzlsn9/v9X+vllzr/ue77VK/b+LGNdd+HpR+3Y77Uce3vt/Wlv17r+u04Z63zb59/39dfL+1+/bqt/o7H+jLbV/r5+vxtHdYP+9fh3GX4nvb943PH8Xj+sW54/nR/f377s96/7+Lzl3XY/97zh+8/zmn7t+F3ee93e/x7H/bbn6GOZd+769l8ud2Gdfup88qw/vX8tfd4/T5vv8f8/c69z9nvu/6d//b86frbxfVXz/9f82W2/uXhOfP74/zLqfn7/Xb9a5hv18/D/ad6/6le/6jjzzpfh3Es5fH9/fH9v93XxvZfGAAIIgAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAvwGCpD+aUziFqgAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#009370ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009370ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#9c7000ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9c7000ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal_r_r colormap" title="biolizard_divergent_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAKnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXCVsAMHAAAAMHRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXAqLY89AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJaSURBVHic7da7ktNAEAXQ0dgsERlfyP+HUEXB2ibwWC61PNhLQHLPSdqaR48k7+MuX7+1S2uttaVdy6it1HW8Px5fyvjNrl/frq/zu3Padr6Pehjzxzq+bJa33rfjfbJ+Nr72Kc8529fLc8zm5/U46pdx/udN7f1tnP9W1h/Hubd6KPOHUj89HF/q9fgi+njw3mf9+mb/Ml5Anb/fT//r/vW6nj89dzt/P3/b97C7n0PZv637539tfz1/dt+9PenTSp9e39/j2ibv/1DOuf2EX65/Bdr5POq4XsfXev1wOdfxyfrxYd/n39av+8aHp/1evO/7/tJ39z4en7urLz7HeXLeZTb/wT6zdacX+50m/U5P+u2vt+t2dfR/L+PvY9/7ZTv/e9Rfpf4c9ceo30dta72U64/W5cl8/UG8faH/qd5/QV6q9d8sABBAAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAoD8WhgSMSO69PQAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div></div></div></div>
 </div>
 <p>Colors can be retrieved from the continuous colorscales by passing an array of the desired length to the palettes, this returns an array of rgba values. Note that internally, each continuous color scale is represented as a sequence of 255 colors. All these colors can be retrieved by passing range(255) to your color scale of choice:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">l_viridis_pal</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">biolizard_sequential_pal</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">255</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.98047708, 0.74741876, 0.32824584, 1.        ],
-       [0.97453872, 0.74675386, 0.3270615 , 1.        ],
-       [0.96860339, 0.74608207, 0.3259049 , 1.        ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0.40784314, 0.73333333, 1.        , 1.        ],
+       [0.40784314, 0.73333333, 1.        , 1.        ],
+       [0.40392157, 0.72941176, 1.        , 1.        ],
        ...,
-       [0.10233947, 0.28989547, 0.47624979, 1.        ],
-       [0.10272789, 0.28712708, 0.47695401, 1.        ],
-       [0.10313784, 0.28434012, 0.47768985, 1.        ]])
+       [0.        , 0.22352941, 0.71372549, 1.        ],
+       [0.        , 0.21960784, 0.71764706, 1.        ],
+       [0.        , 0.21960784, 0.72156863, 1.        ]])
 </pre></div>
 </div>
 </div>
@@ -457,7 +493,7 @@ Discrete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncolors</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">rgbacolors</span> <span class="o">=</span> <span class="n">l_viridis_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncolors</span><span class="p">))</span>
+<span class="n">rgbacolors</span> <span class="o">=</span> <span class="n">biolizard_sequential_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">ncolors</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -470,23 +506,23 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#fabf54&#39;,
- &#39;#d0b94e&#39;,
- &#39;#a5b24f&#39;,
- &#39;#79a957&#39;,
- &#39;#519e62&#39;,
- &#39;#318f6d&#39;,
- &#39;#1f7e74&#39;,
- &#39;#196c76&#39;,
- &#39;#195b77&#39;,
- &#39;#1a487a&#39;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;#68bbff&#39;,
+ &#39;#53abff&#39;,
+ &#39;#3a9bfd&#39;,
+ &#39;#0f8bec&#39;,
+ &#39;#007cdc&#39;,
+ &#39;#006ccc&#39;,
+ &#39;#005ebf&#39;,
+ &#39;#004fb3&#39;,
+ &#39;#0042ae&#39;,
+ &#39;#0038b9&#39;]
 </pre></div>
 </div>
 </div>
 </div>
 <section id="id1">
 <h5>2.2.1 Matplotlib<a class="headerlink" href="#id1" title="Link to this heading"></a></h5>
-<p>Note that l_viridis is the default colorscale:</p>
+<p>Note that biolizard_sequential_pal is the default colorscale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># Example data</span>
@@ -497,69 +533,61 @@ Discrete:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6efd2c97b263d21e1149164ffa7450926dfddbec2bd9c9f401f7f509328910ae.png" src="_images/6efd2c97b263d21e1149164ffa7450926dfddbec2bd9c9f401f7f509328910ae.png" />
+<img alt="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" src="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" />
 </div>
 </div>
 <p>The continous palettes have been registered with matplotlotlib and their names can be passed to the <code class="docutils literal notranslate"><span class="pre">cmap</span></code> parameter to change the continuous scale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_sequential_pal&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;biolizard_sequential_pal&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;biolizard_divergent_pal&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/a9596d80067d4715be2b86148c0ac061970626d19380a278ce348d00a39678e5.png" src="_images/a9596d80067d4715be2b86148c0ac061970626d19380a278ce348d00a39678e5.png" />
-<img alt="_images/c52289a71773b7dec7edf6b2a1b3ec83d5db09194a1c332ddb708aa91f79dff3.png" src="_images/c52289a71773b7dec7edf6b2a1b3ec83d5db09194a1c332ddb708aa91f79dff3.png" />
+<img alt="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" src="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" />
+<img alt="_images/d025f1360de62d0a457b8c1e954bb02f5ea640de29e1ed3bb6a7445364534ece.png" src="_images/d025f1360de62d0a457b8c1e954bb02f5ea640de29e1ed3bb6a7445364534ece.png" />
 </div>
 </div>
 <p>The corresponding palettes with suffix ‘_r’ reverse the colors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;biolizard_divergent_pal_r&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;biolizard_divergent_pal_r&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/b4289f0135c76bfd74b0ac25537e3b0a5f1e48244865c8f73cf45c41a6e5472d.png" src="_images/b4289f0135c76bfd74b0ac25537e3b0a5f1e48244865c8f73cf45c41a6e5472d.png" />
+<img alt="_images/6b42d63e0d7e2dd668de8ceb2ff4848aa62042302982c9b10046f2da4784ab32.png" src="_images/6b42d63e0d7e2dd668de8ceb2ff4848aa62042302982c9b10046f2da4784ab32.png" />
 </div>
 </div>
 </section>
 <section id="id2">
 <h5>2.2.2 Seaborn<a class="headerlink" href="#id2" title="Link to this heading"></a></h5>
-<p>!! default not working for some reason:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/44be4ceb4382486281fe828c3497312eb97c8bbcdc676b64554d296ee90c856c.png" src="_images/44be4ceb4382486281fe828c3497312eb97c8bbcdc676b64554d296ee90c856c.png" />
-</div>
-</div>
 <p>The names of the palettes can be passed to the <code class="docutils literal notranslate"><span class="pre">palette</span></code> parameter to change the continuous scale:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span> <span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_sequential_pal&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_beige_gn_blue_pal&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2b4c5eb82d21eb627f298e2c05d6641a5488e7207e1ab3aead40cd2987387bc4.png" src="_images/2b4c5eb82d21eb627f298e2c05d6641a5488e7207e1ab3aead40cd2987387bc4.png" />
+<img alt="_images/7edabb64b2514901913e8b94afe1a069883f41d9bc954c658b2447682705a262.png" src="_images/7edabb64b2514901913e8b94afe1a069883f41d9bc954c658b2447682705a262.png" />
 </div>
 </div>
 </section>
@@ -582,17 +610,21 @@ Discrete:</p>
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
-<span class="n">finalise_lizardplot</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span>
-                  <span class="s1">&#39;Source: https://en.wikipedia.org/wiki/Iris_flower_data_set &#39;</span><span class="p">,</span>
-                  <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_name</span><span class="o">=</span><span class="s1">&#39;An_Iris_Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
+<span class="n">finalise_lizardplot</span><span class="p">(</span>
+    <span class="n">fig</span><span class="p">,</span>
+    <span class="s2">&quot;Source: https://en.wikipedia.org/wiki/Iris_flower_data_set &quot;</span><span class="p">,</span>
+    <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">pdf</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">output_name</span><span class="o">=</span><span class="s2">&quot;An_Iris_Plot&quot;</span><span class="p">,</span>
+<span class="p">)</span>
 
-<span class="c1">#Please take a look in your current working directory to see the result!</span>
+<span class="c1"># Please take a look in your current working directory to see the result!</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6db37e85bcd5b7019ce43d998b2e0aa86590e9ede509d172dc4568e6b5aa1a87.png" src="_images/6db37e85bcd5b7019ce43d998b2e0aa86590e9ede509d172dc4568e6b5aa1a87.png" />
+<img alt="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" src="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" />
 </div>
 </div>
 </section>
@@ -605,26 +637,58 @@ Discrete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5d47788bf1943f70f4c6ff477447ae90597780694ae61a51c2db51034d880996.png" src="_images/5d47788bf1943f70f4c6ff477447ae90597780694ae61a51c2db51034d880996.png" />
+<img alt="_images/0519e634c322fb3fcb380b8aed11bf68c58bed3d480e878c6931527faf38d12d.png" src="_images/0519e634c322fb3fcb380b8aed11bf68c58bed3d480e878c6931527faf38d12d.png" />
 </div>
 </div>
-<p>A violin plot is similar to a boxplot, but captures more information on the data distribution:</p>
+<p>Unfortunately, matplotlib and seaborn do not make a distinction between fill colors and other elements in the default values, resulting in these black box plots. The solution is to manually adjust the facecolor property. Brand fill and element colors are available in the package (see <a class="reference internal" href="#using-the-color-palettes"><span class="std std-ref">2. Using the color palettes</span></a>). In this case we use <code class="docutils literal notranslate"><span class="pre">blz_base_fill</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">boxprops</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;facecolor&quot;</span><span class="p">:</span> <span class="n">blz_base_fill</span><span class="p">})</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0aef12db26b90dc5cf9c9f0c706c9571e443f3fa474c2fe3aeb2750372b45f81.png" src="_images/0aef12db26b90dc5cf9c9f0c706c9571e443f3fa474c2fe3aeb2750372b45f81.png" />
+<img alt="_images/2a4945217f6a4174859528a8ecae4adecf239023c10178f19838c2f62de5cdac.png" src="_images/2a4945217f6a4174859528a8ecae4adecf239023c10178f19838c2f62de5cdac.png" />
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">blz_highlight_fill</span></code> can be used to highlight specific elements. For example if we are especially interested in the setosa species:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">hue</span> <span class="o">=</span> <span class="s2">&quot;species&quot;</span><span class="p">,</span>  <span class="c1"># to enable passing a palette</span>
+            <span class="n">palette</span><span class="o">=</span><span class="p">[</span><span class="n">blz_highlight_fill</span><span class="p">,</span> <span class="n">blz_base_fill</span><span class="p">,</span> <span class="n">blz_base_fill</span><span class="p">])</span> <span class="c1"># manually defoining a discrete palette</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/ae5a397c8a3dacf7957fcff892193f716641c45e140ead799a776259c0f81901.png" src="_images/ae5a397c8a3dacf7957fcff892193f716641c45e140ead799a776259c0f81901.png" />
+</div>
+</div>
+<p>A violin plot is similar to a boxplot, but captures more information on the data distribution. <code class="docutils literal notranslate"><span class="pre">sns.violinplot</span></code> does not have the boxprop parameter, so we need to tweak the violin elements by cycling through <code class="docutils literal notranslate"><span class="pre">ax.collections</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">violin</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">:</span>
+    <span class="n">violin</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="n">blz_base_fill</span><span class="p">)</span>
+    <span class="n">violin</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="n">blz_base_element</span><span class="p">)</span>
+    <span class="n">violin</span><span class="o">.</span><span class="n">set_linewidth</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/be7cbb8f57e7db8e91cc35aad70865cf74f47a792721910f91519a088df9c7bc.png" src="_images/be7cbb8f57e7db8e91cc35aad70865cf74f47a792721910f91519a088df9c7bc.png" />
 </div>
 </div>
 </section>
@@ -632,14 +696,23 @@ Discrete:</p>
 <h3>2. Simple density plot<a class="headerlink" href="#simple-density-plot" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">displot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+            <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+            <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+            <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;kde&quot;</span><span class="p">,</span>
+            <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/002562c6a261c655bba3cdff70617555c2b24c3a00c8210cb3becd170052b89f.png" src="_images/002562c6a261c655bba3cdff70617555c2b24c3a00c8210cb3becd170052b89f.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/1132376799.py:1: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+  sns.displot(data,
+</pre></div>
+</div>
+<img alt="_images/ea5428c0ccaf90af1c2f3d2fe9035f743d1fa5ef69c948a5e9e0262c568f3818.png" src="_images/ea5428c0ccaf90af1c2f3d2fe9035f743d1fa5ef69c948a5e9e0262c568f3818.png" />
 </div>
 </div>
 </section>
@@ -647,14 +720,20 @@ Discrete:</p>
 <h3>3. Simple scatterplot<a class="headerlink" href="#simple-scatterplot" title="Link to this heading"></a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;l_viridis_pal&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="s2">&quot;biolizard_beige_blue_pal&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/e6114ae4b247bdb51ad8f37f00440ff36812a3ab1c32f07fd543d518c8996be2.png" src="_images/e6114ae4b247bdb51ad8f37f00440ff36812a3ab1c32f07fd543d518c8996be2.png" />
+<img alt="_images/c22daf7ae00086f715f25a30aa03e7ad2bac11dd0b372f685909b310f2c7ed31.png" src="_images/c22daf7ae00086f715f25a30aa03e7ad2bac11dd0b372f685909b310f2c7ed31.png" />
 </div>
 </div>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">lmplot</span></code> or <code class="docutils literal notranslate"><span class="pre">regplot</span></code> to add a regression line:</p>
@@ -662,66 +741,83 @@ Discrete:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
 
-<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">blz_blue</span><span class="p">))</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">blz_highlight_element</span><span class="p">))</span>
+
 
 <span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
-    <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;petal_length&#39;</span><span class="p">])</span>
+    <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;petal_length&quot;</span><span class="p">])</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">.05</span><span class="p">,</span> <span class="mf">.8</span><span class="p">,</span> <span class="s1">&#39;$r^2$=</span><span class="si">{:.2f}</span><span class="s1">, p=</span><span class="si">{:.2g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span>
-            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
-    
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s2">&quot;$r^2$=</span><span class="si">{:.2f}</span><span class="s2">, p=</span><span class="si">{:.2g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+
 <span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">annotate</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;A Flower Plot&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;A Flower Plot&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f40587a724e4f53c549cfa29ad01c85ac13ebff9092d91775f3390cc12b64bc0.png" src="_images/f40587a724e4f53c549cfa29ad01c85ac13ebff9092d91775f3390cc12b64bc0.png" />
+<img alt="_images/f356c4ed3c6732ae2624fa7b7f6eee6e75c61cc73e54e4ca438f681400cad584.png" src="_images/f356c4ed3c6732ae2624fa7b7f6eee6e75c61cc73e54e4ca438f681400cad584.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># specify hue to show the three species</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+           <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+           <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span>
+           <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+           <span class="n">palette</span><span class="o">=</span><span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x784fad25cf50&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x72b4e56008f0&gt;
 </pre></div>
 </div>
-<img alt="_images/4f8407ceb5f357e76a8ae5f73bcb98f5a0b782b0b55b3a49e67d33792153b657.png" src="_images/4f8407ceb5f357e76a8ae5f73bcb98f5a0b782b0b55b3a49e67d33792153b657.png" />
+<img alt="_images/8ec76145bff17a97f33c7a9d64fa4c3c43d3005c33f37708f2bedd4adc776a39.png" src="_images/8ec76145bff17a97f33c7a9d64fa4c3c43d3005c33f37708f2bedd4adc776a39.png" />
 </div>
 </div>
-<p>Note that using the reversed palette starts picking the colors from the end of the palette. If you want to pick the colors you need, and reverse them afterward (eg yellow-blue-green instead of green-blue-yellow), use the regular palette and reverse the colors after picking them:</p>
+<p>Note that using the reversed palette starts picking the colors from the end of the palette. If you want to pick the colors you need, and reverse them afterward (eg pink-blue-green instead of green-blue-pink), use the regular palette and reverse the colors after picking them:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_colors</span> <span class="o">=</span> <span class="n">biolizard_qualitative_pal</span><span class="o">.</span><span class="n">colors</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
 
-<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># regular palette</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
-           <span class="n">palette</span><span class="o">=</span><span class="n">my_colors</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Regular palette&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">my_colors</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Regular palette&quot;</span><span class="p">)</span>
 
 <span class="c1"># reversed</span>
 <span class="n">my_colors</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
-<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;species&#39;</span><span class="p">,</span>
-           <span class="n">palette</span><span class="o">=</span><span class="n">my_colors</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Reversed palette&#39;</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+    <span class="n">data</span><span class="p">,</span>
+    <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span>
+    <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">,</span>
+    <span class="n">palette</span><span class="o">=</span><span class="n">my_colors</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+<span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Reversed palette&quot;</span><span class="p">)</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_1937011/3460807827.py:16: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3567715431.py:28: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()
 </pre></div>
 </div>
-<img alt="_images/f891edf3027b9575252890a07d50a1e002dff950215f98038264cc04068bd852.png" src="_images/f891edf3027b9575252890a07d50a1e002dff950215f98038264cc04068bd852.png" />
+<img alt="_images/00f36ac213a68d0976eb7e4da9b2a9ffc293795d8a14cb993ee5a9bd9c49f959.png" src="_images/00f36ac213a68d0976eb7e4da9b2a9ffc293795d8a14cb993ee5a9bd9c49f959.png" />
 </div>
 </div>
 </section>
@@ -731,37 +827,42 @@ Discrete:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">FacetGrid</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span><span class="s2">&quot;species&quot;</span><span class="p">)</span>
-<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;sepal_length&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;petal_length&#39;</span><span class="p">)</span>
+<span class="n">g</span><span class="o">.</span><span class="n">map_dataframe</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x784fad10bfe0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x72b4e50a1f10&gt;
 </pre></div>
 </div>
-<img alt="_images/ccb86c22c27e921201d69b0753ca84774e4b4c73394358ad3258794f36e5a6a4.png" src="_images/ccb86c22c27e921201d69b0753ca84774e4b4c73394358ad3258794f36e5a6a4.png" />
+<img alt="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" src="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" />
 </div>
 </div>
 </section>
 <section id="treemap-plots">
 <h3>5. Treemap plots<a class="headerlink" href="#treemap-plots" title="Link to this heading"></a></h3>
 <p>Treemap plots can be used as an alternative for bar charts, for example when there are so many categories that a bar chart may not be clear anymore.
-In this example, more colors are requested than are present in the qualitative color scales. The <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> palette was developped for situations like this. It maps each level to an evenly spaced hue on the color wheel, starting with Biolizard’s signature green, but it DOES NOT generate colorblind-safe palettes.</p>
+In this example, more colors are requested than are present in the qualitative color scales. The <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> palette was developped for situations like this. It maps each level to an evenly spaced hue on the color wheel, starting with the dark green from the brand book, but it DOES NOT generate colorblind-safe palettes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">squarify</span>
 
 <span class="c1"># Sample data</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">896</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">654</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
-<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Group&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Group&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">values</span><span class="p">)]</span>
 
 <span class="c1"># take colors at regular intervals across the colormap</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="n">biolizard_hues_pal</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)))</span>
 
 <span class="c1"># Treemap</span>
-<span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">values</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">colors</span><span class="p">,</span>
-              <span class="n">text_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span><span class="s1">&#39;black&#39;</span><span class="p">},</span>
-              <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">squarify</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+    <span class="n">sizes</span><span class="o">=</span><span class="n">values</span><span class="p">,</span>
+    <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">,</span>
+    <span class="n">text_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">blz_base_text</span><span class="p">},</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="n">blz_base_element</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1"># Remove the axis:</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
@@ -771,38 +872,7 @@ In this example, more colors are requested than are present in the qualitative c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/607155767ca0515ae66ef1fc2f40fd393f0dd0181b9617175ff1a5d6371a2b57.png" src="_images/607155767ca0515ae66ef1fc2f40fd393f0dd0181b9617175ff1a5d6371a2b57.png" />
-</div>
-</div>
-</section>
-<section id="fun-with-maps">
-<h3>6. Fun with maps<a class="headerlink" href="#fun-with-maps" title="Link to this heading"></a></h3>
-<p>This example was taken from: https://matplotlib.org/basemap/stable/users/examples.html.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-
-<span class="c1"># miller projection </span>
-<span class="nb">map</span> <span class="o">=</span> <span class="n">Basemap</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;mill&#39;</span><span class="p">,</span><span class="n">lon_0</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="c1"># plot coastlines, draw label meridians and parallels.</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">drawcoastlines</span><span class="p">()</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">drawparallels</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">30</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">drawmeridians</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">map</span><span class="o">.</span><span class="n">lonmin</span><span class="p">,</span><span class="nb">map</span><span class="o">.</span><span class="n">lonmax</span><span class="o">+</span><span class="mi">30</span><span class="p">,</span><span class="mi">60</span><span class="p">),</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">drawmapboundary</span><span class="p">(</span><span class="n">fill_color</span><span class="o">=</span><span class="n">blz_blue</span><span class="p">)</span>
-<span class="nb">map</span><span class="o">.</span><span class="n">fillcontinents</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">blz_green</span><span class="p">,</span><span class="n">lake_color</span><span class="o">=</span><span class="n">blz_blue</span><span class="p">)</span>
-<span class="c1"># shade the night areas, with alpha transparency so the </span>
-<span class="c1"># map shows through. Use current time in UTC.</span>
-<span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
-<span class="n">CS</span><span class="o">=</span><span class="nb">map</span><span class="o">.</span><span class="n">nightshade</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Day/Night Map for </span><span class="si">%s</span><span class="s1"> (UTC)&#39;</span> <span class="o">%</span> <span class="n">date</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%d</span><span class="s2"> %b %Y %H:%M:%S&quot;</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/952a8631374d8eb0b3b7c429fe57a460a975639f66cd22eb755e1a8c7e4ed61a.png" src="_images/952a8631374d8eb0b3b7c429fe57a460a975639f66cd22eb755e1a8c7e4ed61a.png" />
+<img alt="_images/5fee6f923edd1ad6fd82a87e8d6b4150d7c45e3578c34b4c925343dbd7baa835.png" src="_images/5fee6f923edd1ad6fd82a87e8d6b4150d7c45e3578c34b4c925343dbd7baa835.png" />
 </div>
 </div>
 </section>

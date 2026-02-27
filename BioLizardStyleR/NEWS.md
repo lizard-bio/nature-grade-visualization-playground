@@ -8,6 +8,14 @@
 ## Bug fixes
 -->
 
+# BioLizardStyleR 3.0.0
+
+## Breaking changes
+
+- BioLizardStyleR now is adapted to the new house style of BioLizard, including the
+BioLizard colors and fonts.
+
+
 # BioLizardStyleR 2.0.1
 
 - Fix bug where y axis text is angled faulty when using set_theme(lizard_style())

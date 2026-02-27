@@ -11,11 +11,11 @@ A \code{ggplot2::theme} object that can be added to a ggplot2 plot.
 }
 \description{
 This function applies a predefined 'Lizard' style to a ggplot2 plot. It sets specific font types,
-sizes and other graphical elements to ensure the plot conforms to the common BioLizard style.
-If not yet installed, this function will install the 'Lato' font using the \code{gdtools} package.
+sizes and other graphical elements to ensure the plot conforms to the BioLizard brand book.
 }
 \examples{
-library(ggplot2)
+\dontrun{library(ggplot2)
 p <- ggplot(mtcars, aes(mpg, disp)) + geom_point()
 p + lizard_style()
+}
 }

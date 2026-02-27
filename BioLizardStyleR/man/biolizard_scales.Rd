@@ -7,27 +7,32 @@
 \title{Biolizard ggplot2 Scales}
 \usage{
 scale_color_biolizard(
+  name = waiver(),
   type = "discrete",
-  scheme = ifelse(type == "discrete", "qualitative", "l_viridis"),
+  scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
   ...
 )
 
 scale_colour_biolizard(
+  name = waiver(),
   type = "discrete",
-  scheme = ifelse(type == "discrete", "qualitative", "l_viridis"),
+  scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
   ...
 )
 
 scale_fill_biolizard(
+  name = waiver(),
   type = "discrete",
-  scheme = ifelse(type == "discrete", "qualitative", "l_viridis"),
+  scheme = ifelse(type == "discrete", "qualitative", "sequential"),
   reverse = FALSE,
   ...
 )
 }
 \arguments{
+\item{name}{The name of the scale. Used as the axis or legend title. If waiver(), the default, the name of the scale is taken from the first mapping used for that aesthetic. If NULL, the legend title will be omitted.}
+
 \item{type}{Character, either 'discrete' or 'continuous'.}
 
 \item{scheme}{Character, color scheme to use: 'qualitative', 'paired', 'hues', 'l_viridis', 'sequential' or 'divergent'}
@@ -39,23 +44,27 @@ scale_fill_biolizard(
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.
 
-The function supports five schemes for discrete data:
+The function supports 7 schemes for discrete data:
 
 \itemize{
-\item \strong{qualitative}: Colorblind-safe qualitative color palette starting with Biolizard's signature green, blue and yellow.
-\item \strong{paired}: Colorblind-safe qualitative color palette inspired by Biolizard's signature colors, especially suited for levels that are related 2-by-2.
-\item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with Biolizard's signature green. DOES NOT generate colorblind-safe palettes.
-\item \strong{l_viridis}: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-\item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
-\item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+\item \strong{qualitative}: Colorblind-safe, qualitative color palette featuring the 8 saturated colors from the BioLizard brand book.
+\item \strong{paired}: Colorblind-safe qualitative color palette featuring the colors in the Biolizard brand book, especially suited for levels that are related 2-by-2.
+\item \strong{hues}: Maps each level to an evenly spaced hue on the color wheel, starting with the dark green from the brand book. DOES NOT generate colorblind-safe palettes.
+\item \strong{l_viridis}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use "beige_blue", "beige_gn_blue" or "sequential" instead. Returning colors from beige_gn_blue.
+\item \strong{sequential}: Sequential, colorblind-safe and perceptually uniform color palette inspired by the light and darker shades of blue in the BioLizard brand book.
+\item \strong{divergent}: Divergent, colorblind-safe and perceptually uniform (within each branch) color palette inspired by the green-blue color gradient in the biolizard brand book.
+\item \strong{beige_blue}: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.
+\item \strong{beige_gn_blue}: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.
 }
 
-And three schemes for continuous data:
+And 4 schemes for continuous data:
 
 \itemize{
-\item \strong{l_viridis}: Sequential color palette inspired by the viridis color scale, passing through Biolizard's signature yellow and green.
-\item \strong{sequential}: Sequential color palette inspired by Biolizard's signature green.
-\item \strong{divergent}: Divergent color palette inspired by Biolizard's signature green.
+\item \strong{l_viridis}: \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}} Use "beige_blue", "beige_gn_blue" or "sequential" instead. Returning colors from beige_gn_blue.
+\item \strong{sequential}: Sequential, colorblind-safe and perceptually uniform color palette inspired by the light and darker shades of blue in the BioLizard brand book.
+\item \strong{divergent}: Divergent, colorblind-safe and perceptually uniform (within each branch) color palette inspired by the green-blue color gradient in the biolizard brand book.
+\item \strong{beige_blue}: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige and blue colors in the brand book.
+\item \strong{beige_gn_blue}: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.
 }
 }
 \section{Application}{
@@ -88,11 +97,11 @@ testplot <- ggplot(data = mtcars, aes(x = hp, y = mpg, color = mpg)) +
       fill = "Miles per Gallon"
     )
  testplot +
-   scale_color_biolizard(type='continuous',scheme='l_viridis') +
+   scale_color_biolizard(type='continuous',scheme='sequential') +
    lizard_style()
 }
 
 }
 \seealso{
-\code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}} \code{\link[=biolizard_pal_l_viridis]{biolizard_pal_l_viridis()}}
+\code{\link[=biolizard_pal_qualitative]{biolizard_pal_qualitative()}} \code{\link[=biolizard_pal_paired]{biolizard_pal_paired()}} \code{\link[=biolizard_pal_hue]{biolizard_pal_hue()}} \code{\link[=biolizard_pal_sequential]{biolizard_pal_sequential()}} \code{\link[=biolizard_pal_beige_blue]{biolizard_pal_beige_blue()}} \link{biolizard_pal_beige_gn_blue} \code{\link[=biolizard_pal_divergent]{biolizard_pal_divergent()}}
 }

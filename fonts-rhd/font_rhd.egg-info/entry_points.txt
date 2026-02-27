@@ -1,0 +1,2 @@
+[fonts_ttf]
+rhd = font_rhd:font_files
