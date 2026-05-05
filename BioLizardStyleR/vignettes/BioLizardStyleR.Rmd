@@ -4,6 +4,7 @@ output:
    html_document:
     toc: true
     toc_float: true
+    css: '`r system.file("css", "biolizardstyle.css", package="BioLizardStyleR")`'
 vignette: >
   %\VignetteIndexEntry{BioLizardStyleR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,61 +18,87 @@ knitr::opts_chunk$set(
 )
 ```
 
+
 # Introduction
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 # Rmd CSS style guide
 
-The box below shows how to BioLizard-ify a Rmd knit to an HTML using a CSS style file. In the YAML header,
+The box below shows how to BioLizard-ify a Rmd knit to an HTML using the CSS style file in this package. In the YAML header,
 you can set output to html_document with two options: toc: true and toc_float: true.
 
-```{css style-guide}
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display');
-
-/*** default styling ***/
-html, body, h1, h2, h3, h4, h5, h6 {
-font-family: 'Red Hat Display', sans-serif;
-}
-
-div.main-container {
-background-color: white;
-max-width: 1200px !important;
-padding: 40px;
-margin-top: 50px;
-margin-bottom: 50px;
-border-radius: 15px;
-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-h4.author em {
-font-size: 1rem;
-margin-top: 2rem;
-font-weight: 600;
-color: #000000;
-}
-
-h4.date em {
-color: #000000;
-font-size: 1rem;
-}
-
-h1:not(.title) {
-color: #009944;
-}
-
-h2 {
-color: #0d47a1;
-}
-
-h3 {
-color: #FF6F59;
-}
-
-body {
-background: linear-gradient(180deg, #faf4ed 0%, #badeed 100%);
-background-attachment: scroll;
-}
+```{include = FALSE, echo = TRUE}
+output: 
+   html_document:
+    toc: true
+    toc_float: true
+    css: '`r system.file("css", "biolizardstyle.css", package="BioLizardStyleR")`'
 ```
+
+<!-- ```{css style-guide, echo = FALSE} -->
+<!-- @import url('https://fonts.googleapis.com/css?family=Red+Hat+Display'); -->
+
+<!-- /*** default styling ***/ -->
+<!-- html, body, h1, h2, h3, h4, h5, h6 { -->
+<!-- font-family: 'Red Hat Display', sans-serif; -->
+<!-- } -->
+
+<!-- div.main-container { -->
+<!-- background-color: white; -->
+<!-- max-width: 1200px !important; -->
+<!-- padding: 40px; -->
+<!-- margin-top: 50px; -->
+<!-- margin-bottom: 50px; -->
+<!-- border-radius: 15px; -->
+<!-- box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); -->
+<!-- } -->
+
+<!-- h4.author em { -->
+<!-- font-size: 1rem; -->
+<!-- margin-top: 2rem; -->
+<!-- font-weight: 600; -->
+<!-- color: #000000; -->
+<!-- } -->
+
+<!-- h4.date em { -->
+<!-- color: #000000; -->
+<!-- font-size: 1rem; -->
+<!-- } -->
+
+<!-- h1:not(.title) { -->
+<!-- color: #009944; -->
+<!-- } -->
+
+<!-- h2 { -->
+<!-- color: #0d47a1; -->
+<!-- } -->
+
+<!-- h3 { -->
+<!-- color: #FF6F59; -->
+<!-- } -->
+
+<!-- #logo -->
+<!-- { -->
+<!--     position: relative; -->
+<!-- } -->
+<!-- #logo img { -->
+<!--     top: 25px; -->
+<!--     left: 50px; -->
+<!--     position: fixed; -->
+<!--     width: 125px; -->
+<!--     } -->
+
+<!-- body { -->
+<!-- background: linear-gradient(180deg, #faf4ed 0%, #badeed 100%); -->
+<!-- background-attachment: scroll; -->
+<!-- } -->
+<!-- ``` -->
+
+::: {#logo align="top"}
+```{r echo = FALSE}
+knitr::include_graphics(system.file("logo", "BiolizardLogo.png", package="BioLizardStyleR"))
+```
+:::
 
 
 # 1. Installation
