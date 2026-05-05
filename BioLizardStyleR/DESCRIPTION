@@ -1,7 +1,7 @@
 Package: BioLizardStyleR
 Type: Package
 Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
-Version: 3.0.1
+Version: 3.1.0
 Depends: 
   R (>= 4.1.0),
   ggplot2

@@ -8,7 +8,7 @@
 ## Bug fixes
 -->
 
-# BioLizardStyleR 3.0.1
+# BioLizardStyleR 3.1.0
 
 ## New features
 
