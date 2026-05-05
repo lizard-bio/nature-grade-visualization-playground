@@ -8,6 +8,12 @@
 ## Bug fixes
 -->
 
+# BioLizardStyleR 3.0.1
+
+## New features
+
+- Increased font size for text elements on ggplot2
+
 # BioLizardStyleR 3.0.0
 
 ## Breaking changes
