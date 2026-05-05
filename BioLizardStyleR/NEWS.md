@@ -13,6 +13,8 @@
 ## New features
 
 - Increased font size for text elements on ggplot2
+- css style sheet in separate file instead of code chunk in the vignette
+- add BioLizard logo to Rmarkdown html output
 
 # BioLizardStyleR 3.0.0
 
