@@ -8,6 +8,7 @@ BioLizardStyleR/.RData
 BioLizardStyleR/.Rhistory
 BioLizardStyleR/.Rproj.user
 BioLizardStylePython/.idea/*
+BioLizardStylePython/docs/_build/jupyter_execute
 .idea
 .venv
 
@@ -15,3 +16,4 @@ BioLizardStylePython/.idea/*
 .pytest_cache
 __pycache__
 result_images
+.positai
