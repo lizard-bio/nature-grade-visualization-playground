@@ -1,9 +1,10 @@
 ---
 title: "BioLizardStyleR"
 output: 
-   html_document:
+  html_document:
     toc: true
     toc_float: true
+    css: !expr system.file('css', 'biolizardstyle.css', package='BioLizardStyleR')
 vignette: >
   %\VignetteIndexEntry{BioLizardStyleR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,62 +18,36 @@ knitr::opts_chunk$set(
 )
 ```
 
+::: {#logo align="top"}
+```{r echo = FALSE}
+knitr::include_graphics(system.file("logo", "BiolizardLogo.png", package="BioLizardStyleR"))
+```
+:::
+
 # Introduction
 In this guide, we'll walk you through the installation of the `BioLizardStyleR` package and provide a brief overview of its functions using a practical example. The `BioLizardStyleR` package helps you make ggplot2 plots in the BioLizard style. It includes an integrated font installer, a dedicated ggplot2 theme, custom color functions, and a tool to add a BioLizard footer and export the plot.
 
 # Rmd CSS style guide
 
-The box below shows how to BioLizard-ify a Rmd knit to an HTML using a CSS style file. In the YAML header,
-you can set output to html_document with two options: toc: true and toc_float: true.
+The CSS style file in this package allows to BioLizard-ify a Rmd knit to an HTML. Use the output section in the YAML header of your Rmd to add the css file and the table of contents (toc):
 
-```{css style-guide}
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display');
-
-/*** default styling ***/
-html, body, h1, h2, h3, h4, h5, h6 {
-font-family: 'Red Hat Display', sans-serif;
-}
-
-div.main-container {
-background-color: white;
-max-width: 1200px !important;
-padding: 40px;
-margin-top: 50px;
-margin-bottom: 50px;
-border-radius: 15px;
-box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-h4.author em {
-font-size: 1rem;
-margin-top: 2rem;
-font-weight: 600;
-color: #000000;
-}
-
-h4.date em {
-color: #000000;
-font-size: 1rem;
-}
-
-h1:not(.title) {
-color: #009944;
-}
-
-h2 {
-color: #0d47a1;
-}
-
-h3 {
-color: #FF6F59;
-}
-
-body {
-background: linear-gradient(180deg, #faf4ed 0%, #badeed 100%);
-background-attachment: scroll;
-}
+```
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    css: !expr system.file('css', 'biolizardstyle.css', package='BioLizardStyleR')
 ```
 
+To add the BioLizard logo to the document, add the following code chunk into your Rmd file:
+
+<pre><code>
+::: {#logo align="top"}
+&grave;&grave;&grave;{r echo = FALSE}
+knitr::include_graphics(system.file("logo", "BiolizardLogo.png", package="BioLizardStyleR"))
+&grave;&grave;&grave;
+:::
+</code></pre>
 
 # 1. Installation
 To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Red Hat Display". If the font is not yet installed, installation  will be attempted automatically when you load the library.
@@ -225,7 +200,7 @@ testplot_divergent
 The discrete color palettes can also be called directly, in case you would like to use them outside ggplot.
 <!-- The three base colors can also be used directly as `blz_green`, `blz_blue` and `blz_yellow`. -->
 
-```{r, fig.show='hold', fig.height=4, fig.width=3.3}
+```{r, fig.width=6}
 #use color palette
 mycolors <- biolizard_pal_sequential(3, reverse = TRUE)
 gearcolors <- mycolors[as.factor(mtcars$gear)]
@@ -233,12 +208,6 @@ gearcolors <- mycolors[as.factor(mtcars$gear)]
 graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Red Hat Display")
 graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 
-# #use BLZ base colors
-# mycolors <- c(blz_green, blz_blue, blz_yellow)
-# gearcolors <- mycolors[as.factor(mtcars$gear)]
-# 
-# graphics::plot(x = mtcars$hp, y = mtcars$mpg, pch = 19, col = gearcolors, family = "Red Hat Display")
-# graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch = 19, bty = "n")
 ```
 
 
@@ -246,7 +215,7 @@ graphics::legend("topright", legend = paste("Gears", 3:5), col = mycolors, pch =
 
 For a unique touch on your visualizations, integrate a BioLizard footer using the **finalise_lizardplot()** function. This function not only positions the logo neatly at the bottom right but also provides an option to specify your data source directly in the footer, offering an alternative to the caption section of ggplot. When ready to export, either assign a name to your plot using `output_name` or specify a directory with `save_filepath`. The `device` argument allows to choose from the file types "png" (default), "pdf", "svg", or "ps".
 
-```{r}
+```{r, warning=FALSE}
 finalise_lizardplot(
   testplot + 
     scale_color_biolizard(type = "discrete", scheme = "qualitative") + 
@@ -445,7 +414,8 @@ treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
                  title="Number of pokémon stratified by type", 
                  palette=palette,  #set the BLZ color palette
                  fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
-                 fontfamily.title = "Red Hat Display", fontfamily.labels = "Red Hat Display", fontfamily.legend = "Red Hat Display")  #set the Red Hat Display font
+                 fontfamily.title = "Red Hat Display", fontfamily.labels = "Red Hat Display", fontfamily.legend = "Red Hat Display",  #set the Red Hat Display font
+                  fontsize.title = 22,  fontsize.labels = 18, fontsize.legend = 18)  
 ```
 
 ## 3.8 Chicago plots
@@ -503,7 +473,7 @@ g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1),
   ggplot2::theme(legend.position = "inside", legend.position.inside = c(.95, .8))
 ```
 
-```{r, fig.width=5, fig.height=4}
+```{r, fig.width=5, fig.height=4, warning=FALSE}
 g <- ggplot2::ggplot(chic, ggplot2::aes(temp, o3)) +
   ggplot2::geom_hex(color = "grey") +
   ggplot2::labs(x = "Temperature (°F)", 

@@ -1,25 +1,23 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; BioLizardStylePython  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+  <title>BioLizardStylePython &mdash; BioLizardStylePython  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -64,7 +62,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">BioLizardStylePython</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -74,8 +72,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="toctree-wrapper compound">
+  <section id="biolizardstylepython">
+<h1>BioLizardStylePython<a class="headerlink" href="#biolizardstylepython" title="Link to this heading"></a></h1>
+<p>Enhance plots with the signature Biolizard aesthetic for matplotlib and seaborn.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>The BioLizardStylePython package is available on PyPI and can be easily installed using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">BioLizardStylePython</span>
+</pre></div>
 </div>
+<p>The BioLizardStylePython package makes use of the signature BioLizard font ‘Red Hat Display’. This font can be found on Google Fonts under an open font license.
+The font has been packaged using the <a class="reference external" href="https://pypi.org/project/fonts/">Python Fonts module</a> and should be installed automatically when installing BioLizardStylePython. See <a class="reference external" href="https://pypi.org/project/font-rhd/">font-rhd</a> for more information.</p>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h2>
+<section id="styling-function-lizard-style">
+<h3>1. Styling Function: <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code><a class="headerlink" href="#styling-function-lizard-style" title="Link to this heading"></a></h3>
+<p>This function applies a BioLizard aesthetic to your matplotlib or seaborn plots. The aim is to ensure that plots maintain a uniform look, irrespective of whether they were made in R or Python.</p>
+</section>
+<section id="biolizard-color-palettes">
+<h3>2. BioLizard Color Palettes<a class="headerlink" href="#biolizard-color-palettes" title="Link to this heading"></a></h3>
+<p>These are qualitative, sequential, and divergent color maps that can be applied to your plots. The palettes are designed using BioLizard’s house colors, keeping perceptual uniformity and color-blind friendliness in mind. For more information, consult the Usage &amp; Examples page.</p>
+</section>
+<section id="finalizing-and-exporting-plots-finalise-lizardplot">
+<h3>3. Finalizing and Exporting Plots: <code class="docutils literal notranslate"><span class="pre">finalise_lizardplot()</span></code><a class="headerlink" href="#finalizing-and-exporting-plots-finalise-lizardplot" title="Link to this heading"></a></h3>
+<p>This function adds a BioLizard footer beneath your graph and exports it to a specified format such as PNG or PDF. The footer includes the BioLizard logo at the bottom right corner and leaves room for source text.</p>
+</section>
+</section>
+<section id="contributing-and-feedback">
+<h2>Contributing and Feedback<a class="headerlink" href="#contributing-and-feedback" title="Link to this heading"></a></h2>
+<p>Contributions and feedback are very welcome and much appreciated.</p>
+<p>Issues can be reported <a class="reference external" href="https://github.com/lizard-bio/nature-grade-visualization-playground/issues">on github</a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
 
 
            </div>
