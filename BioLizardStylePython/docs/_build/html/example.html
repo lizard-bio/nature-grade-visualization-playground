@@ -53,9 +53,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-the-color-palettes">2. Using the color palettes</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#discrete-data">2.1 Discrete data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#continuous-data">2.2 Continuous data</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#appending-a-biolizard-footer-finalise-lizardplot">3. Appending a BioLizard footer: finalise_lizardplot()</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#appending-a-biolizard-footer-finalise-lizardplot">3. Appending a BioLizard footer: finalise_lizardplot()</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
@@ -111,7 +111,6 @@
 <span class="kn">from</span> <span class="nn">BioLizardStylePython</span> <span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-
 
 <span class="c1"># Function to create random lineplot</span>
 <span class="k">def</span> <span class="nf">create_line_plot</span><span class="p">():</span>
@@ -317,7 +316,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3785299121.py:5: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3785299121.py:5: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
   sns.swarmplot(
 </pre></div>
 </div>
@@ -339,7 +338,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3666193060.py:1: UserWarning: The palette list has more values (6) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3666193060.py:1: UserWarning: The palette list has more values (6) than needed (3), which may not be intended.
   sns.swarmplot(
 </pre></div>
 </div>
@@ -592,8 +591,9 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </section>
 </section>
+</section>
 <section id="appending-a-biolizard-footer-finalise-lizardplot">
-<h4>3. Appending a BioLizard footer: finalise_lizardplot()<a class="headerlink" href="#appending-a-biolizard-footer-finalise-lizardplot" title="Link to this heading"></a></h4>
+<h3>3. Appending a BioLizard footer: finalise_lizardplot()<a class="headerlink" href="#appending-a-biolizard-footer-finalise-lizardplot" title="Link to this heading"></a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">finalise_lizardplot</span></code> function finalizes a matplotlib plot by appending a footer at the bottom and saving the resulting image. The footer includes a BioLizard logo and a customizable source text.</p>
 <p><strong>Parameters</strong></p>
 <ul class="simple">
@@ -627,7 +627,6 @@ Here's two examples illustrating how to use this function: -->
 <img alt="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" src="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" />
 </div>
 </div>
-</section>
 </section>
 </section>
 <section id="examples">
@@ -708,7 +707,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/1132376799.py:1: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/1132376799.py:1: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
   sns.displot(data,
 </pre></div>
 </div>
@@ -757,7 +756,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f356c4ed3c6732ae2624fa7b7f6eee6e75c61cc73e54e4ca438f681400cad584.png" src="_images/f356c4ed3c6732ae2624fa7b7f6eee6e75c61cc73e54e4ca438f681400cad584.png" />
+<img alt="_images/ad7f32c25ca9aa23c7cf8eb4ffaa1c13bf5586fcf96747cff45da06962ff369f.png" src="_images/ad7f32c25ca9aa23c7cf8eb4ffaa1c13bf5586fcf96747cff45da06962ff369f.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -772,10 +771,10 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x72b4e56008f0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f75424c0140&gt;
 </pre></div>
 </div>
-<img alt="_images/8ec76145bff17a97f33c7a9d64fa4c3c43d3005c33f37708f2bedd4adc776a39.png" src="_images/8ec76145bff17a97f33c7a9d64fa4c3c43d3005c33f37708f2bedd4adc776a39.png" />
+<img alt="_images/d8262440c528949a178628269f62b0d93dd3524db8b23bd805279e6c4f00c78c.png" src="_images/d8262440c528949a178628269f62b0d93dd3524db8b23bd805279e6c4f00c78c.png" />
 </div>
 </div>
 <p>Note that using the reversed palette starts picking the colors from the end of the palette. If you want to pick the colors you need, and reverse them afterward (eg pink-blue-green instead of green-blue-pink), use the regular palette and reverse the colors after picking them:</p>
@@ -813,7 +812,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_530835/3567715431.py:28: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3567715431.py:28: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()
 </pre></div>
 </div>
@@ -832,7 +831,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x72b4e50a1f10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f754201e480&gt;
 </pre></div>
 </div>
 <img alt="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" src="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" />

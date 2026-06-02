@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display');
+
+/*** default styling ***/
+html, body, h1, h2, h3, h4, h5, h6 {
+font-family: 'Red Hat Display', sans-serif;
+}
+
+div.main-container {
+background-color: white;
+max-width: 1200px !important;
+padding: 40px;
+margin-top: 50px;
+margin-bottom: 50px;
+border-radius: 15px;
+box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h4.author em {
+font-size: 1rem;
+margin-top: 2rem;
+font-weight: 600;
+color: #000000;
+}
+
+h4.date em {
+color: #000000;
+font-size: 1rem;
+}
+
+h1:not(.title) {
+color: #009944;
+}
+
+h2 {
+color: #0d47a1;
+}
+
+h3 {
+color: #FF6F59;
+}
+
+#logo
+{
+    position: relative;
+}
+#logo img {
+    top: 25px;
+    left: 50px;
+    position: fixed;
+    width: 125px;
+    }
+
+body {
+background: linear-gradient(180deg, #faf4ed 0%, #badeed 100%);
+background-attachment: scroll;
+}

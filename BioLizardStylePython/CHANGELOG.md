@@ -2,6 +2,13 @@
 
 <!--next-version-placeholder-->
 
+## v3.0.1
+
+### Fix
+
+- Resolved deprecated setuptools issue.
+
+
 ## v3.0.0
 
 ### Breaking changes

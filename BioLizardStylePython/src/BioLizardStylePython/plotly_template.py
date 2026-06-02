@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 import plotly.io as pio
 import matplotlib.colors
-from fonts.ttf import RedHatDisplay, RedHatDisplayBold
+
 from .utils import (
     biolizard_qualitative_pal,
     biolizard_divergent_pal,
@@ -32,9 +32,12 @@ lizard_style_template.layout = {
         "diverging": [
             matplotlib.colors.rgb2hex(biolizard_divergent_pal(i)) for i in range(255)
         ],
-        "sequential": [matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)],
+        "sequential": [
+            matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+        ],
         "sequentialminus": [
-            matplotlib.colors.rgb2hex(biolizard_sequential_pal.reversed()(i)) for i in range(255)
+            matplotlib.colors.rgb2hex(biolizard_sequential_pal.reversed()(i))
+            for i in range(255)
         ],
     },
     "colorway": biolizard_qualitative_pal.colors,
@@ -155,11 +158,7 @@ lizard_style_template.layout = {
     },
     "title": {
         "x": 0.05,
-        "font": {
-            "family": "Red Hat Display",
-            "size": 16,
-            "color": blz_base_text
-        },
+        "font": {"family": "Red Hat Display", "size": 16, "color": blz_base_text},
     },
     "violinmode": "group",
     "waterfallmode": "group",
@@ -250,7 +249,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "choropleth",
         }
@@ -264,7 +264,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "contour",
         }
@@ -289,7 +290,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "heatmap",
         }
@@ -309,7 +311,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "histogram2d",
         }
@@ -323,7 +326,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "histogram2dcontour",
         }
@@ -480,7 +484,8 @@ lizard_style_template.data = {
                 "exponentformat": "E",
             },
             "colorscale": [
-                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i)) for i in range(255)
+                matplotlib.colors.rgb2hex(biolizard_sequential_pal(i))
+                for i in range(255)
             ],
             "type": "surface",
         }
@@ -488,7 +493,10 @@ lizard_style_template.data = {
     "table": [
         {
             "cells": {"fill": {"color": "white"}, "line": {"color": blz_base_element}},
-            "header": {"fill": {"color": blz_base_fill}, "line": {"color": blz_base_element}},
+            "header": {
+                "fill": {"color": blz_base_fill},
+                "line": {"color": blz_base_element},
+            },
             "type": "table",
         }
     ],

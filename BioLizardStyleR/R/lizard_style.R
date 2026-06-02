@@ -63,14 +63,14 @@ lizard_style <- function() {
     #Text format:
     #This sets the font, size, type and colour of text for the chart's title
     plot.title = ggplot2::element_text(family=my_font,
-                                       size=16,
+                                       size=22,
                                        color=base_text_c,
                                        face="bold",
                                        hjust = 0,
                                        vjust = 1),
     #This sets the font, size, type and colour of text for the chart's subtitle, as well as setting a margin between the title and the subtitle
     plot.subtitle = ggplot2::element_text(family=my_font,
-                                          size=12,
+                                          size=20,
                                           margin=ggplot2::margin(9,0,9,0)),
     plot.caption = ggplot2::element_blank(),
     #This leaves the caption text element empty, because it should be set in the finalise plot function
@@ -80,29 +80,29 @@ lizard_style <- function() {
     legend.position = "right",
     legend.background = ggplot2::element_blank(),
     legend.title = ggplot2::element_text(family=my_font,
-                                         size=11,
+                                         size=20,
                                          color=base_text_c),
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(family=my_font,
-                                        size=10,
+                                        size=18,
                                         hjust = 0),
     #Axis format
     #This sets the text font, size and colour for the axis test, as well as setting the margins and removes lines and ticks.
     axis.title = ggplot2::element_text(family=my_font,
-                                       size=14,
+                                       size=20,
                                        color=base_text_c),
     axis.text = ggplot2::element_text(family=my_font,
-                                      size=12,
+                                      size=18,
                                       color=base_text_c),
-    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=12), #small margin fix
-    axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=12),
+    axis.text.x = ggplot2::element_text(margin=ggplot2::margin(5, b = 10),size=18), #small margin fix
+    axis.text.y = ggplot2::element_text(margin=ggplot2::margin(l = 10, r = 5), size=18),
     axis.title.y = ggplot2::element_text(family=my_font,
-                                         size=14,
+                                         size=20,
                                          color=base_text_c,
                                          angle=90,
                                          vjust=1),
     axis.title.x = ggplot2::element_text(family=my_font,
-                                         size=14,
+                                         size=20,
                                          color=base_text_c,
                                          margin=ggplot2::margin(b = 5)),
     axis.ticks = ggplot2::element_line(color=base_element_c),
@@ -121,7 +121,7 @@ lizard_style <- function() {
 
     #Strip background (This sets the panel background for facet-wrapped plots)
     strip.background = ggplot2::element_rect(fill=base_fill_c),
-    strip.text = ggplot2::element_text(size  = 14,  hjust = 0.5)
+    strip.text = ggplot2::element_text(size  = 20,  hjust = 0.5)
 
   )
 
@@ -179,11 +179,11 @@ lizard_layout <- function(fig, ...) {
   # Adapt layout
   fig <- fig |> plotly::layout(
     font = list(family = "Red Hat Display"),
-    title = list(font = list(size = 16, color = "black")),
-    legend = list(font = list(size = 10),
-                  title = list(font = list(color = "black", size = 11))),
-    xaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
-    yaxis = list(tickfont = list(size = 12, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    title = list(font = list(size = 18, color = "black")),
+    legend = list(font = list(size = 14),
+                  title = list(font = list(color = "black", size = 14))),
+    xaxis = list(tickfont = list(size = 14, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
+    yaxis = list(tickfont = list(size = 14, color = "black"), showline = TRUE, showgrid = FALSE, zeroline = FALSE),
     paper_bgcolor = "white",
     plot_bgcolor = "white",
     ...
