@@ -6,7 +6,12 @@
 ## New features
 
 ## Bug fixes
--->
+
+# BioLizardStyleR 3.1.2
+
+## Bug fixes
+
+- No longer downloads Red Hat display font if it's installed (Linux/Windows)
 
 # BioLizardStyleR 3.1.1
 
@@ -35,7 +40,7 @@ BioLizard colors and fonts.
 # BioLizardStyleR 2.0.1
 
 - Fix bug where y axis text is angled faulty when using set_theme(lizard_style())
-- Explicitly make lizard_style() inherit from ggplot2's default style theme_grey() to avoid differences in behavior based in default that was set by user. 
+- Explicitly make lizard_style() inherit from ggplot2's default style theme_grey() to avoid differences in behavior based in default that was set by user.
 
 # BioLizardStyleR 2.0.0
 
@@ -43,7 +48,7 @@ fix installation bugs, improved color scales, and add plotly functionality.
 
 ## New features
 
-- `lizard_layout()` function for styling in plotly, issue #7 
+- `lizard_layout()` function for styling in plotly, issue #7
 -  new palettes:
     - viridis-like continuous colorscale "l_viridis"
     - colorscale for paired discrete data
