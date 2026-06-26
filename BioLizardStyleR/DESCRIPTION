@@ -1,8 +1,8 @@
 Package: BioLizardStyleR
 Type: Package
 Title: MAKING GGPLOT GRAPHICS IN BIOLIZARD STYLE
-Version: 3.1.2
-Depends: 
+Version: 3.1.3
+Depends:
   R (>= 4.1.0),
   ggplot2
 Authors@R:
@@ -10,14 +10,14 @@ Authors@R:
     person("Aniko", "Meijer", role = "aut", email = "aniko.meijer@lizard.bio"),
     person("Artuur", "Couckuyt", role = "aut", email = "artuur.couckuyt@lizard.bio"),
     person("Robbe", "Neirynck", role = "aut", email = "robbe.neirynck1@hotmail.com"))
-Description: The BioLizardStyleR package offers tools to craft ggplot2 visualizations 
-    in the distinct BioLizard style. It features an integrated font installer, a dedicated 
-    ggplot2 theme function, a collection of custom color functions, and a function for 
+Description: The BioLizardStyleR package offers tools to craft ggplot2 visualizations
+    in the distinct BioLizard style. It features an integrated font installer, a dedicated
+    ggplot2 theme function, a collection of custom color functions, and a function for
     appending a Biolizard footer and exporting the resultant graph.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Imports:
     colorspace,
     scales,
     Cairo,
@@ -29,7 +29,7 @@ Imports:
     htmltools,
     htmlwidgets,
     lifecycle
-Suggests: 
+Suggests:
     knitr,
     extrafont,
     rmarkdown,
