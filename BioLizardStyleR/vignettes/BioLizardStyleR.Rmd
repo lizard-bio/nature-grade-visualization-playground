@@ -50,17 +50,17 @@ knitr::include_graphics(system.file("logo", "BiolizardLogo.png", package="BioLiz
 </code></pre>
 
 # 1. Installation
-To install the `BioLizardStyleR` package directly from GitHub, you will need to utilize the `devtools` package. The package requires our signature font "Red Hat Display". If the font is not yet installed, installation  will be attempted automatically when you load the library.
+To install the `BioLizardStyleR` package directly from GitHub, use the `pak` package. The package requires our signature font "Red Hat Display". If the font is not yet installed, installation will be attempted automatically when you load the library.
 
 ```
-if (!requireNamespace("devtools", quietly = TRUE)) {
-install.packages("devtools")
+if (!requireNamespace("pak", quietly = TRUE)) {
+install.packages("pak")
 }
 
 # make sure to look up BioConductor packages (used in the vignette)
 setRepositories(ind = c(1:6, 8))
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+pak::pak("lizard-bio/nature-grade-visualization-playground/BioLizardStyleR")
 
 ```
 
