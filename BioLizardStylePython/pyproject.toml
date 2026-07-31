@@ -29,7 +29,7 @@ classifiers = [
 dependencies = [
     "matplotlib>=3.7.1",
     "seaborn>=0.13.2",
-    "Pillow>=9.4.0",
+    "Pillow>=12.3.0",
     "font-rhd",
     #    "deprecated>=1.2.0",
     "colorspace>=0.4.0",
