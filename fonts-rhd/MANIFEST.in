@@ -1,6 +1,6 @@
 include CHANGELOG.txt
-include LICENSE.txt
-include README.txt
+include LICENSE
+include README.rst
 include setup.py
 recursive-include font_rhd *.py
 recursive-include font_rhd/files *.ttf

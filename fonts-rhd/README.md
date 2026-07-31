@@ -1,5 +1,4 @@
-Fonts: Red Hat Display
-======================
+# Fonts: Red Hat Display
 
 Red Hat Display is a Google Font by MCKL released under the OFL.
 
