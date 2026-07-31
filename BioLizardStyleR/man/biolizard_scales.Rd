@@ -39,7 +39,7 @@ scale_fill_biolizard(
 
 \item{reverse}{Boolean, if TRUE, reverse the order of the colors in the palette.}
 
-\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}. For continuous type, refer to the documentation of \code{\link[ggplot2:scale_gradient]{ggplot2::scale_fill_gradientn()}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
+\item{...}{Additional arguments passed on to the underlying ggplot2 scale functions. For more details on these arguments, refer to the standard ggplot2 scales documentation. For discrete type, refer to the documentation of \code{\link[ggplot2:discrete_scale]{ggplot2::discrete_scale()}}. For continuous type, refer to the documentation of \code{\link[ggplot2:scale_fill_gradientn]{ggplot2::scale_fill_gradientn()}}. Two useful examples for continuous maps are trans='reverse' or limits=c(-1,1).}
 }
 \description{
 Use this function to incorporate the Biolizard palettes as a color scale into a ggplot object.

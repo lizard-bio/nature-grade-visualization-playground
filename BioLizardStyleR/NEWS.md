@@ -8,6 +8,14 @@
 ## Bug fixes
 -->
 
+# BioLizardStyleR 3.1.1
+
+## Fixes
+
+- Use pak instead of devtools in vignette
+- Updated documentation
+- Updated description + version bump
+
 # BioLizardStyleR 3.1.0
 
 ## New features
