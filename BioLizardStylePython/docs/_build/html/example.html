@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" data-content_root="./">
 <head>
@@ -5,21 +7,17 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Usage &amp; Examples &mdash; BioLizardStylePython  documentation</title>
-      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
-      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
 
   
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  
-        <script src="_static/jquery.js?v=5d32c60e"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-        <script src="_static/documentation_options.js?v=5929fcd5"></script>
-        <script src="_static/doctools.js?v=888ff710"></script>
-        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -106,14 +104,14 @@
 <p>Here’s a demonstration of how a simple line plot would look before and after applying the <code class="docutils literal notranslate"><span class="pre">lizard_style()</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">BioLizardStylePython</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">BioLizardStylePython</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 
 <span class="c1"># Function to create random lineplot</span>
-<span class="k">def</span> <span class="nf">create_line_plot</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_line_plot</span><span class="p">():</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
     <span class="n">y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
     <span class="n">y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
@@ -134,7 +132,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" src="_images/42347cb44762cf256eab64bef7799ac910a925808bcb68d2a0b1da40d9fd6b44.png" />
+<img alt="_images/897feb38686254085854f2def470c9d7dd313fe0e8b472d3990b4e9414dcd031.png" src="_images/897feb38686254085854f2def470c9d7dd313fe0e8b472d3990b4e9414dcd031.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -145,7 +143,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f8c7283e114ac9d120f6de18dc2ff2a9b0ca175ec14dabf1079c7431eb969092.png" src="_images/f8c7283e114ac9d120f6de18dc2ff2a9b0ca175ec14dabf1079c7431eb969092.png" />
+<img alt="_images/811d49cfccf896300ba400f0ad57fff74e83f683f47cd81fd6e91b4af0e90d9e.png" src="_images/811d49cfccf896300ba400f0ad57fff74e83f683f47cd81fd6e91b4af0e90d9e.png" />
 </div>
 </div>
 <p>Note that the default color is black, for a ‘sharper’ and more sobre look. In case a color scale is needed, as in this example, there are multiple scales you can pick from and add manually.</p>
@@ -204,7 +202,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAFpSURBVHic7daxUUIBFABBtQwCC7AVcjJish8xVGDGDB0wQB90YGiiVVACduELbreCC+/18r15voQt+/V0wqif7cd0wqjV12k6YdRh+ZxOGHW876YTRr0/btMJo37P1+mEUW/TAQDA/zMAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIL+AAFcDiAqb7W0AAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMXRFWHRBdXRob3IATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3Jnn5xdsQAAADN0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3JnOrhORQAAAVxJREFUeJzt1rGRgWEAANGPMgQKuFbkMrHsj4wKLjOjA4M+dCCUUIUSXBcn2Pcq2HBn58f6M8Km3WqUPTc/o2xxP46y/fQ7yg637Shbvq+j7HW6jLL5twMAgP9nAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAE/QEBXA4gkBOmKAAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div></div>
 </div>
 <p><strong>biolizard_paired_pal</strong>: Colorblind-safe qualitative color palette based on the colors in the biolizard brand book, especially suited for levels that are related 2-by-2.</p>
 <div class="cell docutils container">
@@ -214,7 +212,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAFYSURBVHic7daxDQFQAABRjGAAAxhIpzCKScQaItFZQGMKRmAJ8ZN/701w5S1Pj91nwc8d7q/RCdPZvM+jE6bzvl1HJ0znud+OTpjO+ngZnTCl1egAAOD/DAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAoC9ZSwwgfgKa/QAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list</strong> </div><div class="cmap"><img alt="from_list colormap" title="from_list" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGHRFWHRUaXRsZQBmcm9tX2xpc3QgY29sb3JtYXBDL89FAAAAHnRFWHREZXNjcmlwdGlvbgBmcm9tX2xpc3QgY29sb3JtYXABtCnOAAAAMXRFWHRBdXRob3IATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3Jnn5xdsQAAADN0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3JnOrhORQAAAVdJREFUeJzt1jENAlEAREFAAgIQgCA6CqScEoINQkKHARpUcBI4E/8SkjcjYIut3vb6Pv02DHd5fb062GG++XSw+fnw6WCf89Gng+2nu09XsFtjFAD4bwIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQNACWUsMICnB22wAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div></div></div></div></div>
 </div>
 <p><strong>biolizard_hues_pal</strong>: Note that while this is technically a continuous scale, it is designed for <strong>discrete</strong> data with many levels:  Maps each level to an evenly spaced hue on the color wheel, starting with the dark green color from the brand book. DOES NOT generate colorblind-safe palettes.</p>
 <div class="cell docutils container">
@@ -224,7 +222,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_hues_pal</strong> </div><div class="cmap"><img alt="biolizard_hues_pal colormap" title="biolizard_hues_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIXRFWHRUaXRsZQBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB72dNsAAAAJ3RFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB1Oei5AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAI9SURBVHic7dY7bttAFAXQoWQbQeA6C8oqs9MgsEW60JAAnzQhAZf3nGb0PkOqEIQ7tT+/l9Zaa9O13a3nZV9Pl+f9tT6aD/dO3jt9fzqYf/feYG8Z3T+7P6iXwXx0/2x/q+t88N7D/UH90G//3f/V5++9/tnnP3r/rfff1rrPX3v9uuzrl16/tLWu531+Lf3r6GwH8+28f7iU/mUwv7RS9/m11HU+De5t87VubdDf10f9qc1P3z/Vuu+t/Tbo1/1tb5mf39t+QPPurP3R3va8qfaf77XR3kP/+f5S907Ol62+lbrOB/vD9+znw36p6/dYtvfcyn59zme5X/c+d3tbPX30b//R63997+9uvgz+VuZS1715dO/k8x7qwfMP753cr/Pv1rd+rv8LAEAQAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgb4A4Qbtew6jUckAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#009842ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009842ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#6d8f00ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6d8f00ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_hues_pal</strong> </div><div class="cmap"><img alt="biolizard_hues_pal colormap" title="biolizard_hues_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAIXRFWHRUaXRsZQBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB72dNsAAAAJ3RFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfaHVlc19wYWwgY29sb3JtYXB1Oei5AAAAMXRFWHRBdXRob3IATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3Jnn5xdsQAAADN0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3JnOrhORQAAAkRJREFUeJzt1s1u00AYBVCPk1YIseaBeEreFKGWGEHGE3niwZbK7p6zcb+fsa2kim6Zvn9bpj/K5e9lmtbrvK3LvN9f66P5cO/kudPny8H8o+cGe0v54P6gXgbz0fmz/Vb388FzD/cH9VN/+uf+1zr/UuvPdf6p9l9r/3Wt6/yl1i/Ltr7W+lqfdm397fzS9S+j63Qwb9f7H3PXnwfzeerqOn+c25+Xwbk2X+v63s/9bX3UL9Nt9/mP+XZv7U+Dfr/f9pbb/rn2D7TO9/ujvXa/0vf396bRXjm3v/R7J+dLq391dT8f7A+fs50P+13dv8fSnrP2u7rd57073++9b/ZaXd7q29+vS/lZ935s5u1nZv0WSvet9D9H66cyOlfO3e+pHtz/8NzJ/dt/ru+f/uN3AQAIIgAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAINBv4Qbtezg8Qz4AAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#009842ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #009842ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#6d8f00ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #6d8f00ff;"></div></div></div></div></div>
 </div>
 <p>Adding the suffix “_r” reverses these palettes:</p>
 <div class="cell docutils container">
@@ -234,7 +232,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list_r</strong> </div><div class="cmap"><img alt="from_list_r colormap" title="from_list_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGnRFWHRUaXRsZQBmcm9tX2xpc3RfciBjb2xvcm1hcIMcdCsAAAAgdEVYdERlc2NyaXB0aW9uAGZyb21fbGlzdF9yIGNvbG9ybWFwEgIwfQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAABaklEQVR4nO3WMW2CARgA0bYOENEUAzjAByQ4aNKNlYUw/RszGrCCgA61wNi66DfcewpuvNfn++n3JezjsJ9OGPW92k0njPraXqcTRp2X43TCqJ/N53TCqPXtMZ0warncpxNGvU0HAAD/zwAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACDIAABBkAAAgyAAAQJABAIAgAwAAQQYAAIIMAAAEGQAACPoDe1UNR7lllXYAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>from_list_r</strong> </div><div class="cmap"><img alt="from_list_r colormap" title="from_list_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAGnRFWHRUaXRsZQBmcm9tX2xpc3RfciBjb2xvcm1hcIMcdCsAAAAgdEVYdERlc2NyaXB0aW9uAGZyb21fbGlzdF9yIGNvbG9ybWFwEgIwfQAAADF0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuMTAuOCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ5+cXbEAAAAzdEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuMTAuOCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZzq4TkUAAAFdSURBVHic7daxkYFhAADRjw4UYU4DOtAHMzowc5lUYkR/JlaDVhQg0ILQdXGCfa+CDXf2Xp4+I+xnvxtlz8V2lP1urqPsPB1H2Wt9GGWr22OUTZf7KJt/OwAA+H8GAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAECQAQCAIAMAAEEGAACCDAAABBkAAAgyAAAQZAAAIMgAAEDQH3tVDUcBsVU2AAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#f72585ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #f72585ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#9fd356ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #9fd356ff;"></div></div></div></div></div>
 </div>
 <p>Colors can be retrieved from the discrete colorscales by passing a range to the palettes (returns an array of rgba values), or by using the <code class="docutils literal notranslate"><span class="pre">.colors</span></code> attribute (returns a list of all colors in the palette).</p>
 <div class="cell docutils container">
@@ -299,7 +297,7 @@ Here's two examples illustrating how to use this function: -->
 <p>Discrete colormaps can be chosen by specifying a list of colors:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 
 <span class="c1"># Sample data</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;iris&quot;</span><span class="p">)</span>
@@ -316,11 +314,11 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3785299121.py:5: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/zd673br14kd_wv9lkwv86y200000gn/T/ipykernel_15274/3785299121.py:5: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
   sns.swarmplot(
 </pre></div>
 </div>
-<img alt="_images/910943356048d488a17ad688ea13f611f837a965165d084cb705bbf1ffe408fb.png" src="_images/910943356048d488a17ad688ea13f611f837a965165d084cb705bbf1ffe408fb.png" />
+<img alt="_images/04100145c39672ad71912cd04dd56e45033eeb36141d4924a6a9e8362d69a4ba.png" src="_images/04100145c39672ad71912cd04dd56e45033eeb36141d4924a6a9e8362d69a4ba.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -338,11 +336,11 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3666193060.py:1: UserWarning: The palette list has more values (6) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/zd673br14kd_wv9lkwv86y200000gn/T/ipykernel_15274/3666193060.py:1: UserWarning: The palette list has more values (6) than needed (3), which may not be intended.
   sns.swarmplot(
 </pre></div>
 </div>
-<img alt="_images/729fd54e25ff2c15fcc6bb77736e6fe1aae90e0a4171a0a2e76bc500f145e058.png" src="_images/729fd54e25ff2c15fcc6bb77736e6fe1aae90e0a4171a0a2e76bc500f145e058.png" />
+<img alt="_images/34dc73fc4a5f7d8fbe525c7d759e5dccafbb4b881b2fd123d190546a47439fbb.png" src="_images/34dc73fc4a5f7d8fbe525c7d759e5dccafbb4b881b2fd123d190546a47439fbb.png" />
 </div>
 </div>
 <p>Continuous colormaps can be referenced by their name, this ensures that colors are picked across the entire range of the continous scale:</p>
@@ -361,7 +359,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/d4f8697f4ecd3ce1d8942493afff12a9b69f054eb7ba81cb6c0d6c96efd6730c.png" src="_images/d4f8697f4ecd3ce1d8942493afff12a9b69f054eb7ba81cb6c0d6c96efd6730c.png" />
+<img alt="_images/bc0259deaebbc10f22bea1fa3b424207cd21d0460eeab98a01f4ae5f27ac2ecb.png" src="_images/bc0259deaebbc10f22bea1fa3b424207cd21d0460eeab98a01f4ae5f27ac2ecb.png" />
 </div>
 </div>
 </section>
@@ -389,7 +387,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/074f04cee62ebe1efa0b052a75baa1da01989178c098fa2f55fedb9823a4ea7b.png" src="_images/074f04cee62ebe1efa0b052a75baa1da01989178c098fa2f55fedb9823a4ea7b.png" />
+<img alt="_images/c458d4986dccb8fc66939c8f25b093cd4696bde8b474334714aa75cc745251dd.png" src="_images/c458d4986dccb8fc66939c8f25b093cd4696bde8b474334714aa75cc745251dd.png" />
 </div>
 </div>
 <p>Note that in case the colorscale contains less levels than the data, colors are recycled without warning!</p>
@@ -411,7 +409,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/f42c584649974a1c6e32347bfe68e8a59e8122b3102240742587e5640f486150.png" src="_images/f42c584649974a1c6e32347bfe68e8a59e8122b3102240742587e5640f486150.png" />
+<img alt="_images/f3876a5bb45fe44bf76c9f50d526c0164bf0605338f0c67d1393d2c80343c238.png" src="_images/f3876a5bb45fe44bf76c9f50d526c0164bf0605338f0c67d1393d2c80343c238.png" />
 </div>
 </div>
 </section>
@@ -427,7 +425,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_blue_pal_r_r colormap" title="biolizard_beige_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAK3RFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgtk8ygAAADF0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2JsdWVfcGFsX3JfciBjb2xvcm1hcERqePQAAAAwdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ6qeThwAAAAydEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3JnhDjROwAAAdBJREFUeJzt1kGOlFAUQNGH+1+cu3APDgonFRNB/GC3ick9Z0Lzgf+oqh7c7fu3r/vMzGvfZ2bmfZjXHM7fx/2frb/PZ26t7+8/Xqf1Z3P31dyfzx3uX64f5yzmX3zvy+c+a/6n73N3/5tzHz//6/rr6v7l+y7WL7+fm+97mrP6/Heff3bf9f/73c/z0fd8OOf2+sP5/9u8w/X54H5zdf/NOaf1xb6zeP50Pr+/fnXf5fXFfdfH44v8+bjd3G9b7Lcd5y/2304/9N/t92UAgBwBAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACDoBwWhuoD6mHaBAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_blue_pal_r_r colormap" title="biolizard_beige_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAK3RFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgtk8ygAAADF0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2JsdWVfcGFsX3JfciBjb2xvcm1hcERqePQAAAAxdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmefnF2xAAAAM3RFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmc6uE5FAAABy0lEQVR4nO3WUU7CQBRA0cH9L85duAc/qIkSDZBmpoKJyT3np3Zo57Xgxz29v71uY4xx3j4P43IY53Fzfjluf7Z+Of86na5vlz/Od+vH5m6zud/33Vw/Xb+dM5m/871P73vW/Kfvs7r/4tzD91+v//z+R593sr77/Sw+792c2fuv3n/suv3/99X3efQ5D85ZXj84/7/Nu/l8PLjfeHDO3fpk3zG5f0z2GZPrdj+fXLd/3A7dd1rc7zRW99mW9j/d/dC/2+/l+m0BgAIBAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACBIAABAkAAAgCABAABBAgAAggQAAAQJAAAIEgAAECQAACDoAwWhuoDiGcxoAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div></div>
 </div>
 <p><strong>biolizard_beige_gn_blue_pal</strong>: Continuous, perceptually uniform, color-blind friendly color scale inspired by the beige, green and blue colors in the brand book.</p>
 <div class="cell docutils container">
@@ -437,7 +435,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_gn_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_gn_blue_pal_r_r colormap" title="biolizard_beige_gn_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAALnRFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfZ25fYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgkRsaQAAADR0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2duX2JsdWVfcGFsX3JfciBjb2xvcm1hcGrMzAIAAAAwdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ6qeThwAAAAydEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3JnhDjROwAAAiZJREFUeJzt1ktypDAQRdHE+19c78J76AhLHtjgQJBNedCjd86koqREUJ/B3f6+/5lVVWOOqqqa+2st7+ds1r9ex7pe83ZuvX68OLeeN16da573ca7On7vbH9330uxfn/v+/Mv38nDeMd/OzdPcuNx/LnNjWa/l+nW+zq/r+vf1H8fctpy7z23N/nban838nPfX/azv15/n5mV9v65O68fccd+6Xf+ZX/e789bn2A9u5pbz67f7xw2ezrlfr+V5j7HHc5brmv1X5y73a/f/9/X7S/c91Um3355/+T/dP1d/3+73r/v1Fz9P9//oz7//Pbv/zfoc7e92ud+/52uZv953mVvebw9z3f7W7Hfvj/lxf9+nueN1LHPf628FAMQRAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQKBPqNCtgML8bsYAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_beige_gn_blue_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_beige_gn_blue_pal_r_r colormap" title="biolizard_beige_gn_blue_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAALnRFWHRUaXRsZQBiaW9saXphcmRfYmVpZ2VfZ25fYmx1ZV9wYWxfcl9yIGNvbG9ybWFwgkRsaQAAADR0RVh0RGVzY3JpcHRpb24AYmlvbGl6YXJkX2JlaWdlX2duX2JsdWVfcGFsX3JfciBjb2xvcm1hcGrMzAIAAAAxdEVYdEF1dGhvcgBNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmefnF2xAAAAM3RFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjEwLjgsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmc6uE5FAAACKUlEQVR4nO3WQY7bMBAEQCr/f1x+kT8EiBgEK8rwyLOyDzl11YUQORzSsmH09vvXzznGGPvc/w1jrnGU5zmb+a9xr/PjqL/pu79ZV/vt79Y1972tO5/nt+t7916a9f3N/pf3ctPvrG/r1jn1vDJf7vOYH2V/rR/PY50/9v8567bSd9Vtzfp6/hpnUz/n632P+bX/uW5e5te+Y730Ofsd96jzj/q63vWr91iNm7rSf3y6fh5w1+f1/FpY9zrLbvuUfc36u3WX89r1/71/Dd17WhubfXf9L7+n1/fqz+2+/3L+h5+n+330/V9/n93vpt6j/d4u531f/7h4d26pK8/bTV23vjXr3fNZf/zRfFp3juf8874f6/MDADkEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAE+guo0K2AqKUxbAAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#fae7d0ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #fae7d0ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#283398ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #283398ff;"></div></div></div></div></div>
 </div>
 <p><strong>biolizard_sequential_pal</strong>: Sequential, colorblind-safe and perceptually uniform color palette inspired by the light and darker shades of blue in the BioLizard brand book.</p>
 <div class="cell docutils container">
@@ -447,7 +445,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_sequential_pal</strong> </div><div class="cmap"><img alt="biolizard_sequential_pal colormap" title="biolizard_sequential_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJ3RFWHRUaXRsZQBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXCTS29EAAAALXRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXDbqAd9AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAG5SURBVHic7dZLTsMwFEDRlNWyR7ZWWkYp4DRK+uEj3XMm6CW2Y5XJPby+nc/TF/N0HubF+2HdtLJvdf+N5z98jzvvtfj+3vOffM/P5+d988rz02LfvH66Op821p0W87B/PG9YN99nbX4fnh/n58N8HH/QrXntH7p7fnDf5fHO+Vnn/JfvPHyvv5pvvPfq/NPf/+39G+/v3bd4v3Wv65/df+7WOXvnw4PrDhvrhvmyfuv5978vEwCQIwAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABAkAAAgSAAAQJAAAIEgAAECQAACAIAEAAEECAACCBAAABH0ADuUlf2gX5KsAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#68bbffff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #68bbffff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0038b9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0038b9ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_sequential_pal</strong> </div><div class="cmap"><img alt="biolizard_sequential_pal colormap" title="biolizard_sequential_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJ3RFWHRUaXRsZQBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXCTS29EAAAALXRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfc2VxdWVudGlhbF9wYWwgY29sb3JtYXDbqAd9AAAAMXRFWHRBdXRob3IATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3Jnn5xdsQAAADN0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3JnOrhORQAAAbpJREFUeJzt1ktSwkAUQFFwte7RrSFxBELHVCLBT9U9Z2K9Tncn6uQeX9+m6XDjMl0W75/ePB/2HRbOLZ7/5v27v+PB75q9f+v9T/7Oz/Vp27ywfp6dm4b33M/nlX3n2TycH+8b9l2+Z2l+H9ZPl/VhPo1/0LV56R+6ed557rq8cX7WPf/lPbu/66/mZ/1eP/3+3z6/8vzRc7Pna9/19Wu337t2z9b5uHPfcWXfMF/3r63f/3wZdgMAAQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQJAAAIAgAQAAQQIAAIIEAAAECQAACBIAABAkAAAgSAAAQNAHDuUlf4v6gWAAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#68bbffff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #68bbffff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0038b9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0038b9ff;"></div></div></div></div></div>
 </div>
 <p><strong>biolizard_divergent_pal</strong>: Divergent, colorblind-safe and perceptually uniform (within each branch) color palette inspired by the green-blue color gradient in the biolizard brand book.</p>
 <div class="cell docutils container">
@@ -457,7 +455,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal colormap" title="biolizard_divergent_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbCBjb2xvcm1hcHsBaw4AAAAsdEVYdERlc2NyaXB0aW9uAGJpb2xpemFyZF9kaXZlcmdlbnRfcGFsIGNvbG9ybWFwKl8ZqQAAADB0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuOC4zLCBodHRwczovL21hdHBsb3RsaWIub3Jnqp5OHAAAADJ0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeEONE7AAACJ0lEQVR4nO3WS27bMBSG0SulLQq02+siu75O+rClDky3MCXGsuHZf87kxiRNP5AE31Tfvq9VVTXNdWjO07Fzr5rz9fHUzRrM9c7+vXl7/9c2v7T5uc1P3fzY5ofNvPzw1q2/tY91Xd/Oyw9zt759PO3uz/P+ubk/N7hvc27un/f+ff256cl7/j/v2OtN/X39r+291/t3fv/cNHzec59jeN+j5wfve3O++3Oquvy9rOtSVVXLZp7v7N/OtZ0f79/eu9Sd/aP3vHx/9Pqj76Nbr/37t/e+av/84H4/T4P9U7d/2l1f1j9t/m7nfrXv4Wdb/9Gdr5u5do+fnaN7zg/eMzrfr58H69f3Ude57K9vHi/d8w6e27zewXPt3wEAkEQAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgQQAAAQSAAAQSAAAQCABAACBBAAABBIAABBIAABAIAEAAIEEAAAEEgAAEEgAAEAgAQAAgf4CUvFBBG6ICjQAAAAASUVORK5CYII="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal colormap" title="biolizard_divergent_pal" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAJnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbCBjb2xvcm1hcHsBaw4AAAAsdEVYdERlc2NyaXB0aW9uAGJpb2xpemFyZF9kaXZlcmdlbnRfcGFsIGNvbG9ybWFwKl8ZqQAAADF0RVh0QXV0aG9yAE1hdHBsb3RsaWIgdjMuMTAuOCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ5+cXbEAAAAzdEVYdFNvZnR3YXJlAE1hdHBsb3RsaWIgdjMuMTAuOCwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZzq4TkUAAAIjSURBVHic7dZLbtswGIVR0XkgQLu9LjLryyQvWUUSyoHIKJINz+45k78SadpW6+Irw7/HafhQDsOueSj79l1rHubr0sxhZU4b61tzef7fOv/U+VDnfTPv6rzt5tcfbpr7N/Vrzff7WRaPe77fX5cf1+fH1u47rW+c1+1r/vq3zmv3lQvP+X7dvvcr7XntP9ut9zvtL79/nu51l32Pcq39K5+729/8nIbh6/cyTcfPeezmuLG+nFPdv76+PPc4bKzvPefq6+OZz6O5f/pe48a511ofz1xv5/vK+nuzvrz+nm91vtZ9L/U5PNf7T83+YTGn5vrSuXbOeOY5487748r9+XPUn9fHg/jxfnd9bF63c1/3fjv31f8OAIAkAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAgkAAAgkAAAgEACAAACCQAACCQAACCQAACAQAIAAAIJAAAIJAAAIJAAAIBAAgAAAgkAAAj0H1LxQQQm9kqGAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div></div></div></div></div>
 </div>
 <p>Adding the suffix “_r” reverses these palettes:</p>
 <div class="cell docutils container">
@@ -467,7 +465,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal_r_r colormap" title="biolizard_divergent_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAKnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXCVsAMHAAAAMHRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXAqLY89AAAAMHRFWHRBdXRob3IATWF0cGxvdGxpYiB2My44LjMsIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmeqnk4cAAAAMnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHYzLjguMywgaHR0cHM6Ly9tYXRwbG90bGliLm9yZ4Q40TsAAAJaSURBVHic7da7ktNAEAXQ0dgsERlfyP+HUEXB2ibwWC61PNhLQHLPSdqaR48k7+MuX7+1S2uttaVdy6it1HW8Px5fyvjNrl/frq/zu3Padr6Pehjzxzq+bJa33rfjfbJ+Nr72Kc8529fLc8zm5/U46pdx/udN7f1tnP9W1h/Hubd6KPOHUj89HF/q9fgi+njw3mf9+mb/Ml5Anb/fT//r/vW6nj89dzt/P3/b97C7n0PZv637539tfz1/dt+9PenTSp9e39/j2ibv/1DOuf2EX65/Bdr5POq4XsfXev1wOdfxyfrxYd/n39av+8aHp/1evO/7/tJ39z4en7urLz7HeXLeZTb/wT6zdacX+50m/U5P+u2vt+t2dfR/L+PvY9/7ZTv/e9Rfpf4c9ceo30dta72U64/W5cl8/UG8faH/qd5/QV6q9d8sABBAAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAoD8WhgSMSO69PQAAAABJRU5ErkJggg=="></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div></div></div></div>
+<div class="output text_html"><div style="vertical-align: middle;"><strong>biolizard_divergent_pal_r_r</strong> </div><div class="cmap"><img alt="biolizard_divergent_pal_r_r colormap" title="biolizard_divergent_pal_r_r" style="border: 1px solid #555;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAABACAYAAABsv8+/AAAAKnRFWHRUaXRsZQBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXCVsAMHAAAAMHRFWHREZXNjcmlwdGlvbgBiaW9saXphcmRfZGl2ZXJnZW50X3BhbF9yX3IgY29sb3JtYXAqLY89AAAAMXRFWHRBdXRob3IATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3Jnn5xdsQAAADN0RVh0U29mdHdhcmUATWF0cGxvdGxpYiB2My4xMC44LCBodHRwczovL21hdHBsb3RsaWIub3JnOrhORQAAAl1JREFUeJzt1sGSk0AUBVDojOPKnV/o/y+1ytJJYmkeUDRhoGbh5p6zmBea7teEkMkdv34b7sNf47+/w1h1Ot6Mt+fjYzc+2fRr6/nj0T5zoxqueqnzL/341Gdq09bjbWd+O+rTvc+9dfO8g/P79aXql9r/86q29lr7v3bzH3Wc66U7f+nqp6fjY39cH0SrN97aXr+2Wj/WDejPL9fT3l0/H/f77+67Pr/sv+572VzPNL/fZ2f/dm59v//edbfhoE89gdv7396t0wPY73fp9pme8Pvjv8Bwu1Wt43l8ro8X927e7vx6se3zsfnzunpx2O/kdS/ru76b+/F839sH38dtZ79l3cn9Dq67n3c92e+60+960G97vJ63qdX/rRt/q3XT+FR/V/3V1Z9Vf1T9XrV+5ZYbuxkfTtbx4Hz/IE4f6H+qyxfkVO1/ZgGAAAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAIJAAAQSAAAgEACAAAEEgAAIJAAAACBBAAACCQAAEAgAQAAAgkAABBIAACAQAIAAAQSAAAgkAAAAIEEAAAIJAAAQCABAAACCQAAEEgAAIBAAgAABBIAACCQAAAAgQQAAAgkAABAIAEAAAL9ARaGBIy45svrAAAAAElFTkSuQmCC"></div><div style="vertical-align: middle; max-width: 514px; display: flex; justify-content: space-between;"><div style="float: left;"><div title="#146200ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #146200ff;"></div> under</div><div style="margin: 0 auto; display: inline-block;">bad <div title="#00000000" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #00000000;"></div></div><div style="float: right;">over <div title="#0055a9ff" style="display: inline-block; width: 1em; height: 1em; margin: 0; vertical-align: middle; border: 1px solid #555; background-color: #0055a9ff;"></div></div></div></div></div>
 </div>
 <p>Colors can be retrieved from the continuous colorscales by passing an array of the desired length to the palettes, this returns an array of rgba values. Note that internally, each continuous color scale is represented as a sequence of 255 colors. All these colors can be retrieved by passing range(255) to your color scale of choice:</p>
 <div class="cell docutils container">
@@ -483,7 +481,7 @@ Here's two examples illustrating how to use this function: -->
        ...,
        [0.        , 0.22352941, 0.71372549, 1.        ],
        [0.        , 0.21960784, 0.71764706, 1.        ],
-       [0.        , 0.21960784, 0.72156863, 1.        ]])
+       [0.        , 0.21960784, 0.72156863, 1.        ]], shape=(255, 4))
 </pre></div>
 </div>
 </div>
@@ -532,7 +530,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" src="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" />
+<img alt="_images/48381e4059ec0dd37f9b3b88f63da991e276024cf91222e95f10f2087b2799e8.png" src="_images/48381e4059ec0dd37f9b3b88f63da991e276024cf91222e95f10f2087b2799e8.png" />
 </div>
 </div>
 <p>The continous palettes have been registered with matplotlotlib and their names can be passed to the <code class="docutils literal notranslate"><span class="pre">cmap</span></code> parameter to change the continuous scale:</p>
@@ -549,8 +547,8 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" src="_images/9b6fe80a4e6efc7ca55424f8017103fd5b74c6aa07e5007756f593820fb6412d.png" />
-<img alt="_images/d025f1360de62d0a457b8c1e954bb02f5ea640de29e1ed3bb6a7445364534ece.png" src="_images/d025f1360de62d0a457b8c1e954bb02f5ea640de29e1ed3bb6a7445364534ece.png" />
+<img alt="_images/48381e4059ec0dd37f9b3b88f63da991e276024cf91222e95f10f2087b2799e8.png" src="_images/48381e4059ec0dd37f9b3b88f63da991e276024cf91222e95f10f2087b2799e8.png" />
+<img alt="_images/2884780e01336a257ac7c0248c8170cac63d280de6ecb817dab58d5b17b2a1f1.png" src="_images/2884780e01336a257ac7c0248c8170cac63d280de6ecb817dab58d5b17b2a1f1.png" />
 </div>
 </div>
 <p>The corresponding palettes with suffix ‘_r’ reverse the colors:</p>
@@ -563,7 +561,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/6b42d63e0d7e2dd668de8ceb2ff4848aa62042302982c9b10046f2da4784ab32.png" src="_images/6b42d63e0d7e2dd668de8ceb2ff4848aa62042302982c9b10046f2da4784ab32.png" />
+<img alt="_images/e070278eff9e4642b0c089c978b9625ce788d042bb8c8f7f02460efc40c8b46b.png" src="_images/e070278eff9e4642b0c089c978b9625ce788d042bb8c8f7f02460efc40c8b46b.png" />
 </div>
 </div>
 </section>
@@ -586,7 +584,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/7edabb64b2514901913e8b94afe1a069883f41d9bc954c658b2447682705a262.png" src="_images/7edabb64b2514901913e8b94afe1a069883f41d9bc954c658b2447682705a262.png" />
+<img alt="_images/230db596369f2067ffe89b9368924d33ef851ffe4d6ae93d91883de5b1e0edce.png" src="_images/230db596369f2067ffe89b9368924d33ef851ffe4d6ae93d91883de5b1e0edce.png" />
 </div>
 </div>
 </section>
@@ -624,7 +622,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" src="_images/97ff41993cfcbd659dce27665b45a3f6262d96b4f4134e5886452d5b60177417.png" />
+<img alt="_images/2d6cdb68b9e45f5c3adcdc80f1cba7d81e4d89b61031968dbfa0656fb9b26abb.png" src="_images/2d6cdb68b9e45f5c3adcdc80f1cba7d81e4d89b61031968dbfa0656fb9b26abb.png" />
 </div>
 </div>
 </section>
@@ -642,7 +640,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0519e634c322fb3fcb380b8aed11bf68c58bed3d480e878c6931527faf38d12d.png" src="_images/0519e634c322fb3fcb380b8aed11bf68c58bed3d480e878c6931527faf38d12d.png" />
+<img alt="_images/867088c670db0efc943f4df76a2b177727bc4f7ae81f5428cccb9529b6fedc6c.png" src="_images/867088c670db0efc943f4df76a2b177727bc4f7ae81f5428cccb9529b6fedc6c.png" />
 </div>
 </div>
 <p>Unfortunately, matplotlib and seaborn do not make a distinction between fill colors and other elements in the default values, resulting in these black box plots. The solution is to manually adjust the facecolor property. Brand fill and element colors are available in the package (see <a class="reference internal" href="#using-the-color-palettes"><span class="std std-ref">2. Using the color palettes</span></a>). In this case we use <code class="docutils literal notranslate"><span class="pre">blz_base_fill</span></code>.</p>
@@ -655,7 +653,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2a4945217f6a4174859528a8ecae4adecf239023c10178f19838c2f62de5cdac.png" src="_images/2a4945217f6a4174859528a8ecae4adecf239023c10178f19838c2f62de5cdac.png" />
+<img alt="_images/6bc56b342c4a505fba1565642bcd056172a1304357ff7495ecdf708abbabbe1c.png" src="_images/6bc56b342c4a505fba1565642bcd056172a1304357ff7495ecdf708abbabbe1c.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">blz_highlight_fill</span></code> can be used to highlight specific elements. For example if we are especially interested in the setosa species:</p>
@@ -670,7 +668,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ae5a397c8a3dacf7957fcff892193f716641c45e140ead799a776259c0f81901.png" src="_images/ae5a397c8a3dacf7957fcff892193f716641c45e140ead799a776259c0f81901.png" />
+<img alt="_images/da9ce3ddbd751312cf20d451c42beb3acc9c4bd9b319bbe866b1809f198e0373.png" src="_images/da9ce3ddbd751312cf20d451c42beb3acc9c4bd9b319bbe866b1809f198e0373.png" />
 </div>
 </div>
 <p>A violin plot is similar to a boxplot, but captures more information on the data distribution. <code class="docutils literal notranslate"><span class="pre">sns.violinplot</span></code> does not have the boxprop parameter, so we need to tweak the violin elements by cycling through <code class="docutils literal notranslate"><span class="pre">ax.collections</span></code>:</p>
@@ -687,7 +685,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/be7cbb8f57e7db8e91cc35aad70865cf74f47a792721910f91519a088df9c7bc.png" src="_images/be7cbb8f57e7db8e91cc35aad70865cf74f47a792721910f91519a088df9c7bc.png" />
+<img alt="_images/dcbe48821ebee5ce07486bef319efde837d55aea302bc25edd2f004253d474a6.png" src="_images/dcbe48821ebee5ce07486bef319efde837d55aea302bc25edd2f004253d474a6.png" />
 </div>
 </div>
 </section>
@@ -707,11 +705,11 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/1132376799.py:1: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/zd673br14kd_wv9lkwv86y200000gn/T/ipykernel_15274/1132376799.py:1: UserWarning: The palette list has more values (8) than needed (3), which may not be intended.
   sns.displot(data,
 </pre></div>
 </div>
-<img alt="_images/ea5428c0ccaf90af1c2f3d2fe9035f743d1fa5ef69c948a5e9e0262c568f3818.png" src="_images/ea5428c0ccaf90af1c2f3d2fe9035f743d1fa5ef69c948a5e9e0262c568f3818.png" />
+<img alt="_images/5ffef715714b569f5575fac7a8c998b18d4328b93bd45fdcc5f6c0ecef9b1370.png" src="_images/5ffef715714b569f5575fac7a8c998b18d4328b93bd45fdcc5f6c0ecef9b1370.png" />
 </div>
 </div>
 </section>
@@ -732,18 +730,18 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/c22daf7ae00086f715f25a30aa03e7ad2bac11dd0b372f685909b310f2c7ed31.png" src="_images/c22daf7ae00086f715f25a30aa03e7ad2bac11dd0b372f685909b310f2c7ed31.png" />
+<img alt="_images/3593dcf391c9fd9dd1e28ff604f1dcc1eeeeb13b73f65bfd304b0265cb213b18.png" src="_images/3593dcf391c9fd9dd1e28ff604f1dcc1eeeeb13b73f65bfd304b0265cb213b18.png" />
 </div>
 </div>
 <p>We can use <code class="docutils literal notranslate"><span class="pre">lmplot</span></code> or <code class="docutils literal notranslate"><span class="pre">regplot</span></code> to add a regression line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
 
 <span class="n">g</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">lmplot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;petal_length&quot;</span><span class="p">,</span> <span class="n">line_kws</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">blz_highlight_element</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">annotate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">annotate</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kws</span><span class="p">):</span>
     <span class="n">r</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">pearsonr</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;sepal_length&quot;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;petal_length&quot;</span><span class="p">])</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="s2">&quot;$r^2$=</span><span class="si">{:.2f}</span><span class="s2">, p=</span><span class="si">{:.2g}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
@@ -756,7 +754,7 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/ad7f32c25ca9aa23c7cf8eb4ffaa1c13bf5586fcf96747cff45da06962ff369f.png" src="_images/ad7f32c25ca9aa23c7cf8eb4ffaa1c13bf5586fcf96747cff45da06962ff369f.png" />
+<img alt="_images/5cfe9d03101ac4d90f7c011153dd20fd008333403320cfd87aa3c9eb246d960b.png" src="_images/5cfe9d03101ac4d90f7c011153dd20fd008333403320cfd87aa3c9eb246d960b.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -771,10 +769,10 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f75424c0140&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x137e68cd0&gt;
 </pre></div>
 </div>
-<img alt="_images/d8262440c528949a178628269f62b0d93dd3524db8b23bd805279e6c4f00c78c.png" src="_images/d8262440c528949a178628269f62b0d93dd3524db8b23bd805279e6c4f00c78c.png" />
+<img alt="_images/30788940fd9874852e04f705fc4389967329ca96ca580fd8af859bc16b091d43.png" src="_images/30788940fd9874852e04f705fc4389967329ca96ca580fd8af859bc16b091d43.png" />
 </div>
 </div>
 <p>Note that using the reversed palette starts picking the colors from the end of the palette. If you want to pick the colors you need, and reverse them afterward (eg pink-blue-green instead of green-blue-pink), use the regular palette and reverse the colors after picking them:</p>
@@ -812,11 +810,11 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_2221743/3567715431.py:28: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/b1/zd673br14kd_wv9lkwv86y200000gn/T/ipykernel_15274/3567715431.py:28: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
   fig.show()
 </pre></div>
 </div>
-<img alt="_images/00f36ac213a68d0976eb7e4da9b2a9ffc293795d8a14cb993ee5a9bd9c49f959.png" src="_images/00f36ac213a68d0976eb7e4da9b2a9ffc293795d8a14cb993ee5a9bd9c49f959.png" />
+<img alt="_images/57534eeaaf038fd19e74db382742af2cac70e916ef23a82a7b57d342e9550762.png" src="_images/57534eeaaf038fd19e74db382742af2cac70e916ef23a82a7b57d342e9550762.png" />
 </div>
 </div>
 </section>
@@ -831,10 +829,10 @@ Here's two examples illustrating how to use this function: -->
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x7f754201e480&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x143b1efd0&gt;
 </pre></div>
 </div>
-<img alt="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" src="_images/fd066ff7e16ae4872fd48dc918834f3c89f58ce902a9bf2d184d27399bcc21e5.png" />
+<img alt="_images/304028960b34f25f227d80765fc46dad481e666427df8dc00d71fe2ba3b3ace7.png" src="_images/304028960b34f25f227d80765fc46dad481e666427df8dc00d71fe2ba3b3ace7.png" />
 </div>
 </div>
 </section>
@@ -844,7 +842,7 @@ Here's two examples illustrating how to use this function: -->
 In this example, more colors are requested than are present in the qualitative color scales. The <code class="docutils literal notranslate"><span class="pre">biolizard_hues_pal</span></code> palette was developped for situations like this. It maps each level to an evenly spaced hue on the color wheel, starting with the dark green from the brand book, but it DOES NOT generate colorblind-safe palettes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">squarify</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">squarify</span>
 
 <span class="c1"># Sample data</span>
 <span class="n">values</span> <span class="o">=</span> <span class="p">[</span><span class="mi">250</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">320</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">95</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">896</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">654</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">37</span><span class="p">]</span>
@@ -871,7 +869,7 @@ In this example, more colors are requested than are present in the qualitative c
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/5fee6f923edd1ad6fd82a87e8d6b4150d7c45e3578c34b4c925343dbd7baa835.png" src="_images/5fee6f923edd1ad6fd82a87e8d6b4150d7c45e3578c34b4c925343dbd7baa835.png" />
+<img alt="_images/5c14d4c6e0d71532599da3c50e724b8f283734546c9fac03554b49a1c930c8d1.png" src="_images/5c14d4c6e0d71532599da3c50e724b8f283734546c9fac03554b49a1c930c8d1.png" />
 </div>
 </div>
 </section>

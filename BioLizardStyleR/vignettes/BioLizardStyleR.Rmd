@@ -54,13 +54,13 @@ To install the `BioLizardStyleR` package directly from GitHub, you will need to 
 
 ```
 if (!requireNamespace("devtools", quietly = TRUE)) {
-install.packages("devtools")
+install.packages("pak")
 }
 
 # make sure to look up BioConductor packages (used in the vignette)
 setRepositories(ind = c(1:6, 8))
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
+pak::pkg_install("lizard-bio/nature-grade-visualization-playground/BioLizardStyleR")
 
 ```
 

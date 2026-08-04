@@ -17,3 +17,6 @@ BioLizardStylePython/docs/_build/jupyter_execute
 __pycache__
 result_images
 .positai
+
+# vscode
+.vscode

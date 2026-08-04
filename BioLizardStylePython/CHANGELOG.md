@@ -2,6 +2,14 @@
 
 <!--next-version-placeholder-->
 
+## v3.0.2
+
+### Fix
+
+- Dependabot: Bump the pip group across 1 directory with 3 updates.
+- Adapt pillow dependency to >= 12.3.0
+- Fix issues with font-rhd
+
 ## v3.0.1
 
 ### Fix

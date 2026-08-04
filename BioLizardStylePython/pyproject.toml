@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BioLizardStylePython"
-version = "3.0.1"
+version = "3.0.2"
 authors = [
   { name = "BioLizard", email = "contact@lizard.bio"},
   { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"},
@@ -29,8 +29,8 @@ classifiers = [
 dependencies = [
     "matplotlib>=3.7.1",
     "seaborn>=0.13.2",
-    "Pillow>=9.4.0",
-    "font-rhd",
+    "Pillow>=12.3.0",
+    "font-rhd>=0.1.3",
     #    "deprecated>=1.2.0",
     "colorspace>=0.4.0",
     "plotly>=5.20.0"

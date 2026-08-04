@@ -24,11 +24,10 @@ Development was continued by Anikó Meijer and Artuur Couckuyt.
 
 ```{r}
 if (!requireNamespace("devtools", quietly = TRUE)) {
-  install.packages("devtools")
+  install.packages("pak")
 }
 
-devtools::install_github("lizard-bio/nature-grade-visualization-playground", subdir="BioLizardStyleR")
-
+pak::pkg_install("lizard-bio/nature-grade-visualization-playground/BioLizardStyleR")
 ```
 
 ### Installing BioLizardStylePython
