@@ -9,10 +9,11 @@ html, body, h1, h2, h3, h4, h5, h6 {
 main.content,
 #quarto-document-content {
   background-color: white;
-  max-width: 1200px !important;
-  padding: 40px;
-  margin-top: 50px !important;
-  margin-bottom: 50px !important;
+  width: 120% !important;               /* Forces width to adjust relative to the viewport */
+  max-width: 95vw !important;          /* Prevents overflow on narrow screens */
+  padding: clamp(16px, 3vw, 40px);     /* Scales padding between 16px and 40px */
+  margin-top: 3vh !important;          /* Scales vertical margins with screen height */
+  margin-bottom: 3vh !important;
   margin-left: auto !important;
   margin-right: auto !important;
   border-radius: 15px;
