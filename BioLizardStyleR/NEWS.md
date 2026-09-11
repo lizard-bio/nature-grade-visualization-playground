@@ -7,6 +7,11 @@
 
 ## Bug fixes
 -->
+# BioLizardStyleR 3.1.2
+
+## Feature
+
+- Add Quarto CSS 
 
 # BioLizardStyleR 3.1.1
 
