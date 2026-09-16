@@ -5,6 +5,16 @@ html, body, h1, h2, h3, h4, h5, h6 {
   font-family: 'Red Hat Display', sans-serif;
 }
 
+#TOC {
+  position: fixed !important;
+  top: 100px !important;
+  left: 20px !important;
+  width: 220px !important;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
 /*** Main content container (replaces R Markdown's div.main-container) ***/
 main.content,
 #quarto-document-content {
@@ -89,4 +99,8 @@ body {
 
   min-height: 100%;
 }
+
+
+
+
 
