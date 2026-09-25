@@ -1,10 +1,10 @@
 ---
 title: "BioLizardStyleR"
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
-    css: !expr system.file('css', 'biolizardstyle.css', package='BioLizardStyleR')
+    css: !expr system.file('css', 'biolizardstyle_rmd.css', package='BioLizardStyleR')
 vignette: >
   %\VignetteIndexEntry{BioLizardStyleR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -32,7 +32,7 @@ In this guide, we'll walk you through the installation of the `BioLizardStyleR` 
 The CSS style file in this package allows to BioLizard-ify a Rmd knit to an HTML. Use the output section in the YAML header of your Rmd to add the css file and the table of contents (toc):
 
 ```
-output: 
+output:
   html_document:
     toc: true
     toc_float: true
@@ -112,11 +112,11 @@ library(ggplot2)
 data("mtcars")
 mtcars$gear <- factor(mtcars$gear, levels = c(3, 4, 5), ordered = TRUE)
 
-testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) + 
-  ggplot2::geom_point(ggplot2::aes(color = gear),size=3) +  
-  ggplot2::labs(title = "Miles per Gallon vs. Horsepower",  
-                 x = "Horsepower",  
-                 y = "Miles per Gallon",  
+testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
+  ggplot2::geom_point(ggplot2::aes(color = gear),size=3) +
+  ggplot2::labs(title = "Miles per Gallon vs. Horsepower",
+                 x = "Horsepower",
+                 y = "Miles per Gallon",
                  color = "Gears")
 testplot
 ```
@@ -164,26 +164,26 @@ testplot <- ggplot2::ggplot(data = mtcars, ggplot2::aes(x = hp, y = mpg)) +
   )
 
 # Applying the qualitative color scale
-testplot_qualitative <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "qualitative") + 
+testplot_qualitative <- testplot +
+  scale_color_biolizard(type = "discrete", scheme = "qualitative") +
   lizard_style()
 testplot_qualitative
 
 # Applying the sequential color scales (assuming you have a different dataset or aesthetic)
-testplot_sequential <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "sequential") + 
+testplot_sequential <- testplot +
+  scale_color_biolizard(type = "discrete", scheme = "sequential") +
   lizard_style()
 testplot_sequential
 
 ## sequential scale inspired by BioLizard beige and blue (assuming you have a different dataset or aesthetic)
-testplot_sequential <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "beige_blue") + 
+testplot_sequential <- testplot +
+  scale_color_biolizard(type = "discrete", scheme = "beige_blue") +
   lizard_style()
 testplot_sequential
 
 # Applying the divergent color scale (assuming you have a different dataset or aesthetic)
-testplot_divergent <- testplot + 
-  scale_color_biolizard(type = "discrete", scheme = "divergent") + 
+testplot_divergent <- testplot +
+  scale_color_biolizard(type = "discrete", scheme = "divergent") +
   lizard_style()
 testplot_divergent
 ```
@@ -191,7 +191,7 @@ testplot_divergent
 It is possible to reverse the color scales by setting `reverse = TRUE`
 
 ```{r, fig.width=6}
-testplot_divergent <- testplot + 
+testplot_divergent <- testplot +
   scale_color_biolizard(type = "discrete", scheme = "divergent", reverse = TRUE) +
   lizard_style()
 testplot_divergent
@@ -217,8 +217,8 @@ For a unique touch on your visualizations, integrate a BioLizard footer using th
 
 ```{r, warning=FALSE}
 finalise_lizardplot(
-  testplot + 
-    scale_color_biolizard(type = "discrete", scheme = "qualitative") + 
+  testplot +
+    scale_color_biolizard(type = "discrete", scheme = "qualitative") +
     lizard_style(),
   source='Source: The mtcars dataset')
 ```
@@ -372,9 +372,9 @@ data("pokemon", package = "highcharter")
 # Cleaning up data for a treemap
 data <- pokemon |>
   dplyr::select(pokemon, type_1, type_2) |>
-  dplyr::mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) |> 
+  dplyr::mutate(type_2 = ifelse(is.na(type_2), paste("only", type_1), type_2)) |>
   dplyr::group_by(type_1, type_2) |>
-  dplyr::summarise(n = length(pokemon)) |> 
+  dplyr::summarise(n = length(pokemon)) |>
   dplyr::ungroup()
 
 head(data)
@@ -394,7 +394,7 @@ ggplot2::ggplot(data, ggplot2::aes(area = n, label = type_2, fill = type_1,
   # 4. Print type_2 text
   treemapify::geom_treemap_text(colour = "white", place = "topleft", reflow = T,
                                 family = "Red Hat Display") +   #need to add "Red Hat Display" manually as this text is not accessed in theme()
-  
+
   # 5. BLZ style
   scale_fill_biolizard(scheme = "beige_gn_blue") +
   lizard_style() +
@@ -411,11 +411,11 @@ ncols <- length(unique(data$type_1))
 palette <- biolizard_pal_beige_gn_blue(ncols)
 
 treemap::treemap(data, index=c("type_1", "type_2"), vSize="n", type="index",
-                 title="Number of pokémon stratified by type", 
+                 title="Number of pokémon stratified by type",
                  palette=palette,  #set the BLZ color palette
                  fontcolor.labels=c("#FFFFFFDD", "#00000080"), bg.labels=0, border.col="#00000080",
                  fontfamily.title = "Red Hat Display", fontfamily.labels = "Red Hat Display", fontfamily.legend = "Red Hat Display",  #set the Red Hat Display font
-                  fontsize.title = 22,  fontsize.labels = 18, fontsize.legend = 18)  
+                  fontsize.title = 22,  fontsize.labels = 18, fontsize.legend = 18)
 ```
 
 ## 3.8 Chicago plots
@@ -428,7 +428,7 @@ chic <- utils::read.csv(example_file) #An example dataset
 
 g <- ggplot2::ggplot(chic, ggplot2::aes(x = season, y = o3,
                                         color = season)) +
-  ggplot2::labs(x = "Season", y = "Ozone") + 
+  ggplot2::labs(x = "Season", y = "Ozone") +
   ggplot2::geom_violin(linewidth = 1, alpha = .5) +
   ggplot2::geom_jitter(alpha = .25, width = .3) +
   ggplot2::coord_flip()
@@ -443,17 +443,17 @@ library(corrr)
 library(forcats)
 
 corm <-
-  chic |> 
-  dplyr::select(temp, dewpoint, pm10, o3) |> 
-  corrr::correlate(diagonal = 1) |> 
+  chic |>
+  dplyr::select(temp, dewpoint, pm10, o3) |>
+  corrr::correlate(diagonal = 1) |>
   corrr::shave(upper = FALSE)
 
-corm <- corm |> 
+corm <- corm |>
   tidyr::pivot_longer(
     cols = -term,
     names_to = "colname",
     values_to = "corr"
-  ) |> 
+  ) |>
   dplyr::mutate(
     rowname = forcats::fct_inorder(term),
     colname = forcats::fct_inorder(colname),
@@ -465,9 +465,9 @@ g <- ggplot2::ggplot(corm, ggplot2::aes(rowname, fct_rev(colname),
   ggplot2::geom_tile() +
   ggplot2::geom_text(ggplot2::aes(label = label)) +
   ggplot2::coord_fixed(expand = FALSE) +
-  ggplot2::labs(x = NULL, y = NULL) 
+  ggplot2::labs(x = NULL, y = NULL)
 
-g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1), 
+g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1),
                          na.value = "white", name="Pearson\nCorrelation") +
   lizard_style() +
   ggplot2::theme(legend.position = "inside", legend.position.inside = c(.95, .8))
@@ -476,8 +476,8 @@ g + scale_fill_biolizard(type='continuous',scheme='divergent',limits = c(-1, 1),
 ```{r, fig.width=5, fig.height=4, warning=FALSE}
 g <- ggplot2::ggplot(chic, ggplot2::aes(temp, o3)) +
   ggplot2::geom_hex(color = "grey") +
-  ggplot2::labs(x = "Temperature (°F)", 
-                y = "Ozone Level", 
+  ggplot2::labs(x = "Temperature (°F)",
+                y = "Ozone Level",
                 title = 'How Temperature Affects Ozone Levels',
                 subtitle ='Hexagonal Binning of Ozone Levels vs. Temperature in °F')
 
@@ -491,7 +491,7 @@ finalise_lizardplot(g,source="Source: The Chicago dataset (https://www.cedricsch
 
 ## 3.9 Interactive plots (DE analysis)
 
-`ggplotly` can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). Make sure that you do **not** apply `lizard_style()` to the ggplot call when you want to use `ggplotly`. 
+`ggplotly` can be used to make a ggplot interactive, for example to use in a html report. See an example of in interactive PCA plot and volcano plot below. To generate these plots, we used the per-gene read counts of the [pasilla dataset](https://bioconductor.org/packages/release/data/experiment/html/pasilla.html). Make sure that you do **not** apply `lizard_style()` to the ggplot call when you want to use `ggplotly`.
 The function `lizard_layout()` applies the lizard theme to a plotly object.
 
 Note: to succesfully install Pasilla, you might have to manually install libbz2 (libbz2-dev (deb), libbz2-devel (rpm), bzip2 (brew)).
@@ -527,12 +527,12 @@ norm.counts <- edgeR::cpm(y, normalized.lib.sizes = TRUE, log = T)
 mds <- limma::plotMDS(y, gene.selection="common", plot = F)
 toplot <- data.frame(Dim1 = mds$x, Dim2 = mds$y, Group = Group, sample = colnames(mds$distance.matrix.squared))
 pcaPlot <- ggplot2::ggplot(toplot, ggplot2::aes(Dim1, Dim2, colour = Group)) +
-  ggplot2::geom_point() + 
+  ggplot2::geom_point() +
   ggplot2::geom_text(ggplot2::aes(label = sample), size = 3, nudge_y = 0.05) +
   ggplot2::coord_fixed() +
   ggplot2::xlab(paste0("PC1: ", round(mds$var.explained[1]*100), "% variance")) +
   ggplot2::ylab(paste0("PC2: ", round(mds$var.explained[2]*100), "% variance")) +
-  scale_color_biolizard() 
+  scale_color_biolizard()
 
 plotly::ggplotly(pcaPlot) |> lizard_layout()
 
@@ -557,7 +557,7 @@ DE <- DE[!is.na(DE$padj), ]
 head(DE)
 
 # interactive volcano plot
-p <- DE |> 
+p <- DE |>
   ggplot2::ggplot(ggplot2::aes(x = log2FoldChange, y = -log10(pvalue))) +
   ggplot2::geom_point(ggplot2::aes(color = padj < 0.05)) +
   scale_color_biolizard(reverse = TRUE)
