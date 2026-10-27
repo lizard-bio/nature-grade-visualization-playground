@@ -53,7 +53,7 @@ lizard_style_template.layout = {
     },
     # 'hoverlabel': {'align': 'left'},
     "hovermode": "closest",
-    "mapbox": {"style": "light"},
+    "map": {"style": "light"},
     "paper_bgcolor": "white",
     "plot_bgcolor": "white",
     # 'polar': {'angularaxis': {'gridcolor': 'rgb(232,232,232)',
@@ -423,7 +423,7 @@ lizard_style_template.data = {
             "type": "scattergl",
         }
     ],
-    "scattermapbox": [
+    "scattermap": [
         {
             "marker": {
                 "colorbar": {
@@ -433,7 +433,7 @@ lizard_style_template.data = {
                     "exponentformat": "E",
                 }
             },
-            "type": "scattermapbox",
+            "type": "scattermap",
         }
     ],
     "scatterpolar": [

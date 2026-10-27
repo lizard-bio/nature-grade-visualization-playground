@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "BioLizardStylePython"
-version = "3.0.2"
+version = "3.0.3"
 authors = [
   { name = "BioLizard", email = "contact@lizard.bio"},
   { name = "Aniko Meijer", email = "aniko.meijer@lizard.bio"},
@@ -33,7 +33,7 @@ dependencies = [
     "font-rhd>=0.1.3",
     #    "deprecated>=1.2.0",
     "colorspace>=0.4.0",
-    "plotly>=5.20.0"
+    "plotly>=5.24.0"
 ]
 
 [project.optional-dependencies]
