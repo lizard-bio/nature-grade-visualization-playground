@@ -1,6 +1,12 @@
 # Changelog
 
 <!--next-version-placeholder-->
+## v3.0.3
+
+### Fix
+
+- Dependabot: Bump setuptools from 83.0.0 to 84.1.0 in /BioLizardStylePython in the pip group across 1 directory
+- Fix import issues due to plotly update
 
 ## v3.0.2
 
