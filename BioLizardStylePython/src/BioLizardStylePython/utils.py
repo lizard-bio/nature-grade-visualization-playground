@@ -1,13 +1,11 @@
 import os
-import io
 import warnings
 
 # import numpy as np
-from PIL import Image
-
 # from pathlib import Path
 import matplotlib.pyplot as plt
 import matplotlib.colors
+import matplotlib.layout_engine
 
 # from matplotlib import font_manager
 import colorspace
@@ -259,8 +257,9 @@ def finalise_lizardplot(
     Finalise and save a plot with custom adjustments and a source text.
 
     This function takes a provided plot, adjusts its layout, and appends a footer
-    at the bottom containing a source text and a logo. The combined image is then saved
-    either as a PNG or a PDF.
+    at the bottom containing a source text and a logo. The footer is drawn into the
+    figure itself, so a PDF export stays vector graphics. The figure is restored to
+    its original size and layout after saving.
 
     Parameters:
     - plot (matplotlib.figure.Figure): The input plot to be finalized.
@@ -271,82 +270,128 @@ def finalise_lizardplot(
     - save_filepath (str, optional): Full path to save the output (with extension). If specified, it takes precedence over output_name.
 
     Returns:
-    None. The combined image is saved to the specified location or the current working directory.
+    None. The figure is saved to the specified location or the current working directory.
 
     Example:
     #>>> fig, ax = plt.subplots()
     #>>> ax.plot([0, 1], [0, 1])
     #>>> finalise_lizardplot(fig, "Source: BioLizard Data", pdf=True)
     """
-    # Adjust the provided plot
-    plot.subplots_adjust(left=0.11, bottom=0.13, right=0.95)
+    fig = plot
+    dpi = 300
+    footer_height_inches = 0.4
+    logo_right_pad_inches = 0.15  # keeps the logo clear of the right edge
+    logo_top_gap_inches = 0.08  # space between the footer line and the logo
+    logo_height_inches = 0.22
 
-    # Save the adjusted plot to a temporary buffer
-    buf = io.BytesIO()
-    dpi = 300  # Increased DPI for higher resolution
-    plot.savefig(buf, format="png", pad_inches=0.1, dpi=dpi)
-    buf.seek(0)
-    img2 = Image.open(buf)
+    # Remember the original state so the figure can be restored after saving
+    orig_size = fig.get_size_inches().copy()
+    orig_subplotpars = {
+        k: getattr(fig.subplotpars, k)
+        for k in ("left", "right", "bottom", "top", "wspace", "hspace")
+    }
+    orig_positions = {
+        ax: (ax.get_position(original=True), ax.get_position(original=False))
+        for ax in fig.axes
+    }
+    orig_text_positions = {t: t.get_position() for t in fig.texts}
+    engine = fig.get_layout_engine()
+    engine_rect = engine.get()["rect"] if engine is not None and "rect" in engine.get() else None
 
-    # Get the width of the saved plot in pixels
-    swarmplot_width, _ = img2.size
+    # Grow the figure downwards to make room for the footer
+    width, height = orig_size
+    new_height = height + footer_height_inches
+    f = footer_height_inches / new_height  # footer height as a fraction of the new figure
 
-    # Adjust the width and height of the custom figure to match the width of the plot in pixels
-    custom_fig_width_inches = swarmplot_width / dpi
-    custom_fig_height_inches = 0.4  # Reduced height
+    def to_new(y):
+        """Map a vertical figure fraction of the original figure to the enlarged one."""
+        return f + y * (1 - f)
 
-    fig1 = plt.figure(figsize=(custom_fig_width_inches, custom_fig_height_inches))
-    ax = fig1.add_axes([0, 0, 1, 1])
-    ax.plot([0, 0.99], [0.9, 0.9], color="black", linewidth=1, transform=ax.transAxes)
-    ax.plot([0.99], [0.9], "o", transform=ax.transAxes, markersize=5)
+    if engine_rect is not None:
+        # constrained / tight layout: restrict the layout to the area above the footer
+        if isinstance(engine, matplotlib.layout_engine.TightLayoutEngine):
+            # rect is (left, bottom, right, top)
+            left, bottom, right, top = engine_rect
+            engine.set(rect=(left, to_new(bottom), right, to_new(top)))
+        else:
+            # rect is (left, bottom, width, height)
+            x0, y0, w, h = engine_rect
+            engine.set(rect=(x0, to_new(y0), w, h * (1 - f)))
+        fig.set_size_inches(width, new_height)
+    else:
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore")
+            fig.subplots_adjust(left=0.11, bottom=0.13, right=0.95)
+        positions = {ax: ax.get_position() for ax in fig.axes}
+        fig.set_size_inches(width, new_height)
+        for ax, pos in positions.items():
+            ax.set_position(
+                [pos.x0, to_new(pos.y0), pos.width, pos.height * (1 - f)]
+            )
+    # Figure-level texts (e.g. suptitle) are placed in figure fractions too
+    for t, (x, y) in orig_text_positions.items():
+        t.set_position((x, to_new(y)))
 
-    font_name = plt.rcParams["font.sans-serif"][0]
-
-    ax.text(
+    # Footer: horizontal line ending in a dot, the source text and the logo
+    footer_ax = fig.add_axes([0, 0, 1, f])
+    footer_ax.set_in_layout(False)
+    footer_ax.plot([0, 0.99], [0.9, 0.9], color="black", linewidth=1)
+    footer_ax.plot([0.99], [0.9], "o", markersize=5)
+    footer_ax.text(
         0.05,
         0.5,
         source_text,
         verticalalignment="center",
-        transform=ax.transAxes,
         fontsize=fontsize,
-        fontname=font_name,
+        fontname=plt.rcParams["font.sans-serif"][0],
     )
+    footer_ax.set_xlim(0, 1)
+    footer_ax.set_ylim(0, 1)
+    footer_ax.axis("off")
 
-    ax_image = fig1.add_axes([0.85, -0.15, 0.15, 1], anchor="NE", zorder=-1)
+    image_path = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), "logo", "BiolizardLogo.png"
+    )
+    logo = plt.imread(image_path)
+    # Logo is sized and placed in inches so its spacing is the same for every figure size
+    logo_height_in = min(logo_height_inches, 0.15 * width * logo.shape[0] / logo.shape[1])
+    logo_width_in = logo_height_in * logo.shape[1] / logo.shape[0]
+    line_y_in = 0.9 * footer_height_inches
+    logo_top_in = line_y_in - logo_top_gap_inches
+    logo_ax = fig.add_axes(
+        [
+            1 - (logo_right_pad_inches + logo_width_in) / width,
+            (logo_top_in - logo_height_in) / new_height,
+            logo_width_in / width,
+            logo_height_in / new_height,
+        ],
+        zorder=-1,
+    )
+    logo_ax.set_in_layout(False)
+    logo_ax.imshow(logo)
+    logo_ax.axis("off")
 
-    # Get the directory of the current script
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    # Construct the path to the image
-    image_path = os.path.join(current_directory, "logo", "BiolizardLogo.png")
-    # Read the image
-    img = plt.imread(image_path)
-
-    ax_image.imshow(img)
-    ax_image.axis("off")
-    ax.axis("off")
-
-    # Save the custom figure to a temporary buffer
-    buf1 = io.BytesIO()
-    fig1.savefig(buf1, format="png", pad_inches=0.1, dpi=dpi)
-    buf1.seek(0)
-    img1 = Image.open(buf1)
-    plt.close(fig1)
-
-    # Concatenate the two images vertically
-    combined_img = Image.new("RGB", (swarmplot_width, img1.height + img2.height))
-    combined_img.paste(img2, (0, 0))
-    combined_img.paste(img1, (0, img2.height))
-
-    # Save the concatenated image
-    if pdf:
-        if save_filepath:
-            filename = save_filepath
-        else:
-            filename = output_name + ".pdf"
-        combined_img.save(filename, "PDF", resolution=100.0)
+    # Save
+    if save_filepath:
+        filename = save_filepath
     else:
-        if save_filepath:
-            filename = save_filepath
+        filename = output_name + (".pdf" if pdf else ".png")
+    try:
+        with warnings.catch_warnings():
+            # tight_layout warns about the footer axes, which are excluded from layout anyway
+            warnings.filterwarnings("ignore", message=".*not compatible with tight_layout.*")
+            fig.savefig(filename, format="pdf" if pdf else "png", dpi=dpi)
+    finally:
+        # Restore the figure so it can still be shown or edited afterwards
+        footer_ax.remove()
+        logo_ax.remove()
+        fig.set_size_inches(orig_size)
+        if engine_rect is not None:
+            engine.set(rect=engine_rect)
         else:
-            filename = output_name + ".png"
-        combined_img.save(filename)
+            fig.subplots_adjust(**orig_subplotpars)
+        for ax, (orig_pos, active_pos) in orig_positions.items():
+            ax.set_position(orig_pos, which="original")
+            ax.set_position(active_pos, which="active")
+        for t, pos in orig_text_positions.items():
+            t.set_position(pos)

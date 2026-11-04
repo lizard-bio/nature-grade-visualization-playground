@@ -95,3 +95,20 @@ def test_lizardstyle_cmapplot_beige_gn_blue():
     data = np.random.rand(5, 5)  # Example data
     plt.imshow(data, cmap='biolizard_beige_gn_blue_pal')
     plt.colorbar()
+
+# finalise_lizardplot: footer is drawn into the figure and the figure is restored afterwards
+def test_finalise_lizardplot(tmp_path):
+    for layout in (None, "constrained", "tight"):
+        fig, ax = plt.subplots(layout=layout)
+        ax.plot([0, 1], [0, 1])
+        fig.suptitle("title")
+        size_before = tuple(fig.get_size_inches())
+        positions_before = [ax.get_position().bounds for ax in fig.axes]
+        for pdf in (False, True):
+            ext = ".pdf" if pdf else ".png"
+            out = tmp_path / f"plot_{layout}{ext}"
+            finalise_lizardplot(fig, "Source: test", pdf=pdf, save_filepath=str(out))
+            assert out.exists() and out.stat().st_size > 0
+        assert tuple(fig.get_size_inches()) == size_before
+        assert [ax.get_position().bounds for ax in fig.axes] == positions_before
+        plt.close(fig)
