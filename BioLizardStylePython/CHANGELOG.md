@@ -1,6 +1,24 @@
 # Changelog
 
 <!--next-version-placeholder-->
+## v3.0.4
+
+### Changed
+
+- `finalise_lizardplot()` now draws the footer directly into the figure instead of stitching images together with Pillow:
+  - PDF exports are now vector graphics at the real figure size (previously a 300-dpi bitmap on a page three times too large), and about 5× smaller.
+  - PNG output is unchanged in size and appearance.
+  - The figure is restored after saving, so it can still be shown or edited.
+  - Works with `constrained` and `tight` layouts, and moves figure-level text such as `suptitle` up with the plot.
+- The footer logo has a fixed size and spacing in inches, with more room on the right and below the footer line.
+- Removed the Pillow dependency.
+- seaborn is no longer a required dependency; it is only needed for the tests and moved to the `dev` extra. The style still works with seaborn plots.
+
+### Fix
+
+- The bottom of the x-axis label is no longer cut off in `finalise_lizardplot()` output.
+- The footer logo no longer touches the right edge of the image.
+
 ## v3.0.3
 
 ### Fix
